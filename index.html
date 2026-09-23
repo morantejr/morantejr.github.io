@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Joseph Morante - Marketing Measurement</title>
+<meta name="description" content="Joseph Morante builds privacy-aware, AI-assisted measurement systems: MMM, incrementality, and attribution reliability. Author of mta-audit. Adjunct professor at Susquehanna University.">
+<meta property="og:title" content="Joseph Morante - Marketing Measurement">
+<meta property="og:description" content="I build privacy-aware, AI-assisted measurement systems that turn marketing data into better decisions.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%2308080a'/%3E%3Ctext x='32' y='40' text-anchor='middle' font-family='Helvetica,Arial,sans-serif' font-size='26' font-weight='500' fill='%23e9e9ec'%3EJM%3C/text%3E%3Crect x='20' y='46' width='24' height='2.5' fill='%238fd4d8'/%3E%3C/svg%3E">
+<style>
+/* latin-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/ibm-plex-mono-400-latin-ext.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/ibm-plex-mono-400-latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("fonts/ibm-plex-mono-500-latin-ext.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("fonts/ibm-plex-mono-500-latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+:root{--bg:#08080a;--panel:#0c0c0f;--fg:#e9e9ec;--mid:#a2a2ac;--dim:#8b8b95;--faint:#6f6f79;--line:rgba(255,255,255,0.08);--acc:#8fd4d8;--warm:#d4a88f}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--fg);text-decoration:none}
+a:hover{color:var(--acc)}
+::selection{background:#1d3a3d}
+@keyframes riseIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rise{animation:none!important}}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+.wrap{max-width:1160px;margin:0 auto;padding-left:32px;padding-right:32px}
+.skip{position:absolute;left:-9999px}.skip:focus{left:16px;top:12px;z-index:99;background:var(--fg);color:var(--bg);padding:8px 12px;border-radius:4px}
+section[id]{scroll-margin-top:70px}
+.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(8,8,10,0.72);border-bottom:1px solid rgba(255,255,255,0.07)}
+.nav-in{height:62px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:baseline;gap:10px}
+.brand-name{font-size:15px;letter-spacing:-0.01em;font-weight:500}
+.brand-tag{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--faint)}
+.nav-links{display:flex;align-items:center;gap:28px;font-size:13.5px}
+.nav-links a{color:var(--mid)}.nav-links a:hover{color:var(--fg)}
+.btn-outline-sm{display:inline-flex;align-items:center;height:30px;padding:0 13px;border:1px solid rgba(255,255,255,0.16);border-radius:5px;font-size:13px;color:var(--fg)!important}
+.btn-outline-sm:hover{border-color:rgba(143,212,216,0.55);color:var(--acc)!important}
+.hero{padding-top:150px}
+.rise{animation:riseIn .7s ease both}
+.eyebrow{font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin-bottom:34px}
+h1{margin:0;font-size:clamp(48px,7.2vw,96px);line-height:0.98;letter-spacing:-0.035em;font-weight:500}
+.hero-sub{margin-top:22px;font-size:clamp(17px,2vw,22px);color:var(--acc);letter-spacing:-0.01em;line-height:1.4}
+.hero-lede{margin:30px 0 0;max-width:660px;font-size:19px;line-height:1.6;color:var(--mid);text-wrap:pretty}
+.hero-actions{margin-top:46px;display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.btn-solid{display:inline-flex;align-items:center;height:44px;padding:0 22px;border-radius:6px;background:var(--fg);color:var(--bg);font-size:14.5px;font-weight:500}
+.btn-solid:hover{background:#fff;color:var(--bg)}
+.btn-outline{display:inline-flex;align-items:center;height:44px;padding:0 22px;border-radius:6px;border:1px solid rgba(255,255,255,0.18);font-size:14.5px}
+.btn-outline:hover{border-color:rgba(255,255,255,0.4);color:var(--fg)}
+.hero-links{display:flex;gap:20px;margin-left:14px;font-size:12px;letter-spacing:0.06em}
+.hero-links a,.lnk{color:var(--dim);font-size:12px;letter-spacing:0.06em}
+.hero-links a:hover,.lnk:hover{color:var(--acc)}
+.stats{margin-top:110px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.stat{background:var(--bg);padding:28px 26px}
+.stat-v{font-size:26px;letter-spacing:-0.02em}
+.stat-l{margin-top:8px;font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint)}
+.sec{padding-top:130px}.sec-sm{padding-top:70px}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line);padding-bottom:22px}
+h2{margin:0;font-size:clamp(32px,4.4vw,54px);letter-spacing:-0.03em;font-weight:500}
+#research h2,#experience h2{font-size:clamp(30px,4vw,48px)}
+.h2-sm{font-size:clamp(28px,3.4vw,40px)}
+.h2-xl{font-size:clamp(38px,6vw,76px);letter-spacing:-0.035em;line-height:1.02}
+.kicker{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--faint)}
+.proj{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:56px;align-items:start;padding:64px 0;border-bottom:1px solid var(--line)}
+.proj.last{border-bottom:0}
+.proj-meta{display:flex;align-items:center;gap:12px}
+.num{font-size:11px;letter-spacing:0.2em;color:var(--acc)}
+.status{font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint)}
+.status.warm{color:var(--warm)}
+h3{margin:18px 0 6px;font-size:40px;letter-spacing:-0.03em;font-weight:500}
+.proj-sub{font-size:19px;color:var(--acc);letter-spacing:-0.01em;line-height:1.35}
+.proj-lede{margin:20px 0 0;font-size:16.5px;line-height:1.62;color:var(--mid);text-wrap:pretty}
+.facts{margin-top:26px;display:grid;grid-template-columns:auto 1fr;gap:14px 22px;font-size:14.5px;line-height:1.6;color:var(--mid)}
+.fl{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);padding-top:3px;white-space:nowrap}
+.tags{margin-top:26px;display:flex;flex-wrap:wrap;gap:7px}
+.tag{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:11.5px;color:#9a9aa4;border:1px solid rgba(255,255,255,0.12);border-radius:4px;padding:5px 9px}
+.proj-links{margin-top:30px;display:flex;flex-wrap:wrap;align-items:center;gap:16px}
+.btn-solid-sm{display:inline-flex;align-items:center;height:40px;padding:0 18px;border-radius:6px;background:var(--fg);color:var(--bg);font-size:13.5px;font-weight:500;font-family:'IBM Plex Mono',ui-monospace,monospace}
+.btn-solid-sm:hover{background:#fff;color:var(--bg)}
+.panel{border:1px solid rgba(255,255,255,0.1);border-radius:10px;background:var(--panel);overflow:hidden}
+.panel-bar{height:34px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px;padding:0 14px;overflow:hidden}
+.panel-bar i{width:7px;height:7px;border-radius:50%;background:#2f2f36;flex:none}
+.panel-bar span{font-size:10.5px;color:#5f5f68;margin-left:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.panel-body{padding:22px}
+.pl{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint)}
+.rows{margin-top:14px;display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.row{background:var(--panel);padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.row-t{font-size:13.5px;color:#c3c3cb;line-height:1.4}
+.row-d{margin-top:3px;font-size:12.5px;color:var(--dim);line-height:1.45}
+.row-v{font-size:13px;color:var(--acc);white-space:nowrap}
+.panel-foot{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;font-size:10.5px;color:#5f5f68}
+.checks{margin-top:14px;display:flex;flex-direction:column;gap:12px}
+.chk{display:flex;align-items:center;gap:12px;font-size:13.5px;color:var(--dim)}
+.chk span{width:14px;height:14px;border-radius:50%;border:1px dashed rgba(255,255,255,0.28);flex:none}
+.chk.done{color:#c3c3cb}.chk.done span{border:0;background:var(--acc);box-shadow:inset 0 0 0 4px var(--panel)}
+.layers{display:flex;flex-direction:column;align-items:stretch}
+.layer{border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:14px 16px}
+.layer.accent{border-color:rgba(143,212,216,0.35)}
+.layer-t{margin-top:6px;font-size:15px;color:var(--fg)}
+.arrow{text-align:center;font-size:10.5px;color:#5f5f68;padding:8px 0;letter-spacing:0.08em}
+.cards{margin-top:30px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.cards.one{grid-template-columns:1fr}
+.card{display:block;background:var(--bg);padding:28px 26px;transition:background .2s}
+.card.link:hover{background:#0c0c10}
+.card-t{margin-top:12px;font-size:21px;letter-spacing:-0.015em;line-height:1.3;color:var(--fg)}
+.card-d{margin-top:10px;font-size:14.5px;line-height:1.6;color:var(--mid)}
+.tl{margin-top:10px;display:grid;grid-template-columns:170px 24px minmax(0,1fr);column-gap:22px}
+.tl-d{font-size:11.5px;letter-spacing:0.08em;color:var(--faint);padding-top:40px;white-space:nowrap}
+.tl-dot{position:relative;border-left:1px solid var(--line);margin-left:11px}
+.tl-dot span{position:absolute;left:-5px;top:43px;width:9px;height:9px;border-radius:50%;background:var(--bg);border:1px solid rgba(255,255,255,0.3)}
+.tl-dot span.on{background:var(--acc);border-color:var(--acc)}
+.tl-b{padding:36px 0 36px;border-bottom:1px solid var(--line)}
+.tl-b:last-child{border-bottom:0}
+.tl-co{font-size:22px;letter-spacing:-0.02em}
+.tl-role{margin-top:4px;font-size:15px;color:var(--acc)}
+.tl-b p{margin:14px 0 0;max-width:680px;font-size:15px;line-height:1.65;color:var(--mid)}
+.tl-b .tags{margin-top:18px}
+.split{display:grid;grid-template-columns:minmax(0,0.8fr) minmax(0,2fr);gap:56px;border-top:1px solid var(--line);padding-top:30px}
+.body-lg{margin:0;font-size:19px;line-height:1.6;color:#c3c3cb;text-wrap:pretty}
+.body-md{margin:22px 0 0;font-size:16px;line-height:1.65;color:var(--mid);text-wrap:pretty}
+.ul{border-bottom:1px solid rgba(143,212,216,0.45)}
+.skills{margin-top:36px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 32px;font-size:14px;line-height:1.6;color:var(--mid)}
+.skill .pl{margin-bottom:8px}
+.contact{padding-top:150px;padding-bottom:120px}
+.foot{margin-top:90px;padding-top:26px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:11px;letter-spacing:0.08em;color:#5f5f68}
+@media (max-width:900px){
+ .proj{grid-template-columns:1fr;gap:36px}
+ .split{grid-template-columns:1fr;gap:24px}
+ .nav-links a:not(.btn-outline-sm){display:none}
+}
+@media (max-width:640px){
+ .wrap{padding-left:20px;padding-right:20px}
+ .hero{padding-top:90px}
+ .stats{margin-top:70px}
+ .sec{padding-top:90px}
+ h3{font-size:34px}
+ .hero-links{margin-left:0;width:100%;margin-top:8px}
+ .facts{grid-template-columns:1fr;gap:4px}
+ .facts .fl{padding-top:12px}
+ .cards,.skills{grid-template-columns:1fr}
+ .tl{grid-template-columns:18px minmax(0,1fr);column-gap:14px}
+ .tl-d{grid-column:2;padding-top:30px}
+ .tl-dot{grid-row:span 2;margin-left:6px}
+ .tl-dot span{top:33px}
+ .tl-b{grid-column:2;padding-top:8px}
+ .row{flex-direction:column;align-items:flex-start;gap:6px}
+ .contact{padding-top:100px;padding-bottom:80px}
+}
+.tag.dashed{border-style:dashed;color:#7f7f89}
+.dashed-panel{border-style:dashed;border-color:rgba(255,255,255,0.16)}
+.split2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:640px){.split2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<a class="skip" href="#work">Skip to content</a>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top"><span class="brand-name">Joseph Morante</span><span class="mono brand-tag">Measurement</span></a>
+    <nav class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#research">Research</a>
+      <a href="#experience">Experience</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#about">About</a>
+      <a class="btn-outline-sm" href="https://www.linkedin.com/in/joseph-morante" target="_blank" rel="noopener">Resume</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="wrap hero">
+  <div class="rise">
+    <div class="mono eyebrow">New York · Marketing measurement</div>
+    <h1>Joseph Morante</h1>
+    <div class="hero-sub">Privacy-aware measurement · MMM · Incrementality · Attribution reliability</div>
+    <p class="hero-lede">I build privacy-aware, AI-assisted measurement systems that turn marketing data into better decisions.</p>
+    <div class="hero-actions">
+      <a class="btn-solid" href="#work">See the work</a>
+      <a class="btn-outline" href="#experience">Experience</a>
+      <div class="mono hero-links">
+        <a href="https://github.com/morantejr" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/joseph-morante" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:morantejoseph1@gmail.com">Email</a>
+      </div>
+    </div>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="stat-v">5+ years</div><div class="mono stat-l">Adtech &amp; media analytics</div></div>
+    <div class="stat"><div class="stat-v">mta-audit</div><div class="mono stat-l">Open source · on PyPI</div></div>
+    <div class="stat"><div class="stat-v">Adjunct</div><div class="mono stat-l">Susquehanna University</div></div>
+  </div>
+</section>
+
+<section id="work" class="wrap sec">
+  <div class="sec-head"><h2>Selected Work</h2><div class="mono kicker">04 projects</div></div>
+
+  <article class="proj">
+    <div>
+      <div class="proj-meta"><span class="mono num">01</span><span class="mono status">Open source · On PyPI</span></div>
+      <h3>mta-audit</h3>
+      <div class="proj-sub">Reliability testing for multi-touch attribution</div>
+      <p class="proj-lede">Attribution models always hand you an answer. Almost none tell you whether that answer would survive a small change in assumptions. mta-audit checks exactly that, and says so plainly when the data can't support a call.</p>
+      <div class="facts">
+        <div class="mono fl">Problem</div>
+        <div>Campaign rankings move with choices nobody reports: the conversion window, how identities get stitched, which touchpoints went missing, which model you picked. Teams act on rankings that may not hold.</div>
+        <div class="mono fl">Approach</div>
+        <div>Journey-level bootstrap (whole journeys, never rows), conversion-window and delayed-converter checks, first/last/linear/Markov disagreement, and identity and touchpoint-loss simulations. Score weights are published as policy, with a sensitivity report.</div>
+        <div class="mono fl">Benchmark</div>
+        <div>On an 8,000-user sample of the public Criteo attribution dataset, injected duplicate events (1&ndash;10%) were caught every time and dropped the data-quality score from 72 to about 50.</div>
+        <div class="mono fl">Limits</div>
+        <div>It measures stability, not causal lift. It doesn't replace an incrementality test.</div>
+      </div>
+      <div class="tags">
+        <span class="tag">Python 3.11&ndash;3.13</span><span class="tag">Bootstrap</span><span class="tag">Markov attribution</span><span class="tag">Criteo dataset</span><span class="tag">CI</span>
+      </div>
+      <div class="proj-links">
+        <a class="btn-solid-sm" href="https://pypi.org/project/mta-audit/" target="_blank" rel="noopener">pip install mta-audit</a>
+        <a class="mono lnk" href="https://github.com/morantejr/mta-audit" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="mono lnk" href="https://pypi.org/project/mta-audit/" target="_blank" rel="noopener">PyPI ↗</a>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-bar"><i></i><i></i><span class="mono">criteo sample · 8,000 users · 586 conversions</span></div>
+      <div class="panel-body">
+        <div class="mono pl">What the audit caught</div>
+        <div class="rows">
+          <div class="row"><div><div class="row-t">Duplicate events injected (1&ndash;10%)</div><div class="row-d">Detected in every run</div></div><div class="mono row-v">72.35 → ~50</div></div>
+          <div class="row"><div><div class="row-t">Conversion window, 1 to 30 days</div><div class="row-d">Minimum campaign rank correlation</div></div><div class="mono row-v">0.588</div></div>
+          <div class="row"><div><div class="row-t">30% of touchpoints dropped</div><div class="row-d">Attribution-share drift</div></div><div class="mono row-v">2.2%</div></div>
+          <div class="row"><div><div class="row-t">20% of identities fragmented</div><div class="row-d">Journeys counted</div></div><div class="mono row-v">8,144 → 8,908</div></div>
+        </div>
+        <div class="mono panel-foot"><span>Measured on public data, not illustrative</span><span>v0.1.2</span></div>
+      </div>
+    </div>
+  </article>
+
+  <article class="proj">
+    <div>
+      <div class="proj-meta"><span class="mono num">02</span><span class="mono status warm">Research in progress</span></div>
+      <h3>silentfail-bench</h3>
+      <div class="proj-sub">When the best-looking agent output is the one that's wrong</div>
+      <p class="proj-lede">If you pick the top-scoring output from an imperfect critic, the critic's mistakes don't just slip through. They pile up in exactly the outputs you picked. Those failures look good by construction. I'm trying to measure how often that happens with coding agents, and whether uncertainty signals can flag it.</p>
+      <div class="facts">
+        <div class="mono fl">Stage</div>
+        <div>Stage 0. The study design and leakage controls are built. There are no results yet, and nothing is published.</div>
+        <div class="mono fl">Power first</div>
+        <div>I ran the power analysis before the pilot. A small pilot would be badly underpowered, so I'm sizing the study properly before I claim anything. A null result is still worth reporting.</div>
+      </div>
+      <div class="tags">
+        <span class="tag">LLM agents</span><span class="tag">Evaluation</span><span class="tag">Uncertainty</span><span class="tag">Power analysis</span>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-bar"><i></i><i></i><span class="mono">silentfail-bench / status</span></div>
+      <div class="panel-body">
+        <div class="mono pl">Where it stands</div>
+        <div class="checks">
+          <div class="chk done"><span></span>Core claim and falsification test written down</div>
+          <div class="chk done"><span></span>Selecting critic kept out of the uncertainty panel</div>
+          <div class="chk done"><span></span>Power analysis done up front</div>
+          <div class="chk"><span></span>Pilot at a size that can answer the question</div>
+          <div class="chk"><span></span>Results</div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article class="proj">
+    <div>
+      <div class="proj-meta"><span class="mono num">03</span><span class="mono status">Employer-side work · Happy to discuss</span></div>
+      <h3>IMA</h3>
+      <div class="proj-sub">Integrated marketing attribution, anchored in MMM</div>
+      <p class="proj-lede">Mix models see the whole budget but only at channel level. Attribution sees individual paths but breaks down as privacy rules take identifiers away. The IMA framework, from a paper by Bhat et al., ties the two together: Bayesian attribution that gives campaign- and placement-level reads that stay consistent with the MMM, without user-level tracking.</p>
+      <div class="facts">
+        <div class="mono fl">Source</div>
+        <div>I'm implementing the framework from <a class="ul" href="https://arxiv.org/abs/2606.16878" target="_blank" rel="noopener">&ldquo;Integrated Marketing Attribution: A Bayesian Framework for Privacy-Safe Granular Measurement Anchored in MMM&rdquo;</a> (Bhat et al., arXiv:2606.16878). I didn't write the paper. My part is turning it into working code.</div>
+        <div class="mono fl">Why it's hard</div>
+        <div>The granular estimates have to add up to what the MMM says. Small campaigns need priors that help without drowning out the data. And the output has to be checkable by people who will never read the model.</div>
+        <div class="mono fl">Note</div>
+        <div>This is work from my current role, so there's no code or data here. I'm glad to walk through the method and the design choices in an interview.</div>
+      </div>
+      <div class="tags">
+        <span class="tag">Bayesian modeling</span><span class="tag">MMM</span><span class="tag">Privacy-safe measurement</span>
+      </div>
+      <div class="proj-links">
+        <a class="mono lnk" href="https://arxiv.org/abs/2606.16878" target="_blank" rel="noopener">Read the paper (arXiv) ↗</a>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-bar"><i></i><i></i><span class="mono">ima / concept</span></div>
+      <div class="panel-body">
+        <div class="layers">
+          <div class="layer"><div class="mono pl">Top-down</div><div class="layer-t">Marketing mix model</div><div class="row-d">Channel-level contribution from aggregate spend and outcomes</div></div>
+          <div class="mono arrow">↓ anchors</div>
+          <div class="layer accent"><div class="mono pl">Bridge</div><div class="layer-t">Bayesian decomposition</div><div class="row-d">Splits channel totals into campaigns and placements, with uncertainty</div></div>
+          <div class="mono arrow">↓ produces</div>
+          <div class="layer"><div class="mono pl">Decision layer</div><div class="layer-t">Granular reads that add up</div><div class="row-d">No user-level identifiers required</div></div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article class="proj last">
+    <div>
+      <div class="proj-meta"><span class="mono num">04</span><span class="mono status warm">In development</span></div>
+      <h3>SIGNAL</h3>
+      <div class="proj-sub">An AI investment research system</div>
+      <p class="proj-lede">A research tool that pulls together financial data, a quantitative model, outside evidence, and LLM reasoning, so you can follow an investment thesis without wading through all of it yourself. It's early. The design choices are the interesting part so far.</p>
+      <div class="facts">
+        <div class="mono fl">Design</div>
+        <div>A multi-agent workflow: separate agents gather evidence, argue the bull and bear cases, and pull them into one view.</div>
+        <div class="mono fl">Key choice</div>
+        <div>The quant score is computed on its own, apart from the LLM's reasoning, so the model can't talk itself into a number. When the two disagree, that disagreement is shown, not hidden.</div>
+        <div class="mono fl">Evals</div>
+        <div>Tracing and evaluation with Langfuse from the start, so I can check whether conclusions are backed by the sources they cite.</div>
+        <div class="mono fl">Status</div>
+        <div>In development. No public code or demo yet.</div>
+      </div>
+      <div class="tags">
+        <span class="tag dashed">Python</span><span class="tag dashed">LLM agents</span><span class="tag dashed">Quant model</span><span class="tag dashed">Langfuse</span>
+      </div>
+    </div>
+    <div class="panel dashed-panel">
+      <div class="panel-bar"><i></i><i></i><span class="mono">signal / design</span></div>
+      <div class="panel-body">
+        <div class="layers">
+          <div class="layer"><div class="mono pl">Inputs</div><div class="layer-t">Financial data + outside evidence</div></div>
+          <div class="mono arrow">↓</div>
+          <div class="split2">
+            <div class="layer"><div class="mono pl">Track A</div><div class="layer-t">Quant score</div><div class="row-d">Scored on its own</div></div>
+            <div class="layer"><div class="mono pl">Track B</div><div class="layer-t">LLM reasoning</div><div class="row-d">Bull and bear cases, with sources</div></div>
+          </div>
+          <div class="mono arrow">↓</div>
+          <div class="layer accent"><div class="mono pl">Output</div><div class="layer-t">One view that shows where the tracks agree and where they don't</div></div>
+        </div>
+        <div class="mono panel-foot"><span>Design diagram, not a product screenshot</span><span>in development</span></div>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section id="research" class="wrap sec-sm">
+  <div class="sec-head"><h2>Research &amp; Writing</h2><div class="mono kicker">Current and past</div></div>
+  <div class="cards">
+    <div class="card">
+      <div class="mono pl">Research · May 2026 &ndash; Present</div>
+      <div class="card-t">AI researcher (part-time), Algoverse</div>
+      <div class="card-d">Research on reliable reinforcement learning for LLM agents, focused on reward-model uncertainty and failure detection. I also mentor students there.</div>
+    </div>
+    <a class="card link" href="https://snoqap.com/posts/2019/8/24/rwf7ptnk957d4ju7y7weebrc3do3s4" target="_blank" rel="noopener">
+      <div class="mono pl">Essay · SnoQap · Aug 2019</div>
+      <div class="card-t">Is the American Dream Dead? ↗</div>
+      <div class="card-d">An economics piece I wrote at 20 on consumer debt, financial literacy, and stagnant wages.</div>
+    </a>
+  </div>
+</section>
+
+<section id="experience" class="wrap sec">
+  <div class="sec-head"><h2>Experience</h2><div class="mono kicker">2021 &ndash; Present</div></div>
+  <div class="tl">
+    <div class="mono tl-d">Apr 2026 &ndash; Present</div><div class="tl-dot"><span class="on"></span></div>
+    <div class="tl-b">
+      <div class="tl-co">Zeta Global</div>
+      <div class="tl-role">Senior Analyst, Activation Innovation</div>
+      <p>I lead measurement and AI work for analytics teams: governed AI access to Snowflake, S3, and Hive through custom MCP servers with query validation and row limits, and a Bayesian, MMM-anchored measurement framework. I also shipped an interim S3 → Snowflake pipeline in about four weeks that 45 analysts across three teams now use.</p>
+      <div class="tags"><span class="tag">Snowflake</span><span class="tag">Python</span><span class="tag">MCP</span><span class="tag">PyMC</span><span class="tag">MMM</span></div>
+    </div>
+
+    <div class="mono tl-d">May 2025 &ndash; Mar 2026</div><div class="tl-dot"><span></span></div>
+    <div class="tl-b">
+      <div class="tl-co">Zeta Global</div>
+      <div class="tl-role">Senior Analyst, Analytics &amp; Insights &middot; Programmatic</div>
+      <p>Built a Markov journey-analysis framework in Hive and SQL for ordered cross-channel paths and path-level lift. Built a Tableau analytics product for recurring client questions that cut turnaround from about a week to minutes.</p>
+      <div class="tags"><span class="tag">Hive</span><span class="tag">SQL</span><span class="tag">Markov chains</span><span class="tag">Tableau</span></div>
+    </div>
+
+    <div class="mono tl-d">Oct 2022 &ndash; Jan 2025</div><div class="tl-dot"><span></span></div>
+    <div class="tl-b">
+      <div class="tl-co">Bloomberg LP</div>
+      <div class="tl-role">Media Data Analyst &middot; On-site</div>
+      <p>Moved benchmark reporting from Excel to parameterized SQL in Mode, taking it from about a week to a day. Built BigQuery workflows over 1M+ subscriber records for inactivity measurement and audience models.</p>
+      <div class="tags"><span class="tag">BigQuery</span><span class="tag">SQL</span><span class="tag">Mode</span></div>
+    </div>
+
+    <div class="mono tl-d">Feb 2022 &ndash; Oct 2022</div><div class="tl-dot"><span></span></div>
+    <div class="tl-b">
+      <div class="tl-co">DeepIntent</div>
+      <div class="tl-role">Data Analyst &middot; Remote</div>
+      <p>Healthcare adtech analytics.</p>
+    </div>
+
+    <div class="mono tl-d">Apr 2021 &ndash; Feb 2022</div><div class="tl-dot"><span></span></div>
+    <div class="tl-b">
+      <div class="tl-co">Crossmedia USA</div>
+      <div class="tl-role">Analyst</div>
+      <p>Media agency analytics.</p>
+    </div>
+  </div>
+</section>
+
+<section id="teaching" class="wrap sec">
+  <div class="split">
+    <div>
+      <h2 class="h2-sm">Teaching</h2>
+      <div class="mono kicker" style="margin-top:12px">Susquehanna University</div>
+    </div>
+    <div>
+      <p class="body-lg">I'm an adjunct professor in Management &amp; Marketing at <a class="ul" href="https://www.susqu.edu/profiles/morante/" target="_blank" rel="noopener">Susquehanna University</a>, where I did my undergrad. Teaching keeps me honest: if I can't explain to a room of marketing students why an output should be trusted, I don't understand it well enough yet.</p>
+      <div class="cards one">
+        <div class="card">
+          <div class="mono pl">2026 · Course I designed</div>
+          <div class="card-t">Applied AI for Marketing</div>
+          <div class="card-d">A 7-week, 4-credit course that takes non-engineers from Python and APIs through prompting, agent design, and analytics feedback loops to a working AI system they can put in a portfolio.</div>
+        </div>
+        <div class="card">
+          <div class="mono pl">2025 · Co-taught</div>
+          <div class="card-t">Entrepreneurship &amp; Innovation</div>
+          <div class="card-d">Undergraduate teams working through customer discovery, validation, and building an MVP.</div>
+        </div>
+      </div>
+      <p class="body-md">I'm also open to guest lectures and career talks at NYC colleges. <a class="ul" href="mailto:morantejoseph1@gmail.com">Email me</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="wrap sec">
+  <div class="split">
+    <div><h2 class="h2-sm">About</h2></div>
+    <div>
+      <p class="body-lg">I grew up in Brooklyn and I've spent the last five-plus years in adtech and media analytics: a media agency, healthcare adtech, Bloomberg, and now Zeta Global.</p>
+      <p class="body-md">The thing I keep running into is that most marketing measurement is confident and unchecked. Models return a number whether or not the data can support it. I like building the part that tells you when to trust the number and when not to.</p>
+      <p class="body-md">I have an M.S. in Business Analytics from Cornell and a B.S. in Business Data Science from Susquehanna. Outside work I DJ and do stand-up.</p>
+      <div class="skills">
+        <div class="skill"><div class="mono pl">Measurement</div><div>MMM · Bayesian modeling · MTA · Markov chains · experimentation · regression</div></div>
+        <div class="skill"><div class="mono pl">Data</div><div>Snowflake · BigQuery · Hive · Vertica · AWS S3 · PostgreSQL · SQL</div></div>
+        <div class="skill"><div class="mono pl">AI</div><div>MCP · OpenAI API · LangGraph · text-to-SQL · human-in-the-loop workflows</div></div>
+        <div class="skill"><div class="mono pl">Tools</div><div>Python · Tableau · Looker · Mode · Power BI · Git</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="wrap contact">
+  <h2 class="h2-xl">Want to talk measurement?</h2>
+  <p class="body-lg" style="margin-top:22px;max-width:560px">Attribution you're not sure about, an MMM question, or a guest lecture. The fastest way to reach me is email.</p>
+  <div class="hero-actions">
+    <a class="btn-solid" href="mailto:morantejoseph1@gmail.com">Email</a>
+    <a class="btn-outline" href="https://www.linkedin.com/in/joseph-morante" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="btn-outline" href="https://github.com/morantejr" target="_blank" rel="noopener">GitHub</a>
+    <a class="mono lnk" href="https://www.linkedin.com/in/joseph-morante" target="_blank" rel="noopener">Resume ↗</a>
+  </div>
+  <div class="mono foot"><span>Joseph Morante · New York</span><span>morantejoseph1@gmail.com</span></div>
+</section>
+
+</main>
+</body>
+</html>
