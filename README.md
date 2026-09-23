@@ -9,6 +9,8 @@ index.html                  the page (markup + inline CSS)
 404.html                    not-found page
 fonts/                      IBM Plex Mono 400/500, latin + latin-ext (woff2)
 robots.txt
+JosephMorante_Resume.pdf     resume
+SilentFail_AAAI_Proposal.pdf SilentFail-Bench research proposal
 .nojekyll                   tells GitHub Pages to serve files as-is
 .github/workflows/deploy.yml   GitHub Pages deploy on push to main
 ```
