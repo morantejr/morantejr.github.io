@@ -38,4 +38,4 @@ Netlify, Vercel, and Cloudflare Pages all serve this as a static site with no co
 
 ## Editing
 
-All content lives in `index.html`. Sections in order: hero, work, research, experience, teaching, about, contact. The `Resume` links currently point to LinkedIn; to ship a PDF, drop `resume.pdf` in the root and change those two `href`s.
+All content lives in `index.html`. Sections in order: hero, work, research, experience, teaching, about, contact. The `Resume` links point to `resume.pdf` in the root; replace that file to update the resume.
