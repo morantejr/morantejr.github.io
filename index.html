@@ -146,6 +146,7 @@ h3{margin:18px 0 6px;font-size:40px;letter-spacing:-0.03em;font-weight:500}
 .row-d{margin-top:3px;font-size:12.5px;color:var(--dim);line-height:1.45}
 .row-v{font-size:13px;color:var(--acc);white-space:nowrap}
 .panel-foot{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;font-size:10.5px;color:var(--faint2)}
+.panel-foot span:last-child{white-space:nowrap;flex:none}
 .checks{margin-top:14px;display:flex;flex-direction:column;gap:12px}
 .chk{display:flex;align-items:center;gap:12px;font-size:13.5px;color:var(--dim)}
 .chk span{width:14px;height:14px;border-radius:50%;border:1px dashed var(--line3);flex:none}
@@ -300,34 +301,46 @@ h3{margin:18px 0 6px;font-size:40px;letter-spacing:-0.03em;font-weight:500}
 
   <article class="proj">
     <div>
-      <div class="proj-meta"><span class="mono num">02</span><span class="mono status warm">Research in progress</span></div>
+      <div class="proj-meta"><span class="mono num">02</span><span class="mono status warm">Research in progress · Stage 0 pilot done</span></div>
       <h3>silentfail-bench</h3>
       <div class="proj-sub">When the best-looking agent output is the one that's wrong</div>
-      <p class="proj-lede">If you pick the top-scoring output from an imperfect critic, the critic's mistakes don't just slip through. They pile up in exactly the outputs you picked. Those failures look good by construction. I'm trying to measure how often that happens with coding agents, and whether uncertainty signals can flag it.</p>
+      <p class="proj-lede">If you pick the top-scoring output from an imperfect critic, the critic's mistakes don't just slip through. They pile up in exactly the outputs you picked. Those failures look good by construction. I'm measuring how often that happens with coding agents, and whether a separate panel of reward models can flag it after the fact.</p>
       <div class="facts">
-        <div class="mono fl">Stage</div>
-        <div>Stage 0. The study design and leakage controls are built. There are no results yet, and nothing is published.</div>
-        <div class="mono fl">Power first</div>
-        <div>I ran the power analysis before the pilot. A small pilot would be badly underpowered, so I'm sizing the study properly before I claim anything. A null result is still worth reporting.</div>
+        <div class="mono fl">Pilot</div>
+        <div>First real pilot finished September 24, 2026: 41 SWE-bench Verified instances, four candidate trajectories each from a GPT-5-mini agent, a reward model picking the best one, a disjoint four-model audit panel scoring it, and the official harness grading the result. Analysis was pre-registered before any gold existed. Total cost: $3.65.</div>
+        <div class="mono fl">Found</div>
+        <div>Supply is solved: 35% of the patches the agent submitted as finished failed their tests, so the pre-registered go rule passed. The hypothesis didn't: audit-panel disagreement was at chance for spotting those failures, while the selecting critic's own score carried modest signal. Only 12 positives, so the interval is wide.</div>
+        <div class="mono fl">Caveat</div>
+        <div>Every critic scored a 4,096-token prefix of trajectories that run about 40,000 characters, so none of them ever saw the patch. Fair between the two signals, blind to the thing being graded. A rescoring on the final diff plus the submission window was declared before gold and is next.</div>
+        <div class="mono fl">Power</div>
+        <div>A 200-trajectory study is underpowered for the effect sizes worth caring about, and SWE-bench Verified spans only 12 repositories, so more trajectories don't buy much. The confirmatory design has to fix its scoring input and confront that bound before a larger run. Nothing is published.</div>
       </div>
       <div class="tags">
-        <span class="tag">LLM agents</span><span class="tag">Evaluation</span><span class="tag">Uncertainty</span><span class="tag">Power analysis</span>
+        <span class="tag">LLM agents</span><span class="tag">SWE-bench Verified</span><span class="tag">Reward models</span><span class="tag">Pre-registration</span><span class="tag">Power analysis</span>
       </div>
       <div class="proj-links">
         <a class="mono lnk" href="SilentFail_AAAI_Proposal.pdf" target="_blank" rel="noopener">Read the proposal (PDF) ↗</a>
       </div>
     </div>
     <div class="panel">
-      <div class="panel-bar"><i></i><i></i><span class="mono">silentfail-bench / status</span></div>
+      <div class="panel-bar"><i></i><i></i><span class="mono">silentfail-bench / stage-0 pilot · swe-bench verified · 41 instances</span></div>
       <div class="panel-body">
-        <div class="mono pl">Where it stands</div>
+        <div class="mono pl">What the pilot measured</div>
+        <div class="rows">
+          <div class="row"><div><div class="row-t">Silent failures among submitted patches</div><div class="row-d">Agent said done, tests disagreed</div></div><div class="mono row-v">12 / 34 · 35%</div></div>
+          <div class="row"><div><div class="row-t">Audit-panel disagreement</div><div class="row-d">AUROC for silent failure</div></div><div class="mono row-v">0.51</div></div>
+          <div class="row"><div><div class="row-t">Selecting critic's own score</div><div class="row-d">AUROC for silent failure</div></div><div class="mono row-v">0.62</div></div>
+          <div class="row"><div><div class="row-t">Difference</div><div class="row-d">Repo-clustered bootstrap CI</div></div><div class="mono row-v">−0.11 [−0.37, +0.22]</div></div>
+        </div>
+        <div class="mono pl" style="margin-top:22px">Where it stands</div>
         <div class="checks">
           <div class="chk done"><span></span>Core claim and falsification test written down</div>
-          <div class="chk done"><span></span>Selecting critic kept out of the uncertainty panel</div>
-          <div class="chk done"><span></span>Power analysis done up front</div>
-          <div class="chk"><span></span>Pilot at a size that can answer the question</div>
-          <div class="chk"><span></span>Results</div>
+          <div class="chk done"><span></span>Selecting critic kept out of the audit panel</div>
+          <div class="chk done"><span></span>Pre-registered pilot with real gold</div>
+          <div class="chk"><span></span>Rescoring on the diff and submission window</div>
+          <div class="chk"><span></span>Confirmatory run at a size that can answer the question</div>
         </div>
+        <div class="mono panel-foot"><span>Measured, not illustrative · analysis pre-registered before gold</span><span>2026-09-24</span></div>
       </div>
     </div>
   </article>
