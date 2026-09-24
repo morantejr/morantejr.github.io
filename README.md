@@ -1,6 +1,6 @@
 # Joseph Morante — Portfolio
 
-Static, single-page portfolio site. No build step, no external requests. The only JavaScript is a few lines that pick the theme.
+Static, single-page portfolio site. No build step, no external requests. JavaScript is limited to the theme picker and the animated globe in the hero.
 
 ## Theme
 
@@ -12,6 +12,7 @@ The page switches between light and dark by the visitor's local clock: light fro
 index.html                  the page (markup + inline CSS)
 404.html                    not-found page
 fonts/                      IBM Plex Mono 400/500, latin + latin-ext (woff2)
+vendor/                     three.js r134 + vanta.globe (hero background), vendored locally
 robots.txt
 JosephMorante_Resume.pdf     resume
 SilentFail_AAAI_Proposal.pdf SilentFail-Bench research proposal
@@ -41,6 +42,10 @@ Add a `CNAME` file containing just the domain (for example `josephmorante.com`),
 ## Deploy elsewhere
 
 Netlify, Vercel, and Cloudflare Pages all serve this as a static site with no configuration. Point them at the repo root, no build command, publish directory `.`.
+
+## Hero globe
+
+The hero background is [Vanta Globe](https://www.vantajs.com/?effect=globe) on three.js r134, both vendored in `vendor/` so the page makes no third-party requests. It mounts into `#vanta-bg` after `load`, is re-created with matching colors whenever the theme changes, and is skipped entirely for visitors with `prefers-reduced-motion: reduce`. Colors per theme are in the `palettes` object in the script at the bottom of `index.html`.
 
 ## Editing
 

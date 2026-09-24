@@ -21,6 +21,7 @@
     root.setAttribute('data-theme',t);
     var m=document.querySelector('meta[name="theme-color"]');
     if(m)m.setAttribute('content',t==='light'?'#f6f6f3':'#08080a');
+    try{window.dispatchEvent(new CustomEvent('themechange',{detail:t}));}catch(e){}
   }
   apply();
   setInterval(apply,60000);
@@ -65,8 +66,8 @@
   src: url("fonts/ibm-plex-mono-500-latin.woff2") format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-:root{--bg:#08080a;--panel:#0c0c0f;--fg:#e9e9ec;--fg2:#c3c3cb;--mid:#a2a2ac;--dim:#8b8b95;--faint:#6f6f79;--faint2:#5f5f68;--tag:#9a9aa4;--dot:#2f2f36;--line:rgba(255,255,255,0.08);--line2:rgba(255,255,255,0.12);--line3:rgba(255,255,255,0.3);--acc:#8fd4d8;--acc-line:rgba(143,212,216,0.45);--warm:#d4a88f;--sel:#1d3a3d;--nav-bg:rgba(8,8,10,0.72);--btn-hover:#fff;--card-hover:#0c0c10}
-:root[data-theme="light"]{--bg:#f6f6f3;--panel:#ffffff;--fg:#141416;--fg2:#2a2a30;--mid:#4d4d56;--dim:#5e5e68;--faint:#7c7c86;--faint2:#8a8a94;--tag:#5e5e68;--dot:#d6d6d2;--line:rgba(0,0,0,0.09);--line2:rgba(0,0,0,0.13);--line3:rgba(0,0,0,0.3);--acc:#0f7a80;--acc-line:rgba(15,122,128,0.45);--warm:#a5612f;--sel:#cfe9eb;--nav-bg:rgba(246,246,243,0.78);--btn-hover:#000;--card-hover:#fbfbf9}
+:root{--bg:#08080a;--panel:#0c0c0f;--fg:#e9e9ec;--fg2:#c3c3cb;--mid:#a2a2ac;--dim:#8b8b95;--faint:#6f6f79;--faint2:#5f5f68;--tag:#9a9aa4;--dot:#2f2f36;--line:rgba(255,255,255,0.08);--line2:rgba(255,255,255,0.12);--line3:rgba(255,255,255,0.3);--acc:#8fd4d8;--acc-line:rgba(143,212,216,0.45);--warm:#d4a88f;--sel:#1d3a3d;--nav-bg:rgba(8,8,10,0.72);--btn-hover:#fff;--card-hover:#0c0c10;--fade:rgba(8,8,10,0.62);--globe:1}
+:root[data-theme="light"]{--bg:#f6f6f3;--panel:#ffffff;--fg:#141416;--fg2:#2a2a30;--mid:#4d4d56;--dim:#5e5e68;--faint:#7c7c86;--faint2:#8a8a94;--tag:#5e5e68;--dot:#d6d6d2;--line:rgba(0,0,0,0.09);--line2:rgba(0,0,0,0.13);--line3:rgba(0,0,0,0.3);--acc:#0f7a80;--acc-line:rgba(15,122,128,0.45);--warm:#a5612f;--sel:#cfe9eb;--nav-bg:rgba(246,246,243,0.78);--btn-hover:#000;--card-hover:#fbfbf9;--fade:rgba(246,246,243,0.62);--globe:0.85}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--fg);transition:background-color .35s ease,color .35s ease;font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,sans-serif;-webkit-font-smoothing:antialiased}
@@ -88,7 +89,11 @@ section[id]{scroll-margin-top:70px}
 .nav-links a{color:var(--mid)}.nav-links a:hover{color:var(--fg)}
 .btn-outline-sm{display:inline-flex;align-items:center;height:30px;padding:0 13px;border:1px solid var(--line2);border-radius:5px;font-size:13px;color:var(--fg)!important}
 .btn-outline-sm:hover{border-color:var(--acc-line);color:var(--acc)!important}
-.hero{padding-top:150px}
+.hero-shell{position:relative;overflow:hidden}
+#vanta-bg{position:absolute;top:0;bottom:0;left:0;right:-22vw;z-index:0;pointer-events:none;opacity:0;transition:opacity 1.2s ease}
+#vanta-bg.on{opacity:var(--globe)}
+#vanta-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 0%,var(--fade) 40%,transparent 68%),linear-gradient(180deg,transparent 70%,var(--bg) 100%)}
+.hero{position:relative;z-index:1;padding-top:150px}
 .rise{animation:riseIn .7s ease both}
 .eyebrow{font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin-bottom:34px}
 h1{margin:0;font-size:clamp(48px,7.2vw,96px);line-height:0.98;letter-spacing:-0.035em;font-weight:500}
@@ -181,6 +186,8 @@ h3{margin:18px 0 6px;font-size:40px;letter-spacing:-0.03em;font-weight:500}
  .nav-links a:not(.btn-outline-sm){display:none}
 }
 @media (max-width:640px){
+ #vanta-bg{right:-45vw}
+ #vanta-bg::after{background:linear-gradient(90deg,var(--bg) 0%,var(--fade) 55%,transparent 100%),linear-gradient(180deg,transparent 60%,var(--bg) 100%)}
  .wrap{padding-left:20px;padding-right:20px}
  .hero{padding-top:90px}
  .stats{margin-top:70px}
@@ -222,6 +229,8 @@ h3{margin:18px 0 6px;font-size:40px;letter-spacing:-0.03em;font-weight:500}
 
 <main id="top">
 
+<div class="hero-shell">
+<div id="vanta-bg" aria-hidden="true"></div>
 <section class="wrap hero">
   <div class="rise">
     <div class="mono eyebrow">New York · Marketing measurement</div>
@@ -244,6 +253,7 @@ h3{margin:18px 0 6px;font-size:40px;letter-spacing:-0.03em;font-weight:500}
     <div class="stat"><div class="stat-v">Adjunct</div><div class="mono stat-l">Susquehanna University</div></div>
   </div>
 </section>
+</div>
 
 <section id="work" class="wrap sec">
   <div class="sec-head"><h2>Selected Work</h2><div class="mono kicker">04 projects</div></div>
@@ -510,5 +520,47 @@ h3{margin:18px 0 6px;font-size:40px;letter-spacing:-0.03em;font-weight:500}
 </section>
 
 </main>
+<script src="vendor/three.r134.min.js" defer></script>
+<script src="vendor/vanta.globe.min.js" defer></script>
+<script>
+(function(){
+  var host=document.getElementById('vanta-bg');
+  if(!host)return;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce)return;
+  var palettes={
+    dark:{color:0x8fd4d8,color2:0x6f6f79,backgroundColor:0x08080a},
+    light:{color:0x0f7a80,color2:0x8a8a94,backgroundColor:0xf6f6f3}
+  };
+  var effect=null,current=null;
+  function theme(){return document.documentElement.getAttribute('data-theme')==='light'?'light':'dark';}
+  function mount(){
+    if(!window.VANTA||!window.THREE)return;
+    var t=theme();
+    if(effect&&current===t)return;
+    if(effect){try{effect.destroy();}catch(e){}effect=null;}
+    var pal=palettes[t];
+    effect=VANTA.GLOBE({
+      el:host,
+      THREE:window.THREE,
+      mouseControls:true,
+      touchControls:true,
+      gyroControls:false,
+      minHeight:200.00,
+      minWidth:200.00,
+      scale:1.00,
+      scaleMobile:1.00,
+      size:1.0,
+      color:pal.color,
+      color2:pal.color2,
+      backgroundColor:pal.backgroundColor
+    });
+    current=t;
+    host.classList.add('on');
+  }
+  window.addEventListener('load',mount);
+  window.addEventListener('themechange',function(){if(effect)mount();});
+})();
+</script>
 </body>
 </html>
