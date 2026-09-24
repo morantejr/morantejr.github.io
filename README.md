@@ -1,6 +1,10 @@
 # Joseph Morante — Portfolio
 
-Static, single-page portfolio site. No build step, no JavaScript, no external requests.
+Static, single-page portfolio site. No build step, no external requests. The only JavaScript is a few lines that pick the theme.
+
+## Theme
+
+The page switches between light and dark by the visitor's local clock: light from 07:00 to 18:59, dark otherwise. It re-checks every minute and on window focus. Append `?theme=light` or `?theme=dark` to the URL to force one. The hours live in `themeForHour` in the `<script>` at the top of `index.html`; colors are CSS variables on `:root` (dark) and `:root[data-theme="light"]`.
 
 ## Structure
 
