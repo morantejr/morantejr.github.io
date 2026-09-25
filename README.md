@@ -16,7 +16,8 @@ vendor/                     three.js r134 + vanta.globe (hero background), vendo
 robots.txt
 JosephMorante_Resume.pdf     resume
 SilentFail_AAAI_Proposal.pdf SilentFail-Bench research proposal
-SilentFail_Auditing_the_Winner_draft.pdf   SilentFail-Bench paper draft
+SilentFail_Auditing_the_Winner.pdf         SilentFail-Bench paper (submission cut)
+SilentFail_Auditing_the_Winner_extended.pdf  SilentFail-Bench paper (extended)
 .nojekyll                   tells GitHub Pages to serve files as-is
 .github/workflows/deploy.yml   GitHub Pages deploy on push to main
 ```

@@ -304,13 +304,13 @@ h3{margin:18px 0 6px;font-size:40px;letter-spacing:-0.03em;font-weight:500}
 
   <article class="proj">
     <div>
-      <div class="proj-meta"><span class="mono num">02</span><span class="mono status warm">Negative result · Replicated · Draft v0.6</span></div>
+      <div class="proj-meta"><span class="mono num">02</span><span class="mono status warm">Negative result · Replicated · Draft v0.9</span></div>
       <h3>silentfail-bench</h3>
       <div class="proj-sub">Auditing the winner: critic disagreement adds no detectable failure signal beyond the selector</div>
       <p class="proj-lede">A coding agent tries a task several times and a scoring model picks its best attempt. A third to a half of those picks are broken: the agent said it was finished, the scorer agreed, the tests disagreed. The proposed safety net is to ask a separate panel of scoring models to grade the same attempt and treat their disagreement as a warning. I pre-registered that test and ran it on two benchmarks. Disagreement doesn't work, and I can now say how much it doesn't by.</p>
       <div class="facts">
         <div class="mono fl">Study</div>
-        <div>Two benchmarks with the projects' real test suites as ground truth: a pilot on SWE-bench Verified and a pre-registered replication on SWE-bench Multilingual. 50 repositories, nine languages, 47 confirmed silent failures. Seven reward models from 1B to 32B, three frontier judges, four context lengths, windowed auditing, two selection regimes. Every analysis was declared before its data existed.</div>
+        <div>Two benchmarks with the projects' real test suites as ground truth: a pilot on SWE-bench Verified and a pre-registered replication on SWE-bench Multilingual. 46 repositories analysed, nine languages, 47 confirmed silent failures. Reward models from 1B to 32B, three frontier judges, four context lengths, windowed auditing, two selection regimes. Every analysis was declared before its data existed.</div>
         <div class="mono fl">The answer</div>
         <div>On the endpoint the proposal registered, adding panel disagreement to the selector's own score buys nothing. I computed it four ways; the estimates disagree in sign and every interval contains zero. The most I can defend as an upper bound on disagreement's value is 0.12 AUROC, and that's the loosest of the estimators that use all the data.</div>
         <div class="mono fl">What the control showed</div>
@@ -320,18 +320,19 @@ h3{margin:18px 0 6px;font-size:40px;letter-spacing:-0.03em;font-weight:500}
         <div class="mono fl">Where the signal is</div>
         <div>Not in disagreement. A frontier judge reading the diff on its own ranks silent failures at about two-thirds, and the critics turned out to be stable instruments, not noisy ones. Averaging how much they differ throws away the signal each one carries.</div>
         <div class="mono fl">Now</div>
-        <div>A 23-page draft, pre-registration trail and six documented instrument failures that would each have produced a false finding. The open decision is whether to submit it or first run the one missing experiment, a selector strong enough to rank failures before selection. Nothing is published.</div>
+        <div>An 8-page submission cut and a 24-page extended version, both with the pre-registration trail and six documented instrument failures that would each have produced a false finding. The open decision is whether to submit or first run the one missing experiment, a selector strong enough to rank failures before selection. That one is written up with its bars fixed and deliberately not run. Nothing is published.</div>
       </div>
       <div class="tags">
         <span class="tag">LLM agents</span><span class="tag">SWE-bench</span><span class="tag">Reward models</span><span class="tag">Pre-registration</span><span class="tag">Replication</span><span class="tag">Negative result</span>
       </div>
       <div class="proj-links">
-        <a class="btn-solid-sm" href="SilentFail_Auditing_the_Winner_draft.pdf" target="_blank" rel="noopener">Read the draft</a>
+        <a class="btn-solid-sm" href="SilentFail_Auditing_the_Winner.pdf" target="_blank" rel="noopener">Read the paper</a>
+        <a class="mono lnk" href="SilentFail_Auditing_the_Winner_extended.pdf" target="_blank" rel="noopener">Extended version ↗</a>
         <a class="mono lnk" href="SilentFail_AAAI_Proposal.pdf" target="_blank" rel="noopener">Original proposal ↗</a>
       </div>
     </div>
     <div class="panel">
-      <div class="panel-bar"><i></i><i></i><span class="mono">silentfail-bench / two benchmarks · 50 repositories · 47 silent failures</span></div>
+      <div class="panel-bar"><i></i><i></i><span class="mono">silentfail-bench / two benchmarks · 46 repositories · 47 silent failures</span></div>
       <div class="panel-body">
         <div class="mono pl">AUROC for silent failure, unless noted</div>
         <div class="rows">
@@ -342,7 +343,7 @@ h3{margin:18px 0 6px;font-size:40px;letter-spacing:-0.03em;font-weight:500}
           <div class="row"><div><div class="row-t">Frontier judge reading the diff</div><div class="row-d">One model, not a panel</div></div><div class="mono row-v">0.66 – 0.75</div></div>
           <div class="row"><div><div class="row-t">Selector's score, rejected vs committed</div><div class="row-d">Selection consumes its own signal</div></div><div class="mono row-v">0.81 → 0.61</div></div>
         </div>
-        <div class="mono panel-foot"><span>Executed tests as gold · every analysis declared before its data</span><span>draft v0.6</span></div>
+        <div class="mono panel-foot"><span>Executed tests as gold · every analysis declared before its data</span><span>draft v0.9</span></div>
       </div>
     </div>
   </article>
