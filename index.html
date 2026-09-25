@@ -304,24 +304,24 @@ h3{margin:18px 0 6px;font-size:40px;letter-spacing:-0.03em;font-weight:500}
 
   <article class="proj">
     <div>
-      <div class="proj-meta"><span class="mono num">02</span><span class="mono status warm">Research in progress · Re-testing now</span></div>
+      <div class="proj-meta"><span class="mono num">02</span><span class="mono status warm">Research in progress · Replication running</span></div>
       <h3>silentfail-bench</h3>
       <div class="proj-sub">When the best-looking agent output is the one that's wrong</div>
-      <p class="proj-lede">If you pick the top-scoring output from an imperfect critic, the critic's mistakes don't just slip through. They pile up in exactly the outputs you picked. Those failures look good by construction. I measured how often that happens with coding agents, and whether a separate panel of reward models can flag it after the fact. So far the failures are real and the safeguard isn't.</p>
+      <p class="proj-lede">If you pick the top-scoring output from an imperfect critic, the critic's mistakes don't just slip through. They pile up in exactly the outputs you picked. Those failures look good by construction. I measured how often that happens with coding agents, and whether disagreement among a separate panel of reward models can flag it after the fact. The failures are real. Disagreement turned out to be the wrong statistic.</p>
       <div class="facts">
         <div class="mono fl">Pilot</div>
-        <div>41 SWE-bench Verified instances, 164 candidate trajectories from a GPT-5-mini agent, a reward model picking the best of four, a disjoint panel auditing the pick, and the official harness grading it. Every analysis was declared before its data existed. Total spend so far: $3.65.</div>
+        <div>41 SWE-bench Verified instances, 164 candidate trajectories from a GPT-5-mini agent, a reward model picking the best of four, a disjoint panel auditing the pick, and the official harness grading it. Every analysis was declared before its data existed. API spend so far: $5.61, with the GPU work on free tiers, a program L4, and Modal.</div>
         <div class="mono fl">Found</div>
-        <div>The premise holds: 35% of the patches the agent submitted as finished failed their tests. The safeguard doesn't. Across seven pre-registered configurations, two input windows, six chat-preference reward models from 1B to 8B including the proposal's named critic, a code-trained reward model, and two selection regimes, panel disagreement never rose above chance and never beat the selecting critic's own score.</div>
-        <div class="mono fl">The ruler</div>
-        <div>Two integers with no model behind them, lines added in the patch and agent step count, rank silent failures better than every critic tested. That's now the bar any audit critic has to clear.</div>
-        <div class="mono fl">Why</div>
-        <div>The same reward model's scores on the prefix and on the patch of the same trajectory barely correlate. These critics don't hold a stable judgment of code correctness at any input size, so there's nothing for a panel to disagree about.</div>
+        <div>The premise holds: 35% of the patches the agent submitted as finished failed their tests. On any single window, panel disagreement never beat chance, across seven reward models at 4k, 8k and 16k tokens, three LLM judges, and two selection regimes. But individual critics given the whole solution do carry signal, and LLM judges reach the mid-0.7s. So the critics aren't blind. Disagreement between them just isn't where the information is.</div>
+        <div class="mono fl">Windows</div>
+        <div>One variant passed: audit overlapping windows of the trajectory and take the maximum disagreement. It cleared all three pre-registered predictions and the bar set by a model-free baseline, patch size. Then I bounded it: permutation p of 0.04 unconstrained but 0.21 within repository, on 12 positives. A marginal, underpowered positive, not a result.</div>
+        <div class="mono fl">Withdrawn</div>
+        <div>An earlier explanation, that these critics hold no stable judgment of code, died on test-retest checks: the same critic scores the same window almost identically across runs. The withdrawal is recorded in the research log, not deleted.</div>
         <div class="mono fl">Right now</div>
-        <div>Re-testing with the one structural variant not yet tried: windowed auditing over the whole trajectory, pre-registered against the ruler's bar, running on a GPU as I write this. After that comes the mentor call: pivot to a critic class that actually scores code, or write up the negative result. A draft exists. Nothing is published.</div>
+        <div>A pre-registered replication on SWE-bench Multilingual, 41 repositories instead of 9, with the bars fixed in advance. Generation is running on Modal. It decides between the null surviving and a narrower positive. Draft v0.2 exists. Nothing is published.</div>
       </div>
       <div class="tags">
-        <span class="tag">LLM agents</span><span class="tag">SWE-bench Verified</span><span class="tag">Reward models</span><span class="tag">Pre-registration</span><span class="tag">Negative result</span>
+        <span class="tag">LLM agents</span><span class="tag">SWE-bench</span><span class="tag">Reward models</span><span class="tag">Pre-registration</span><span class="tag">Replication</span>
       </div>
       <div class="proj-links">
         <a class="mono lnk" href="SilentFail_AAAI_Proposal.pdf" target="_blank" rel="noopener">Read the proposal (PDF) ↗</a>
@@ -333,20 +333,21 @@ h3{margin:18px 0 6px;font-size:40px;letter-spacing:-0.03em;font-weight:500}
         <div class="mono pl">AUROC for silent failure, same 34 trajectories</div>
         <div class="rows">
           <div class="row"><div><div class="row-t">Silent failures among submitted patches</div><div class="row-d">Agent said done, tests disagreed</div></div><div class="mono row-v">12 / 34 · 35%</div></div>
-          <div class="row"><div><div class="row-t">Audit-panel disagreement</div><div class="row-d">Range across seven configurations</div></div><div class="mono row-v">0.45 – 0.54</div></div>
-          <div class="row"><div><div class="row-t">Selecting critic's own score</div><div class="row-d">Best of the configurations</div></div><div class="mono row-v">0.62</div></div>
-          <div class="row"><div><div class="row-t">Lines added in the patch</div><div class="row-d">No model, exploratory</div></div><div class="mono row-v">0.665</div></div>
-          <div class="row"><div><div class="row-t">Agent step count</div><div class="row-d">No model, exploratory</div></div><div class="mono row-v">0.657</div></div>
+          <div class="row"><div><div class="row-t">Panel disagreement, any single window</div><div class="row-d">Seven reward models, three LLM judges</div></div><div class="mono row-v">0.44 – 0.54</div></div>
+          <div class="row"><div><div class="row-t">LLM judges, whole solution in view</div><div class="row-d">Individually, not their disagreement</div></div><div class="mono row-v">0.72 – 0.75</div></div>
+          <div class="row"><div><div class="row-t">Lines added in the patch</div><div class="row-d">No model, the bar to clear</div></div><div class="mono row-v">0.665</div></div>
+          <div class="row"><div><div class="row-t">Windowed max disagreement</div><div class="row-d">Permutation p 0.04 free, 0.21 within repo</div></div><div class="mono row-v">0.686</div></div>
         </div>
         <div class="mono pl" style="margin-top:22px">Where it stands</div>
         <div class="checks">
           <div class="chk done"><span></span>Core claim and falsification test written down</div>
           <div class="chk done"><span></span>Pre-registered pilot with real gold</div>
-          <div class="chk done"><span></span>Seven declared variants run, all null</div>
-          <div class="chk"><span></span>Windowed auditing, running now</div>
-          <div class="chk"><span></span>Pivot the critic class, or write the negative result</div>
+          <div class="chk done"><span></span>Four amendments: windows, sizes, critic classes, judges, test-retest</div>
+          <div class="chk done"><span></span>One wrong mechanism withdrawn on the record</div>
+          <div class="chk"><span></span>Replication on 41 repositories, running now</div>
+          <div class="chk"><span></span>Write-up</div>
         </div>
-        <div class="mono panel-foot"><span>Measured, not illustrative · every analysis declared before its data</span><span>2026-09-24</span></div>
+        <div class="mono panel-foot"><span>Measured, not illustrative · every analysis declared before its data</span><span>2026-09-25</span></div>
       </div>
     </div>
   </article>
