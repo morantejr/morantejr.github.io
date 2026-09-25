@@ -312,7 +312,7 @@ h3{margin:18px 0 6px;font-size:40px;letter-spacing:-0.03em;font-weight:500}
         <div class="mono fl">Study</div>
         <div>Two benchmarks with the projects' real test suites as ground truth: a pilot on SWE-bench Verified and a pre-registered replication on SWE-bench Multilingual. 46 repositories analysed, nine languages, 47 confirmed silent failures. Reward models from 1B to 32B, three frontier judges, four context lengths, windowed auditing, two selection regimes. Every analysis was declared before its data existed.</div>
         <div class="mono fl">The answer</div>
-        <div>On the endpoint the proposal registered, adding panel disagreement to the selector's own score buys nothing. I computed it four ways; the estimates disagree in sign and every interval contains zero. The most I can defend as an upper bound on disagreement's value is 0.12 AUROC, and that's the loosest of the estimators that use all the data.</div>
+        <div>On the endpoint the proposal registered, adding panel disagreement to the selector's own score buys nothing. I computed it four ways; the estimates disagree in sign and every interval contains zero. The most disagreement could be worth, on the loosest estimator that uses all the data, is 0.12 AUROC on top of the selector's score. Not 0.12 on its own.</div>
         <div class="mono fl">What the control showed</div>
         <div>A result I had assumed and had to give up: with this selector, the committed attempt fails no more often than one it passed over, so I claim a silent-failure rate, not concentration. What selection does do is consume the selector's own signal. The same score ranks failures at 0.81 among attempts it rejected and 0.61 among the ones it committed, which is the gap the design was built around, measured directly.</div>
         <div class="mono fl">What didn't travel</div>
@@ -338,7 +338,7 @@ h3{margin:18px 0 6px;font-size:40px;letter-spacing:-0.03em;font-weight:500}
         <div class="rows">
           <div class="row"><div><div class="row-t">Silent failures among committed attempts</div><div class="row-d">Verified, then Multilingual</div></div><div class="mono row-v">35% · 45%</div></div>
           <div class="row"><div><div class="row-t">Registered endpoint, four estimators</div><div class="row-d">Gain from adding disagreement, all include zero</div></div><div class="mono row-v">−0.12 → +0.01</div></div>
-          <div class="row"><div><div class="row-t">Defensible upper bound on that gain</div><div class="row-d">Pooled, full-coverage estimators</div></div><div class="mono row-v">+0.12</div></div>
+          <div class="row"><div><div class="row-t">Most that gain could be</div><div class="row-d">On top of the selector, not on its own</div></div><div class="mono row-v">+0.12</div></div>
           <div class="row"><div><div class="row-t">Panel disagreement alone</div><div class="row-d">Against the selector's own 0.62 and 0.56</div></div><div class="mono row-v">0.51 · 0.57</div></div>
           <div class="row"><div><div class="row-t">Frontier judge reading the diff</div><div class="row-d">One model, not a panel</div></div><div class="mono row-v">0.66 – 0.75</div></div>
           <div class="row"><div><div class="row-t">Selector's score, rejected vs committed</div><div class="row-d">Selection consumes its own signal</div></div><div class="mono row-v">0.81 → 0.61</div></div>
