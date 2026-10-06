@@ -304,23 +304,23 @@ h3{margin:18px 0 6px;font-size:40px;letter-spacing:-0.03em;font-weight:500}
 
   <article class="proj">
     <div>
-      <div class="proj-meta"><span class="mono num">02</span><span class="mono status warm">Negative result · Replicated · Draft v0.9.3</span></div>
+      <div class="proj-meta"><span class="mono num">02</span><span class="mono status warm">Upper bound · Replicated · Draft v0.9.20</span></div>
       <h3>silentfail-bench</h3>
-      <div class="proj-sub">Auditing the winner: critic disagreement adds no detectable failure signal beyond the selector</div>
-      <p class="proj-lede">A coding agent tries a task several times and a scoring model picks its best attempt. A third to a half of those picks are broken: the agent said it was finished, the scorer agreed, the tests disagreed. The proposed safety net is to ask a separate panel of scoring models to grade the same attempt and treat their disagreement as a warning. I pre-registered that test and ran it on two benchmarks. Disagreement doesn't work, and the better the individual critics get, the less it works.</p>
+      <div class="proj-sub">Auditing the winner: an upper bound on what critic disagreement adds beyond the selector</div>
+      <p class="proj-lede">A coding agent tries a task several times and a scoring model picks its best attempt. A third to a half of those picks are broken: the agent said it was finished, the scorer agreed, the tests disagreed. The proposed safety net is to ask a separate panel of scoring models to grade the same attempt and treat their disagreement as a warning. I pre-registered that test and ran it on two benchmarks. The panel adds almost nothing, and I can put a number on how little.</p>
       <div class="facts">
         <div class="mono fl">Study</div>
-        <div>Two benchmarks with the projects' real test suites as ground truth: a pilot on SWE-bench Verified and a pre-registered replication on SWE-bench Multilingual. 46 repositories analysed, nine languages, 47 confirmed silent failures. Eight reward models from 1B to 32B, five judges across two model generations, four context lengths, windowed auditing, two selectors. Every analysis was declared before its data existed.</div>
+        <div>Two benchmarks with the projects' real test suites as ground truth: a pilot on SWE-bench Verified and a pre-registered replication on SWE-bench Multilingual. 46 repositories analysed, nine languages, 47 confirmed silent failures. Eight reward models from 1B to 32B, five judges across two model generations, four context lengths, windowed auditing, two selectors, and a third agent. Every analysis was declared before its data existed.</div>
         <div class="mono fl">The answer</div>
-        <div>On the endpoint the proposal registered, adding panel disagreement to the selector's own score buys nothing. I computed it four ways; the estimates disagree in sign and every interval contains zero. The most disagreement could be worth, on the loosest estimator that uses all the data, is 0.12 AUROC on top of the selector's score. Not 0.12 on its own.</div>
-        <div class="mono fl">The best objection, closed</div>
-        <div>The obvious rebuttal was that my selector was too weak to leave a real residual. So I ran it again with one that isn't: a frontier model that ranks failures in the candidate pool at 0.71 and re-commits three-quarters of the population. The result doesn't move. I report that cell as consistent with the null rather than settling it, because its upper bound still sits above the effect I declared worth acting on.</div>
-        <div class="mono fl">There is no panel to build</div>
-        <div>The design assumes you can dial up critic diversity. You can't. Across all 35 four-member panels I could form, pairwise error correlation ran 0.71 to 0.89. The decorrelated panel the method needs doesn't exist among off-the-shelf critics, which is a measurement on this population rather than an expectation.</div>
-        <div class="mono fl">Better critics, worse disagreement</div>
-        <div>Two judges from a newer model generation gave the best single detector in the study, at 0.78 to 0.83, beating everything older on both benchmarks. The disagreement of that same pair is the worst in the study, at 0.41. The gap widens as the critics improve, which is the opposite of what the safeguard needs.</div>
+        <div>Measured on the attempts the selector actually commits, against the selector's own score, with real tests deciding: disagreement adds at most 0.12 AUROC on top of that score, and probably nothing. I computed the endpoint four ways; the estimates disagree in sign and every interval contains zero. That's a bound, not a proof of absence, and the paper is titled as one.</div>
+        <div class="mono fl">Why it fails</div>
+        <div>Not because the critics are bad. They're consistent on re-asking and individually informative. Measuring how much they differ throws that away. Two judges from a newer generation make the point sharpest: they give the best single detector in the study, 0.78 to 0.83, and the worst disagreement in the study, 0.41. The gap widens as the critics improve.</div>
+        <div class="mono fl">The objections I ran down</div>
+        <div>That the selector was too weak to leave a residual: I re-ran it with a frontier model that ranks pool failures at 0.71 and re-commits three-quarters of the population, and the result held. That the agent was too weak: I ran a capable open-weight agent that fails a fifth of the time instead of more than half, but no critic could rank its failures well enough to clear the selection bar I'd registered, so that cell is descriptive only.</div>
+        <div class="mono fl">Not just a model story</div>
+        <div>I also asked whether the signals a linter already computes do better, with eighteen structural features of the diff. The best one beats every critic on one benchmark and lands below chance on the other. Nothing survives both benchmarks under both estimators, which is the shape of every promising result in this study.</div>
         <div class="mono fl">Now</div>
-        <div>One open question: whether a stronger agent changes the picture. It's pre-registered and paused partway through on budget, resuming in October. The write-up is a 9-page submission cut and a 31-page extended version, with the full pre-registration trail and seven documented instrument failures, including one that manufactured a result large enough to reverse the paper before a four-estimator check caught it. Nothing is published.</div>
+        <div>A 9-page submission version and a 35-page extended one, with the full pre-registration trail and twenty-two numbered defects, seven of them instrument failures that would each have produced a convincing false finding, including one large enough to reverse the paper before a four-estimator check caught it. Nothing is published.</div>
       </div>
       <div class="tags">
         <span class="tag">LLM agents</span><span class="tag">SWE-bench</span><span class="tag">Reward models</span><span class="tag">Pre-registration</span><span class="tag">Replication</span><span class="tag">Negative result</span>
@@ -342,9 +342,9 @@ h3{margin:18px 0 6px;font-size:40px;letter-spacing:-0.03em;font-weight:500}
           <div class="row"><div><div class="row-t">Panel disagreement alone</div><div class="row-d">Against the selector's own 0.62 and 0.56</div></div><div class="mono row-v">0.51 · 0.57</div></div>
           <div class="row"><div><div class="row-t">Best single detector, newest judge</div><div class="row-d">One model reading the diff</div></div><div class="mono row-v">0.78 – 0.83</div></div>
           <div class="row"><div><div class="row-t">Disagreement of that same pair</div><div class="row-d">The best critics, the worst signal</div></div><div class="mono row-v">0.41</div></div>
-          <div class="row"><div><div class="row-t">Error correlation, all 35 panels</div><div class="row-d">No decorrelated panel exists</div></div><div class="mono row-v">0.71 – 0.89</div></div>
+          <div class="row"><div><div class="row-t">Stronger agent: best critic as selector</div><div class="row-d">Registered bar was 0.65, so that cell is descriptive</div></div><div class="mono row-v">0.62</div></div>
         </div>
-        <div class="mono panel-foot"><span>Executed tests as gold · every analysis declared before its data</span><span>draft v0.9.3</span></div>
+        <div class="mono panel-foot"><span>Executed tests as gold · every analysis declared before its data</span><span>draft v0.9.20</span></div>
       </div>
     </div>
   </article>
