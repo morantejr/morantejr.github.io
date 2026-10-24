@@ -1,0 +1,408 @@
+{
+  "source_url": "https://aiengineeringfromscratch.com/",
+  "verified_on": "2026-10-23",
+  "access": "Free and open source under MIT. No paywall and no account required; the site states 542 lessons across 20 phases.",
+  "note": "Phase titles are verbatim from the site. Four phases (12, 16, 18, 19) had no slug observable on the pages read, so they carry no link rather than a guessed one. Lesson counts are shown only where the site stated them.",
+  "modules": [
+    {
+      "id": "phase-00",
+      "number": "00",
+      "title": "Phase 00: Setup & Tooling",
+      "url": "https://aiengineeringfromscratch.com/phase/setup-and-tooling",
+      "slug_verified": true,
+      "lesson_count": 13,
+      "competencies": [
+        "software-engineering"
+      ],
+      "status": "planned",
+      "started_date": null,
+      "completed_date": null,
+      "repo_url": null,
+      "tests": null,
+      "benchmarks": null,
+      "notes": null,
+      "limitations": null,
+      "verified_on": "2026-10-23"
+    },
+    {
+      "id": "phase-01",
+      "number": "01",
+      "title": "Phase 01: Math Foundations",
+      "url": "https://aiengineeringfromscratch.com/phase/math-foundations",
+      "slug_verified": true,
+      "lesson_count": 22,
+      "competencies": [
+        "deep-learning"
+      ],
+      "status": "planned",
+      "started_date": null,
+      "completed_date": null,
+      "repo_url": null,
+      "tests": null,
+      "benchmarks": null,
+      "notes": null,
+      "limitations": null,
+      "verified_on": "2026-10-23"
+    },
+    {
+      "id": "phase-02",
+      "number": "02",
+      "title": "Phase 02: ML Fundamentals",
+      "url": "https://aiengineeringfromscratch.com/phase/ml-fundamentals",
+      "slug_verified": true,
+      "lesson_count": 21,
+      "competencies": [
+        "deep-learning"
+      ],
+      "status": "planned",
+      "started_date": null,
+      "completed_date": null,
+      "repo_url": null,
+      "tests": null,
+      "benchmarks": null,
+      "notes": null,
+      "limitations": null,
+      "verified_on": "2026-10-23"
+    },
+    {
+      "id": "phase-03",
+      "number": "03",
+      "title": "Phase 03: Deep Learning Core",
+      "url": "https://aiengineeringfromscratch.com/phase/deep-learning-core",
+      "slug_verified": true,
+      "lesson_count": 13,
+      "competencies": [
+        "deep-learning"
+      ],
+      "status": "planned",
+      "started_date": null,
+      "completed_date": null,
+      "repo_url": null,
+      "tests": null,
+      "benchmarks": null,
+      "notes": null,
+      "limitations": null,
+      "verified_on": "2026-10-23"
+    },
+    {
+      "id": "phase-04",
+      "number": "04",
+      "title": "Phase 04: Computer Vision",
+      "url": "https://aiengineeringfromscratch.com/phase/computer-vision",
+      "slug_verified": true,
+      "lesson_count": 28,
+      "competencies": [
+        "deep-learning"
+      ],
+      "status": "planned",
+      "started_date": null,
+      "completed_date": null,
+      "repo_url": null,
+      "tests": null,
+      "benchmarks": null,
+      "notes": null,
+      "limitations": null,
+      "verified_on": "2026-10-23"
+    },
+    {
+      "id": "phase-05",
+      "number": "05",
+      "title": "Phase 05: NLP: Foundations to Advanced",
+      "url": "https://aiengineeringfromscratch.com/phase/nlp-foundations-to-advanced",
+      "slug_verified": true,
+      "lesson_count": 29,
+      "competencies": [
+        "llm-engineering"
+      ],
+      "status": "planned",
+      "started_date": null,
+      "completed_date": null,
+      "repo_url": null,
+      "tests": null,
+      "benchmarks": null,
+      "notes": null,
+      "limitations": null,
+      "verified_on": "2026-10-23"
+    },
+    {
+      "id": "phase-06",
+      "number": "06",
+      "title": "Phase 06: Speech & Audio",
+      "url": "https://aiengineeringfromscratch.com/phase/speech-and-audio",
+      "slug_verified": true,
+      "lesson_count": 17,
+      "competencies": [
+        "deep-learning"
+      ],
+      "status": "planned",
+      "started_date": null,
+      "completed_date": null,
+      "repo_url": null,
+      "tests": null,
+      "benchmarks": null,
+      "notes": null,
+      "limitations": null,
+      "verified_on": "2026-10-23"
+    },
+    {
+      "id": "phase-07",
+      "number": "07",
+      "title": "Phase 07: Transformers Deep Dive",
+      "url": "https://aiengineeringfromscratch.com/phase/transformers-deep-dive",
+      "slug_verified": true,
+      "lesson_count": 16,
+      "competencies": [
+        "llm-engineering"
+      ],
+      "status": "planned",
+      "started_date": null,
+      "completed_date": null,
+      "repo_url": null,
+      "tests": null,
+      "benchmarks": null,
+      "notes": null,
+      "limitations": null,
+      "verified_on": "2026-10-23"
+    },
+    {
+      "id": "phase-08",
+      "number": "08",
+      "title": "Phase 08: Generative AI",
+      "url": "https://aiengineeringfromscratch.com/phase/generative-ai",
+      "slug_verified": true,
+      "lesson_count": 15,
+      "competencies": [
+        "llm-engineering"
+      ],
+      "status": "planned",
+      "started_date": null,
+      "completed_date": null,
+      "repo_url": null,
+      "tests": null,
+      "benchmarks": null,
+      "notes": null,
+      "limitations": null,
+      "verified_on": "2026-10-23"
+    },
+    {
+      "id": "phase-09",
+      "number": "09",
+      "title": "Phase 09: Reinforcement Learning",
+      "url": "https://aiengineeringfromscratch.com/phase/reinforcement-learning",
+      "slug_verified": true,
+      "lesson_count": 12,
+      "competencies": [
+        "deep-learning"
+      ],
+      "status": "planned",
+      "started_date": null,
+      "completed_date": null,
+      "repo_url": null,
+      "tests": null,
+      "benchmarks": null,
+      "notes": null,
+      "limitations": null,
+      "verified_on": "2026-10-23"
+    },
+    {
+      "id": "phase-10",
+      "number": "10",
+      "title": "Phase 10: LLMs from Scratch",
+      "url": "https://aiengineeringfromscratch.com/phase/llms-from-scratch",
+      "slug_verified": true,
+      "lesson_count": 24,
+      "competencies": [
+        "llm-engineering"
+      ],
+      "status": "planned",
+      "started_date": null,
+      "completed_date": null,
+      "repo_url": null,
+      "tests": null,
+      "benchmarks": null,
+      "notes": null,
+      "limitations": null,
+      "verified_on": "2026-10-23"
+    },
+    {
+      "id": "phase-11",
+      "number": "11",
+      "title": "Phase 11: LLM Engineering",
+      "url": "https://aiengineeringfromscratch.com/phase/llm-engineering",
+      "slug_verified": true,
+      "lesson_count": 17,
+      "competencies": [
+        "llm-engineering"
+      ],
+      "status": "planned",
+      "started_date": null,
+      "completed_date": null,
+      "repo_url": null,
+      "tests": null,
+      "benchmarks": null,
+      "notes": null,
+      "limitations": null,
+      "verified_on": "2026-10-23"
+    },
+    {
+      "id": "phase-12",
+      "number": "12",
+      "title": "Phase 12: Multimodal AI",
+      "url": null,
+      "slug_verified": false,
+      "lesson_count": null,
+      "competencies": [
+        "deep-learning"
+      ],
+      "status": "planned",
+      "started_date": null,
+      "completed_date": null,
+      "repo_url": null,
+      "tests": null,
+      "benchmarks": null,
+      "notes": null,
+      "limitations": null,
+      "verified_on": "2026-10-23"
+    },
+    {
+      "id": "phase-13",
+      "number": "13",
+      "title": "Phase 13: Tools & Protocols",
+      "url": "https://aiengineeringfromscratch.com/phase/tools-and-protocols",
+      "slug_verified": true,
+      "lesson_count": null,
+      "competencies": [
+        "agents-mcp"
+      ],
+      "status": "planned",
+      "started_date": null,
+      "completed_date": null,
+      "repo_url": null,
+      "tests": null,
+      "benchmarks": null,
+      "notes": null,
+      "limitations": null,
+      "verified_on": "2026-10-23"
+    },
+    {
+      "id": "phase-14",
+      "number": "14",
+      "title": "Phase 14: Agent Engineering",
+      "url": "https://aiengineeringfromscratch.com/phase/agent-engineering",
+      "slug_verified": true,
+      "lesson_count": 54,
+      "competencies": [
+        "agents-mcp"
+      ],
+      "status": "planned",
+      "started_date": null,
+      "completed_date": null,
+      "repo_url": null,
+      "tests": null,
+      "benchmarks": null,
+      "notes": null,
+      "limitations": null,
+      "verified_on": "2026-10-23"
+    },
+    {
+      "id": "phase-15",
+      "number": "15",
+      "title": "Phase 15: Autonomous Systems",
+      "url": "https://aiengineeringfromscratch.com/phase/autonomous-systems",
+      "slug_verified": true,
+      "lesson_count": 22,
+      "competencies": [
+        "agents-mcp"
+      ],
+      "status": "planned",
+      "started_date": null,
+      "completed_date": null,
+      "repo_url": null,
+      "tests": null,
+      "benchmarks": null,
+      "notes": null,
+      "limitations": null,
+      "verified_on": "2026-10-23"
+    },
+    {
+      "id": "phase-16",
+      "number": "16",
+      "title": "Phase 16: Multi-Agent & Swarms",
+      "url": null,
+      "slug_verified": false,
+      "lesson_count": null,
+      "competencies": [
+        "agents-mcp"
+      ],
+      "status": "planned",
+      "started_date": null,
+      "completed_date": null,
+      "repo_url": null,
+      "tests": null,
+      "benchmarks": null,
+      "notes": null,
+      "limitations": null,
+      "verified_on": "2026-10-23"
+    },
+    {
+      "id": "phase-17",
+      "number": "17",
+      "title": "Phase 17: Infrastructure & Production",
+      "url": "https://aiengineeringfromscratch.com/phase/infrastructure-and-production",
+      "slug_verified": true,
+      "lesson_count": 29,
+      "competencies": [
+        "mlops"
+      ],
+      "status": "planned",
+      "started_date": null,
+      "completed_date": null,
+      "repo_url": null,
+      "tests": null,
+      "benchmarks": null,
+      "notes": null,
+      "limitations": null,
+      "verified_on": "2026-10-23"
+    },
+    {
+      "id": "phase-18",
+      "number": "18",
+      "title": "Phase 18: Ethics, Safety & Alignment",
+      "url": null,
+      "slug_verified": false,
+      "lesson_count": null,
+      "competencies": [
+        "security-governance"
+      ],
+      "status": "planned",
+      "started_date": null,
+      "completed_date": null,
+      "repo_url": null,
+      "tests": null,
+      "benchmarks": null,
+      "notes": null,
+      "limitations": null,
+      "verified_on": "2026-10-23"
+    },
+    {
+      "id": "phase-19",
+      "number": "19",
+      "title": "Phase 19: Capstone Projects",
+      "url": null,
+      "slug_verified": false,
+      "lesson_count": null,
+      "competencies": [
+        "system-design"
+      ],
+      "status": "planned",
+      "started_date": null,
+      "completed_date": null,
+      "repo_url": null,
+      "tests": null,
+      "benchmarks": null,
+      "notes": null,
+      "limitations": null,
+      "verified_on": "2026-10-23"
+    }
+  ]
+}

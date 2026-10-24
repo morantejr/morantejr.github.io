@@ -1,47 +1,2122 @@
 [
   {
-    "id": "example-planned",
-    "placeholder": true,
-    "title": "Example entry — replace with a real course",
+    "id": "csca-5414",
+    "code": "CSCA 5414",
+    "title": "Dynamic Programming, Greedy Algorithms",
     "provider": "Coursera",
-    "institution": "Issuing university or organisation",
-    "url": "https://www.coursera.org/",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/node/2278",
+    "coursera_url": null,
+    "specialization": "dsa",
+    "sequence": 1,
+    "credits": 1,
+    "cross_listed_as": "DTSA 5503",
+    "curricula": [
+      {
+        "curriculum": "ms-cs",
+        "role": "breadth",
+        "pathway": true
+      },
+      {
+        "curriculum": "ms-ai",
+        "role": "elective",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/curriculum",
+    "verified_on": "2026-10-23",
     "status": "planned",
+    "started_date": null,
     "completed_date": null,
     "certificate_url": null,
-    "pathway": "foundations",
-    "skills": ["Skill covered", "Another skill"],
-    "related_artifact": null,
-    "outcomes": []
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "algorithms"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
   },
   {
-    "id": "example-in-progress",
-    "placeholder": true,
-    "title": "Example entry — a course currently under way",
+    "id": "csca-5424",
+    "code": "CSCA 5424",
+    "title": "Approximation Algorithms and Linear Programming",
     "provider": "Coursera",
-    "institution": "Issuing university or organisation",
-    "url": "https://www.coursera.org/",
-    "status": "in-progress",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/node/2350",
+    "coursera_url": null,
+    "specialization": "dsa",
+    "sequence": 2,
+    "credits": 1,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "ms-cs",
+        "role": "breadth",
+        "pathway": true
+      },
+      {
+        "curriculum": "ms-ai",
+        "role": "elective",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/curriculum",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
     "completed_date": null,
     "certificate_url": null,
-    "pathway": "transformers",
-    "skills": ["Skill covered"],
-    "related_artifact": null,
-    "outcomes": ["What this changed about how I build things"]
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "algorithms"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
   },
   {
-    "id": "example-completed",
-    "placeholder": true,
-    "title": "Example entry — a finished course, with its certificate",
+    "id": "csca-5454",
+    "code": "CSCA 5454",
+    "title": "Advanced Data Structures, RSA and Quantum Algorithms",
     "provider": "Coursera",
-    "institution": "Issuing university or organisation",
-    "url": "https://www.coursera.org/",
-    "status": "completed",
-    "completed_date": "2026-01-31",
-    "certificate_url": "https://www.coursera.org/account/accomplishments/verify/EXAMPLE",
-    "pathway": "evaluation",
-    "skills": ["Skill covered"],
-    "related_artifact": "mta-audit",
-    "outcomes": ["A specific thing I can now do that I could not before"]
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/node/2417",
+    "coursera_url": null,
+    "specialization": "dsa",
+    "sequence": 3,
+    "credits": 1,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "ms-cs",
+        "role": "breadth",
+        "pathway": true
+      },
+      {
+        "curriculum": "ms-ai",
+        "role": "elective",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/curriculum",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "algorithms"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5063",
+    "code": "CSCA 5063",
+    "title": "Network Systems Foundation",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/node/2403",
+    "coursera_url": null,
+    "specialization": "network-systems",
+    "sequence": 1,
+    "credits": 1,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "ms-cs",
+        "role": "breadth",
+        "pathway": true
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/curriculum",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "networking-cloud"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5073",
+    "code": "CSCA 5073",
+    "title": "Network Principles in Practice: Linux Networking",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/node/2427",
+    "coursera_url": null,
+    "specialization": "network-systems",
+    "sequence": 2,
+    "credits": 1,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "ms-cs",
+        "role": "breadth",
+        "pathway": true
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/curriculum",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "networking-cloud"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5083",
+    "code": "CSCA 5083",
+    "title": "Network Principles in Practice: Cloud Networking",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/csca5083",
+    "coursera_url": null,
+    "specialization": "network-systems",
+    "sequence": 3,
+    "credits": 1,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "ms-cs",
+        "role": "breadth",
+        "pathway": true
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/curriculum",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "networking-cloud"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5622",
+    "code": "CSCA 5622",
+    "title": "Introduction to Machine Learning: Supervised Learning",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/node/2224",
+    "coursera_url": null,
+    "specialization": "ml-theory",
+    "sequence": 1,
+    "credits": 1,
+    "cross_listed_as": "DTSA 5509",
+    "curricula": [
+      {
+        "curriculum": "ms-cs",
+        "role": "breadth",
+        "pathway": false
+      },
+      {
+        "curriculum": "ms-ai",
+        "role": "breadth",
+        "pathway": true
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/curriculum",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "deep-learning"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5632",
+    "code": "CSCA 5632",
+    "title": "Unsupervised Algorithms in Machine Learning",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/node/2320",
+    "coursera_url": null,
+    "specialization": "ml-theory",
+    "sequence": 2,
+    "credits": 1,
+    "cross_listed_as": "DTSA 5510",
+    "curricula": [
+      {
+        "curriculum": "ms-cs",
+        "role": "breadth",
+        "pathway": false
+      },
+      {
+        "curriculum": "ms-ai",
+        "role": "breadth",
+        "pathway": true
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/curriculum",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "deep-learning"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5642",
+    "code": "CSCA 5642",
+    "title": "Introduction to Deep Learning",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/node/2321",
+    "coursera_url": null,
+    "specialization": "ml-theory",
+    "sequence": 3,
+    "credits": 1,
+    "cross_listed_as": "DTSA 5511",
+    "curricula": [
+      {
+        "curriculum": "ms-cs",
+        "role": "breadth",
+        "pathway": false
+      },
+      {
+        "curriculum": "ms-ai",
+        "role": "breadth",
+        "pathway": true
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/curriculum",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "deep-learning"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5214",
+    "code": "CSCA 5214",
+    "title": "Computing, Ethics, and Society Foundations",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/node/2322",
+    "coursera_url": null,
+    "specialization": "ethics-society",
+    "sequence": 1,
+    "credits": 1,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "ms-cs",
+        "role": "breadth",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/curriculum",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "security-governance"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5224",
+    "code": "CSCA 5224",
+    "title": "Ethical Issues in AI and Professional Ethics",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/node/2349",
+    "coursera_url": null,
+    "specialization": "ethics-society",
+    "sequence": 2,
+    "credits": 1,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "ms-cs",
+        "role": "breadth",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/curriculum",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "security-governance"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5234",
+    "code": "CSCA 5234",
+    "title": "Ethical Issues in Computing Applications",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/node/2355",
+    "coursera_url": null,
+    "specialization": "ethics-society",
+    "sequence": 3,
+    "credits": 1,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "ms-cs",
+        "role": "breadth",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/curriculum",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "security-governance"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5834",
+    "code": "CSCA 5834",
+    "title": "Modeling of Autonomous Systems",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/node/2425",
+    "coursera_url": null,
+    "specialization": "autonomous",
+    "sequence": 1,
+    "credits": 1,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "ms-cs",
+        "role": "breadth",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/curriculum",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "system-design"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5844",
+    "code": "CSCA 5844",
+    "title": "Requirement Specifications for Autonomous Systems",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/node/2426",
+    "coursera_url": null,
+    "specialization": "autonomous",
+    "sequence": 2,
+    "credits": 1,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "ms-cs",
+        "role": "breadth",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/curriculum",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "system-design"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5854",
+    "code": "CSCA 5854",
+    "title": "Verification and Synthesis of Autonomous Systems",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/node/2446",
+    "coursera_url": null,
+    "specialization": "autonomous",
+    "sequence": 3,
+    "credits": 1,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "ms-cs",
+        "role": "breadth",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/curriculum",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "system-design"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5008",
+    "code": "CSCA 5008",
+    "title": "Fundamentals of Software Architecture for Big Data",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/node/2279",
+    "coursera_url": null,
+    "specialization": "big-data-arch",
+    "sequence": 1,
+    "credits": 1,
+    "cross_listed_as": "DTSA 5507",
+    "curricula": [
+      {
+        "curriculum": "ms-cs",
+        "role": "elective",
+        "pathway": false
+      },
+      {
+        "curriculum": "ms-ai",
+        "role": "elective",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/curriculum",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "apis-backend",
+      "mlops"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5018",
+    "code": "CSCA 5018",
+    "title": "Software Architecture Patterns for Big Data",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/node/2260",
+    "coursera_url": null,
+    "specialization": "big-data-arch",
+    "sequence": 2,
+    "credits": 1,
+    "cross_listed_as": "DTSA 5508",
+    "curricula": [
+      {
+        "curriculum": "ms-cs",
+        "role": "elective",
+        "pathway": false
+      },
+      {
+        "curriculum": "ms-ai",
+        "role": "elective",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/curriculum",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "apis-backend",
+      "mlops"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5028",
+    "code": "CSCA 5028",
+    "title": "Applications of Software Architecture for Big Data",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/node/2286",
+    "coursera_url": null,
+    "specialization": "big-data-arch",
+    "sequence": 3,
+    "credits": 1,
+    "cross_listed_as": "DTSA 5714",
+    "curricula": [
+      {
+        "curriculum": "ms-cs",
+        "role": "elective",
+        "pathway": false
+      },
+      {
+        "curriculum": "ms-ai",
+        "role": "elective",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/curriculum",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "apis-backend",
+      "mlops"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5428",
+    "code": "CSCA 5428",
+    "title": "Object-Oriented Analysis and Design: Foundations and Concepts",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/csca5428",
+    "coursera_url": null,
+    "specialization": "ooad",
+    "sequence": 1,
+    "credits": 1,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "ms-cs",
+        "role": "elective",
+        "pathway": false
+      },
+      {
+        "curriculum": "ms-ai",
+        "role": "elective",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/curriculum",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "software-engineering"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5438",
+    "code": "CSCA 5438",
+    "title": "Object-Oriented Analysis and Design: Patterns and Principles",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/csca5438",
+    "coursera_url": null,
+    "specialization": "ooad",
+    "sequence": 2,
+    "credits": 1,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "ms-cs",
+        "role": "elective",
+        "pathway": false
+      },
+      {
+        "curriculum": "ms-ai",
+        "role": "elective",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/curriculum",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "software-engineering"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5448",
+    "code": "CSCA 5448",
+    "title": "Object-Oriented Analysis and Design: Practice and Architecture",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/csca5448",
+    "coursera_url": null,
+    "specialization": "ooad",
+    "sequence": 3,
+    "credits": 1,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "ms-cs",
+        "role": "elective",
+        "pathway": false
+      },
+      {
+        "curriculum": "ms-ai",
+        "role": "elective",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/curriculum",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "software-engineering"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5303",
+    "code": "CSCA 5303",
+    "title": "Security & Ethical Hacking: Attacking the Network",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/csca5303",
+    "coursera_url": null,
+    "specialization": "security-hacking",
+    "sequence": 1,
+    "credits": 1,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "ms-cs",
+        "role": "elective",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/curriculum",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "security-governance"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5313",
+    "code": "CSCA 5313",
+    "title": "Security & Ethical Hacking: Attacking Unix and Windows",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/csca5313",
+    "coursera_url": null,
+    "specialization": "security-hacking",
+    "sequence": 2,
+    "credits": 1,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "ms-cs",
+        "role": "elective",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/curriculum",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "security-governance"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5323",
+    "code": "CSCA 5323",
+    "title": "Security & Ethical Hacking: Attacking Web and AI Systems",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/node/2568",
+    "coursera_url": null,
+    "specialization": "security-hacking",
+    "sequence": 3,
+    "credits": 1,
+    "cross_listed_as": "DTSA 5739",
+    "curricula": [
+      {
+        "curriculum": "ms-cs",
+        "role": "elective",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/curriculum",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "security-governance"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5112",
+    "code": "CSCA 5112",
+    "title": "Introduction to Generative AI",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/node/2357",
+    "coursera_url": null,
+    "specialization": "genai",
+    "sequence": 1,
+    "credits": 1,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "ms-cs",
+        "role": "elective",
+        "pathway": false
+      },
+      {
+        "curriculum": "ms-ai",
+        "role": "elective",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/curriculum",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "llm-engineering"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5122",
+    "code": "CSCA 5122",
+    "title": "Modern Applications of Generative AI",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/node/2635",
+    "coursera_url": null,
+    "specialization": "genai",
+    "sequence": 2,
+    "credits": 1,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "ms-cs",
+        "role": "elective",
+        "pathway": false
+      },
+      {
+        "curriculum": "ms-ai",
+        "role": "elective",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/curriculum",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "llm-engineering"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5132",
+    "code": "CSCA 5132",
+    "title": "Advances in Generative AI",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/node/2636",
+    "coursera_url": null,
+    "specialization": "genai",
+    "sequence": 3,
+    "credits": 1,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "ms-cs",
+        "role": "elective",
+        "pathway": false
+      },
+      {
+        "curriculum": "ms-ai",
+        "role": "elective",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/curriculum",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "llm-engineering"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5002",
+    "code": "CSCA 5002",
+    "title": "Intelligent Agents and Search Algorithms",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/node/2616",
+    "coursera_url": null,
+    "specialization": "intro-ai",
+    "sequence": 1,
+    "credits": 1,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "ms-cs",
+        "role": "elective",
+        "pathway": false
+      },
+      {
+        "curriculum": "ms-ai",
+        "role": "breadth",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/curriculum",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "agents-mcp"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5012",
+    "code": "CSCA 5012",
+    "title": "Knowledge Representation and Reasoning Under Uncertainty",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/node/2633",
+    "coursera_url": null,
+    "specialization": "intro-ai",
+    "sequence": 2,
+    "credits": 1,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "ms-cs",
+        "role": "elective",
+        "pathway": false
+      },
+      {
+        "curriculum": "ms-ai",
+        "role": "breadth",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/curriculum",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "agents-mcp"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5022",
+    "code": "CSCA 5022",
+    "title": "Introduction to Learning",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/csca5022",
+    "coursera_url": null,
+    "specialization": "intro-ai",
+    "sequence": 3,
+    "credits": 1,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "ms-cs",
+        "role": "elective",
+        "pathway": false
+      },
+      {
+        "curriculum": "ms-ai",
+        "role": "breadth",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/curriculum",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "agents-mcp"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "appa-5001",
+    "code": "APPA 5001",
+    "title": "Probability Foundations for Data Science and AI",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/node/2566",
+    "coursera_url": null,
+    "specialization": "prob-stats",
+    "sequence": 1,
+    "credits": 1,
+    "cross_listed_as": "DTSA 5001",
+    "curricula": [
+      {
+        "curriculum": "ms-ai",
+        "role": "breadth",
+        "pathway": true
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/ms-artificial-intelligence-coursera/ms-ai-online-curriculum-and-degree",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "optimization-measurement"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "appa-5002",
+    "code": "APPA 5002",
+    "title": "Discrete-Time Markov Chains and Monte Carlo Methods",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/node/2581",
+    "coursera_url": null,
+    "specialization": "prob-stats",
+    "sequence": 2,
+    "credits": 1,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "ms-ai",
+        "role": "breadth",
+        "pathway": true
+      }
+    ],
+    "availability_note": "CU Boulder's page is inconsistent on this course: the pathway section says available Fall 1 2025, the breadth section lists it as in development.",
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/ms-artificial-intelligence-coursera/ms-ai-online-curriculum-and-degree",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "optimization-measurement"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "appa-5003",
+    "code": "APPA 5003",
+    "title": "Statistical Estimation for Data Science and AI",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/node/2567",
+    "coursera_url": null,
+    "specialization": "prob-stats",
+    "sequence": 3,
+    "credits": 1,
+    "cross_listed_as": "DTSA 5002",
+    "curricula": [
+      {
+        "curriculum": "ms-ai",
+        "role": "breadth",
+        "pathway": true
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/ms-artificial-intelligence-coursera/ms-ai-online-curriculum-and-degree",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "optimization-measurement"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5204",
+    "code": "CSCA 5204",
+    "title": "Current Issues in Ethics and AI",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/node/2595",
+    "coursera_url": null,
+    "specialization": "ai-ethics",
+    "sequence": 1,
+    "credits": 1,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "ms-ai",
+        "role": "breadth",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/ms-artificial-intelligence-coursera/ms-ai-online-curriculum-and-degree",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "security-governance"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5274",
+    "code": "CSCA 5274",
+    "title": "AI Ethics and Society's Future",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/csca5274",
+    "coursera_url": null,
+    "specialization": "ai-ethics",
+    "sequence": 2,
+    "credits": 1,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "ms-ai",
+        "role": "breadth",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/ms-artificial-intelligence-coursera/ms-ai-online-curriculum-and-degree",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "security-governance"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5284",
+    "code": "CSCA 5284",
+    "title": "AI Ethics and Policy",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/csca5284",
+    "coursera_url": null,
+    "specialization": "ai-ethics",
+    "sequence": 3,
+    "credits": 1,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "ms-ai",
+        "role": "breadth",
+        "pathway": false
+      }
+    ],
+    "availability_note": "CU Boulder lists this course as available Fall 1, 2026.",
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/ms-artificial-intelligence-coursera/ms-ai-online-curriculum-and-degree",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "security-governance"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5902",
+    "code": "CSCA 5902",
+    "title": "Mastering Classic Reinforcement Learning Algorithms",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/csca5902",
+    "coursera_url": null,
+    "specialization": "rl",
+    "sequence": 1,
+    "credits": 1,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "ms-ai",
+        "role": "breadth",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/ms-artificial-intelligence-coursera/ms-ai-online-curriculum-and-degree",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "deep-learning"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5912",
+    "code": "CSCA 5912",
+    "title": "Deep Reinforcement Learning: From Theory to Practice",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/csca5912",
+    "coursera_url": null,
+    "specialization": "rl",
+    "sequence": 2,
+    "credits": 1,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "ms-ai",
+        "role": "breadth",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/ms-artificial-intelligence-coursera/ms-ai-online-curriculum-and-degree",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "deep-learning"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5922",
+    "code": "CSCA 5922",
+    "title": "Reward Programming: Optimizing RL Efficiency and Safety",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/csca5922",
+    "coursera_url": null,
+    "specialization": "rl",
+    "sequence": 3,
+    "credits": 1,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "ms-ai",
+        "role": "breadth",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/ms-artificial-intelligence-coursera/ms-ai-online-curriculum-and-degree",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "deep-learning"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5222",
+    "code": "CSCA 5222",
+    "title": "Introduction to Computer Vision",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/csca5222",
+    "coursera_url": null,
+    "specialization": "computer-vision",
+    "sequence": 1,
+    "credits": 1,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "ms-ai",
+        "role": "elective",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/ms-artificial-intelligence-coursera/ms-ai-online-curriculum-and-degree",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "deep-learning"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5322",
+    "code": "CSCA 5322",
+    "title": "Deep Learning for Computer Vision",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/node/2578",
+    "coursera_url": null,
+    "specialization": "computer-vision",
+    "sequence": 2,
+    "credits": 1,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "ms-ai",
+        "role": "elective",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/ms-artificial-intelligence-coursera/ms-ai-online-curriculum-and-degree",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "deep-learning"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "csca-5422",
+    "code": "CSCA 5422",
+    "title": "Modern AI Models for Vision and Multimodal Understanding",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "official_url": "https://www.colorado.edu/cs/node/2579",
+    "coursera_url": null,
+    "specialization": "computer-vision",
+    "sequence": 3,
+    "credits": 1,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "ms-ai",
+        "role": "elective",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.colorado.edu/cs/academics/online-programs/ms-artificial-intelligence-coursera/ms-ai-online-curriculum-and-degree",
+    "verified_on": "2026-10-23",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [],
+    "competencies": [
+      "deep-learning"
+    ],
+    "implementation": null,
+    "tests": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "causal-inference",
+    "code": null,
+    "title": "Causal Inference",
+    "provider": "Coursera",
+    "institution": "Columbia University",
+    "instructors": [
+      "Michael E. Sobel"
+    ],
+    "official_url": "https://www.coursera.org/learn/causal-inference",
+    "coursera_url": "https://www.coursera.org/learn/causal-inference",
+    "specialization": "measurement-causal",
+    "sequence": 1,
+    "credits": null,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "adtech",
+        "role": "elective",
+        "pathway": false
+      }
+    ],
+    "availability_note": "Live as of 2026-10-23. Unlike the other four, this page shows \u201cEnroll now\u201d rather than \u201cEnroll for free\u201d and Coursera's own catalog cards tag it \u201cPreview\u201d, so free audit access is unconfirmed.",
+    "source_url": "https://www.coursera.org/learn/causal-inference",
+    "verified_on": "2026-10-24",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [
+      "Causal estimands",
+      "Confounding",
+      "Observational inference"
+    ],
+    "competencies": [
+      "optimization-measurement",
+      "evaluation"
+    ],
+    "relevance": "Causal estimands, confounding and observational inference, applied to advertising effectiveness.",
+    "suggested_evidence": "Synthetic experiment comparing observational estimates against a known causal effect.",
+    "implementation": null,
+    "tests": null,
+    "benchmarks": null,
+    "experiments": null,
+    "decisions": null,
+    "learned": null,
+    "results": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [
+      "mta-audit",
+      "ima"
+    ],
+    "signal_component": null
+  },
+  {
+    "id": "causal-inference-2",
+    "code": null,
+    "title": "Causal Inference 2",
+    "provider": "Coursera",
+    "institution": "Columbia University",
+    "instructors": [
+      "Michael E. Sobel"
+    ],
+    "official_url": "https://www.coursera.org/learn/causal-inference-2",
+    "coursera_url": "https://www.coursera.org/learn/causal-inference-2",
+    "specialization": "measurement-causal",
+    "sequence": 2,
+    "credits": null,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "adtech",
+        "role": "elective",
+        "pathway": false
+      }
+    ],
+    "availability_note": "Live as of 2026-10-23. Unlike the other four, this page shows \u201cEnroll now\u201d rather than \u201cEnroll for free\u201d and Coursera's own catalog cards tag it \u201cPreview\u201d, so free audit access is unconfirmed.",
+    "source_url": "https://www.coursera.org/learn/causal-inference-2",
+    "verified_on": "2026-10-24",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [
+      "Identification assumptions",
+      "Causal mechanisms"
+    ],
+    "competencies": [
+      "optimization-measurement",
+      "evaluation"
+    ],
+    "relevance": "Advanced causal inference, identification assumptions and causal mechanisms.",
+    "suggested_evidence": "Technical analysis of identification failures in synthetic advertising data.",
+    "implementation": null,
+    "tests": null,
+    "benchmarks": null,
+    "experiments": null,
+    "decisions": null,
+    "learned": null,
+    "results": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [
+      "mta-audit",
+      "ima"
+    ],
+    "signal_component": null
+  },
+  {
+    "id": "ai-optimization-experimental-methods",
+    "code": null,
+    "title": "AI Optimization & Experimental Methods",
+    "provider": "Coursera",
+    "institution": "Coursera",
+    "instructors": [
+      "Professionals from the Industry (Coursera staff credit)"
+    ],
+    "official_url": "https://www.coursera.org/learn/ai-optimization--experimental-methods",
+    "coursera_url": "https://www.coursera.org/learn/ai-optimization--experimental-methods",
+    "specialization": "optimization-decision",
+    "sequence": 1,
+    "credits": null,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "adtech",
+        "role": "elective",
+        "pathway": false
+      }
+    ],
+    "availability_note": "Live as of 2026-10-23 and enrollable free. The only one of the six not offered by a named university: the partner is Coursera itself, the instructor credit is an anonymous staff account, it carries no ratings or reviews, and some assignments are AI-graded.",
+    "source_url": "https://www.coursera.org/learn/ai-optimization--experimental-methods",
+    "verified_on": "2026-10-24",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [
+      "Monte Carlo simulation",
+      "Propensity-score methods",
+      "Constrained allocation",
+      "Decision uncertainty"
+    ],
+    "competencies": [
+      "optimization-measurement"
+    ],
+    "relevance": "Simulation, propensity-score methods and constrained allocation under decision uncertainty.",
+    "suggested_evidence": "Simulated marketing budget allocation under uncertain channel response.",
+    "implementation": null,
+    "tests": null,
+    "benchmarks": null,
+    "experiments": null,
+    "decisions": null,
+    "learned": null,
+    "results": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [
+      "ima"
+    ],
+    "signal_component": null
+  },
+  {
+    "id": "operations-research-theory",
+    "code": null,
+    "title": "Operations Research (3): Theory",
+    "provider": "Coursera",
+    "institution": "National Taiwan University",
+    "instructors": [
+      "\u5b54\u4ee4\u5091 (Ling-Chieh Kung)"
+    ],
+    "official_url": "https://www.coursera.org/learn/operations-research-theory",
+    "coursera_url": "https://www.coursera.org/learn/operations-research-theory",
+    "specialization": "optimization-decision",
+    "sequence": 2,
+    "credits": null,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "adtech",
+        "role": "elective",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.coursera.org/learn/operations-research-theory",
+    "verified_on": "2026-10-24",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [
+      "Linear optimization",
+      "Integer optimization",
+      "Nonlinear optimization"
+    ],
+    "competencies": [
+      "optimization-measurement",
+      "algorithms"
+    ],
+    "relevance": "Linear, integer and nonlinear optimization.",
+    "suggested_evidence": "Constrained media budget optimization with benchmark comparisons.",
+    "implementation": null,
+    "tests": null,
+    "benchmarks": null,
+    "experiments": null,
+    "decisions": null,
+    "learned": null,
+    "results": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [
+      "ima"
+    ],
+    "signal_component": null
+  },
+  {
+    "id": "devops-dataops-mlops",
+    "code": null,
+    "title": "DevOps, DataOps, MLOps",
+    "provider": "Coursera",
+    "institution": "Duke University",
+    "instructors": [
+      "Noah Gift",
+      "Alfredo Deza"
+    ],
+    "official_url": "https://www.coursera.org/learn/devops-dataops-mlops-duke",
+    "coursera_url": "https://www.coursera.org/learn/devops-dataops-mlops-duke",
+    "specialization": "production-ml",
+    "sequence": 1,
+    "credits": null,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "adtech",
+        "role": "elective",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.coursera.org/learn/devops-dataops-mlops-duke",
+    "verified_on": "2026-10-24",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [
+      "ML pipelines",
+      "Deployment",
+      "CI/CD",
+      "Data operations"
+    ],
+    "competencies": [
+      "mlops",
+      "software-engineering"
+    ],
+    "relevance": "Pipelines, deployment, continuous integration and data operations.",
+    "suggested_evidence": "Reproducible analytical pipeline with automated tests and versioning.",
+    "implementation": null,
+    "tests": null,
+    "benchmarks": null,
+    "experiments": null,
+    "decisions": null,
+    "learned": null,
+    "results": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [
+      "mta-audit"
+    ],
+    "signal_component": null
+  },
+  {
+    "id": "mlops-mlflow-huggingface",
+    "code": null,
+    "title": "MLOps Tools: MLflow and Hugging Face",
+    "provider": "Coursera",
+    "institution": "Duke University",
+    "instructors": [
+      "Noah Gift",
+      "Alfredo Deza"
+    ],
+    "official_url": "https://www.coursera.org/learn/mlops-mlflow-huggingface-duke",
+    "coursera_url": "https://www.coursera.org/learn/mlops-mlflow-huggingface-duke",
+    "specialization": "production-ml",
+    "sequence": 2,
+    "credits": null,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "adtech",
+        "role": "elective",
+        "pathway": false
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.coursera.org/learn/mlops-mlflow-huggingface-duke",
+    "verified_on": "2026-10-24",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [
+      "Experiment tracking",
+      "Model versioning",
+      "Inference APIs",
+      "Deployment"
+    ],
+    "competencies": [
+      "mlops",
+      "apis-backend"
+    ],
+    "relevance": "Experiment tracking, model versioning, inference APIs and deployment.",
+    "suggested_evidence": "Reproducible measurement-model evaluation with tracked experiments.",
+    "implementation": null,
+    "tests": null,
+    "benchmarks": null,
+    "experiments": null,
+    "decisions": null,
+    "learned": null,
+    "results": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [
+      "mta-audit"
+    ],
+    "signal_component": null
   }
 ]

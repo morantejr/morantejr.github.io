@@ -1,154 +1,249 @@
-# AI Engineering section
+# AI Engineering hub
 
-The page at `/ai-engineering/` is **generated**. Edit the JSON in `content/`, run the
-build, commit the result. Do not hand-edit `ai-engineering/index.html` — the next build
+Seven **generated** pages under `/ai-engineering/`. Edit the JSON in `content/`, run the
+build, commit the result. Do not hand-edit any generated `index.html` — the next build
 overwrites it.
 
 ```bash
 python3 ai-engineering/build.py --check   # validate content, write nothing
-python3 ai-engineering/build.py           # validate, then regenerate index.html
+python3 ai-engineering/build.py           # validate, then regenerate all pages
 ```
 
-No dependencies beyond Python 3. The build fails loudly rather than writing a page from
-content that does not validate.
+No dependencies beyond Python 3. The build refuses to write pages from content that does
+not validate.
 
 ## Why it is generated
 
 The rest of the site is hand-written static HTML with inline CSS and no build step. A
-client-side renderer would have put the content out of reach of crawlers and broken it for
-anyone with JavaScript off, so the content is rendered to static HTML at author time
-instead. The design system is **not** duplicated: `build.py` lifts the `<style>` block, the
-theme script, and the favicon out of the site's `index.html` every time it runs, so this
-page cannot drift from the rest of the site. Change a colour token in `index.html`, rebuild,
-and this page follows.
+client-side renderer would have hidden the content from crawlers and broken it without
+JavaScript, so content renders to static HTML at author time. The design system is **not**
+duplicated: `build.py` lifts the `<style>` block, the theme script and the favicon out of
+the site's `index.html` on every run. Change a colour token there, rebuild, and all seven
+pages follow.
 
-## Files
+## Pages
+
+| Route | Source |
+|---|---|
+| `/ai-engineering/` | hub: counts, entry points, five-stage progression |
+| `/ai-engineering/curriculum/computer-science/` | `courses.json` filtered to `ms-cs` |
+| `/ai-engineering/curriculum/artificial-intelligence/` | `courses.json` filtered to `ms-ai` |
+| `/ai-engineering/curriculum/from-scratch/` | `modules.json` |
+| `/ai-engineering/curriculum/adtech/` | `courses.json` filtered to `adtech` |
+| `/ai-engineering/engineering-evidence/` | `artifacts.json` |
+| `/ai-engineering/competencies/` | `competencies.json` |
+| `/ai-engineering/technical-notes/` | `notes.json` |
+| `/ai-engineering/building-signal/` | `signal.json` |
+
+## Content files
 
 ```
-content/page.json        headings, intro copy, meta description, canonical URL
-content/pathways.json    the six learning tracks
-content/courses.json     Coursera coursework
-content/scratch.json     AI Engineering from Scratch modules
-content/artifacts.json   things built, tested, deployed
-content/notes.json       technical write-ups
-content/roadmap.json     Foundations -> Implementation -> Production -> Reliability
-build.py                 validator + generator
-index.html               GENERATED — do not edit
+content/page.json          headings, intro copy, the independent-study disclosure, meta
+content/curricula.json     the three curricula + the specialization catalogue
+content/courses.json       42 canonical CU Boulder course records
+content/modules.json       the 20 AI Engineering from Scratch phases
+content/competencies.json  12 competency areas and what backs each
+content/artifacts.json     things built, tested, deployed
+content/notes.json         technical write-ups
+content/roadmap.json       Stage 1-5 study progression
+content/signal.json        SIGNAL: positioning, business hypotheses, roadmap, timeline, blogs, videos
 ```
+
+### Credit-bearing and non-credit pathways
+
+A curriculum with `breadth_credits` set (the two CU plans) is held to its credit arithmetic
+and to exactly two pathway specializations. A curriculum with `breadth_credits: null` (AI
+Engineering from Scratch, AdTech) is exempt from both, because its courses carry no credit
+value. Course `code` is likewise optional: the row falls back to the institution name, which
+is what the Coursera courses use.
+
+AdTech courses carry extra fields the CU records leave null: `instructors`, `relevance`,
+`suggested_evidence`, `experiments`, `benchmarks`, `decisions`, `learned` and `results`.
+They also set `coursera_url`, since unlike the CU courses these have direct Coursera pages.
+
+### One course, two curricula
+
+A course appears **once** in `courses.json` and declares its memberships:
+
+```json
+"curricula": [
+  {"curriculum": "ms-cs", "role": "elective", "pathway": false},
+  {"curriculum": "ms-ai", "role": "breadth",  "pathway": true}
+]
+```
+
+Both curriculum pages render from that single record, so updating a status once updates
+both views. 18 of the 42 courses sit in both plans. `pathway` is per-curriculum because a
+specialization that is an admission pathway for MS-AI is not one for MS-CS.
 
 ## What the validator enforces
 
-- Every `id` is a unique lowercase-hyphen slug.
-- `status` is one of `planned`, `in-progress`, `completed`.
-- A course marked `completed` must carry a `completed_date` or a `certificate_url`.
-  This is deliberate: the page should never show a credential claim without evidence.
-- `pathway`, `related_artifact`, `related_courses`, and roadmap `evidence` must all point
-  at ids that actually exist.
-- A roadmap skill marked `demonstrated` must name an artifact.
-- Required fields are present and non-empty; URLs are well-formed.
+- Unique slug ids; every cross-reference resolves (specialization, curriculum, competency,
+  module, artifact, course).
+- `status` is `planned`, `in-progress` or `completed`.
+- **A course marked `completed` must carry a `completed_date` or a `certificate_url`.**
+  The page should never show a credential claim without evidence behind it.
+- Breadth and elective course counts must equal the credits declared for that curriculum
+  (15 and 15), so a miscount fails the build instead of shipping.
+- Exactly two pathway specializations per CU curriculum.
+- A module may not carry a URL unless `slug_verified` is true, which stops guessed links.
+- A roadmap skill may be `demonstrated` only if it names an artifact.
+- `official_url` must be absolute https; artifact links must be absolute, an anchor, or use
+  the `{root}` token.
+- Curriculum-level `status` is separate from course status, so a curriculum can be in
+  progress while its courses are still planned.
+- `signal_component` must be a string or null.
+- Each course's `competencies` must reference real competency ids; these drive the "Skills"
+  line on the curriculum rows.
 
-Set `"placeholder": true` on any entry that is a format example. Placeholders render with a
-dashed "Example entry" tag, are dimmed, and are **excluded from every count** on the page.
-Delete them once you have real entries.
+Links that must point back to the site root use `{root}`, for example `{root}#work`. The
+builder expands it to the right number of `../` for each page's depth. Never hardcode `../`
+in content, because the same record renders at several depths.
+
+## Accuracy rules this encodes
+
+Course titles, codes and specialization membership were read from the official CU Boulder
+curriculum pages on 2026-10-23 and each record stores its `source_url` and `verified_on`.
+Neither CU Boulder nor Coursera publishes direct per-course Coursera URLs on those pages,
+so `coursera_url` is `null` for all 42 and links point at CU's own syllabus pages. All 42
+were checked and return HTTP 200.
+
+Four From Scratch phases (12, 16, 18, 19) had no slug observable on the pages read, so they
+carry no link rather than a guessed one, and the page says so.
+
+The independent-study disclosure in `page.json` appears on the hub and on both CU
+curriculum pages. Keep it accurate if the situation changes.
 
 ---
 
-## Add your first Coursera course
+## Adding a monthly blog entry or a video
 
-1. Open `content/courses.json`.
-2. Delete the three `example-*` entries once you have a real one.
-3. Add your course. A planned course needs very little:
+Both live in `content/signal.json`. A blog entry needs `id`, `month`, `title`, `set_out` and
+`built` at minimum; the other fields render only when present:
 
 ```json
-{
-  "id": "deep-learning-specialization",
-  "title": "Deep Learning Specialization",
-  "provider": "Coursera",
-  "institution": "DeepLearning.AI",
-  "url": "https://www.coursera.org/specializations/deep-learning",
-  "status": "planned",
-  "completed_date": null,
-  "certificate_url": null,
-  "pathway": "foundations",
-  "skills": ["Backpropagation", "CNNs", "Sequence models"],
-  "related_artifact": null,
-  "outcomes": []
-}
+{"id": "2026-11", "month": "November 2026", "title": "Closing the prediction loop",
+ "set_out": "...", "built": "...", "learned": "...", "decisions": "...",
+ "difficulties": "...", "testing": "...", "feedback": "...", "metrics": "...",
+ "next": "...", "url": null}
 ```
 
-4. When you finish it, change `status` to `"completed"` and fill in `completed_date`
-   (`YYYY-MM-DD`) and `certificate_url`. The build **fails** if you mark it completed
-   without one of those. Add an `outcomes` entry saying what you can now do, and point
-   `related_artifact` at whatever you built with it.
-5. Rebuild: `python3 ai-engineering/build.py`
-
-`pathway` must be one of: `foundations`, `transformers`, `applications`, `agents`,
-`mlops`, `evaluation`.
-
-## Add your first AI Engineering from Scratch module
-
-1. Open `content/scratch.json` and replace the example entries.
+A video needs `id`, `title`, `youtube_id` and `published`; it embeds through
+youtube-nocookie with lazy loading:
 
 ```json
-{
-  "id": "attention-from-scratch",
-  "title": "Attention from scratch",
-  "concept": "Scaled dot-product attention, implemented without a framework's layer.",
-  "pathway": "transformers",
-  "status": "completed",
-  "repo_url": "https://github.com/morantejr/ai-from-scratch",
-  "tests": "Asserts the output matches a reference implementation to 1e-6 on random inputs.",
-  "benchmarks": "Forward pass timing against the framework layer at three sequence lengths.",
-  "notes": "The mask has to be applied before the softmax, not after.",
-  "limitations": "Single head, no KV cache, float32 only."
-}
+{"id": "v1", "title": "SIGNAL in two minutes", "youtube_id": "XXXXXXXXXXX",
+ "published": "2026-11-30", "description": "..."}
 ```
 
-2. Keep `tests`, `benchmarks`, and `limitations` honest and specific. They are the fields
-   that make this section worth more than a list of lesson titles. A completed module with
-   no `repo_url` produces a build warning.
-3. Do not paste curriculum text from the course into these fields. Describe your own
-   implementation in your own words.
-4. Rebuild.
+Timeline milestones may be marked `completed` only with an `evidence` string, and the build
+fails otherwise. The business block must keep its `disclaimer` field.
 
-## Add a GitHub implementation as an artifact
+## Linking a course to SIGNAL
 
-1. Open `content/artifacts.json`.
+SIGNAL is the one flagship project, so coursework points at it rather than at new projects.
+Every course record carries a nullable `signal_component` field. Fill it with the component
+name and it renders on the curriculum row beside the course:
+
+```json
+"signal_component": "Quant scorer (quant/score.py)",
+"related_artifacts": ["signal"]
+```
+
+Not every course needs one. Some contribute architecture, testing or understanding rather
+than a feature, and leaving it null is the honest outcome.
+
+## Add your first course progress update
+
+1. Open `content/courses.json` and find the course by its code, for example `csca-5414`.
+2. Starting it:
+
+```json
+"status": "in-progress",
+"started_date": "2026-11-01",
+"notes": "Working through the dynamic programming section."
+```
+
+3. Finishing it — this is the part the validator polices:
+
+```json
+"status": "completed",
+"completed_date": "2027-01-15",
+"certificate_url": "https://www.coursera.org/account/accomplishments/verify/XXXX",
+"concepts": ["Memoisation vs tabulation", "Greedy exchange arguments"],
+"competencies": ["algorithms"],
+"related_artifacts": ["algo-benchmarks"]
+```
+
+Omit both `completed_date` and `certificate_url` and the build **fails**. If you studied a
+course in the free non-credit version and there is no certificate, put the completion date
+and leave `certificate_url` null — that is honest and it passes.
+
+4. Rebuild. The hub counter, both curriculum pages and any competency that references the
+   course all update from that one edit.
+
+## Attach an engineering artifact
+
+1. Add it to `content/artifacts.json`:
 
 ```json
 {
-  "id": "ai-from-scratch",
+  "id": "algo-benchmarks",
   "placeholder": false,
-  "name": "ai-from-scratch",
-  "kind": "tutorial",
-  "pathway": "transformers",
-  "problem": "What the code is for, in a sentence a stranger understands.",
+  "name": "Algorithm Benchmarking Library",
+  "kind": "independent",
+  "track": "Track 1 — Algorithms & Data Structures",
+  "competencies": ["algorithms", "software-engineering"],
+  "problem": "What it is for, in a sentence a stranger understands.",
   "architecture": "How it is put together.",
-  "stack": ["Python", "NumPy", "pytest"],
-  "repo_url": "https://github.com/morantejr/ai-from-scratch",
-  "extra_links": [{"label": "Benchmarks", "url": "https://github.com/morantejr/ai-from-scratch#benchmarks"}],
-  "decisions": ["A choice you made and why."],
+  "stack": ["Python", "pytest", "hypothesis"],
+  "repo_url": "https://github.com/morantejr/algo-benchmarks",
+  "extra_links": [{"label": "Benchmarks", "url": "https://github.com/morantejr/algo-benchmarks#results"}],
+  "decisions": ["A choice you made, and what you rejected."],
   "testing": "What is asserted and what passing proves.",
   "evaluation": "What you measured, with the number.",
   "deployment": null,
-  "limitations": "What it does not do.",
-  "related_courses": ["deep-learning-specialization"]
+  "limitations": "What it does not handle.",
+  "related_courses": ["csca-5414"]
 }
 ```
 
-2. Set `kind` accurately. It is rendered as a visible label and it is the honest part:
-   - `independent` — your own engineering, your own problem
-   - `tutorial` — followed a course or book
-   - `research` — a prototype built to answer a question
-   - `production` — running somewhere people depend on it
-3. `related_courses` must contain ids that exist in `courses.json`, or the build fails.
-4. Link it from the roadmap by putting its id in a skill's `evidence` field in
-   `content/roadmap.json`. Only then may that skill be `demonstrated`.
-5. Rebuild and check the page.
+2. Set `kind` honestly: `independent`, `tutorial`, `research`, or `production`. It renders
+   as a visible label.
+3. Reference the id from `competencies.json` under `artifacts`, and from a roadmap skill's
+   `evidence` field. Only then may that skill be `demonstrated`.
+4. Rebuild. It appears on the evidence page with an `#artifact-algo-benchmarks` anchor that
+   the competency and roadmap links point at.
+
+## Publish a technical note
+
+1. Add it to `content/notes.json` and drop the `"placeholder": true` flag:
+
+```json
+{
+  "id": "why-attention-masks-first",
+  "title": "The mask goes before the softmax",
+  "date": "2026-11-20",
+  "competencies": ["llm-engineering"],
+  "summary": "One or two sentences a reader can judge the note by.",
+  "learned": "What I did not understand before.",
+  "mechanism": "How it actually works.",
+  "implemented": "What I built to test the understanding.",
+  "failed": "What broke, and what it taught.",
+  "tradeoffs": "The design choice and what it cost.",
+  "production": "Why it matters when the system has users.",
+  "url": "https://github.com/morantejr/ai-from-scratch/blob/main/notes/attention-mask.md"
+}
+```
+
+2. Keep it specific. A note that could have been written without doing the work is worse
+   than no note.
+3. Rebuild. Placeholder entries are dimmed, tagged "Example entry", and excluded from every
+   count on the site.
 
 ## Deploying
 
-`.github/workflows/deploy.yml` uploads the repository root as-is, so the generated
-`index.html` must be committed. Run the build before you commit, or the published page will
-lag the content files. If you would rather the workflow build it for you, add a step that
-runs `python3 ai-engineering/build.py` before `upload-pages-artifact`.
+`.github/workflows/deploy.yml` uploads the repository root as-is, so the generated pages
+must be committed. Run the build before committing, or the published pages lag the content.
+To have CI build instead, add a `python3 ai-engineering/build.py` step before
+`upload-pages-artifact`.

@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AI Engineering - Joseph Morante</title>
-<meta name="description" content="Joseph Morante&#x27;s AI engineering coursework, independent implementations, and tested artifacts across ML foundations, language models, agents, MLOps, and evaluation.">
+<meta name="description" content="Joseph Morante&amp;#x27;s AI engineering work: independent graduate-level CS and AI study, implementations with tests, and evaluated systems.">
 <link rel="canonical" href="https://morantejr.github.io/ai-engineering/">
-<meta property="og:title" content="AI Engineering — Joseph Morante">
-<meta property="og:description" content="Coursework, independent implementations, and tested artifacts across ML foundations, language models, agents, MLOps, and evaluation.">
+<meta property="og:title" content="AI Engineering - Joseph Morante">
+<meta property="og:description" content="Joseph Morante&amp;#x27;s AI engineering work: independent graduate-level CS and AI study, implementations with tests, and evaluated systems.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://morantejr.github.io/ai-engineering/">
 <meta name="color-scheme" content="dark light">
@@ -218,31 +218,32 @@ h3{margin:18px 0 6px;font-size:40px;letter-spacing:-0.03em;font-weight:500}
 .split2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @media (max-width:640px){.split2{grid-template-columns:1fr}}
 
-/* --- AI Engineering page ------------------------------------------------ */
+/* --- AI Engineering hub ------------------------------------------------- */
 .ae-main{padding-bottom:40px}
 .ae-head{padding-top:140px}
-.ae-head h1{font-size:clamp(34px,5vw,62px);line-height:1.04;max-width:14ch}
-.ae-lede{margin:26px 0 0;max-width:680px;font-size:19px;line-height:1.6;color:var(--acc);text-wrap:pretty}
-.ae-stand{margin:22px 0 0;max-width:680px;font-size:16.5px;line-height:1.65;color:var(--mid);text-wrap:pretty}
-.ae-stats{margin-top:56px}
-.ae-sec{padding-top:96px}
-.ae-sec > .sec-head{margin-bottom:0}
-.ae-intro{margin:26px 0 0;max-width:720px;font-size:16px;line-height:1.65;color:var(--mid);text-wrap:pretty}
+.ae-head h1{font-size:clamp(32px,4.6vw,58px);line-height:1.05;max-width:15ch}
+.ae-lede{margin:26px 0 0;max-width:700px;font-size:18px;line-height:1.6;color:var(--acc);text-wrap:pretty}
+.ae-stand{margin:22px 0 0;max-width:700px;font-size:16px;line-height:1.65;color:var(--mid);text-wrap:pretty}
+.ae-disclosure{margin:30px 0 0;max-width:720px;font-size:14px;line-height:1.6;color:var(--faint);border-left:2px solid var(--line2);padding-left:14px;text-wrap:pretty}
+.ae-stats{margin-top:52px}
+.ae-sec{padding-top:88px}
+.ae-intro{margin:26px 0 0;max-width:740px;font-size:16px;line-height:1.65;color:var(--mid);text-wrap:pretty}
 .ae-grid{margin-top:30px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.ae-grid.one{grid-template-columns:1fr}
 .ae-grid > .card{background:var(--bg)}
-.ae-h3{margin:10px 0 0;font-size:20px;letter-spacing:-0.015em;line-height:1.3;font-weight:500;color:var(--fg)}
-.ae-comps{margin:14px 0 0;padding-left:18px;font-size:14px;line-height:1.6;color:var(--mid)}
-.ae-comps li{margin-top:4px}
+.ae-h3{margin:10px 0 0;font-size:19px;letter-spacing:-0.015em;line-height:1.3;font-weight:500;color:var(--fg)}
+.ae-crumb{margin:0 0 18px;font-size:12px;letter-spacing:0.08em;color:var(--faint)}
+.ae-crumb a{color:var(--faint)}.ae-crumb a:hover{color:var(--acc)}
+.ae-entry{display:block;background:var(--bg);padding:26px 24px;transition:background .2s}
+.ae-entry:hover{background:var(--card-hover)}
+.ae-entry .ae-h3{color:var(--fg)}
+.ae-entry-d{margin:10px 0 0;font-size:14.5px;line-height:1.6;color:var(--mid)}
 .ae-tally{margin:16px 0 0;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint)}
-.ae-linked{margin:14px 0 0;font-size:14px;line-height:1.6;color:var(--mid)}
-.ae-linked .pl{margin-right:8px}
-.ae-course-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .ae-pill{display:inline-flex;align-items:center;gap:7px;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint)}
 .ae-dot{width:7px;height:7px;border-radius:50%;flex:none;border:1px solid var(--line3)}
 .ae-completed .ae-dot{background:var(--acc);border-color:var(--acc)}
 .ae-in-progress .ae-dot{background:var(--warm);border-color:var(--warm)}
-.ae-completed{color:var(--fg2)}
-.ae-in-progress{color:var(--warm)}
+.ae-completed{color:var(--fg2)}.ae-in-progress{color:var(--warm)}
 .ae-ph-tag{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint2);border:1px dashed var(--line2);border-radius:4px;padding:3px 7px}
 .ae-ph{opacity:0.72}
 .ae-meta{margin:8px 0 0;font-size:12px;letter-spacing:0.06em;color:var(--faint)}
@@ -251,227 +252,156 @@ h3{margin:18px 0 6px;font-size:40px;letter-spacing:-0.03em;font-weight:500}
 .ae-facts dd{margin:0}
 .ae-links{margin:18px 0 0;display:flex;flex-wrap:wrap;gap:16px}
 .tags.ae-plain{list-style:none;padding:0}
-.ae-artifact{padding:34px 0;border-bottom:1px solid var(--line)}
-.ae-artifact:last-child{border-bottom:0}
-.ae-artifact-h{font-size:28px;margin-top:12px}
-.ae-artifact .ae-facts{max-width:760px}
-.ae-roadmap{margin-top:30px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
-.ae-stage{background:var(--bg);padding:26px 22px}
-.ae-stage-h{font-size:17px;margin-top:0}
-.ae-stage-s{margin:8px 0 0;font-size:13.5px;line-height:1.55;color:var(--faint)}
+.ae-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+/* specialization blocks */
+.ae-spec{border:1px solid var(--line);margin-top:22px}
+.ae-spec-h{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:18px 22px;border-bottom:1px solid var(--line)}
+.ae-spec-n{font-size:17px;letter-spacing:-0.015em;color:var(--fg)}
+.ae-spec-t{font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);white-space:nowrap}
+.ae-spec-t.pathway{color:var(--acc)}
+.ae-spec-t.dev{color:var(--warm)}
+.ae-rows{display:flex;flex-direction:column}
+.ae-row{display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:18px;align-items:baseline;padding:13px 22px;border-top:1px solid var(--line)}
+.ae-row:first-child{border-top:0}
+.ae-code{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12px;color:var(--faint)}
+.ae-ct{font-size:14.5px;line-height:1.45;color:var(--fg2)}
+.ae-xl{display:block;margin-top:3px;font-size:11.5px;color:var(--faint)}
+.ae-note-inline{display:block;margin-top:5px;font-size:12px;line-height:1.5;color:var(--warm)}
+/* competency + roadmap */
 .ae-skills{margin:18px 0 0;padding:0;list-style:none}
 .ae-skill{margin-top:14px;padding-left:12px;border-left:2px solid var(--line2)}
 .ae-s-demonstrated{border-left-color:var(--acc)}
 .ae-s-practicing{border-left-color:var(--warm)}
 .ae-state{display:block;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint)}
 .ae-skill-n{display:block;margin-top:4px;font-size:14px;line-height:1.5;color:var(--fg2)}
-.ae-note{margin:26px 0 0;max-width:720px;font-size:14px;line-height:1.6;color:var(--faint);border-left:2px solid var(--line2);padding-left:14px}
-@media (max-width:900px){
- .ae-roadmap{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
+.ae-stage{padding:28px 0;border-bottom:1px solid var(--line)}
+.ae-stage:last-child{border-bottom:0}
+.ae-stage-h{font-size:19px;margin:0}
+.ae-stage-s{margin:8px 0 0;font-size:14.5px;line-height:1.6;color:var(--mid);max-width:680px}
+.ae-artifact{padding:34px 0;border-bottom:1px solid var(--line)}
+.ae-artifact:last-child{border-bottom:0}
+.ae-artifact-h{font-size:26px;margin-top:12px}
+.ae-artifact .ae-facts{max-width:770px}
+.ae-note{margin:26px 0 0;max-width:740px;font-size:13.5px;line-height:1.6;color:var(--faint);border-left:2px solid var(--line2);padding-left:14px}
+.ae-back{margin-top:70px;padding-top:24px;border-top:1px solid var(--line)}
 @media (max-width:640px){
  .ae-head{padding-top:86px}
- .ae-sec{padding-top:70px}
- .ae-grid,.ae-roadmap{grid-template-columns:1fr}
- .ae-artifact-h{font-size:24px}
+ .ae-sec{padding-top:66px}
+ .ae-grid{grid-template-columns:1fr}
+ .ae-row{grid-template-columns:1fr;gap:4px;padding:14px 18px}
+ .ae-spec-h{padding:16px 18px}
+ .ae-artifact-h{font-size:22px}
 }
 </style>
 </head>
 <body>
-<a class="skip" href="#pathways">Skip to content</a>
+<a class="skip" href="#main">Skip to content</a>
 <header class="nav">
   <div class="wrap nav-in">
     <a class="brand" href="../"><span class="brand-name">Joseph Morante</span><span class="mono brand-tag">Measurement</span></a>
     <nav class="nav-links" aria-label="Primary">
       <a href="../#work">Work</a>
       <a href="../#research">Research</a>
-      <a href="./" aria-current="page">AI Engineering</a>
+      <a class="nav-keep" href="../ai-engineering/" aria-current="page">AI Engineering</a>
       <a href="../#experience">Experience</a>
       <a href="../#about">About</a>
       <a class="btn-outline-sm" href="../JosephMorante_Resume.pdf" target="_blank" rel="noopener">Resume</a>
     </nav>
   </div>
 </header>
-
-<main class="ae-main" id="top">
-
+<main class="ae-main" id="main">
 <header class="wrap ae-head">
-  <p class="mono eyebrow">Continuing education &middot; Implementations &middot; Evidence</p>
+  <p class="mono eyebrow">Independent study &middot; Implementations &middot; Evidence</p>
   <h1>AI Engineering — From Foundations to Production</h1>
-  <p class="ae-lede">A documented record of my continuing technical education, independent implementations, and practical engineering work across machine learning, language models, AI infrastructure, evaluation, and deployment.</p>
-  <p class="ae-stand">I work in marketing measurement, and most of what I build already depends on models behaving predictably. This page tracks the deliberate part of moving that work toward production AI engineering: what I am studying, what I have implemented, and what the implementations actually do when tested. Entries appear here when there is something to point at.</p>
-  <div class="stats ae-stats"><div class="stat"><div class="stat-v">0</div><div class="mono stat-l">Courses completed</div></div><div class="stat"><div class="stat-v">0</div><div class="mono stat-l">Courses in progress</div></div><div class="stat"><div class="stat-v">0</div><div class="mono stat-l">Modules implemented</div></div><div class="stat"><div class="stat-v">4</div><div class="mono stat-l">Artifacts with evidence</div></div></div>
-  <p class="ae-note">Counts above are derived only from entries recorded on this page, and exclude the example entries that show the content format. Coursework is listed as completed only where a completion date or certificate is recorded.</p>
+  <p class="ae-lede">I am independently studying graduate-level computer science and artificial intelligence coursework while building, testing, and evaluating AI systems. This section documents my development through technical study, hands-on implementations, engineering decisions, and public evidence.</p>
+  <p class="ae-stand">Everything here is organised around evidence rather than credentials. Coursework appears with its source and status; an implementation appears with its repository, its tests, and what it does not handle. Where I have no evidence yet, the page says so.</p>
+  <p class="ae-disclosure">I am independently studying courses from the University of Colorado Boulder MS-CS and MS-AI curricula through Coursera&#x27;s open, non-credit versions. I am not enrolled in either degree programme, am not taking these for graduate credit, and am not pursuing an awarded CU Boulder degree. The curricula are organised here by the universities&#x27; own degree requirements purely as a study reference.</p>
+  <div class="stats ae-stats"><div class="stat"><div class="stat-v">48</div><div class="mono stat-l">Unique courses selected</div></div><div class="stat"><div class="stat-v">0</div><div class="mono stat-l">Courses completed</div></div><div class="stat"><div class="stat-v">0</div><div class="mono stat-l">Courses in progress</div></div><div class="stat"><div class="stat-v">0/20</div><div class="mono stat-l">From Scratch phases done</div></div><div class="stat"><div class="stat-v">5</div><div class="mono stat-l">Artifacts with evidence</div></div><div class="stat"><div class="stat-v">0</div><div class="mono stat-l">Technical notes published</div></div></div>
+  <p class="ae-note">Every number above is counted from the records behind this section. Nothing is estimated, and a zero means zero.</p>
 </header>
 
-<section id="pathways" class="wrap ae-sec">
-  <div class="sec-head"><h2>Learning pathways</h2><div class="mono kicker">Six tracks</div></div>
-  <p class="ae-intro">The curriculum split into the areas a production AI system actually demands. Each track lists the competencies I am working toward and links to whatever on this page stands as evidence for it.</p>
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>Independent study</h2><div class="mono kicker">Four pathways</div></div>
+  <p class="ae-intro">Two graduate curricula followed on my own through their open, non-credit versions, a free implementation-first course, and a focused pathway in advertising measurement. Each tracks its own progress.</p>
   <div class="ae-grid">
-      <article class="card ae-pathway">
-        <h3 class="card-t ae-h3">Machine Learning &amp; Deep Learning Foundations</h3>
-        <p class="card-d">The mathematics and training mechanics underneath everything else: optimisation, backpropagation, regularisation, and the failure modes that look like bugs but are statistics.</p>
-        <ul class="ae-comps"><li>Gradient-based optimisation and loss design</li><li>Bias-variance reasoning and regularisation</li><li>Training diagnostics: divergence, overfitting, leakage</li><li>Classical baselines as a check on learned models</li></ul>
-        
-        <p class="mono ae-tally">Nothing recorded yet</p>
-      </article>
-      <article class="card ae-pathway">
-        <h3 class="card-t ae-h3">Transformers &amp; Language Models</h3>
-        <p class="card-d">How attention actually computes, what pretraining and fine-tuning change, and where context length, tokenisation, and decoding strategy decide behaviour.</p>
-        <ul class="ae-comps"><li>Attention and positional encoding from first principles</li><li>Tokenisation and context-window economics</li><li>Fine-tuning and parameter-efficient adaptation</li><li>Decoding strategies and their effect on reliability</li></ul>
-        
-        <p class="mono ae-tally">Nothing recorded yet</p>
-      </article>
-      <article class="card ae-pathway">
-        <h3 class="card-t ae-h3">AI Application Engineering</h3>
-        <p class="card-d">Turning a model call into a system: prompt and context design, retrieval, structured output, caching, cost control, and the boring parts that decide whether it survives contact with users.</p>
-        <ul class="ae-comps"><li>Prompt and context engineering under token budgets</li><li>Retrieval-augmented generation and chunking tradeoffs</li><li>Structured output and schema validation</li><li>Latency, cost, and caching strategy</li></ul>
-        <p class="ae-linked"><span class="mono pl">Evidence</span> <a class="ul" href="#artifact-signal">SIGNAL</a></p>
-        <p class="mono ae-tally">1 artifact</p>
-      </article>
-      <article class="card ae-pathway">
-        <h3 class="card-t ae-h3">Agents, Tools &amp; MCP</h3>
-        <p class="card-d">Multi-step systems that call tools and act. Where I already have professional work: governed data access through Model Context Protocol servers with validation and enforced limits.</p>
-        <ul class="ae-comps"><li>Tool definition and call-loop design</li><li>Model Context Protocol server implementation</li><li>Query validation, injection prevention, row limits</li><li>Human approval gates in agentic workflows</li></ul>
-        <p class="ae-linked"><span class="mono pl">Evidence</span> <a class="ul" href="#artifact-governed-mcp">Governed AI data access over MCP</a></p>
-        <p class="mono ae-tally">1 artifact</p>
-      </article>
-      <article class="card ae-pathway">
-        <h3 class="card-t ae-h3">MLOps, Serving &amp; Infrastructure</h3>
-        <p class="card-d">Getting a model into a place where other people can depend on it, and keeping it there: packaging, serving, GPU economics, pipelines, and observability.</p>
-        <ul class="ae-comps"><li>Model packaging and inference serving</li><li>GPU and batch-job orchestration</li><li>Data pipelines feeding model workloads</li><li>Tracing, logging, and cost observability</li></ul>
-        
-        <p class="mono ae-tally">Nothing recorded yet</p>
-      </article>
-      <article class="card ae-pathway">
-        <h3 class="card-t ae-h3">Evaluation, Reliability &amp; Security</h3>
-        <p class="card-d">The part I came in through. Measuring whether a system is right rather than whether it looks right, with pre-registered methods, held-out data, and baselines that are allowed to win.</p>
-        <ul class="ae-comps"><li>Offline evaluation design and held-out splits</li><li>Pre-registration and multiplicity control</li><li>LLM-as-judge methods and their failure modes</li><li>Prompt-injection and data-access threat modelling</li></ul>
-        <p class="ae-linked"><span class="mono pl">Evidence</span> <a class="ul" href="#artifact-mta-audit">mta-audit</a> <a class="ul" href="#artifact-agent-reliability">Agent reliability study</a></p>
-        <p class="mono ae-tally">2 artifacts</p>
-      </article>
+      <a class="ae-entry" href="curriculum/computer-science/">
+        <h3 class="ae-h3">CU Boulder MS-CS curriculum, studied independently</h3>
+        <p class="ae-entry-d">30 one-credit course positions across breadth and electives, studied independently.</p>
+        <p class="mono ae-tally">Planned · 0 of 30 complete</p>
+      </a>
+      <a class="ae-entry" href="curriculum/artificial-intelligence/">
+        <h3 class="ae-h3">CU Boulder MS-AI curriculum, studied independently</h3>
+        <p class="ae-entry-d">30 one-credit course positions across breadth and electives, studied independently.</p>
+        <p class="mono ae-tally">Planned · 0 of 30 complete</p>
+      </a>
+      <a class="ae-entry" href="curriculum/from-scratch/">
+        <h3 class="ae-h3">AI Engineering from Scratch</h3>
+        <p class="ae-entry-d">20 phases, free and open source. Implementation-first.</p>
+        <p class="mono ae-tally">In progress · 0 of 20 phases complete</p>
+      </a>
+      <a class="ae-entry" href="curriculum/adtech/">
+        <h3 class="ae-h3">AdTech Measurement Science &amp; AI Engineering</h3>
+        <p class="ae-entry-d">Causal inference, optimization, and production machine learning.</p>
+        <p class="mono ae-tally">Planned · 0 of 6 complete</p>
+      </a>
   </div>
 </section>
 
-<section id="coursework" class="wrap ae-sec">
-  <div class="sec-head"><h2>Coursework</h2><div class="mono kicker">Coursera</div></div>
-  <p class="ae-intro">Structured courses, with the skills each one covers and the implementation it fed into where there is one. A course earns a completed status here only when a completion date or certificate is on file.</p>
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>Evidence</h2><div class="mono kicker">Four views</div></div>
+  <p class="ae-intro">What the study has actually produced, and what it has not yet.</p>
   <div class="ae-grid">
-      <article class="card ae-course ae-ph">
-        <div class="ae-course-top"><span class="ae-pill ae-planned"><span class="ae-dot" aria-hidden="true"></span>Planned</span><span class="ae-ph-tag mono">Example entry</span></div>
-        <h3 class="card-t ae-h3">Example entry — replace with a real course</h3>
-        <p class="mono ae-meta">Coursera &middot; Issuing university or organisation</p>
-        <dl class="facts ae-facts"><dt class="mono fl">Skills</dt><dd>Skill covered, Another skill</dd></dl>
-        <p class="ae-links"><a class="mono lnk" href="https://www.coursera.org/" target="_blank" rel="noopener">Course page &#8599;</a></p>
-      </article>
-      <article class="card ae-course ae-ph">
-        <div class="ae-course-top"><span class="ae-pill ae-in-progress"><span class="ae-dot" aria-hidden="true"></span>In progress</span><span class="ae-ph-tag mono">Example entry</span></div>
-        <h3 class="card-t ae-h3">Example entry — a course currently under way</h3>
-        <p class="mono ae-meta">Coursera &middot; Issuing university or organisation</p>
-        <dl class="facts ae-facts"><dt class="mono fl">Skills</dt><dd>Skill covered</dd><dt class="mono fl">Outcome</dt><dd>What this changed about how I build things</dd></dl>
-        <p class="ae-links"><a class="mono lnk" href="https://www.coursera.org/" target="_blank" rel="noopener">Course page &#8599;</a></p>
-      </article>
-      <article class="card ae-course ae-ph">
-        <div class="ae-course-top"><span class="ae-pill ae-completed"><span class="ae-dot" aria-hidden="true"></span>Completed</span><span class="ae-ph-tag mono">Example entry</span></div>
-        <h3 class="card-t ae-h3">Example entry — a finished course, with its certificate</h3>
-        <p class="mono ae-meta">Coursera &middot; Issuing university or organisation</p>
-        <dl class="facts ae-facts"><dt class="mono fl">Completed</dt><dd>2026-01-31</dd><dt class="mono fl">Skills</dt><dd>Skill covered</dd><dt class="mono fl">Outcome</dt><dd>A specific thing I can now do that I could not before</dd><dt class="mono fl">Applied in</dt><dd><a class="ul" href="#artifact-mta-audit">mta-audit</a></dd></dl>
-        <p class="ae-links"><a class="mono lnk" href="https://www.coursera.org/" target="_blank" rel="noopener">Course page &#8599;</a> <a class="mono lnk" href="https://www.coursera.org/account/accomplishments/verify/EXAMPLE" target="_blank" rel="noopener">Certificate &#8599;</a></p>
-      </article>
+      <a class="ae-entry" href="building-signal/">
+        <h3 class="ae-h3">Building SIGNAL</h3>
+        <p class="ae-entry-d">The flagship product: roadmap, milestones backed by evidence, and the build log.</p>
+        <p class="mono ae-tally">4 of 8 milestones complete</p>
+      </a>
+      <a class="ae-entry" href="engineering-evidence/">
+        <h3 class="ae-h3">Engineering evidence</h3>
+        <p class="ae-entry-d">Artifacts with architecture, tests, measured results and limitations.</p>
+        <p class="mono ae-tally">5 artifacts</p>
+      </a>
+      <a class="ae-entry" href="competencies/">
+        <h3 class="ae-h3">Skills &amp; competencies</h3>
+        <p class="ae-entry-d">The same work by capability, separating studied from demonstrated.</p>
+        <p class="mono ae-tally">8 of 12 backed by evidence</p>
+      </a>
+      <a class="ae-entry" href="technical-notes/">
+        <h3 class="ae-h3">Technical notes</h3>
+        <p class="ae-entry-d">Write-ups on a mechanism, its implementation and its failures.</p>
+        <p class="mono ae-tally">0 published</p>
+      </a>
   </div>
 </section>
 
-<section id="from-scratch" class="wrap ae-sec">
-  <div class="sec-head"><h2>AI Engineering from Scratch</h2><div class="mono kicker">Implementation-first</div></div>
-  <p class="ae-intro">Working through <a class="ul" href="https://aiengineeringfromscratch.com/" target="_blank" rel="noopener">aiengineeringfromscratch.com</a>, where the point is building the mechanism rather than watching someone else build it. Each module is recorded with its implementation, what the tests assert, what was measured, and what the implementation does not handle. Curriculum text is not reproduced here.</p>
-  <div class="ae-grid">
-      <article class="card ae-course ae-ph">
-        <div class="ae-course-top"><span class="ae-pill ae-planned"><span class="ae-dot" aria-hidden="true"></span>Planned</span><span class="ae-ph-tag mono">Example entry</span></div>
-        <h3 class="card-t ae-h3">Example module — replace with a real lesson</h3>
-        <dl class="facts ae-facts"><dt class="mono fl">Concept</dt><dd>The mechanism the module teaches, in one sentence.</dd></dl>
-        
-      </article>
-      <article class="card ae-course ae-ph">
-        <div class="ae-course-top"><span class="ae-pill ae-completed"><span class="ae-dot" aria-hidden="true"></span>Completed</span><span class="ae-ph-tag mono">Example entry</span></div>
-        <h3 class="card-t ae-h3">Example module — one I have implemented</h3>
-        <dl class="facts ae-facts"><dt class="mono fl">Concept</dt><dd>The mechanism, stated so a reader knows what the code does.</dd><dt class="mono fl">Tests</dt><dd>What is asserted, and what a passing run proves.</dd><dt class="mono fl">Benchmarks</dt><dd>What was measured, against what reference.</dd><dt class="mono fl">Notes</dt><dd>The thing that was not obvious until the code ran.</dd><dt class="mono fl">Limitations</dt><dd>What this implementation does not handle.</dd></dl>
-        <p class="ae-links"><a class="mono lnk" href="https://github.com/morantejr" target="_blank" rel="noopener">Implementation &#8599;</a></p>
-      </article>
-  </div>
-</section>
-
-<section id="built" class="wrap ae-sec">
-  <div class="sec-head"><h2>Built, tested &amp; deployed</h2><div class="mono kicker">Engineering evidence</div></div>
-  <p class="ae-intro">Artifacts, each labelled by what it actually is: independent engineering, a tutorial exercise, a research prototype, or a production system. Employer work appears without code or data.</p>
-      <article class="ae-artifact" id="artifact-mta-audit">
-        <div class="ae-course-top"><span class="mono ae-kind">Independent engineering</span></div>
-        <h3 class="ae-h3 ae-artifact-h">mta-audit</h3>
-        <ul class="tags ae-plain"><li class="tag">Python 3.11-3.13</li><li class="tag">Bootstrap resampling</li><li class="tag">Markov attribution</li><li class="tag">CI</li></ul>
-        <dl class="facts ae-facts"><dt class="mono fl">Problem</dt><dd>Attribution models always return an answer. Almost none report whether that answer survives a small change in assumptions, so teams act on campaign rankings that may not hold.</dd><dt class="mono fl">Architecture</dt><dd>A Python package that takes journey-level event data, resamples whole journeys rather than rows, and runs a battery of stability checks across conversion windows, identity stitching, touchpoint loss, and model choice. Score weights are published as policy with a sensitivity report.</dd><dt class="mono fl">Decisions</dt><dd>Resample whole journeys, never individual rows, so the unit of resampling matches the unit of analysis.<br>Publish score weights as stated policy rather than burying them, and ship a sensitivity report alongside.<br>Report when the data cannot support a call instead of returning a number regardless.</dd><dt class="mono fl">Testing</dt><dd>Tested against the public Criteo attribution dataset with injected faults, plus a CI suite across three Python versions.</dd><dt class="mono fl">Results</dt><dd>On an 8,000-user Criteo sample, injected duplicate events of 1 to 10 percent were detected on every run and moved the data-quality score from 72 to roughly 50.</dd><dt class="mono fl">Deployment</dt><dd>Published to PyPI; installable with pip.</dd><dt class="mono fl">Limitations</dt><dd>It measures stability, not causal lift. It does not replace an incrementality test.</dd></dl>
-        <p class="ae-links"><a class="mono lnk" href="https://github.com/morantejr/mta-audit" target="_blank" rel="noopener">Repository &#8599;</a> <a class="mono lnk" href="https://pypi.org/project/mta-audit/" target="_blank" rel="noopener">PyPI &#8599;</a></p>
-      </article>
-      <article class="ae-artifact" id="artifact-governed-mcp">
-        <div class="ae-course-top"><span class="mono ae-kind">Production system</span></div>
-        <h3 class="ae-h3 ae-artifact-h">Governed AI data access over MCP</h3>
-        <ul class="tags ae-plain"><li class="tag">Python</li><li class="tag">MCP</li><li class="tag">Snowflake</li><li class="tag">AWS S3</li><li class="tag">Hive</li></ul>
-        <dl class="facts ae-facts"><dt class="mono fl">Problem</dt><dd>Analysts wanted AI-assisted access to enterprise data without handing a model unrestricted query rights against production warehouses.</dd><dt class="mono fl">Architecture</dt><dd>Custom Model Context Protocol servers exposing Snowflake, S3, and Hive to an AI-native development workflow, with validation and enforced limits between the model and the data.</dd><dt class="mono fl">Decisions</dt><dd>Validate generated SQL and HiveQL before execution rather than trusting model output.<br>Enforce row limits and injection prevention at the server, not in the prompt.<br>Authenticate through enterprise SSO so access follows existing identity.</dd><dt class="mono fl">Testing</dt><dd>Validated against production query patterns in use by analytics teams.</dd><dt class="mono fl">Results</dt><dd>Adopted by analytics users for day-to-day work; direct HiveServer2 connectivity and Parquet-native reads roughly doubled Hive analysis throughput.</dd><dt class="mono fl">Deployment</dt><dd>Running internally at Zeta Global.</dd><dt class="mono fl">Limitations</dt><dd>Employer work, so there is no public code or data. I can walk through the design and the threat model in an interview.</dd></dl>
-        
-      </article>
-      <article class="ae-artifact" id="artifact-agent-reliability">
-        <div class="ae-course-top"><span class="mono ae-kind">Research prototype</span></div>
-        <h3 class="ae-h3 ae-artifact-h">Agent reliability study</h3>
-        <ul class="tags ae-plain"><li class="tag">Python</li><li class="tag">Reward models</li><li class="tag">Pre-registration</li></ul>
-        <dl class="facts ae-facts"><dt class="mono fl">Problem</dt><dd>When a scoring model picks an agent&#x27;s best attempt, a large share of the picks are broken. The question is whether a second opinion catches them.</dd><dt class="mono fl">Architecture</dt><dd>A pre-registered offline evaluation over two software-engineering benchmarks, with the projects&#x27; real test suites as ground truth.</dd><dt class="mono fl">Decisions</dt><dd>Register the population, the metric, and the stopping rule before any outcome data existed.<br>Evaluate on the population the selector actually commits, not on the candidate pool.<br>Keep a model-free baseline in the comparison and let it win if it wins.</dd><dt class="mono fl">Testing</dt><dd>Executed test suites decided every label; oracle controls were run before any model output was graded.</dd><dt class="mono fl">Results</dt><dd>Reported in the write-up, which is under anonymous review.</dd><dt class="mono fl">Limitations</dt><dd>The write-up is under anonymous workshop review, so the details are off this site until reviews return.</dd></dl>
-        <p class="ae-links"><a class="mono lnk" href="../#work">Summary on this site</a></p>
-      </article>
-      <article class="ae-artifact" id="artifact-signal">
-        <div class="ae-course-top"><span class="mono ae-kind">Independent engineering</span></div>
-        <h3 class="ae-h3 ae-artifact-h">SIGNAL</h3>
-        <ul class="tags ae-plain"><li class="tag">Python</li><li class="tag">LLM agents</li><li class="tag">Quant model</li><li class="tag">Langfuse</li></ul>
-        <dl class="facts ae-facts"><dt class="mono fl">Problem</dt><dd>Investment research means reconciling financial data, a quantitative view, and outside evidence. A research tool should show where those disagree rather than averaging them into one confident answer.</dd><dt class="mono fl">Architecture</dt><dd>A multi-agent workflow: separate agents gather evidence, argue the bull and bear cases, and reconcile them into one view. The quantitative score is computed independently of the model&#x27;s reasoning so the two can be compared.</dd><dt class="mono fl">Decisions</dt><dd>Compute the quantitative score apart from the model&#x27;s reasoning so it cannot talk itself into a number.<br>Surface disagreement between the two tracks instead of hiding it.<br>Instrument tracing and evaluation from the start rather than bolting it on.</dd><dt class="mono fl">Testing</dt><dd>Tracing and evaluation through Langfuse, checking whether conclusions are supported by the sources they cite.</dd><dt class="mono fl">Results</dt><dd>In development. The interface prototype is public; the research agents behind it are not.</dd><dt class="mono fl">Deployment</dt><dd>Interface prototype deployed on GitHub Pages.</dd><dt class="mono fl">Limitations</dt><dd>Early. No public code for the agent layer, and no evaluation numbers worth quoting yet.</dd></dl>
-        <p class="ae-links"><a class="mono lnk" href="https://github.com/morantejr/signal-app" target="_blank" rel="noopener">Repository &#8599;</a> <a class="mono lnk" href="https://morantejr.github.io/signal-app/" target="_blank" rel="noopener">Interface demo &#8599;</a></p>
-      </article>
-</section>
-
-<section id="notes" class="wrap ae-sec">
-  <div class="sec-head"><h2>Technical learning notes</h2><div class="mono kicker">Write-ups</div></div>
-  <p class="ae-intro">Short pieces on a mechanism I had to understand properly: how it works, what I implemented, what broke, and what it would mean in production.</p>
-  <div class="ae-grid">
-      <article class="card ae-course ae-ph">
-        <div class="ae-course-top"><span class="mono ae-meta">2026-01-31</span><span class="ae-ph-tag mono">Example entry</span></div>
-        <h3 class="card-t ae-h3">Example note — replace with a real write-up</h3>
-        <p class="card-d">One or two sentences a reader can judge the note by before opening it.</p>
-        <dl class="facts ae-facts"><dt class="mono fl">Learned</dt><dd>The thing I did not understand before.</dd><dt class="mono fl">Mechanism</dt><dd>How it actually works, in plain terms.</dd><dt class="mono fl">Implemented</dt><dd>What I built to test the understanding.</dd><dt class="mono fl">What failed</dt><dd>What broke, and what the breakage taught.</dd><dt class="mono fl">Tradeoffs</dt><dd>The design choice and what it cost.</dd><dt class="mono fl">In production</dt><dd>Why this matters when the system has users.</dd></dl>
-        
-      </article>
-  </div>
-</section>
-
-<section id="roadmap" class="wrap ae-sec">
-  <div class="sec-head"><h2>Roadmap</h2><div class="mono kicker">Foundations &#8594; Reliability</div></div>
-  <p class="ae-intro">What I am planning to learn, what I am practising, and what an artifact on this page already demonstrates. Finishing a course does not move a skill into the demonstrated column; shipping something that works does.</p>
-  <div class="ae-roadmap">
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>Progression</h2><div class="mono kicker">Foundations &#8594; Advanced</div></div>
+  <p class="ae-intro">A personal ordering, not a sequence either university mandates. Finishing a course does not move a skill into the demonstrated column; shipping something that works does.</p>
       <section class="ae-stage">
-        <h3 class="ae-h3 ae-stage-h">Foundations</h3>
-        <p class="ae-stage-s">Understand the mechanics well enough to debug them.</p>
-        <ul class="ae-skills"><li class="ae-skill ae-s-planning"><span class="ae-state mono">Planning to learn</span><span class="ae-skill-n">Gradient-based optimisation and training diagnostics</span></li><li class="ae-skill ae-s-planning"><span class="ae-state mono">Planning to learn</span><span class="ae-skill-n">Transformer attention from first principles</span></li><li class="ae-skill ae-s-demonstrated"><span class="ae-state mono">Demonstrated by an artifact</span><span class="ae-skill-n">Statistical evaluation design <a class="ul" href="#artifact-mta-audit">mta-audit</a></span></li></ul>
+        <h3 class="ae-h3 ae-stage-h">Stage 1 — Computer Science Foundations</h3>
+        <p class="ae-stage-s">Algorithms, data structures, programming design, networking, Linux and software architecture.</p>
+        <ul class="ae-skills"><li class="ae-skill ae-s-planning"><span class="ae-state mono">Planning to learn</span><span class="ae-skill-n">Complexity reasoning and the classic algorithm toolkit</span></li><li class="ae-skill ae-s-planning"><span class="ae-state mono">Planning to learn</span><span class="ae-skill-n">Linux and cloud networking fundamentals</span></li><li class="ae-skill ae-s-demonstrated"><span class="ae-state mono">Demonstrated by an artifact</span><span class="ae-skill-n">Packaging and testing a library other people install <a class="ul" href="engineering-evidence/#artifact-mta-audit">mta-audit</a></span></li></ul>
       </section>
       <section class="ae-stage">
-        <h3 class="ae-h3 ae-stage-h">Implementation</h3>
-        <p class="ae-stage-s">Build the thing, with tests, and find out where it breaks.</p>
-        <ul class="ae-skills"><li class="ae-skill ae-s-practicing"><span class="ae-state mono">Currently practising</span><span class="ae-skill-n">Multi-agent workflow design <a class="ul" href="#artifact-signal">SIGNAL</a></span></li><li class="ae-skill ae-s-planning"><span class="ae-state mono">Planning to learn</span><span class="ae-skill-n">Retrieval-augmented generation</span></li><li class="ae-skill ae-s-practicing"><span class="ae-state mono">Currently practising</span><span class="ae-skill-n">Structured output and schema validation <a class="ul" href="#artifact-governed-mcp">Governed AI data access over MCP</a></span></li></ul>
+        <h3 class="ae-h3 ae-stage-h">Stage 2 — Machine Learning Foundations</h3>
+        <p class="ae-stage-s">Machine learning, probability, statistics, deep learning and evaluation.</p>
+        <ul class="ae-skills"><li class="ae-skill ae-s-planning"><span class="ae-state mono">Planning to learn</span><span class="ae-skill-n">Supervised and unsupervised learning in practice</span></li><li class="ae-skill ae-s-practicing"><span class="ae-state mono">Currently practising</span><span class="ae-skill-n">Probability and statistical estimation <a class="ul" href="engineering-evidence/#artifact-mta-audit">mta-audit</a></span></li><li class="ae-skill ae-s-demonstrated"><span class="ae-state mono">Demonstrated by an artifact</span><span class="ae-skill-n">Evaluation design with held-out data <a class="ul" href="engineering-evidence/#artifact-agent-reliability">Agent reliability study</a></span></li></ul>
       </section>
       <section class="ae-stage">
-        <h3 class="ae-h3 ae-stage-h">Production</h3>
-        <p class="ae-stage-s">Put it where other people depend on it, and keep it there.</p>
-        <ul class="ae-skills"><li class="ae-skill ae-s-demonstrated"><span class="ae-state mono">Demonstrated by an artifact</span><span class="ae-skill-n">Tool and MCP server implementation <a class="ul" href="#artifact-governed-mcp">Governed AI data access over MCP</a></span></li><li class="ae-skill ae-s-planning"><span class="ae-state mono">Planning to learn</span><span class="ae-skill-n">Model packaging and inference serving</span></li><li class="ae-skill ae-s-practicing"><span class="ae-state mono">Currently practising</span><span class="ae-skill-n">Tracing and cost observability <a class="ul" href="#artifact-signal">SIGNAL</a></span></li></ul>
+        <h3 class="ae-h3 ae-stage-h">Stage 3 — AI Mechanisms</h3>
+        <p class="ae-stage-s">Transformers, generative AI, reinforcement learning, knowledge representation and autonomous systems.</p>
+        <ul class="ae-skills"><li class="ae-skill ae-s-planning"><span class="ae-state mono">Planning to learn</span><span class="ae-skill-n">Attention and transformer internals from first principles</span></li><li class="ae-skill ae-s-planning"><span class="ae-state mono">Planning to learn</span><span class="ae-skill-n">Reinforcement learning fundamentals</span></li><li class="ae-skill ae-s-demonstrated"><span class="ae-state mono">Demonstrated by an artifact</span><span class="ae-skill-n">Reward-model behaviour and its failure modes <a class="ul" href="engineering-evidence/#artifact-agent-reliability">Agent reliability study</a></span></li></ul>
       </section>
       <section class="ae-stage">
-        <h3 class="ae-h3 ae-stage-h">Reliability</h3>
-        <p class="ae-stage-s">Know whether it is right, and know when it is not.</p>
-        <ul class="ae-skills"><li class="ae-skill ae-s-demonstrated"><span class="ae-state mono">Demonstrated by an artifact</span><span class="ae-skill-n">Offline evaluation with held-out data <a class="ul" href="#artifact-agent-reliability">Agent reliability study</a></span></li><li class="ae-skill ae-s-demonstrated"><span class="ae-state mono">Demonstrated by an artifact</span><span class="ae-skill-n">LLM-as-judge methods and their failure modes <a class="ul" href="#artifact-agent-reliability">Agent reliability study</a></span></li><li class="ae-skill ae-s-practicing"><span class="ae-state mono">Currently practising</span><span class="ae-skill-n">Prompt-injection and data-access threat modelling <a class="ul" href="#artifact-governed-mcp">Governed AI data access over MCP</a></span></li></ul>
+        <h3 class="ae-h3 ae-stage-h">Stage 4 — Production Engineering</h3>
+        <p class="ae-stage-s">APIs, deployment, observability, scaling, infrastructure, security and agent systems.</p>
+        <ul class="ae-skills"><li class="ae-skill ae-s-demonstrated"><span class="ae-state mono">Demonstrated by an artifact</span><span class="ae-skill-n">Tool and MCP server implementation <a class="ul" href="engineering-evidence/#artifact-governed-mcp">Governed AI data access over MCP</a></span></li><li class="ae-skill ae-s-demonstrated"><span class="ae-state mono">Demonstrated by an artifact</span><span class="ae-skill-n">Guardrails for AI-assisted data access <a class="ul" href="engineering-evidence/#artifact-governed-mcp">Governed AI data access over MCP</a></span></li><li class="ae-skill ae-s-practicing"><span class="ae-state mono">Currently practising</span><span class="ae-skill-n">Tracing and cost observability <a class="ul" href="engineering-evidence/#artifact-signal">SIGNAL</a></span></li><li class="ae-skill ae-s-planning"><span class="ae-state mono">Planning to learn</span><span class="ae-skill-n">Model packaging and inference serving</span></li></ul>
       </section>
-  </div>
+      <section class="ae-stage">
+        <h3 class="ae-h3 ae-stage-h">Stage 5 — Advanced Applied AI</h3>
+        <p class="ae-stage-s">Multimodal systems, reliable agents, optimisation, applied research and system design.</p>
+        <ul class="ae-skills"><li class="ae-skill ae-s-practicing"><span class="ae-state mono">Currently practising</span><span class="ae-skill-n">Multi-agent workflow design <a class="ul" href="engineering-evidence/#artifact-signal">SIGNAL</a></span></li><li class="ae-skill ae-s-demonstrated"><span class="ae-state mono">Demonstrated by an artifact</span><span class="ae-skill-n">Pre-registered evaluation of an AI system <a class="ul" href="engineering-evidence/#artifact-agent-reliability">Agent reliability study</a></span></li><li class="ae-skill ae-s-planning"><span class="ae-state mono">Planning to learn</span><span class="ae-skill-n">Multimodal and autonomous systems</span></li></ul>
+      </section>
 </section>
 
 <section class="wrap ae-sec">
@@ -479,7 +409,6 @@ h3{margin:18px 0 6px;font-size:40px;letter-spacing:-0.03em;font-weight:500}
   <p class="ae-intro">I am glad to go deeper on any artifact here, including the employer work I cannot publish. <a class="ul" href="mailto:morantejoseph1@gmail.com">Email me</a>.</p>
   <div class="mono foot"><span><a href="../">&#8592; Back to the portfolio</a></span><span>morantejoseph1@gmail.com</span></div>
 </section>
-
 </main>
 </body>
 </html>

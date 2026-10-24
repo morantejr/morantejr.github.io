@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Engineering evidence - AI Engineering - Joseph Morante</title>
+<meta name="description" content="Engineering artifacts with architecture, testing methodology, measured results and stated limitations.">
+<link rel="canonical" href="https://morantejr.github.io/ai-engineering/engineering-evidence/">
+<meta property="og:title" content="Engineering evidence - AI Engineering - Joseph Morante">
+<meta property="og:description" content="Engineering artifacts with architecture, testing methodology, measured results and stated limitations.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://morantejr.github.io/ai-engineering/engineering-evidence/">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#08080a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%2308080a'/%3E%3Ctext x='32' y='40' text-anchor='middle' font-family='Helvetica,Arial,sans-serif' font-size='26' font-weight='500' fill='%23e9e9ec'%3EJM%3C/text%3E%3Crect x='20' y='46' width='24' height='2.5' fill='%238fd4d8'/%3E%3C/svg%3E">
+<script>
+(function(){
+  var root=document.documentElement;
+  function themeForHour(h){return (h>=7&&h<19)?'light':'dark';}
+  var forced=(location.search.match(/[?&]theme=(light|dark)\b/)||[])[1];
+  function apply(){
+    var t=forced||themeForHour(new Date().getHours());
+    if(root.getAttribute('data-theme')===t)return;
+    root.setAttribute('data-theme',t);
+    var m=document.querySelector('meta[name="theme-color"]');
+    if(m)m.setAttribute('content',t==='light'?'#f6f6f3':'#08080a');
+    try{window.dispatchEvent(new CustomEvent('themechange',{detail:t}));}catch(e){}
+  }
+  apply();
+  setInterval(apply,60000);
+  window.addEventListener('focus',apply);
+})();
+</script>
+<style>
+/* latin-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../../fonts/ibm-plex-mono-400-latin-ext.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../../fonts/ibm-plex-mono-400-latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../../fonts/ibm-plex-mono-500-latin-ext.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../../fonts/ibm-plex-mono-500-latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+:root{--bg:#08080a;--panel:#0c0c0f;--fg:#e9e9ec;--fg2:#c3c3cb;--mid:#a2a2ac;--dim:#8b8b95;--faint:#6f6f79;--faint2:#5f5f68;--tag:#9a9aa4;--dot:#2f2f36;--line:rgba(255,255,255,0.08);--line2:rgba(255,255,255,0.12);--line3:rgba(255,255,255,0.3);--acc:#8fd4d8;--acc-line:rgba(143,212,216,0.45);--warm:#d4a88f;--sel:#1d3a3d;--nav-bg:rgba(8,8,10,0.72);--btn-hover:#fff;--card-hover:#0c0c10;--fade:rgba(8,8,10,0.62);--globe:1}
+:root[data-theme="light"]{--bg:#f6f6f3;--panel:#ffffff;--fg:#141416;--fg2:#2a2a30;--mid:#4d4d56;--dim:#5e5e68;--faint:#7c7c86;--faint2:#8a8a94;--tag:#5e5e68;--dot:#d6d6d2;--line:rgba(0,0,0,0.09);--line2:rgba(0,0,0,0.13);--line3:rgba(0,0,0,0.3);--acc:#0f7a80;--acc-line:rgba(15,122,128,0.45);--warm:#a5612f;--sel:#cfe9eb;--nav-bg:rgba(246,246,243,0.78);--btn-hover:#000;--card-hover:#fbfbf9;--fade:rgba(246,246,243,0.62);--globe:0.85}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);transition:background-color .35s ease,color .35s ease;font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--fg);text-decoration:none}
+a:hover{color:var(--acc)}
+::selection{background:var(--sel)}
+@keyframes riseIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rise{animation:none!important}}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+.wrap{max-width:1160px;margin:0 auto;padding-left:32px;padding-right:32px}
+.skip{position:absolute;left:-9999px}.skip:focus{left:16px;top:12px;z-index:99;background:var(--fg);color:var(--bg);padding:8px 12px;border-radius:4px}
+section[id]{scroll-margin-top:70px}
+.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:var(--nav-bg);border-bottom:1px solid var(--line)}
+.nav-in{height:62px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:baseline;gap:10px}
+.brand-name{font-size:15px;letter-spacing:-0.01em;font-weight:500}
+.brand-tag{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--faint)}
+.nav-links{display:flex;align-items:center;gap:28px;font-size:13.5px}
+.nav-links a{color:var(--mid)}.nav-links a:hover{color:var(--fg)}
+.btn-outline-sm{display:inline-flex;align-items:center;height:30px;padding:0 13px;border:1px solid var(--line2);border-radius:5px;font-size:13px;color:var(--fg)!important}
+.btn-outline-sm:hover{border-color:var(--acc-line);color:var(--acc)!important}
+.hero-shell{position:relative;overflow:hidden}
+#vanta-bg{position:absolute;top:0;bottom:0;left:0;right:-22vw;z-index:0;pointer-events:none;opacity:0;transition:opacity 1.2s ease}
+#vanta-bg.on{opacity:var(--globe)}
+#vanta-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 0%,var(--fade) 40%,transparent 68%),linear-gradient(180deg,transparent 70%,var(--bg) 100%)}
+.hero{position:relative;z-index:1;padding-top:150px}
+.rise{animation:riseIn .7s ease both}
+.eyebrow{font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin-bottom:34px}
+h1{margin:0;font-size:clamp(48px,7.2vw,96px);line-height:0.98;letter-spacing:-0.035em;font-weight:500}
+.hero-sub{margin-top:22px;font-size:clamp(17px,2vw,22px);color:var(--acc);letter-spacing:-0.01em;line-height:1.4}
+.hero-lede{margin:30px 0 0;max-width:660px;font-size:19px;line-height:1.6;color:var(--mid);text-wrap:pretty}
+.hero-actions{margin-top:46px;display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.btn-solid{display:inline-flex;align-items:center;height:44px;padding:0 22px;border-radius:6px;background:var(--fg);color:var(--bg);font-size:14.5px;font-weight:500}
+.btn-solid:hover{background:var(--btn-hover);color:var(--bg)}
+.btn-outline{display:inline-flex;align-items:center;height:44px;padding:0 22px;border-radius:6px;border:1px solid var(--line2);font-size:14.5px}
+.btn-outline:hover{border-color:var(--line3);color:var(--fg)}
+.hero-links{display:flex;gap:20px;margin-left:14px;font-size:12px;letter-spacing:0.06em}
+.hero-links a,.lnk{color:var(--dim);font-size:12px;letter-spacing:0.06em}
+.hero-links a:hover,.lnk:hover{color:var(--acc)}
+.stats{margin-top:110px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.stat{background:var(--bg);padding:28px 26px}
+.stat-v{font-size:26px;letter-spacing:-0.02em}
+.stat-l{margin-top:8px;font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint)}
+.sec{padding-top:130px}.sec-sm{padding-top:70px}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line);padding-bottom:22px}
+h2{margin:0;font-size:clamp(32px,4.4vw,54px);letter-spacing:-0.03em;font-weight:500}
+#research h2,#experience h2{font-size:clamp(30px,4vw,48px)}
+.h2-sm{font-size:clamp(28px,3.4vw,40px)}
+.h2-xl{font-size:clamp(38px,6vw,76px);letter-spacing:-0.035em;line-height:1.02}
+.kicker{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--faint)}
+.proj{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:56px;align-items:start;padding:64px 0;border-bottom:1px solid var(--line)}
+.proj.last{border-bottom:0}
+.proj-meta{display:flex;align-items:center;gap:12px}
+.num{font-size:11px;letter-spacing:0.2em;color:var(--acc)}
+.status{font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint)}
+.status.warm{color:var(--warm)}
+h3{margin:18px 0 6px;font-size:40px;letter-spacing:-0.03em;font-weight:500}
+.proj-sub{font-size:19px;color:var(--acc);letter-spacing:-0.01em;line-height:1.35}
+.proj-lede{margin:20px 0 0;font-size:16.5px;line-height:1.62;color:var(--mid);text-wrap:pretty}
+.facts{margin-top:26px;display:grid;grid-template-columns:auto 1fr;gap:14px 22px;font-size:14.5px;line-height:1.6;color:var(--mid)}
+.fl{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);padding-top:3px;white-space:nowrap}
+.tags{margin-top:26px;display:flex;flex-wrap:wrap;gap:7px}
+.tag{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:11.5px;color:var(--tag);border:1px solid var(--line2);border-radius:4px;padding:5px 9px}
+.why{margin:26px 0 0;max-width:560px;font-size:15px;line-height:1.55;color:var(--fg2);text-wrap:pretty}
+.why b{font-weight:500;color:var(--acc)}
+.proj-links{margin-top:18px;display:flex;flex-wrap:wrap;align-items:center;gap:16px}
+.btn-solid-sm{display:inline-flex;align-items:center;height:40px;padding:0 18px;border-radius:6px;background:var(--fg);color:var(--bg);font-size:13.5px;font-weight:500;font-family:'IBM Plex Mono',ui-monospace,monospace}
+.btn-solid-sm:hover{background:var(--btn-hover);color:var(--bg)}
+.panel{border:1px solid var(--line2);border-radius:10px;background:var(--panel);overflow:hidden}
+.panel-bar{height:34px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px;padding:0 14px;overflow:hidden}
+.panel-bar i{width:7px;height:7px;border-radius:50%;background:var(--dot);flex:none}
+.panel-bar span{font-size:10.5px;color:var(--faint2);margin-left:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.panel-body{padding:22px}
+.pl{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint)}
+.rows{margin-top:14px;display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.row{background:var(--panel);padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.row-t{font-size:13.5px;color:var(--fg2);line-height:1.4}
+.row-d{margin-top:3px;font-size:12.5px;color:var(--dim);line-height:1.45}
+.row-v{font-size:13px;color:var(--acc);white-space:nowrap}
+.panel-foot{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;font-size:10.5px;color:var(--faint2)}
+.panel-foot span:last-child{white-space:nowrap;flex:none}
+.checks{margin-top:14px;display:flex;flex-direction:column;gap:12px}
+.chk{display:flex;align-items:center;gap:12px;font-size:13.5px;color:var(--dim)}
+.chk span{width:14px;height:14px;border-radius:50%;border:1px dashed var(--line3);flex:none}
+.chk.done{color:var(--fg2)}.chk.done span{border:0;background:var(--acc);box-shadow:inset 0 0 0 4px var(--panel)}
+.layers{display:flex;flex-direction:column;align-items:stretch}
+.layer{border:1px solid var(--line2);border-radius:6px;padding:14px 16px}
+.layer.accent{border-color:var(--acc-line)}
+.layer-t{margin-top:6px;font-size:15px;color:var(--fg)}
+.arrow{text-align:center;font-size:10.5px;color:var(--faint2);padding:8px 0;letter-spacing:0.08em}
+.cards{margin-top:30px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.cards.one{grid-template-columns:1fr}
+.card{display:block;background:var(--bg);padding:28px 26px;transition:background .2s}
+.card.link:hover{background:var(--card-hover)}
+.card-t{margin-top:12px;font-size:21px;letter-spacing:-0.015em;line-height:1.3;color:var(--fg)}
+.card-d{margin-top:10px;font-size:14.5px;line-height:1.6;color:var(--mid)}
+.tl{margin-top:10px;display:grid;grid-template-columns:170px 24px minmax(0,1fr);column-gap:22px}
+.tl-d{font-size:11.5px;letter-spacing:0.08em;color:var(--faint);padding-top:40px;white-space:nowrap}
+.tl-dot{position:relative;border-left:1px solid var(--line);margin-left:11px}
+.tl-dot span{position:absolute;left:-5px;top:43px;width:9px;height:9px;border-radius:50%;background:var(--bg);border:1px solid var(--line3)}
+.tl-dot span.on{background:var(--acc);border-color:var(--acc)}
+.tl-b{padding:36px 0 36px;border-bottom:1px solid var(--line)}
+.tl-b:last-child{border-bottom:0}
+.tl-co{font-size:22px;letter-spacing:-0.02em}
+.tl-role{margin-top:4px;font-size:15px;color:var(--acc)}
+.tl-b p{margin:14px 0 0;max-width:680px;font-size:15px;line-height:1.65;color:var(--mid)}
+.tl-b .tags{margin-top:18px}
+.split{display:grid;grid-template-columns:minmax(0,0.8fr) minmax(0,2fr);gap:56px;border-top:1px solid var(--line);padding-top:30px}
+.body-lg{margin:0;font-size:19px;line-height:1.6;color:var(--fg2);text-wrap:pretty}
+.body-md{margin:22px 0 0;font-size:16px;line-height:1.65;color:var(--mid);text-wrap:pretty}
+.ul{border-bottom:1px solid var(--acc-line)}
+.skills{margin-top:36px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 32px;font-size:14px;line-height:1.6;color:var(--mid)}
+.skill .pl{margin-bottom:8px}
+.contact{padding-top:150px;padding-bottom:120px}
+.foot{margin-top:90px;padding-top:26px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:11px;letter-spacing:0.08em;color:var(--faint2)}
+@media (max-width:900px){
+ .proj{grid-template-columns:1fr;gap:36px}
+ .split{grid-template-columns:1fr;gap:24px}
+ .nav-links a:not(.btn-outline-sm):not(.nav-keep){display:none}
+ .brand-tag{display:none}
+ .nav-keep{white-space:nowrap;font-size:13px}
+ .nav-links{gap:16px}
+}
+@media (max-width:640px){
+ #vanta-bg{right:-45vw}
+ #vanta-bg::after{background:linear-gradient(90deg,var(--bg) 0%,var(--fade) 55%,transparent 100%),linear-gradient(180deg,transparent 60%,var(--bg) 100%)}
+ .wrap{padding-left:20px;padding-right:20px}
+ .hero{padding-top:90px}
+ .stats{margin-top:70px}
+ .sec{padding-top:90px}
+ h3{font-size:34px}
+ .hero-links{margin-left:0;width:100%;margin-top:8px}
+ .facts{grid-template-columns:1fr;gap:4px}
+ .facts .fl{padding-top:12px}
+ .cards,.skills{grid-template-columns:1fr}
+ .tl{grid-template-columns:18px minmax(0,1fr);column-gap:14px}
+ .tl-d{grid-column:2;padding-top:30px}
+ .tl-dot{grid-row:span 2;margin-left:6px}
+ .tl-dot span{top:33px}
+ .tl-b{grid-column:2;padding-top:8px}
+ .row{flex-direction:column;align-items:flex-start;gap:6px}
+ .contact{padding-top:100px;padding-bottom:80px}
+}
+.tag.dashed{border-style:dashed;color:var(--faint)}
+.dashed-panel{border-style:dashed;border-color:var(--line3)}
+.split2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:640px){.split2{grid-template-columns:1fr}}
+
+/* --- AI Engineering hub ------------------------------------------------- */
+.ae-main{padding-bottom:40px}
+.ae-head{padding-top:140px}
+.ae-head h1{font-size:clamp(32px,4.6vw,58px);line-height:1.05;max-width:15ch}
+.ae-lede{margin:26px 0 0;max-width:700px;font-size:18px;line-height:1.6;color:var(--acc);text-wrap:pretty}
+.ae-stand{margin:22px 0 0;max-width:700px;font-size:16px;line-height:1.65;color:var(--mid);text-wrap:pretty}
+.ae-disclosure{margin:30px 0 0;max-width:720px;font-size:14px;line-height:1.6;color:var(--faint);border-left:2px solid var(--line2);padding-left:14px;text-wrap:pretty}
+.ae-stats{margin-top:52px}
+.ae-sec{padding-top:88px}
+.ae-intro{margin:26px 0 0;max-width:740px;font-size:16px;line-height:1.65;color:var(--mid);text-wrap:pretty}
+.ae-grid{margin-top:30px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.ae-grid.one{grid-template-columns:1fr}
+.ae-grid > .card{background:var(--bg)}
+.ae-h3{margin:10px 0 0;font-size:19px;letter-spacing:-0.015em;line-height:1.3;font-weight:500;color:var(--fg)}
+.ae-crumb{margin:0 0 18px;font-size:12px;letter-spacing:0.08em;color:var(--faint)}
+.ae-crumb a{color:var(--faint)}.ae-crumb a:hover{color:var(--acc)}
+.ae-entry{display:block;background:var(--bg);padding:26px 24px;transition:background .2s}
+.ae-entry:hover{background:var(--card-hover)}
+.ae-entry .ae-h3{color:var(--fg)}
+.ae-entry-d{margin:10px 0 0;font-size:14.5px;line-height:1.6;color:var(--mid)}
+.ae-tally{margin:16px 0 0;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint)}
+.ae-pill{display:inline-flex;align-items:center;gap:7px;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint)}
+.ae-dot{width:7px;height:7px;border-radius:50%;flex:none;border:1px solid var(--line3)}
+.ae-completed .ae-dot{background:var(--acc);border-color:var(--acc)}
+.ae-in-progress .ae-dot{background:var(--warm);border-color:var(--warm)}
+.ae-completed{color:var(--fg2)}.ae-in-progress{color:var(--warm)}
+.ae-ph-tag{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint2);border:1px dashed var(--line2);border-radius:4px;padding:3px 7px}
+.ae-ph{opacity:0.72}
+.ae-meta{margin:8px 0 0;font-size:12px;letter-spacing:0.06em;color:var(--faint)}
+.ae-kind{font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--acc)}
+.ae-facts{margin-top:18px;font-size:14px}
+.ae-facts dd{margin:0}
+.ae-links{margin:18px 0 0;display:flex;flex-wrap:wrap;gap:16px}
+.tags.ae-plain{list-style:none;padding:0}
+.ae-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+/* specialization blocks */
+.ae-spec{border:1px solid var(--line);margin-top:22px}
+.ae-spec-h{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:18px 22px;border-bottom:1px solid var(--line)}
+.ae-spec-n{font-size:17px;letter-spacing:-0.015em;color:var(--fg)}
+.ae-spec-t{font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);white-space:nowrap}
+.ae-spec-t.pathway{color:var(--acc)}
+.ae-spec-t.dev{color:var(--warm)}
+.ae-rows{display:flex;flex-direction:column}
+.ae-row{display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:18px;align-items:baseline;padding:13px 22px;border-top:1px solid var(--line)}
+.ae-row:first-child{border-top:0}
+.ae-code{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12px;color:var(--faint)}
+.ae-ct{font-size:14.5px;line-height:1.45;color:var(--fg2)}
+.ae-xl{display:block;margin-top:3px;font-size:11.5px;color:var(--faint)}
+.ae-note-inline{display:block;margin-top:5px;font-size:12px;line-height:1.5;color:var(--warm)}
+/* competency + roadmap */
+.ae-skills{margin:18px 0 0;padding:0;list-style:none}
+.ae-skill{margin-top:14px;padding-left:12px;border-left:2px solid var(--line2)}
+.ae-s-demonstrated{border-left-color:var(--acc)}
+.ae-s-practicing{border-left-color:var(--warm)}
+.ae-state{display:block;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint)}
+.ae-skill-n{display:block;margin-top:4px;font-size:14px;line-height:1.5;color:var(--fg2)}
+.ae-stage{padding:28px 0;border-bottom:1px solid var(--line)}
+.ae-stage:last-child{border-bottom:0}
+.ae-stage-h{font-size:19px;margin:0}
+.ae-stage-s{margin:8px 0 0;font-size:14.5px;line-height:1.6;color:var(--mid);max-width:680px}
+.ae-artifact{padding:34px 0;border-bottom:1px solid var(--line)}
+.ae-artifact:last-child{border-bottom:0}
+.ae-artifact-h{font-size:26px;margin-top:12px}
+.ae-artifact .ae-facts{max-width:770px}
+.ae-note{margin:26px 0 0;max-width:740px;font-size:13.5px;line-height:1.6;color:var(--faint);border-left:2px solid var(--line2);padding-left:14px}
+.ae-back{margin-top:70px;padding-top:24px;border-top:1px solid var(--line)}
+@media (max-width:640px){
+ .ae-head{padding-top:86px}
+ .ae-sec{padding-top:66px}
+ .ae-grid{grid-template-columns:1fr}
+ .ae-row{grid-template-columns:1fr;gap:4px;padding:14px 18px}
+ .ae-spec-h{padding:16px 18px}
+ .ae-artifact-h{font-size:22px}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="../../"><span class="brand-name">Joseph Morante</span><span class="mono brand-tag">Measurement</span></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="../../#work">Work</a>
+      <a href="../../#research">Research</a>
+      <a class="nav-keep" href="../../ai-engineering/" aria-current="page">AI Engineering</a>
+      <a href="../../#experience">Experience</a>
+      <a href="../../#about">About</a>
+      <a class="btn-outline-sm" href="../../JosephMorante_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+    </nav>
+  </div>
+</header>
+<main class="ae-main" id="main">
+<header class="wrap ae-head">
+  <p class="mono ae-crumb"><a href="../../">Portfolio</a> / <a href="../../ai-engineering/">AI Engineering</a> / Engineering evidence</p>
+  <h1>Built, tested &amp; deployed</h1>
+  <p class="ae-lede">Artifacts, each labelled by what it actually is.</p>
+  <p class="ae-stand">Independent engineering, tutorial exercise, research prototype, or production system. Employer work appears without code or data. Where there are no measured results yet, the entry says so rather than implying any.</p>
+</header>
+<section class="wrap ae-sec">
+      <article class="ae-artifact" id="artifact-mta-audit">
+        <div class="ae-top"><span class="mono ae-kind">Independent engineering</span><span class="mono ae-spec-t">Track 6 — Optimization &amp; Decision Systems</span></div>
+        <h3 class="ae-h3 ae-artifact-h">mta-audit</h3>
+        <ul class="tags ae-plain"><li class="tag">Python 3.11-3.13</li><li class="tag">Bootstrap resampling</li><li class="tag">Markov attribution</li><li class="tag">CI</li></ul>
+        <dl class="facts ae-facts"><dt class="mono fl">Problem</dt><dd>Attribution models always return an answer. Almost none report whether that answer survives a small change in assumptions, so teams act on campaign rankings that may not hold.</dd><dt class="mono fl">Architecture</dt><dd>A Python package that takes journey-level event data, resamples whole journeys rather than rows, and runs a battery of stability checks across conversion windows, identity stitching, touchpoint loss, and model choice. Score weights are published as policy with a sensitivity report.</dd><dt class="mono fl">Decisions</dt><dd>Resample whole journeys, never individual rows, so the unit of resampling matches the unit of analysis.<br>Publish score weights as stated policy rather than burying them, and ship a sensitivity report alongside.<br>Report when the data cannot support a call instead of returning a number regardless.</dd><dt class="mono fl">Testing</dt><dd>Tested against the public Criteo attribution dataset with injected faults, plus a CI suite across three Python versions.</dd><dt class="mono fl">Results</dt><dd>On an 8,000-user Criteo sample, injected duplicate events of 1 to 10 percent were detected on every run and moved the data-quality score from 72 to roughly 50.</dd><dt class="mono fl">Deployment</dt><dd>Published to PyPI; installable with pip.</dd><dt class="mono fl">Limitations</dt><dd>It measures stability, not causal lift. It does not replace an incrementality test.</dd><dt class="mono fl">Competencies</dt><dd>AI Evaluation &amp; Reliability, Applied Optimization and Measurement Science, Python and Software Engineering</dd></dl>
+        <p class="ae-links"><a class="mono lnk" href="https://github.com/morantejr/mta-audit" target="_blank" rel="noopener">Repository &#8599;</a> <a class="mono lnk" href="https://pypi.org/project/mta-audit/" target="_blank" rel="noopener">PyPI &#8599;</a></p>
+      </article>
+      <article class="ae-artifact" id="artifact-governed-mcp">
+        <div class="ae-top"><span class="mono ae-kind">Production system</span><span class="mono ae-spec-t">Track 5 — Agents &amp; MCP</span></div>
+        <h3 class="ae-h3 ae-artifact-h">Governed AI data access over MCP</h3>
+        <ul class="tags ae-plain"><li class="tag">Python</li><li class="tag">MCP</li><li class="tag">Snowflake</li><li class="tag">AWS S3</li><li class="tag">Hive</li></ul>
+        <dl class="facts ae-facts"><dt class="mono fl">Problem</dt><dd>Analysts wanted AI-assisted access to enterprise data without handing a model unrestricted query rights against production warehouses.</dd><dt class="mono fl">Architecture</dt><dd>Custom Model Context Protocol servers exposing Snowflake, S3, and Hive to an AI-native development workflow, with validation and enforced limits between the model and the data.</dd><dt class="mono fl">Decisions</dt><dd>Validate generated SQL and HiveQL before execution rather than trusting model output.<br>Enforce row limits and injection prevention at the server, not in the prompt.<br>Authenticate through enterprise SSO so access follows existing identity.</dd><dt class="mono fl">Testing</dt><dd>Validated against production query patterns in use by analytics teams.</dd><dt class="mono fl">Results</dt><dd>Adopted by analytics users for day-to-day work; direct HiveServer2 connectivity and Parquet-native reads roughly doubled Hive analysis throughput.</dd><dt class="mono fl">Deployment</dt><dd>Running internally at Zeta Global.</dd><dt class="mono fl">Limitations</dt><dd>Employer work, so there is no public code or data. I can walk through the design and the threat model in an interview.</dd><dt class="mono fl">Competencies</dt><dd>Agent Systems and MCP, Security &amp; Governance, APIs and Backend Engineering</dd></dl>
+        
+      </article>
+      <article class="ae-artifact" id="artifact-agent-reliability">
+        <div class="ae-top"><span class="mono ae-kind">Research prototype</span><span class="mono ae-spec-t">Track 4 — LLM Engineering</span></div>
+        <h3 class="ae-h3 ae-artifact-h">Agent reliability study</h3>
+        <ul class="tags ae-plain"><li class="tag">Python</li><li class="tag">Reward models</li><li class="tag">Pre-registration</li></ul>
+        <dl class="facts ae-facts"><dt class="mono fl">Problem</dt><dd>When a scoring model picks an agent&#x27;s best attempt, a large share of the picks are broken. The question is whether a second opinion catches them.</dd><dt class="mono fl">Architecture</dt><dd>A pre-registered offline evaluation over two software-engineering benchmarks, with the projects&#x27; real test suites as ground truth.</dd><dt class="mono fl">Decisions</dt><dd>Register the population, the metric, and the stopping rule before any outcome data existed.<br>Evaluate on the population the selector actually commits, not on the candidate pool.<br>Keep a model-free baseline in the comparison and let it win if it wins.</dd><dt class="mono fl">Testing</dt><dd>Executed test suites decided every label; oracle controls were run before any model output was graded.</dd><dt class="mono fl">Results</dt><dd>Reported in the write-up, which is under anonymous review.</dd><dt class="mono fl">Limitations</dt><dd>The write-up is under anonymous workshop review, so the details are off this site until reviews return.</dd><dt class="mono fl">Competencies</dt><dd>AI Evaluation &amp; Reliability, LLM Engineering</dd></dl>
+        <p class="ae-links"><a class="mono lnk" href="../../#work">Summary on this site</a></p>
+      </article>
+      <article class="ae-artifact" id="artifact-signal">
+        <div class="ae-top"><span class="mono ae-kind">Independent engineering</span><span class="mono ae-spec-t">Flagship product</span></div>
+        <h3 class="ae-h3 ae-artifact-h">SIGNAL</h3>
+        <ul class="tags ae-plain"><li class="tag">Python</li><li class="tag">TypeScript</li><li class="tag">React</li><li class="tag">Vite</li><li class="tag">FastAPI</li><li class="tag">SQLite</li><li class="tag">OpenRouter</li><li class="tag">Langfuse</li><li class="tag">Cloudflare Workers</li><li class="tag">pytest</li></ul>
+        <dl class="facts ae-facts"><dt class="mono fl">Problem</dt><dd>A consumer investor wants to know whether to hold a position over the next quarter. The honest answer depends on valuation, momentum, risk, balance sheet and macro at once, plus whatever the filings say. Reading all of that is the barrier, and most tools answer by producing one confident number that hides its own uncertainty.</dd><dt class="mono fl">Architecture</dt><dd>Two engines behind one answer-first interface. A quick read computes a deterministic weighting of six checks from live market data in the browser, with no model involved. The canonical engine is a Python research system: an evidence agent pulls prices, key statistics, SEC filing text and an optional macro series; a quant score is computed in pure code and versioned; bull and bear memos are written by a model through a single OpenRouter module; a synthesis produces one view with kill criteria; and a code-only critic checks every claim against its cited source. Disagreement between the quant band and the narrative lean is built in code and published as a first-class object rather than averaged away.</dd><dt class="mono fl">Decisions</dt><dd>The quant score is a pure function computed in code, and the language-model layer cannot import it. An eval feeds hostile model output that tries to set the score and asserts the persisted value does not move.<br>Exactly one module holds the model key, base URL, retries, backoff and JSON repair, so there is a single place where model access can be audited or swapped.<br>Disagreement between the quantitative band and the narrative lean is computed in code and shown, with reasons each side could be wrong. Agreement is not required for a valid run.<br>Every claim is labelled sourced, inference or unsupported and carries source ids, and a deterministic critic reports the share of confident claims that are actually cited plus any citation pointing at nothing.<br>Missing inputs drop out of the weighted sum and are flagged, rather than being scored as zero, so absent data cannot read as neutral evidence.<br>No LangGraph. The pipeline is an ordered Python function because nothing yet needs graph-shaped branching or retries.</dd><dt class="mono fl">Testing</dt><dd>Six test modules run with no network through a mocked model transport, covering the quant formula, the pipeline, the model client and the evaluation suite. Thirteen eval cases bind by id to specific checks, including three that prove the model cannot set or adjust the score.</dd><dt class="mono fl">Results</dt><dd>The evaluation suite and the mocked tests pass. A prediction log has accumulated 154 runs across 15 tickers on a three-month horizon, recording the quant score, band, narrative lean, agreement and entry price for each. Those predictions are not yet scored against realised outcomes, so the system has a structural argument for trustworthiness and no track record yet.</dd><dt class="mono fl">Deployment</dt><dd>Static front end on GitHub Pages. A scheduled workflow runs the research export each weekday evening for the tickers on the watchlist and commits the results and the prediction log back to the repository, which is how calibration survives an ephemeral runner. A Cloudflare Worker proxies market data so no key ships in the bundle.</dd><dt class="mono fl">Limitations</dt><dd>Full research is published only for the eight tickers on the watchlist; any other ticker falls back to the browser-side quick read. The narrative lean has come back mixed in 142 of 154 logged runs, so the disagreement feature rarely fires with real force. Predictions are logged but not yet resolved, so there is no accuracy claim. Peer valuation, user-supplied documents as evidence, and portfolio-level effects are not built. The advanced terminal is the original design prototype with illustrative numbers and is labelled as such.</dd><dt class="mono fl">Competencies</dt><dd>LLM Engineering, Agent Systems and MCP, AI Evaluation &amp; Reliability, APIs and Backend Engineering, System Design and Technical Leadership, Python and Software Engineering</dd></dl>
+        <p class="ae-links"><a class="mono lnk" href="https://github.com/morantejr/signal-app" target="_blank" rel="noopener">Repository &#8599;</a> <a class="mono lnk" href="https://morantejr.github.io/signal-app/" target="_blank" rel="noopener">Live app &#8599;</a> <a class="mono lnk" href="https://github.com/morantejr/signal-app/blob/main/research/docs-how-to-judge.md" target="_blank" rel="noopener">How to judge this system &#8599;</a> <a class="mono lnk" href="https://github.com/morantejr/signal-app/blob/main/research/README.md" target="_blank" rel="noopener">Research system design &#8599;</a></p>
+      </article>
+      <article class="ae-artifact" id="artifact-ima">
+        <div class="ae-top"><span class="mono ae-kind">Production system</span></div>
+        <h3 class="ae-h3 ae-artifact-h">Integrated Marketing Attribution (IMA)</h3>
+        <ul class="tags ae-plain"><li class="tag">Python</li><li class="tag">PyMC</li><li class="tag">Bayesian modelling</li><li class="tag">Snowflake</li></ul>
+        <dl class="facts ae-facts"><dt class="mono fl">Problem</dt><dd>Mix models see the whole budget but only at channel level, while attribution sees individual paths and degrades as privacy rules remove identifiers. The framework ties the two together so granular reads stay consistent with the mix model without user-level tracking.</dd><dt class="mono fl">Architecture</dt><dd>Bayesian decomposition that splits channel-level contribution into campaigns and placements with uncertainty, anchored so the granular estimates reconcile with the marketing mix model. Implementing a published framework, not inventing one.</dd><dt class="mono fl">Decisions</dt><dd>Anchor the granular estimates to the mix model so the two cannot disagree arithmetically.<br>Give small campaigns priors that regularise without drowning the data.<br>Keep the output checkable by people who will never read the model.</dd><dt class="mono fl">Testing</dt><dd>Validation diagnostics against the mix model&#x27;s channel totals.</dd><dt class="mono fl">Results</dt><dd>Employer work in progress; no public results.</dd><dt class="mono fl">Deployment</dt><dd>Internal at Zeta Global.</dd><dt class="mono fl">Limitations</dt><dd>Employer work, so there is no public code, data or metrics here. I did not write the paper; my part is turning it into working code. I can walk through the method and the design choices in an interview.</dd><dt class="mono fl">Competencies</dt><dd>Applied Optimization and Measurement Science, AI Evaluation &amp; Reliability</dd></dl>
+        <p class="ae-links"><a class="mono lnk" href="https://arxiv.org/abs/2606.16878" target="_blank" rel="noopener">The paper this implements &#8599;</a> <a class="mono lnk" href="../../#work">Summary on this site</a></p>
+      </article>
+</section>
+<section class="wrap ae-back"><p class="mono"><a href="../../ai-engineering/">&#8592; Back to AI Engineering</a></p></section>
+</main>
+</body>
+</html>

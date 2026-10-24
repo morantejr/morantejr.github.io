@@ -369,42 +369,43 @@ h3{margin:18px 0 6px;font-size:40px;letter-spacing:-0.03em;font-weight:500}
 
   <article class="proj last">
     <div>
-      <div class="proj-meta"><span class="mono num">04</span><span class="mono status warm">In development</span></div>
+      <div class="proj-meta"><span class="mono num">04</span><span class="mono status">Flagship project · Live</span></div>
       <h3>SIGNAL</h3>
-      <div class="proj-sub">An AI investment research system</div>
-      <p class="proj-lede">A research tool that pulls together financial data, a quantitative model, outside evidence, and LLM reasoning, so you can follow an investment thesis without wading through all of it yourself. It's early. The design choices are the interesting part so far.</p>
+      <div class="proj-sub">A consumer investing companion that shows its working</div>
+      <p class="proj-lede">Ask whether to hold a position over the next quarter and get the answer first: the stance, three reasons, two risks, and what would change the call. Underneath, a score computed in code and a model-written case for and against are kept deliberately apart, so where they disagree the disagreement is shown instead of averaged away. This is my one independent product, and the engineering, the coursework and the public build log all point at it.</p>
       <div class="facts">
-        <div class="mono fl">Design</div>
-        <div>A multi-agent workflow: separate agents gather evidence, argue the bull and bear cases, and pull them into one view.</div>
+        <div class="mono fl">Built</div>
+        <div>A Python research engine: evidence from market data and SEC filing text, a versioned quantitative score, bull and bear memos through a single model gateway, a synthesis with kill criteria, and a code-only critic that checks each claim against its cited source. A React front end reads the published runs.</div>
         <div class="mono fl">Key choice</div>
-        <div>The quant score is computed on its own, apart from the LLM's reasoning, so the model can't talk itself into a number. When the two disagree, that disagreement is shown, not hidden.</div>
-        <div class="mono fl">Evals</div>
-        <div>Tracing and evaluation with Langfuse from the start, so I can check whether conclusions are backed by the sources they cite.</div>
-        <div class="mono fl">Status</div>
-        <div>In development. The interface prototype is live below; the research agents behind it aren't public yet.</div>
+        <div>The score is a pure function the model layer cannot import, and an evaluation case feeds hostile model output that tries to set it, asserting the stored value does not move. Claims are labelled sourced, inference or unsupported, and missing inputs drop out of the weighting rather than counting as neutral.</div>
+        <div class="mono fl">Running</div>
+        <div>A scheduled job refreshes research each weekday for a watchlist and commits the results and the prediction log back, so calibration survives an ephemeral runner. 154 predictions logged across 15 tickers on a three-month horizon.</div>
+        <div class="mono fl">Honest gap</div>
+        <div>Those predictions are not yet scored against what actually happened, so there is no accuracy claim. Full research covers eight tickers; anything else falls back to a browser-side quick read. No users and no revenue.</div>
       </div>
       <div class="tags">
-        <span class="tag dashed">Python</span><span class="tag dashed">LLM agents</span><span class="tag dashed">Quant model</span><span class="tag dashed">Langfuse</span>
+        <span class="tag">Python</span><span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">FastAPI</span><span class="tag">OpenRouter</span><span class="tag">Evals</span>
       </div>
       <div class="proj-links">
-        <a class="btn-solid-sm" href="https://morantejr.github.io/signal-app/" target="_blank" rel="noopener">Open the demo</a>
-        <a class="mono lnk" href="https://github.com/morantejr/signal-app" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="btn-solid-sm" href="https://morantejr.github.io/signal-app/" target="_blank" rel="noopener">Open SIGNAL</a>
+        <a class="mono lnk" href="ai-engineering/building-signal/">Build log</a>
+        <a class="mono lnk" href="https://github.com/morantejr/signal-app" target="_blank" rel="noopener">GitHub &#8599;</a>
       </div>
     </div>
-    <div class="panel dashed-panel">
-      <div class="panel-bar"><i></i><i></i><span class="mono">signal / design</span></div>
+    <div class="panel">
+      <div class="panel-bar"><i></i><i></i><span class="mono">signal / research pipeline</span></div>
       <div class="panel-body">
         <div class="layers">
-          <div class="layer"><div class="mono pl">Inputs</div><div class="layer-t">Financial data + outside evidence</div></div>
-          <div class="mono arrow">↓</div>
+          <div class="layer"><div class="mono pl">Evidence</div><div class="layer-t">Prices, key statistics, SEC filing text</div><div class="row-d">Every source carries an id and a retrieval time</div></div>
+          <div class="mono arrow">&#8595;</div>
           <div class="split2">
-            <div class="layer"><div class="mono pl">Track A</div><div class="layer-t">Quant score</div><div class="row-d">Scored on its own</div></div>
-            <div class="layer"><div class="mono pl">Track B</div><div class="layer-t">LLM reasoning</div><div class="row-d">Bull and bear cases, with sources</div></div>
+            <div class="layer"><div class="mono pl">Track A</div><div class="layer-t">Quant score</div><div class="row-d">Pure code, versioned. The model cannot reach it.</div></div>
+            <div class="layer"><div class="mono pl">Track B</div><div class="layer-t">Bull and bear memos</div><div class="row-d">Claims cited, each labelled by support</div></div>
           </div>
-          <div class="mono arrow">↓</div>
-          <div class="layer accent"><div class="mono pl">Output</div><div class="layer-t">One view that shows where the tracks agree and where they don't</div></div>
+          <div class="mono arrow">&#8595;</div>
+          <div class="layer accent"><div class="mono pl">Output</div><div class="layer-t">One view, plus the disagreement</div><div class="row-d">Built in code from the quant band against the narrative lean, with why each could be wrong</div></div>
         </div>
-        <div class="mono panel-foot"><span>Design diagram, not a product screenshot</span><span>in development</span></div>
+        <div class="mono panel-foot"><span>Critic checks every claim against its source</span><span>live</span></div>
       </div>
     </div>
   </article>

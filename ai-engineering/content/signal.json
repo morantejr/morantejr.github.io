@@ -1,0 +1,80 @@
+{
+  "name": "SIGNAL",
+  "tagline": "Complex underneath, effortless on the surface.",
+  "summary": "A consumer investing companion. Ask whether to hold a position over the next quarter and get an answer first: the stance, the confidence, three reasons, two risks, and what would change the call. Underneath, a quantitative score computed in code and a model-written bull and bear case are kept deliberately separate, and where they disagree the disagreement is shown rather than averaged away.",
+  "positioning": "My one flagship independent project. It serves as the product I am building, the engineering portfolio I am judged on, the place coursework gets applied, and the subject of a public build log. One product, one codebase, one journey.",
+  "repo_url": "https://github.com/morantejr/signal-app",
+  "live_url": "https://morantejr.github.io/signal-app/",
+  "status_summary": "The research engine, the evaluation suite and the daily export pipeline are built and running. The front end reads published runs for a watchlist of eight tickers. Predictions are logged but not yet scored against outcomes, so there is no accuracy claim yet.",
+  "business": {
+    "target_customer": "A retail investor who holds a handful of individual positions, reads some financial news, and wants a second opinion before changing a position. Not a day trader and not a professional analyst.",
+    "problem": "Deciding whether to hold means reconciling valuation, momentum, risk, balance sheet, macro and the filings at once. Most consumer tools answer with one confident score and hide the uncertainty, so a user cannot tell when the tool is guessing.",
+    "value": "An answer the user can interrogate: a number computed in code that no model can argue with, a stated case for and against, every claim marked sourced or not, and a visible flag when the quantitative view and the narrative view disagree.",
+    "competitors": "Broker research pages, Seeking Alpha, Simply Wall St, Finviz, and the growing set of large-language-model stock chatbots. The nearest comparisons are the ones that show a scored breakdown; the gap is that few of them separate the model's reasoning from the number or expose disagreement.",
+    "monetization_hypotheses": [
+      "A subscription for fresh research on arbitrary tickers, with the free tier limited to the published watchlist.",
+      "A paid tier for tracking a personal watchlist with alerts when a stance or a kill criterion changes.",
+      "One-off deep reports on a named company."
+    ],
+    "operating_costs": "Today: effectively zero. Static hosting on GitHub Pages, free-tier market data behind a Cloudflare Worker, and free-tier models through OpenRouter. The first real cost appears when arbitrary tickers need a hosted API and paid model calls.",
+    "smallest_useful_mvp": "What exists now plus a resolved track record: a user can ask about a covered company, see the stance with its reasoning, and see how previous calls actually turned out.",
+    "acquisition_idea": "The build-in-public log itself, plus posting resolved calls once there is a track record worth showing. No paid acquisition until the product retains anyone.",
+    "disclaimer": "Every revenue and market statement here is an untested hypothesis. SIGNAL has no users, no revenue, and no validated demand."
+  },
+  "roadmap": [
+    {
+      "id": "ship",
+      "name": "Stage 1 — Ship",
+      "goal": "Finish the smallest useful version.",
+      "status": "in-progress",
+      "detail": "The engine, the evals and the export pipeline are done. What is missing before this is genuinely useful is a resolved track record: the prediction log records an entry price and a horizon end for every run, but nothing closes the loop against what actually happened.",
+      "next": "Resolve the logged predictions against realised prices and publish the calibration report the code already knows how to compute."
+    },
+    {
+      "id": "validate",
+      "name": "Stage 2 — Validate",
+      "goal": "Get real users and watch what they actually do.",
+      "status": "planned",
+      "detail": "No users yet. The first question is whether anyone returns after one answer, and which part of the output they read.",
+      "next": null
+    },
+    {
+      "id": "monetize",
+      "name": "Stage 3 — Monetize",
+      "goal": "Test willingness to pay.",
+      "status": "planned",
+      "detail": "Only meaningful once something is retained. The natural paywall is fresh research for tickers outside the published watchlist, because that is also where the real cost sits.",
+      "next": null
+    },
+    {
+      "id": "improve",
+      "name": "Stage 4 — Improve",
+      "goal": "Strengthen reliability, performance and usability on evidence.",
+      "status": "planned",
+      "detail": "Driven by what users and the resolved track record expose, not by what is technically interesting.",
+      "next": null
+    }
+  ],
+  "timeline": [
+    {"id": "research", "name": "Product research", "status": "completed",
+     "evidence": "Design concept and interface prototype built out, kept verbatim in the repository's design reference.",
+     "evidence_url": "https://github.com/morantejr/signal-app/tree/main/design-reference"},
+    {"id": "engine", "name": "Research engine built", "status": "completed",
+     "evidence": "Evidence, quant, bull, bear, synthesis and critic stages with a versioned score, a SQLite store and local tracing.",
+     "evidence_url": "https://github.com/morantejr/signal-app/blob/main/research/README.md"},
+    {"id": "evals", "name": "Evaluation suite", "status": "completed",
+     "evidence": "Thirteen eval cases bound by id to checks, including three proving the model cannot set the score.",
+     "evidence_url": "https://github.com/morantejr/signal-app/blob/main/research/docs-how-to-judge.md"},
+    {"id": "deploy", "name": "Initial deployment", "status": "completed",
+     "evidence": "Static front end live on GitHub Pages with a scheduled weekday export committed back to the repository.",
+     "evidence_url": "https://morantejr.github.io/signal-app/"},
+    {"id": "track-record", "name": "Resolved track record", "status": "in-progress",
+     "evidence": "154 predictions logged across 15 tickers on a three-month horizon; none yet scored against outcomes.",
+     "evidence_url": "https://github.com/morantejr/signal-app/blob/main/public/runs/predictions.jsonl"},
+    {"id": "user-testing", "name": "Early user testing", "status": "planned", "evidence": null, "evidence_url": null},
+    {"id": "beta", "name": "Public beta", "status": "planned", "evidence": null, "evidence_url": null},
+    {"id": "monetization", "name": "Monetization experiment", "status": "planned", "evidence": null, "evidence_url": null}
+  ],
+  "blogs": [],
+  "videos": []
+}

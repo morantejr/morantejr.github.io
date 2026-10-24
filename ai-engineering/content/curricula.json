@@ -1,0 +1,198 @@
+{
+  "source_note": "Course titles, codes and specialization membership below were read from the official CU Boulder curriculum pages on the verification dates recorded per curriculum. Neither CU Boulder nor Coursera exposes direct per-course Coursera URLs on those pages; course links therefore point to CU Boulder's own syllabus pages, which is recorded per course.",
+  "curricula": [
+    {
+      "id": "ms-cs",
+      "name": "Computer Science",
+      "long_name": "CU Boulder MS-CS curriculum, studied independently",
+      "institution": "University of Colorado Boulder",
+      "source_url": "https://www.colorado.edu/cs/academics/online-programs/mscs-coursera/curriculum",
+      "verified_on": "2026-10-23",
+      "structure": "30 one-credit courses, arranged in three-course specializations: 15 credits of breadth (five specializations, two of which are admission pathways) and 15 credits of electives.",
+      "elective_rule": "Electives must include at least four complete specializations: either five elective specializations, or four plus three standalone one-credit electives.",
+      "breadth_credits": 15,
+      "elective_credits": 15,
+      "status": "planned",
+      "status_note": "Courses selected and sequenced. Individual statuses update as I start them."
+    },
+    {
+      "id": "ms-ai",
+      "name": "Artificial Intelligence",
+      "long_name": "CU Boulder MS-AI curriculum, studied independently",
+      "institution": "University of Colorado Boulder",
+      "source_url": "https://www.colorado.edu/cs/academics/online-programs/ms-artificial-intelligence-coursera/ms-ai-online-curriculum-and-degree",
+      "verified_on": "2026-10-23",
+      "structure": "30 one-credit courses in three-course specializations: 15 credits of breadth (five specializations, two of which are admission pathways) and 15 credits of electives.",
+      "elective_rule": "Electives must include at least four complete specializations: either five elective specializations, or four plus three standalone one-credit electives.",
+      "breadth_credits": 15,
+      "elective_credits": 15,
+      "status": "planned",
+      "status_note": "Courses selected and sequenced. Individual statuses update as I start them."
+    },
+    {
+      "id": "from-scratch",
+      "name": "AI Engineering from Scratch",
+      "long_name": "AI Engineering from Scratch",
+      "institution": "aiengineeringfromscratch.com",
+      "source_url": "https://aiengineeringfromscratch.com/",
+      "verified_on": "2026-10-23",
+      "structure": "Twenty phases, 542 lessons, free and open source under MIT with no account required.",
+      "elective_rule": null,
+      "breadth_credits": null,
+      "elective_credits": null,
+      "status": "in-progress",
+      "status_note": "Working through the curriculum; individual phases below carry their own status."
+    },
+    {
+      "id": "adtech",
+      "name": "AdTech Measurement Science & AI Engineering",
+      "long_name": "AdTech Measurement Science & AI Engineering",
+      "short_subtitle": "Causal inference, optimization, and production machine learning.",
+      "institution": "Coursera (multiple universities)",
+      "source_url": "https://www.coursera.org/",
+      "verified_on": "2026-10-24",
+      "structure": "Six selected courses across three subject areas, taken independently through Coursera.",
+      "elective_rule": null,
+      "breadth_credits": null,
+      "elective_credits": null,
+      "status": "planned",
+      "status_note": "Courses selected. Individual statuses update as I start them.",
+      "description": "An independent learning pathway focused on causal inference, advertising measurement, optimization, and production machine learning. I use these subjects to deepen my work in marketing attribution, incrementality, uncertainty-aware decisions, and reliable AI systems."
+    }
+  ],
+  "specializations": [
+    {
+      "id": "dsa",
+      "name": "Foundations of Data Structures and Algorithms",
+      "credits": 3,
+      "status": "available",
+      "note": "Admission pathway specialization."
+    },
+    {
+      "id": "network-systems",
+      "name": "Network Systems: Principles and Practice (Linux and Cloud Networking)",
+      "credits": 3,
+      "status": "available",
+      "note": "Admission pathway specialization."
+    },
+    {
+      "id": "prob-stats",
+      "name": "Foundations of Probability and Statistics",
+      "credits": 3,
+      "status": "available",
+      "note": "Admission pathway specialization for the MS-AI curriculum."
+    },
+    {
+      "id": "ml-theory",
+      "name": "Machine Learning: Theory & Hands-On Practice with Python",
+      "credits": 3,
+      "status": "available",
+      "note": null
+    },
+    {
+      "id": "ethics-society",
+      "name": "Computing, Ethics, and Society",
+      "credits": 3,
+      "status": "available",
+      "note": null
+    },
+    {
+      "id": "autonomous",
+      "name": "Foundations of Autonomous Systems",
+      "credits": 3,
+      "status": "available",
+      "note": null
+    },
+    {
+      "id": "big-data-arch",
+      "name": "Software Architecture for Big Data",
+      "credits": 3,
+      "status": "available",
+      "note": null
+    },
+    {
+      "id": "ooad",
+      "name": "Object-Oriented Analysis & Design",
+      "credits": 3,
+      "status": "available",
+      "note": null
+    },
+    {
+      "id": "security-hacking",
+      "name": "Security and Ethical Hacking",
+      "credits": 3,
+      "status": "available",
+      "note": null
+    },
+    {
+      "id": "genai",
+      "name": "Generative AI",
+      "credits": 3,
+      "status": "available",
+      "note": null
+    },
+    {
+      "id": "intro-ai",
+      "name": "Introduction to Artificial Intelligence / Algorithmic Foundations of AI",
+      "credits": 3,
+      "status": "available",
+      "note": null
+    },
+    {
+      "id": "rl",
+      "name": "Foundations of Reinforcement Learning",
+      "credits": 3,
+      "status": "available",
+      "note": null
+    },
+    {
+      "id": "computer-vision",
+      "name": "Introduction to Computer Vision",
+      "credits": 3,
+      "status": "available",
+      "note": null
+    },
+    {
+      "id": "ai-ethics",
+      "name": "Artificial Intelligence Ethics",
+      "credits": 3,
+      "status": "in-development",
+      "note": "Listed by CU Boulder as currently in development; no release date published."
+    },
+    {
+      "id": "data-mining",
+      "name": "Data Mining Foundations and Practice",
+      "credits": 3,
+      "status": "available",
+      "note": null
+    },
+    {
+      "id": "nlp",
+      "name": "Natural Language Processing: Deep Learning Meets Linguistics",
+      "credits": 3,
+      "status": "in-development",
+      "note": "Listed by CU Boulder as currently in development."
+    },
+    {
+      "id": "measurement-causal",
+      "name": "Measurement & Causal Inference",
+      "credits": null,
+      "status": "available",
+      "note": "Estimands, confounding and identification, applied to advertising effectiveness."
+    },
+    {
+      "id": "optimization-decision",
+      "name": "Optimization & Decision Science",
+      "credits": null,
+      "status": "available",
+      "note": "Simulation, constrained allocation and decisions under uncertain channel response."
+    },
+    {
+      "id": "production-ml",
+      "name": "Production ML & AI Engineering",
+      "credits": null,
+      "status": "available",
+      "note": "Pipelines, experiment tracking, deployment and operational reliability."
+    }
+  ]
+}

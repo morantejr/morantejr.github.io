@@ -1,9 +1,10 @@
 {
-  "heading": "AI Engineering — From Foundations to Production",
-  "lede": "A documented record of my continuing technical education, independent implementations, and practical engineering work across machine learning, language models, AI infrastructure, evaluation, and deployment.",
-  "standfirst": "I work in marketing measurement, and most of what I build already depends on models behaving predictably. This page tracks the deliberate part of moving that work toward production AI engineering: what I am studying, what I have implemented, and what the implementations actually do when tested. Entries appear here when there is something to point at.",
-  "meta_description": "Joseph Morante's AI engineering coursework, independent implementations, and tested artifacts across ML foundations, language models, agents, MLOps, and evaluation.",
+  "heading": "AI Engineering \u2014 From Foundations to Production",
+  "lede": "I am independently studying graduate-level computer science and artificial intelligence coursework while building, testing, and evaluating AI systems. This section documents my development through technical study, hands-on implementations, engineering decisions, and public evidence.",
+  "standfirst": "Everything here is organised around evidence rather than credentials. Coursework appears with its source and status; an implementation appears with its repository, its tests, and what it does not handle. Where I have no evidence yet, the page says so.",
+  "meta_description": "Joseph Morante's AI engineering work: independent graduate-level CS and AI study, implementations with tests, and evaluated systems.",
   "canonical": "https://morantejr.github.io/ai-engineering/",
-  "og_title": "AI Engineering — Joseph Morante",
-  "og_description": "Coursework, independent implementations, and tested artifacts across ML foundations, language models, agents, MLOps, and evaluation."
+  "og_title": "AI Engineering \u2014 Joseph Morante",
+  "og_description": "Coursework, independent implementations, and tested artifacts across ML foundations, language models, agents, MLOps, and evaluation.",
+  "disclosure": "I am independently studying courses from the University of Colorado Boulder MS-CS and MS-AI curricula through Coursera's open, non-credit versions. I am not enrolled in either degree programme, am not taking these for graduate credit, and am not pursuing an awarded CU Boulder degree. The curricula are organised here by the universities' own degree requirements purely as a study reference."
 }

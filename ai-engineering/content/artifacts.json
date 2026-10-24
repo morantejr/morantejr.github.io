@@ -4,12 +4,21 @@
     "placeholder": false,
     "name": "mta-audit",
     "kind": "independent",
-    "pathway": "evaluation",
     "problem": "Attribution models always return an answer. Almost none report whether that answer survives a small change in assumptions, so teams act on campaign rankings that may not hold.",
     "architecture": "A Python package that takes journey-level event data, resamples whole journeys rather than rows, and runs a battery of stability checks across conversion windows, identity stitching, touchpoint loss, and model choice. Score weights are published as policy with a sensitivity report.",
-    "stack": ["Python 3.11-3.13", "Bootstrap resampling", "Markov attribution", "CI"],
+    "stack": [
+      "Python 3.11-3.13",
+      "Bootstrap resampling",
+      "Markov attribution",
+      "CI"
+    ],
     "repo_url": "https://github.com/morantejr/mta-audit",
-    "extra_links": [{"label": "PyPI", "url": "https://pypi.org/project/mta-audit/"}],
+    "extra_links": [
+      {
+        "label": "PyPI",
+        "url": "https://pypi.org/project/mta-audit/"
+      }
+    ],
     "decisions": [
       "Resample whole journeys, never individual rows, so the unit of resampling matches the unit of analysis.",
       "Publish score weights as stated policy rather than burying them, and ship a sensitivity report alongside.",
@@ -19,17 +28,28 @@
     "evaluation": "On an 8,000-user Criteo sample, injected duplicate events of 1 to 10 percent were detected on every run and moved the data-quality score from 72 to roughly 50.",
     "deployment": "Published to PyPI; installable with pip.",
     "limitations": "It measures stability, not causal lift. It does not replace an incrementality test.",
-    "related_courses": []
+    "related_courses": [],
+    "competencies": [
+      "evaluation",
+      "optimization-measurement",
+      "software-engineering"
+    ],
+    "track": "Track 6 \u2014 Optimization & Decision Systems"
   },
   {
     "id": "governed-mcp",
     "placeholder": false,
     "name": "Governed AI data access over MCP",
     "kind": "production",
-    "pathway": "agents",
     "problem": "Analysts wanted AI-assisted access to enterprise data without handing a model unrestricted query rights against production warehouses.",
     "architecture": "Custom Model Context Protocol servers exposing Snowflake, S3, and Hive to an AI-native development workflow, with validation and enforced limits between the model and the data.",
-    "stack": ["Python", "MCP", "Snowflake", "AWS S3", "Hive"],
+    "stack": [
+      "Python",
+      "MCP",
+      "Snowflake",
+      "AWS S3",
+      "Hive"
+    ],
     "repo_url": null,
     "extra_links": [],
     "decisions": [
@@ -41,19 +61,33 @@
     "evaluation": "Adopted by analytics users for day-to-day work; direct HiveServer2 connectivity and Parquet-native reads roughly doubled Hive analysis throughput.",
     "deployment": "Running internally at Zeta Global.",
     "limitations": "Employer work, so there is no public code or data. I can walk through the design and the threat model in an interview.",
-    "related_courses": []
+    "related_courses": [],
+    "competencies": [
+      "agents-mcp",
+      "security-governance",
+      "apis-backend"
+    ],
+    "track": "Track 5 \u2014 Agents & MCP"
   },
   {
     "id": "agent-reliability",
     "placeholder": false,
     "name": "Agent reliability study",
     "kind": "research",
-    "pathway": "evaluation",
     "problem": "When a scoring model picks an agent's best attempt, a large share of the picks are broken. The question is whether a second opinion catches them.",
     "architecture": "A pre-registered offline evaluation over two software-engineering benchmarks, with the projects' real test suites as ground truth.",
-    "stack": ["Python", "Reward models", "Pre-registration"],
+    "stack": [
+      "Python",
+      "Reward models",
+      "Pre-registration"
+    ],
     "repo_url": null,
-    "extra_links": [{"label": "Summary on this site", "url": "../#work"}],
+    "extra_links": [
+      {
+        "label": "Summary on this site",
+        "url": "{root}#work"
+      }
+    ],
     "decisions": [
       "Register the population, the metric, and the stopping rule before any outcome data existed.",
       "Evaluate on the population the selector actually commits, not on the candidate pool.",
@@ -63,28 +97,109 @@
     "evaluation": "Reported in the write-up, which is under anonymous review.",
     "deployment": null,
     "limitations": "The write-up is under anonymous workshop review, so the details are off this site until reviews return.",
-    "related_courses": []
+    "related_courses": [],
+    "competencies": [
+      "evaluation",
+      "llm-engineering"
+    ],
+    "track": "Track 4 \u2014 LLM Engineering"
   },
   {
     "id": "signal",
     "placeholder": false,
     "name": "SIGNAL",
     "kind": "independent",
-    "pathway": "applications",
-    "problem": "Investment research means reconciling financial data, a quantitative view, and outside evidence. A research tool should show where those disagree rather than averaging them into one confident answer.",
-    "architecture": "A multi-agent workflow: separate agents gather evidence, argue the bull and bear cases, and reconcile them into one view. The quantitative score is computed independently of the model's reasoning so the two can be compared.",
-    "stack": ["Python", "LLM agents", "Quant model", "Langfuse"],
-    "repo_url": "https://github.com/morantejr/signal-app",
-    "extra_links": [{"label": "Interface demo", "url": "https://morantejr.github.io/signal-app/"}],
-    "decisions": [
-      "Compute the quantitative score apart from the model's reasoning so it cannot talk itself into a number.",
-      "Surface disagreement between the two tracks instead of hiding it.",
-      "Instrument tracing and evaluation from the start rather than bolting it on."
+    "problem": "A consumer investor wants to know whether to hold a position over the next quarter. The honest answer depends on valuation, momentum, risk, balance sheet and macro at once, plus whatever the filings say. Reading all of that is the barrier, and most tools answer by producing one confident number that hides its own uncertainty.",
+    "architecture": "Two engines behind one answer-first interface. A quick read computes a deterministic weighting of six checks from live market data in the browser, with no model involved. The canonical engine is a Python research system: an evidence agent pulls prices, key statistics, SEC filing text and an optional macro series; a quant score is computed in pure code and versioned; bull and bear memos are written by a model through a single OpenRouter module; a synthesis produces one view with kill criteria; and a code-only critic checks every claim against its cited source. Disagreement between the quant band and the narrative lean is built in code and published as a first-class object rather than averaged away.",
+    "stack": [
+      "Python",
+      "TypeScript",
+      "React",
+      "Vite",
+      "FastAPI",
+      "SQLite",
+      "OpenRouter",
+      "Langfuse",
+      "Cloudflare Workers",
+      "pytest"
     ],
-    "testing": "Tracing and evaluation through Langfuse, checking whether conclusions are supported by the sources they cite.",
-    "evaluation": "In development. The interface prototype is public; the research agents behind it are not.",
-    "deployment": "Interface prototype deployed on GitHub Pages.",
-    "limitations": "Early. No public code for the agent layer, and no evaluation numbers worth quoting yet.",
+    "repo_url": "https://github.com/morantejr/signal-app",
+    "extra_links": [
+      {
+        "label": "Live app",
+        "url": "https://morantejr.github.io/signal-app/"
+      },
+      {
+        "label": "How to judge this system",
+        "url": "https://github.com/morantejr/signal-app/blob/main/research/docs-how-to-judge.md"
+      },
+      {
+        "label": "Research system design",
+        "url": "https://github.com/morantejr/signal-app/blob/main/research/README.md"
+      }
+    ],
+    "decisions": [
+      "The quant score is a pure function computed in code, and the language-model layer cannot import it. An eval feeds hostile model output that tries to set the score and asserts the persisted value does not move.",
+      "Exactly one module holds the model key, base URL, retries, backoff and JSON repair, so there is a single place where model access can be audited or swapped.",
+      "Disagreement between the quantitative band and the narrative lean is computed in code and shown, with reasons each side could be wrong. Agreement is not required for a valid run.",
+      "Every claim is labelled sourced, inference or unsupported and carries source ids, and a deterministic critic reports the share of confident claims that are actually cited plus any citation pointing at nothing.",
+      "Missing inputs drop out of the weighted sum and are flagged, rather than being scored as zero, so absent data cannot read as neutral evidence.",
+      "No LangGraph. The pipeline is an ordered Python function because nothing yet needs graph-shaped branching or retries."
+    ],
+    "testing": "Six test modules run with no network through a mocked model transport, covering the quant formula, the pipeline, the model client and the evaluation suite. Thirteen eval cases bind by id to specific checks, including three that prove the model cannot set or adjust the score.",
+    "evaluation": "The evaluation suite and the mocked tests pass. A prediction log has accumulated 154 runs across 15 tickers on a three-month horizon, recording the quant score, band, narrative lean, agreement and entry price for each. Those predictions are not yet scored against realised outcomes, so the system has a structural argument for trustworthiness and no track record yet.",
+    "deployment": "Static front end on GitHub Pages. A scheduled workflow runs the research export each weekday evening for the tickers on the watchlist and commits the results and the prediction log back to the repository, which is how calibration survives an ephemeral runner. A Cloudflare Worker proxies market data so no key ships in the bundle.",
+    "limitations": "Full research is published only for the eight tickers on the watchlist; any other ticker falls back to the browser-side quick read. The narrative lean has come back mixed in 142 of 154 logged runs, so the disagreement feature rarely fires with real force. Predictions are logged but not yet resolved, so there is no accuracy claim. Peer valuation, user-supplied documents as evidence, and portfolio-level effects are not built. The advanced terminal is the original design prototype with illustrative numbers and is labelled as such.",
+    "related_courses": [],
+    "competencies": [
+      "llm-engineering",
+      "agents-mcp",
+      "evaluation",
+      "apis-backend",
+      "system-design",
+      "software-engineering"
+    ],
+    "track": "Flagship product",
+    "flagship": true
+  },
+  {
+    "id": "ima",
+    "placeholder": false,
+    "name": "Integrated Marketing Attribution (IMA)",
+    "kind": "production",
+    "track": null,
+    "competencies": [
+      "optimization-measurement",
+      "evaluation"
+    ],
+    "problem": "Mix models see the whole budget but only at channel level, while attribution sees individual paths and degrades as privacy rules remove identifiers. The framework ties the two together so granular reads stay consistent with the mix model without user-level tracking.",
+    "architecture": "Bayesian decomposition that splits channel-level contribution into campaigns and placements with uncertainty, anchored so the granular estimates reconcile with the marketing mix model. Implementing a published framework, not inventing one.",
+    "stack": [
+      "Python",
+      "PyMC",
+      "Bayesian modelling",
+      "Snowflake"
+    ],
+    "repo_url": null,
+    "extra_links": [
+      {
+        "label": "The paper this implements",
+        "url": "https://arxiv.org/abs/2606.16878"
+      },
+      {
+        "label": "Summary on this site",
+        "url": "{root}#work"
+      }
+    ],
+    "decisions": [
+      "Anchor the granular estimates to the mix model so the two cannot disagree arithmetically.",
+      "Give small campaigns priors that regularise without drowning the data.",
+      "Keep the output checkable by people who will never read the model."
+    ],
+    "testing": "Validation diagnostics against the mix model's channel totals.",
+    "evaluation": "Employer work in progress; no public results.",
+    "deployment": "Internal at Zeta Global.",
+    "limitations": "Employer work, so there is no public code, data or metrics here. I did not write the paper; my part is turning it into working code. I can walk through the method and the design choices in an interview.",
     "related_courses": []
   }
 ]

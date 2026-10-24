@@ -1,43 +1,171 @@
 {
   "stages": [
     {
-      "id": "foundations",
-      "name": "Foundations",
-      "summary": "Understand the mechanics well enough to debug them.",
+      "id": "cs-foundations",
+      "name": "Stage 1 \u2014 Computer Science Foundations",
+      "summary": "Algorithms, data structures, programming design, networking, Linux and software architecture.",
+      "specializations": [
+        "dsa",
+        "network-systems",
+        "ooad",
+        "big-data-arch"
+      ],
+      "modules": [
+        "phase-00"
+      ],
       "skills": [
-        {"name": "Gradient-based optimisation and training diagnostics", "state": "planning", "evidence": null},
-        {"name": "Transformer attention from first principles", "state": "planning", "evidence": null},
-        {"name": "Statistical evaluation design", "state": "demonstrated", "evidence": "mta-audit"}
+        {
+          "name": "Complexity reasoning and the classic algorithm toolkit",
+          "state": "planning",
+          "evidence": null
+        },
+        {
+          "name": "Linux and cloud networking fundamentals",
+          "state": "planning",
+          "evidence": null
+        },
+        {
+          "name": "Packaging and testing a library other people install",
+          "state": "demonstrated",
+          "evidence": "mta-audit"
+        }
       ]
     },
     {
-      "id": "implementation",
-      "name": "Implementation",
-      "summary": "Build the thing, with tests, and find out where it breaks.",
+      "id": "ml-foundations",
+      "name": "Stage 2 \u2014 Machine Learning Foundations",
+      "summary": "Machine learning, probability, statistics, deep learning and evaluation.",
+      "specializations": [
+        "ml-theory",
+        "prob-stats"
+      ],
+      "modules": [
+        "phase-01",
+        "phase-02",
+        "phase-03"
+      ],
       "skills": [
-        {"name": "Multi-agent workflow design", "state": "practicing", "evidence": "signal"},
-        {"name": "Retrieval-augmented generation", "state": "planning", "evidence": null},
-        {"name": "Structured output and schema validation", "state": "practicing", "evidence": "governed-mcp"}
+        {
+          "name": "Supervised and unsupervised learning in practice",
+          "state": "planning",
+          "evidence": null
+        },
+        {
+          "name": "Probability and statistical estimation",
+          "state": "practicing",
+          "evidence": "mta-audit"
+        },
+        {
+          "name": "Evaluation design with held-out data",
+          "state": "demonstrated",
+          "evidence": "agent-reliability"
+        }
+      ]
+    },
+    {
+      "id": "ai-mechanisms",
+      "name": "Stage 3 \u2014 AI Mechanisms",
+      "summary": "Transformers, generative AI, reinforcement learning, knowledge representation and autonomous systems.",
+      "specializations": [
+        "genai",
+        "rl",
+        "intro-ai",
+        "computer-vision",
+        "autonomous"
+      ],
+      "modules": [
+        "phase-05",
+        "phase-07",
+        "phase-08",
+        "phase-09",
+        "phase-10"
+      ],
+      "skills": [
+        {
+          "name": "Attention and transformer internals from first principles",
+          "state": "planning",
+          "evidence": null
+        },
+        {
+          "name": "Reinforcement learning fundamentals",
+          "state": "planning",
+          "evidence": null
+        },
+        {
+          "name": "Reward-model behaviour and its failure modes",
+          "state": "demonstrated",
+          "evidence": "agent-reliability"
+        }
       ]
     },
     {
       "id": "production",
-      "name": "Production",
-      "summary": "Put it where other people depend on it, and keep it there.",
+      "name": "Stage 4 \u2014 Production Engineering",
+      "summary": "APIs, deployment, observability, scaling, infrastructure, security and agent systems.",
+      "specializations": [
+        "security-hacking",
+        "big-data-arch"
+      ],
+      "modules": [
+        "phase-11",
+        "phase-13",
+        "phase-14",
+        "phase-17"
+      ],
       "skills": [
-        {"name": "Tool and MCP server implementation", "state": "demonstrated", "evidence": "governed-mcp"},
-        {"name": "Model packaging and inference serving", "state": "planning", "evidence": null},
-        {"name": "Tracing and cost observability", "state": "practicing", "evidence": "signal"}
+        {
+          "name": "Tool and MCP server implementation",
+          "state": "demonstrated",
+          "evidence": "governed-mcp"
+        },
+        {
+          "name": "Guardrails for AI-assisted data access",
+          "state": "demonstrated",
+          "evidence": "governed-mcp"
+        },
+        {
+          "name": "Tracing and cost observability",
+          "state": "practicing",
+          "evidence": "signal"
+        },
+        {
+          "name": "Model packaging and inference serving",
+          "state": "planning",
+          "evidence": null
+        }
       ]
     },
     {
-      "id": "reliability",
-      "name": "Reliability",
-      "summary": "Know whether it is right, and know when it is not.",
+      "id": "advanced",
+      "name": "Stage 5 \u2014 Advanced Applied AI",
+      "summary": "Multimodal systems, reliable agents, optimisation, applied research and system design.",
+      "specializations": [
+        "ai-ethics",
+        "ethics-society"
+      ],
+      "modules": [
+        "phase-12",
+        "phase-15",
+        "phase-16",
+        "phase-18",
+        "phase-19"
+      ],
       "skills": [
-        {"name": "Offline evaluation with held-out data", "state": "demonstrated", "evidence": "agent-reliability"},
-        {"name": "LLM-as-judge methods and their failure modes", "state": "demonstrated", "evidence": "agent-reliability"},
-        {"name": "Prompt-injection and data-access threat modelling", "state": "practicing", "evidence": "governed-mcp"}
+        {
+          "name": "Multi-agent workflow design",
+          "state": "practicing",
+          "evidence": "signal"
+        },
+        {
+          "name": "Pre-registered evaluation of an AI system",
+          "state": "demonstrated",
+          "evidence": "agent-reliability"
+        },
+        {
+          "name": "Multimodal and autonomous systems",
+          "state": "planning",
+          "evidence": null
+        }
       ]
     }
   ]
