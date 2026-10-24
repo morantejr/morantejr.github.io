@@ -533,9 +533,11 @@ def render_curriculum(d: Data, cur, depth):
                         f'#artifact-{e(x["id"])}">{e(x["name"])}</a>' for x in arts)
                     extra = f'<span class="ae-xl">Connects to: {links}</span>'
                 label = e(c["code"]) if c.get("code") else e(c.get("institution", ""))
+                title = (ext(c["official_url"], c["title"], "ul") if c.get("official_url")
+                         else e(c["title"]) + '<span class="ae-xl">No syllabus page published</span>')
                 rows.append(
                     f'<div class="ae-row"><span class="ae-code">{label}</span>'
-                    f'<span class="ae-ct">{e(c["title"])}{xl}{skills}{fc}{extra}{note}</span>'
+                    f'<span class="ae-ct">{title}{xl}{skills}{fc}{extra}{note}</span>'
                     f'<span>{status_pill(c["status"])}</span></div>'
                 )
             note = f'<p class="ae-intro" style="margin:0 22px 18px">{e(sp["note"])}</p>' if sp.get("note") else ""
@@ -1058,6 +1060,8 @@ def build():
         if p.exists():
             shutil.rmtree(p)
 
+    # every course row must render its link — a computed-but-unused link has
+    # shipped twice now, so assert it instead of trusting the renderer
     total = build_hub(d)
     for cur in d.curricula:
         if cur["id"] == "from-scratch":
@@ -1070,6 +1074,23 @@ def build():
     total += build_evidence_page(d)
     total += build_competencies_page(d)
     total += build_notes_page(d)
+
+    import re as _re
+    for cur in d.curricula:
+        slug = {"ms-cs": "computer-science", "ms-ai": "artificial-intelligence",
+                "from-scratch": "from-scratch", "adtech": "adtech"}[cur["id"]]
+        pg = (HERE / "curriculum" / slug / "index.html").read_text(encoding="utf-8")
+        rows = len(_re.findall(r'class="ae-row"', pg))
+        want = (len(d.modules) if cur["id"] == "from-scratch"
+                else len(d.courses_for(cur["id"])))
+        if rows != want:
+            print(f"  warn:  {slug}: {rows} rows rendered, expected {want}")
+        linked = (len([m for m in d.modules if m.get("url")]) if cur["id"] == "from-scratch"
+                  else len([x for x in d.courses_for(cur["id"]) if x.get("official_url")]))
+        hrefs = len(_re.findall(r'<a class="[^"]*" href="https://', pg))
+        if hrefs < linked:
+            print(f"  warn:  {slug}: {hrefs} course links rendered, "
+                  f"{linked} records carry a url")
 
     c = d.counts()
     print(f"built 9 pages, {total:,} bytes total")
