@@ -144,7 +144,7 @@ def validate(d: Data):
 
     for i, c in enumerate(d.courses):
         w = f"courses.json[{c.get('id', i)}]"
-        for f in ("id", "title", "specialization", "status", "official_url",
+        for f in ("id", "title", "status", "official_url",
                   "source_url", "verified_on"):
             if not c.get(f):
                 err(f"{w}: missing required field {f!r}")
@@ -158,6 +158,10 @@ def validate(d: Data):
             err(f"{w}: status {c.get('status')!r} not one of {STATUSES}")
         if c.get("status") == "completed" and not (c.get("completed_date") or c.get("certificate_url")):
             err(f"{w}: marked completed with no completion date or certificate URL")
+        if not c.get("specialization") and not any(
+                d.cur_by_id.get(m["curriculum"], {}).get("layout") == "sequence"
+                for m in c.get("curricula", [])):
+            err(f"{w}: no specialization, and none of its curricula use the sequence layout")
         if c.get("specialization") and c["specialization"] not in spec_ids:
             err(f"{w}: specialization {c['specialization']!r} does not exist")
         if not c.get("curricula"):
@@ -421,6 +425,7 @@ def nav(depth, current):
       <a class="nav-keep" href="{up}ai-engineering/"{mark('hub')}>AI Engineering</a>
       <a href="{up}#experience">Experience</a>
       <a href="{up}#about">About</a>
+      <a class="nav-keep" href="{up}bookshelf/">Bookshelf</a>
       <a class="btn-outline-sm" href="{up}JosephMorante_Resume.pdf" target="_blank" rel="noopener">Resume</a>
     </nav>
   </div>
@@ -575,6 +580,77 @@ def build_curriculum_page(d: Data, cur):
                 f"{cur['name']} curriculum - AI Engineering - Joseph Morante",
                 f"The CU Boulder {cur['name']} curriculum ({n} one-credit courses), studied independently through Coursera's open non-credit versions.",
                 f"{base}curriculum/{slug}/", body)
+
+
+def build_sequence_page(d: Data, cur):
+    depth = 3
+    DEPTH["d"] = depth
+    base = d.page["canonical"]
+    courses = d.courses_for(cur["id"])
+
+    def seq(c):
+        for m in c["curricula"]:
+            if m["curriculum"] == cur["id"]:
+                return m.get("sequence", c.get("sequence") or 99)
+        return 99
+    courses.sort(key=seq)
+
+    rows = []
+    for c in courses:
+        who = ", ".join(c.get("instructors") or [])
+        extra = ""
+        if c.get("relevance"):
+            extra += f'<span class="ae-xl">Relevance: {e(c["relevance"])}</span>'
+        if c.get("suggested_evidence"):
+            extra += f'<span class="ae-xl">Evidence to produce: {e(c["suggested_evidence"])}</span>'
+        if who:
+            extra += f'<span class="ae-xl">{e(who)}</span>'
+        if len(c["curricula"]) > 1:
+            others = [d.cur_by_id[m["curriculum"]]["name"] for m in c["curricula"]
+                      if m["curriculum"] != cur["id"] and m["curriculum"] in d.cur_by_id]
+            if others:
+                extra += (f'<span class="ae-xl">Shared with {", ".join(e(o) for o in others)}'
+                          f' &mdash; one record, counted once</span>')
+        arts = [d.art_by_id[x] for x in c.get("related_artifacts", []) if x in d.art_by_id]
+        if arts:
+            up = "../" * depth
+            links = " ".join(f'<a class="ul" href="{up}ai-engineering/engineering-evidence/'
+                             f'#artifact-{e(x["id"])}">{e(x["name"])}</a>' for x in arts)
+            extra += f'<span class="ae-xl">Connects to: {links}</span>'
+        note = (f'<span class="ae-note-inline">{e(c["availability_note"])}</span>'
+                if c.get("availability_note") else "")
+        rows.append(f'<div class="ae-row"><span class="ae-code">{seq(c)}. {e(c["institution"])}</span>'
+                    f'<span class="ae-ct">{ext(c["coursera_url"] or c["official_url"], c["title"], "ul")}'
+                    f'{extra}{note}</span><span>{status_pill(c["status"])}</span></div>')
+
+    done = len([c for c in courses if c["status"] == "completed"])
+    prog = len([c for c in courses if c["status"] == "in-progress"])
+    plan = len([c for c in courses if c["status"] == "planned"])
+    dot = "\u00b7"
+    progress = (f"{len(courses)} selected {dot} {done} completed {dot} "
+                f"{prog} in progress {dot} {plan} planned")
+    reused = len([c for c in courses if len(c["curricula"]) > 1])
+    reuse_line = (f"{reused} of these records also sit in another pathway. "
+                  f"A shared course is one record, so it is never counted twice."
+                  if reused else "")
+    body = f"""<header class="wrap ae-head">
+  {crumb(depth, cur['name'])}
+  <h1>{e(cur['name'])}</h1>
+  <p class="ae-lede">{e(cur['short_subtitle'])}</p>
+  <p class="ae-stand">{e(cur['description'])}</p>
+  <p class="ae-top" style="margin-top:20px">{status_pill(cur['status'])}</p>
+  {facts([("Progress", e(progress)), ("Verified", e(cur.get('verified_on')))])}
+  <p class="ae-note">Every course page was fetched and confirmed live on {e(cur.get('verified_on'))}. {e(reuse_line)}</p>
+</header>
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>Courses</h2><div class="mono kicker">In recommended order</div></div>
+  <section class="ae-spec" style="margin-top:26px"><div class="ae-rows">{''.join(rows)}</div></section>
+</section>
+{back(depth)}"""
+    return page(HERE / "curriculum" / cur["id"] / "index.html", depth,
+                f"{cur['name']} - Joseph Morante",
+                e(cur["description"])[:180],
+                f"{base}curriculum/{cur['id']}/", body)
 
 
 def build_adtech_page(d: Data):
@@ -937,11 +1013,11 @@ def build_hub(d: Data):
         if cur["id"] == "from-scratch":
             href, desc = "curriculum/from-scratch/", f"{len(d.modules)} phases, free and open source. Implementation-first."
             tally = f'{STATUS_LABEL[cur["status"]]} \u00b7 {c["modules_done"]} of {len(d.modules)} phases complete'
-        elif cur["id"] == "adtech":
-            href = "curriculum/adtech/"
-            n = len(d.courses_for("adtech"))
+        elif cur.get("layout") == "sequence" or cur["id"] == "adtech":
+            href = f"curriculum/{cur['id']}/"
+            n = len(d.courses_for(cur["id"]))
             desc = e(cur["short_subtitle"])
-            done = len([x for x in d.courses_for("adtech") if x["status"] == "completed"])
+            done = len([x for x in d.courses_for(cur["id"]) if x["status"] == "completed"])
             tally = f'{STATUS_LABEL[cur["status"]]} \u00b7 {done} of {n} complete'
             entries.append(f"""      <a class="ae-entry" href="{href}">
         <h3 class="ae-h3">{e(cur['name'])}</h3>
@@ -1008,10 +1084,10 @@ def build_hub(d: Data):
 </header>
 
 <section class="wrap ae-sec">
-  <div class="sec-head"><h2>Independent study</h2><div class="mono kicker">Four pathways</div></div>
+  <div class="sec-head"><h2>Independent study</h2><div class="mono kicker">{len(d.curricula)} pathways</div></div>
   <p class="ae-intro">Two graduate curricula followed on my own through their open, non-credit versions, a free implementation-first course, and a focused pathway in advertising measurement. Each tracks its own progress.</p>
   <div class="ae-grid">
-{chr(10).join(entries[:4])}
+{chr(10).join(entries[:len(d.curricula)])}
   </div>
 </section>
 
@@ -1019,7 +1095,7 @@ def build_hub(d: Data):
   <div class="sec-head"><h2>Evidence</h2><div class="mono kicker">Four views</div></div>
   <p class="ae-intro">What the study has actually produced, and what it has not yet.</p>
   <div class="ae-grid">
-{chr(10).join(entries[4:])}
+{chr(10).join(entries[len(d.curricula):])}
   </div>
 </section>
 
@@ -1066,6 +1142,8 @@ def build():
     for cur in d.curricula:
         if cur["id"] == "from-scratch":
             total += build_from_scratch_page(d)
+        elif cur.get("layout") == "sequence":
+            total += build_sequence_page(d, cur)
         elif cur["id"] == "adtech":
             total += build_adtech_page(d)
         else:
@@ -1077,8 +1155,8 @@ def build():
 
     import re as _re
     for cur in d.curricula:
-        slug = {"ms-cs": "computer-science", "ms-ai": "artificial-intelligence",
-                "from-scratch": "from-scratch", "adtech": "adtech"}[cur["id"]]
+        slug = {"ms-cs": "computer-science", "ms-ai": "artificial-intelligence"}.get(
+            cur["id"], cur["id"])
         pg = (HERE / "curriculum" / slug / "index.html").read_text(encoding="utf-8")
         rows = len(_re.findall(r'class="ae-row"', pg))
         want = (len(d.modules) if cur["id"] == "from-scratch"
@@ -1093,7 +1171,7 @@ def build():
                   f"{linked} records carry a url")
 
     c = d.counts()
-    print(f"built 9 pages, {total:,} bytes total")
+    print(f"built {7 + len(d.curricula)} pages, {total:,} bytes total")
     print(f"  courses {c['unique_courses']} unique "
           f"(ms-cs {len(d.courses_for('ms-cs'))}, ms-ai {len(d.courses_for('ms-ai'))}, "
           f"shared {len([x for x in d.courses if len(x['curricula'])==2])})")

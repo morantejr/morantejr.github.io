@@ -1,0 +1,74 @@
+{
+  "title": "The Bookshelf",
+  "subtitle": "Books that shaped my thinking, challenged my assumptions, or that I simply loved reading.",
+  "intro": "A reading record rather than a reading list. A book appears here once I have finished it, with what I actually took from it. Years with nothing recorded are not shown.",
+  "canonical": "https://morantejr.github.io/bookshelf/",
+  "meta_description": "Books Joseph Morante has read, with personal reflections on what each one changed.",
+  "designations": [
+    "Impactful Read",
+    "Favorite Read",
+    "Worth Revisiting"
+  ],
+  "years": [
+    {
+      "year": 2026,
+      "reflection": "The first year I started keeping this record."
+    }
+  ],
+  "books": [
+    {
+      "id": "eleven-rings",
+      "title": "Eleven Rings: The Soul of Success",
+      "authors": [
+        "Phil Jackson",
+        "Hugh Delehanty"
+      ],
+      "published_year": 2013,
+      "published_source": "https://openlibrary.org/works/OL21092351W",
+      "read_year": 2026,
+      "finished_date": null,
+      "categories": [
+        "Leadership",
+        "Philosophy",
+        "Personal Growth"
+      ],
+      "designations": [
+        "Impactful Read"
+      ],
+      "cover_url": "https://covers.openlibrary.org/b/id/10841494-L.jpg",
+      "cover_source": "Open Library",
+      "preview": "Mastery is not always built by narrowing your focus. Some of the most useful ideas arrive from disciplines that look unrelated to your own.",
+      "key_ideas": [
+        {
+          "title": "Cross-disciplinary thinking",
+          "body": "Expertise does not only deepen by narrowing. Music and data science share almost nothing on the surface, but both reward attention to pattern, structure and interpretation. The skill worth developing is recognising the principle two fields have in common and carrying it back into your own work. Being well-rounded is not a detour from mastery; it is what lets you see a solution that a specialist might miss."
+        },
+        {
+          "title": "Audience-centered communication",
+          "body": "Simplifying an idea is not the same as communicating it. A technically correct explanation still fails if the listener cannot see why it matters to them. Real communication connects the idea to the other person's understanding, priorities and interests."
+        }
+      ],
+      "reflection": [
+        "One of the most important lessons I took from *Eleven Rings* is that becoming successful in your field, especially as a leader, doesn't necessarily mean focusing exclusively on that field.",
+        "Sometimes, the most valuable insights come from disciplines that appear to have absolutely nothing in common with what you do.",
+        "Take music and data science, for example. On the surface, music has little to do with AI or advertising technology. But if you look beyond the surface and start thinking more abstractly, you can discover connections in how different disciplines approach patterns, structure, interpretation, and problem-solving.",
+        "The important skill isn't simply knowing more about unrelated subjects. It's learning to recognize the underlying principles they share and figuring out how to bring those ideas back into your own work.",
+        "That changed how I think about developing expertise. Being well-rounded isn't necessarily a distraction from mastery. Sometimes, it's what allows you to see solutions that someone focused exclusively on one discipline might overlook.",
+        "The second lesson that stayed with me was about communication.",
+        "I've always valued the ability to explain complicated ideas simply, ideally well enough that a five-year-old could understand them. But I realized that simplicity alone isn't the same as effective communication.",
+        "**True communication means connecting an idea to the other person's understanding, priorities, and interests.**",
+        "In my work in data science and AdTech, I might be excited about an advanced analytical method that reveals more about the paths consumers take before converting.",
+        "From a technical perspective, that can be fascinating. But a client or executive isn't necessarily interested in the sophistication of the underlying model.",
+        "They want to understand what the analysis means for their business.",
+        "Should they change how they allocate advertising spend? Is a particular campaign underperforming? Are there opportunities to improve results? What should they actually do next?",
+        "An explanation can be technically accurate and still fail if the audience doesn't understand why it matters to them.",
+        "**My biggest takeaway:** Leadership requires both intellectual breadth and the ability to translate complexity into meaningful action.",
+        "It's not just about knowing your subject. It's about recognizing connections others might miss and communicating those connections in a way that helps people make better decisions."
+      ],
+      "favorite_passage": null,
+      "related_books": [],
+      "external_url": "https://openlibrary.org/works/OL21092351W",
+      "external_label": "Open Library"
+    }
+  ]
+}

@@ -13,7 +13,8 @@
       "breadth_credits": 15,
       "elective_credits": 15,
       "status": "planned",
-      "status_note": "Courses selected and sequenced. Individual statuses update as I start them."
+      "status_note": "Courses selected and sequenced. Individual statuses update as I start them.",
+      "layout": "specializations"
     },
     {
       "id": "ms-ai",
@@ -27,7 +28,8 @@
       "breadth_credits": 15,
       "elective_credits": 15,
       "status": "planned",
-      "status_note": "Courses selected and sequenced. Individual statuses update as I start them."
+      "status_note": "Courses selected and sequenced. Individual statuses update as I start them.",
+      "layout": "specializations"
     },
     {
       "id": "from-scratch",
@@ -41,7 +43,8 @@
       "breadth_credits": null,
       "elective_credits": null,
       "status": "in-progress",
-      "status_note": "Working through the curriculum; individual phases below carry their own status."
+      "status_note": "Working through the curriculum; individual phases below carry their own status.",
+      "layout": "specializations"
     },
     {
       "id": "adtech",
@@ -57,7 +60,42 @@
       "elective_credits": null,
       "status": "planned",
       "status_note": "Courses selected. Individual statuses update as I start them.",
-      "description": "An independent learning pathway focused on causal inference, advertising measurement, optimization, and production machine learning. I use these subjects to deepen my work in marketing attribution, incrementality, uncertainty-aware decisions, and reliable AI systems."
+      "description": "An independent learning pathway focused on causal inference, advertising measurement, optimization, and production machine learning. I use these subjects to deepen my work in marketing attribution, incrementality, uncertainty-aware decisions, and reliable AI systems.",
+      "layout": "specializations"
+    },
+    {
+      "id": "discrete-math",
+      "name": "Discrete Mathematics & Computational Foundations",
+      "long_name": "Discrete Mathematics & Computational Foundations",
+      "short_subtitle": "Algorithms, graphs, formal reasoning and stochastic processes.",
+      "institution": "Coursera (multiple universities)",
+      "source_url": "https://www.coursera.org/",
+      "verified_on": "2026-10-24",
+      "structure": "Four courses in recommended sequence.",
+      "elective_rule": null,
+      "breadth_credits": null,
+      "elective_credits": null,
+      "status": "planned",
+      "layout": "sequence",
+      "status_note": "Courses selected and sequenced. Individual statuses update as I start them.",
+      "description": "Exploring the mathematical foundations of algorithms, graph structures, formal reasoning, stochastic processes, and their applications to machine learning and advertising measurement."
+    },
+    {
+      "id": "attribution",
+      "name": "Attribution & Causal Measurement Science",
+      "long_name": "Attribution & Causal Measurement Science",
+      "short_subtitle": "Descriptive attribution, causal incrementality and optimization, kept distinct.",
+      "institution": "Coursera (multiple universities)",
+      "source_url": "https://www.coursera.org/",
+      "verified_on": "2026-10-24",
+      "structure": "Four courses in recommended sequence.",
+      "elective_rule": null,
+      "breadth_credits": null,
+      "elective_credits": null,
+      "status": "planned",
+      "layout": "sequence",
+      "status_note": "Courses selected and sequenced. Individual statuses update as I start them.",
+      "description": "Studying the mathematical and statistical foundations of advertising attribution, causal inference, response modeling, and measurement reliability."
     }
   ],
   "specializations": [

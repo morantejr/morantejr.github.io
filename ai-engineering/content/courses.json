@@ -1339,7 +1339,7 @@
     "provider": "Coursera",
     "institution": "University of Colorado Boulder",
     "official_url": "https://www.colorado.edu/cs/node/2581",
-    "coursera_url": null,
+    "coursera_url": "https://www.coursera.org/learn/discrete-time-markov-chains-monte-carlo-methods",
     "specialization": "prob-stats",
     "sequence": 2,
     "credits": 1,
@@ -1349,6 +1349,12 @@
         "curriculum": "ms-ai",
         "role": "breadth",
         "pathway": true
+      },
+      {
+        "curriculum": "discrete-math",
+        "role": "elective",
+        "pathway": false,
+        "sequence": 4
       }
     ],
     "availability_note": "CU Boulder's page is inconsistent on this course: the pathway section says available Fall 1 2025, the breadth section lists it as in development.",
@@ -1792,6 +1798,12 @@
         "curriculum": "adtech",
         "role": "elective",
         "pathway": false
+      },
+      {
+        "curriculum": "attribution",
+        "role": "elective",
+        "pathway": false,
+        "sequence": 3
       }
     ],
     "availability_note": "Live as of 2026-10-23. Unlike the other four, this page shows \u201cEnroll now\u201d rather than \u201cEnroll for free\u201d and Coursera's own catalog cards tag it \u201cPreview\u201d, so free audit access is unconfirmed.",
@@ -1850,6 +1862,12 @@
         "curriculum": "adtech",
         "role": "elective",
         "pathway": false
+      },
+      {
+        "curriculum": "attribution",
+        "role": "elective",
+        "pathway": false,
+        "sequence": 4
       }
     ],
     "availability_note": "Live as of 2026-10-23. Unlike the other four, this page shows \u201cEnroll now\u201d rather than \u201cEnroll for free\u201d and Coursera's own catalog cards tag it \u201cPreview\u201d, so free audit access is unconfirmed.",
@@ -2116,6 +2134,299 @@
     "demo_url": null,
     "related_artifacts": [
       "mta-audit"
+    ],
+    "signal_component": null
+  },
+  {
+    "id": "discrete-mathematics",
+    "code": null,
+    "title": "Discrete Mathematics",
+    "provider": "Coursera",
+    "institution": "Shanghai Jiao Tong University",
+    "instructors": [
+      "Dominik Scheder"
+    ],
+    "official_url": "https://www.coursera.org/learn/discrete-mathematics",
+    "coursera_url": "https://www.coursera.org/learn/discrete-mathematics",
+    "specialization": null,
+    "sequence": 1,
+    "credits": null,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "discrete-math",
+        "role": "elective",
+        "pathway": false,
+        "sequence": 1
+      }
+    ],
+    "availability_note": "Live as of 2026-10-24. Shows \u201cEnroll now\u201d rather than \u201cEnroll for free\u201d, so free audit access is unconfirmed, and some assignments are AI-graded.",
+    "source_url": "https://www.coursera.org/learn/discrete-mathematics",
+    "verified_on": "2026-10-24",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [
+      "Proof technique",
+      "Combinatorics",
+      "Graph theory",
+      "Number theory"
+    ],
+    "competencies": [
+      "algorithms"
+    ],
+    "relevance": "The proof and counting techniques underneath algorithm analysis and probabilistic reasoning.",
+    "suggested_evidence": "Worked solutions to a selected set of proofs, with the reasoning written out.",
+    "implementation": null,
+    "tests": null,
+    "benchmarks": null,
+    "experiments": null,
+    "decisions": null,
+    "learned": null,
+    "results": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "logic-introduction",
+    "code": null,
+    "title": "Introduction to Logic",
+    "provider": "Coursera",
+    "institution": "Stanford Online",
+    "instructors": [
+      "Michael Genesereth"
+    ],
+    "official_url": "https://www.coursera.org/learn/logic-introduction",
+    "coursera_url": "https://www.coursera.org/learn/logic-introduction",
+    "specialization": null,
+    "sequence": 2,
+    "credits": null,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "discrete-math",
+        "role": "elective",
+        "pathway": false,
+        "sequence": 2
+      }
+    ],
+    "availability_note": "Live as of 2026-10-24. Shows \u201cEnroll now\u201d rather than \u201cEnroll for free\u201d, so free audit access is unconfirmed.",
+    "source_url": "https://www.coursera.org/learn/logic-introduction",
+    "verified_on": "2026-10-24",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [
+      "Propositional logic",
+      "First-order logic",
+      "Formal proof",
+      "Automated reasoning"
+    ],
+    "competencies": [
+      "algorithms",
+      "evaluation"
+    ],
+    "relevance": "Formal reasoning and what it means for a claim to follow from its premises, which is the same discipline an evaluation protocol needs.",
+    "suggested_evidence": "A small proof checker, or formalising an argument from my own measurement work.",
+    "implementation": null,
+    "tests": null,
+    "benchmarks": null,
+    "experiments": null,
+    "decisions": null,
+    "learned": null,
+    "results": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [],
+    "signal_component": null
+  },
+  {
+    "id": "algorithms-graphs-data-structures",
+    "code": null,
+    "title": "Graph Search, Shortest Paths, and Data Structures",
+    "provider": "Coursera",
+    "institution": "Stanford Online",
+    "instructors": [
+      "Tim Roughgarden"
+    ],
+    "official_url": "https://www.coursera.org/learn/algorithms-graphs-data-structures",
+    "coursera_url": "https://www.coursera.org/learn/algorithms-graphs-data-structures",
+    "specialization": null,
+    "sequence": 3,
+    "credits": null,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "discrete-math",
+        "role": "elective",
+        "pathway": false,
+        "sequence": 3
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.coursera.org/learn/algorithms-graphs-data-structures",
+    "verified_on": "2026-10-24",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [
+      "Graph search",
+      "Shortest paths",
+      "Heaps",
+      "Union-find"
+    ],
+    "competencies": [
+      "algorithms",
+      "software-engineering"
+    ],
+    "relevance": "Graph structures and traversal, which is the shape of a customer journey before any attribution model touches it.",
+    "suggested_evidence": "Journey-graph traversal benchmarked against the path handling in mta-audit.",
+    "implementation": null,
+    "tests": null,
+    "benchmarks": null,
+    "experiments": null,
+    "decisions": null,
+    "learned": null,
+    "results": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [
+      "mta-audit"
+    ],
+    "signal_component": null
+  },
+  {
+    "id": "network-analysis-marketing",
+    "code": null,
+    "title": "Network Analysis for Marketing Analytics",
+    "provider": "Coursera",
+    "institution": "University of Colorado Boulder",
+    "instructors": [
+      "Chris J. Vargo",
+      "Scott Bradley"
+    ],
+    "official_url": "https://www.coursera.org/learn/network-analysis-for-marketing-analytics",
+    "coursera_url": "https://www.coursera.org/learn/network-analysis-for-marketing-analytics",
+    "specialization": null,
+    "sequence": 1,
+    "credits": null,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "attribution",
+        "role": "elective",
+        "pathway": false,
+        "sequence": 1
+      }
+    ],
+    "availability_note": "Live as of 2026-10-24. The page's own description and learning outcomes describe large-language-model text classification rather than network analysis, while its four modules are genuinely about networks. The listing copy appears to be wrong.",
+    "source_url": "https://www.coursera.org/learn/network-analysis-for-marketing-analytics",
+    "verified_on": "2026-10-24",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [
+      "Network terminology",
+      "Network data structures",
+      "Social network visualisation",
+      "Semantic networks"
+    ],
+    "competencies": [
+      "optimization-measurement",
+      "algorithms"
+    ],
+    "relevance": "Describing structure in marketing data. Descriptive, not causal: it says what connects to what, not what caused what.",
+    "suggested_evidence": "A network view of cross-channel paths, stated explicitly as description rather than effect.",
+    "implementation": null,
+    "tests": null,
+    "benchmarks": null,
+    "experiments": null,
+    "decisions": null,
+    "learned": null,
+    "results": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [
+      "mta-audit"
+    ],
+    "signal_component": null
+  },
+  {
+    "id": "regression-modeling-marketing",
+    "code": null,
+    "title": "Regression Modeling for Marketers",
+    "provider": "Coursera",
+    "institution": "University of Colorado System",
+    "instructors": [
+      "A.W. Lukens",
+      "Tony Cox, Jr."
+    ],
+    "official_url": "https://www.coursera.org/learn/regression-modeling-marketing",
+    "coursera_url": "https://www.coursera.org/learn/regression-modeling-marketing",
+    "specialization": null,
+    "sequence": 2,
+    "credits": null,
+    "cross_listed_as": null,
+    "curricula": [
+      {
+        "curriculum": "attribution",
+        "role": "elective",
+        "pathway": false,
+        "sequence": 2
+      }
+    ],
+    "availability_note": null,
+    "source_url": "https://www.coursera.org/learn/regression-modeling-marketing",
+    "verified_on": "2026-10-24",
+    "status": "planned",
+    "started_date": null,
+    "completed_date": null,
+    "certificate_url": null,
+    "notes": null,
+    "concepts": [
+      "Linear regression",
+      "Model specification",
+      "Diagnostics",
+      "Marketing response modelling"
+    ],
+    "competencies": [
+      "optimization-measurement",
+      "evaluation"
+    ],
+    "relevance": "Response modelling and its diagnostics. Association under assumptions, which is the step before any causal claim.",
+    "suggested_evidence": "A response model with its diagnostics reported, including where the assumptions fail.",
+    "implementation": null,
+    "tests": null,
+    "benchmarks": null,
+    "experiments": null,
+    "decisions": null,
+    "learned": null,
+    "results": null,
+    "article": null,
+    "architecture_notes": null,
+    "limitations": null,
+    "demo_url": null,
+    "related_artifacts": [
+      "mta-audit",
+      "ima"
     ],
     "signal_component": null
   }
