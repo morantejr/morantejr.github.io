@@ -1,0 +1,9 @@
+{
+  "heading": "AI Engineering — From Foundations to Production",
+  "lede": "A documented record of my continuing technical education, independent implementations, and practical engineering work across machine learning, language models, AI infrastructure, evaluation, and deployment.",
+  "standfirst": "I work in marketing measurement, and most of what I build already depends on models behaving predictably. This page tracks the deliberate part of moving that work toward production AI engineering: what I am studying, what I have implemented, and what the implementations actually do when tested. Entries appear here when there is something to point at.",
+  "meta_description": "Joseph Morante's AI engineering coursework, independent implementations, and tested artifacts across ML foundations, language models, agents, MLOps, and evaluation.",
+  "canonical": "https://morantejr.github.io/ai-engineering/",
+  "og_title": "AI Engineering — Joseph Morante",
+  "og_description": "Coursework, independent implementations, and tested artifacts across ML foundations, language models, agents, MLOps, and evaluation."
+}

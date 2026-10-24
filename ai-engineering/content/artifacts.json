@@ -1,0 +1,90 @@
+[
+  {
+    "id": "mta-audit",
+    "placeholder": false,
+    "name": "mta-audit",
+    "kind": "independent",
+    "pathway": "evaluation",
+    "problem": "Attribution models always return an answer. Almost none report whether that answer survives a small change in assumptions, so teams act on campaign rankings that may not hold.",
+    "architecture": "A Python package that takes journey-level event data, resamples whole journeys rather than rows, and runs a battery of stability checks across conversion windows, identity stitching, touchpoint loss, and model choice. Score weights are published as policy with a sensitivity report.",
+    "stack": ["Python 3.11-3.13", "Bootstrap resampling", "Markov attribution", "CI"],
+    "repo_url": "https://github.com/morantejr/mta-audit",
+    "extra_links": [{"label": "PyPI", "url": "https://pypi.org/project/mta-audit/"}],
+    "decisions": [
+      "Resample whole journeys, never individual rows, so the unit of resampling matches the unit of analysis.",
+      "Publish score weights as stated policy rather than burying them, and ship a sensitivity report alongside.",
+      "Report when the data cannot support a call instead of returning a number regardless."
+    ],
+    "testing": "Tested against the public Criteo attribution dataset with injected faults, plus a CI suite across three Python versions.",
+    "evaluation": "On an 8,000-user Criteo sample, injected duplicate events of 1 to 10 percent were detected on every run and moved the data-quality score from 72 to roughly 50.",
+    "deployment": "Published to PyPI; installable with pip.",
+    "limitations": "It measures stability, not causal lift. It does not replace an incrementality test.",
+    "related_courses": []
+  },
+  {
+    "id": "governed-mcp",
+    "placeholder": false,
+    "name": "Governed AI data access over MCP",
+    "kind": "production",
+    "pathway": "agents",
+    "problem": "Analysts wanted AI-assisted access to enterprise data without handing a model unrestricted query rights against production warehouses.",
+    "architecture": "Custom Model Context Protocol servers exposing Snowflake, S3, and Hive to an AI-native development workflow, with validation and enforced limits between the model and the data.",
+    "stack": ["Python", "MCP", "Snowflake", "AWS S3", "Hive"],
+    "repo_url": null,
+    "extra_links": [],
+    "decisions": [
+      "Validate generated SQL and HiveQL before execution rather than trusting model output.",
+      "Enforce row limits and injection prevention at the server, not in the prompt.",
+      "Authenticate through enterprise SSO so access follows existing identity."
+    ],
+    "testing": "Validated against production query patterns in use by analytics teams.",
+    "evaluation": "Adopted by analytics users for day-to-day work; direct HiveServer2 connectivity and Parquet-native reads roughly doubled Hive analysis throughput.",
+    "deployment": "Running internally at Zeta Global.",
+    "limitations": "Employer work, so there is no public code or data. I can walk through the design and the threat model in an interview.",
+    "related_courses": []
+  },
+  {
+    "id": "agent-reliability",
+    "placeholder": false,
+    "name": "Agent reliability study",
+    "kind": "research",
+    "pathway": "evaluation",
+    "problem": "When a scoring model picks an agent's best attempt, a large share of the picks are broken. The question is whether a second opinion catches them.",
+    "architecture": "A pre-registered offline evaluation over two software-engineering benchmarks, with the projects' real test suites as ground truth.",
+    "stack": ["Python", "Reward models", "Pre-registration"],
+    "repo_url": null,
+    "extra_links": [{"label": "Summary on this site", "url": "../#work"}],
+    "decisions": [
+      "Register the population, the metric, and the stopping rule before any outcome data existed.",
+      "Evaluate on the population the selector actually commits, not on the candidate pool.",
+      "Keep a model-free baseline in the comparison and let it win if it wins."
+    ],
+    "testing": "Executed test suites decided every label; oracle controls were run before any model output was graded.",
+    "evaluation": "Reported in the write-up, which is under anonymous review.",
+    "deployment": null,
+    "limitations": "The write-up is under anonymous workshop review, so the details are off this site until reviews return.",
+    "related_courses": []
+  },
+  {
+    "id": "signal",
+    "placeholder": false,
+    "name": "SIGNAL",
+    "kind": "independent",
+    "pathway": "applications",
+    "problem": "Investment research means reconciling financial data, a quantitative view, and outside evidence. A research tool should show where those disagree rather than averaging them into one confident answer.",
+    "architecture": "A multi-agent workflow: separate agents gather evidence, argue the bull and bear cases, and reconcile them into one view. The quantitative score is computed independently of the model's reasoning so the two can be compared.",
+    "stack": ["Python", "LLM agents", "Quant model", "Langfuse"],
+    "repo_url": "https://github.com/morantejr/signal-app",
+    "extra_links": [{"label": "Interface demo", "url": "https://morantejr.github.io/signal-app/"}],
+    "decisions": [
+      "Compute the quantitative score apart from the model's reasoning so it cannot talk itself into a number.",
+      "Surface disagreement between the two tracks instead of hiding it.",
+      "Instrument tracing and evaluation from the start rather than bolting it on."
+    ],
+    "testing": "Tracing and evaluation through Langfuse, checking whether conclusions are supported by the sources they cite.",
+    "evaluation": "In development. The interface prototype is public; the research agents behind it are not.",
+    "deployment": "Interface prototype deployed on GitHub Pages.",
+    "limitations": "Early. No public code for the agent layer, and no evaluation numbers worth quoting yet.",
+    "related_courses": []
+  }
+]

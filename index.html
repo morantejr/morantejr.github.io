@@ -186,7 +186,10 @@ h3{margin:18px 0 6px;font-size:40px;letter-spacing:-0.03em;font-weight:500}
 @media (max-width:900px){
  .proj{grid-template-columns:1fr;gap:36px}
  .split{grid-template-columns:1fr;gap:24px}
- .nav-links a:not(.btn-outline-sm){display:none}
+ .nav-links a:not(.btn-outline-sm):not(.nav-keep){display:none}
+ .brand-tag{display:none}
+ .nav-keep{white-space:nowrap;font-size:13px}
+ .nav-links{gap:16px}
 }
 @media (max-width:640px){
  #vanta-bg{right:-45vw}
@@ -222,6 +225,7 @@ h3{margin:18px 0 6px;font-size:40px;letter-spacing:-0.03em;font-weight:500}
     <nav class="nav-links">
       <a href="#work">Work</a>
       <a href="#research">Research</a>
+      <a class="nav-keep" href="ai-engineering/">AI Engineering</a>
       <a href="#experience">Experience</a>
       <a href="#teaching">Teaching</a>
       <a href="#about">About</a>
@@ -242,6 +246,7 @@ h3{margin:18px 0 6px;font-size:40px;letter-spacing:-0.03em;font-weight:500}
     <p class="hero-lede">I build privacy-aware, AI-assisted measurement systems that turn marketing data into better decisions.</p>
     <div class="hero-actions">
       <a class="btn-solid" href="#work">See the work</a>
+      <a class="btn-outline" href="ai-engineering/">AI Engineering</a>
       <a class="btn-outline" href="#experience">Experience</a>
       <div class="mono hero-links">
         <a href="https://github.com/morantejr" target="_blank" rel="noopener">GitHub</a>

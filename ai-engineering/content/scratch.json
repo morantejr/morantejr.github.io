@@ -1,0 +1,28 @@
+[
+  {
+    "id": "example-module",
+    "placeholder": true,
+    "title": "Example module — replace with a real lesson",
+    "concept": "The mechanism the module teaches, in one sentence.",
+    "pathway": "foundations",
+    "status": "planned",
+    "repo_url": null,
+    "tests": null,
+    "benchmarks": null,
+    "notes": null,
+    "limitations": null
+  },
+  {
+    "id": "example-module-implemented",
+    "placeholder": true,
+    "title": "Example module — one I have implemented",
+    "concept": "The mechanism, stated so a reader knows what the code does.",
+    "pathway": "transformers",
+    "status": "completed",
+    "repo_url": "https://github.com/morantejr",
+    "tests": "What is asserted, and what a passing run proves.",
+    "benchmarks": "What was measured, against what reference.",
+    "notes": "The thing that was not obvious until the code ran.",
+    "limitations": "What this implementation does not handle."
+  }
+]

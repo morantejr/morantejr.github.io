@@ -1,0 +1,17 @@
+[
+  {
+    "id": "example-note",
+    "placeholder": true,
+    "title": "Example note — replace with a real write-up",
+    "date": "2026-01-31",
+    "pathway": "foundations",
+    "summary": "One or two sentences a reader can judge the note by before opening it.",
+    "learned": "The thing I did not understand before.",
+    "mechanism": "How it actually works, in plain terms.",
+    "implemented": "What I built to test the understanding.",
+    "failed": "What broke, and what the breakage taught.",
+    "tradeoffs": "The design choice and what it cost.",
+    "production": "Why this matters when the system has users.",
+    "url": null
+  }
+]

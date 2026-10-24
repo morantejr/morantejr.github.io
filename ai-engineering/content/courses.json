@@ -1,0 +1,47 @@
+[
+  {
+    "id": "example-planned",
+    "placeholder": true,
+    "title": "Example entry — replace with a real course",
+    "provider": "Coursera",
+    "institution": "Issuing university or organisation",
+    "url": "https://www.coursera.org/",
+    "status": "planned",
+    "completed_date": null,
+    "certificate_url": null,
+    "pathway": "foundations",
+    "skills": ["Skill covered", "Another skill"],
+    "related_artifact": null,
+    "outcomes": []
+  },
+  {
+    "id": "example-in-progress",
+    "placeholder": true,
+    "title": "Example entry — a course currently under way",
+    "provider": "Coursera",
+    "institution": "Issuing university or organisation",
+    "url": "https://www.coursera.org/",
+    "status": "in-progress",
+    "completed_date": null,
+    "certificate_url": null,
+    "pathway": "transformers",
+    "skills": ["Skill covered"],
+    "related_artifact": null,
+    "outcomes": ["What this changed about how I build things"]
+  },
+  {
+    "id": "example-completed",
+    "placeholder": true,
+    "title": "Example entry — a finished course, with its certificate",
+    "provider": "Coursera",
+    "institution": "Issuing university or organisation",
+    "url": "https://www.coursera.org/",
+    "status": "completed",
+    "completed_date": "2026-01-31",
+    "certificate_url": "https://www.coursera.org/account/accomplishments/verify/EXAMPLE",
+    "pathway": "evaluation",
+    "skills": ["Skill covered"],
+    "related_artifact": "mta-audit",
+    "outcomes": ["A specific thing I can now do that I could not before"]
+  }
+]

@@ -1,0 +1,44 @@
+{
+  "stages": [
+    {
+      "id": "foundations",
+      "name": "Foundations",
+      "summary": "Understand the mechanics well enough to debug them.",
+      "skills": [
+        {"name": "Gradient-based optimisation and training diagnostics", "state": "planning", "evidence": null},
+        {"name": "Transformer attention from first principles", "state": "planning", "evidence": null},
+        {"name": "Statistical evaluation design", "state": "demonstrated", "evidence": "mta-audit"}
+      ]
+    },
+    {
+      "id": "implementation",
+      "name": "Implementation",
+      "summary": "Build the thing, with tests, and find out where it breaks.",
+      "skills": [
+        {"name": "Multi-agent workflow design", "state": "practicing", "evidence": "signal"},
+        {"name": "Retrieval-augmented generation", "state": "planning", "evidence": null},
+        {"name": "Structured output and schema validation", "state": "practicing", "evidence": "governed-mcp"}
+      ]
+    },
+    {
+      "id": "production",
+      "name": "Production",
+      "summary": "Put it where other people depend on it, and keep it there.",
+      "skills": [
+        {"name": "Tool and MCP server implementation", "state": "demonstrated", "evidence": "governed-mcp"},
+        {"name": "Model packaging and inference serving", "state": "planning", "evidence": null},
+        {"name": "Tracing and cost observability", "state": "practicing", "evidence": "signal"}
+      ]
+    },
+    {
+      "id": "reliability",
+      "name": "Reliability",
+      "summary": "Know whether it is right, and know when it is not.",
+      "skills": [
+        {"name": "Offline evaluation with held-out data", "state": "demonstrated", "evidence": "agent-reliability"},
+        {"name": "LLM-as-judge methods and their failure modes", "state": "demonstrated", "evidence": "agent-reliability"},
+        {"name": "Prompt-injection and data-access threat modelling", "state": "practicing", "evidence": "governed-mcp"}
+      ]
+    }
+  ]
+}

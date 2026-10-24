@@ -10,6 +10,7 @@ The page switches between light and dark by the visitor's local clock: light fro
 
 ```
 index.html                  the page (markup + inline CSS)
+ai-engineering/             generated AI Engineering page + its JSON content (see its README)
 404.html                    not-found page
 fonts/                      IBM Plex Mono 400/500, latin + latin-ext (woff2)
 vendor/                     three.js r134 + vanta.globe (hero background), vendored locally
@@ -48,4 +49,9 @@ The hero background is [Vanta Globe](https://www.vantajs.com/?effect=globe) on t
 
 ## Editing
 
-All content lives in `index.html`. Sections in order: hero, work, research, experience, teaching, about, contact. The `Resume` links point to `JosephMorante_Resume.pdf` in the root; replace that file to update the resume.
+Most content lives in `index.html`. The AI Engineering page at `/ai-engineering/` is the
+exception: it is generated from JSON by `ai-engineering/build.py`, so edit the files in
+`ai-engineering/content/` and rebuild rather than editing that page by hand. See
+[ai-engineering/README.md](ai-engineering/README.md).
+
+All other content lives in `index.html`. Sections in order: hero, work, research, experience, teaching, about, contact. The `Resume` links point to `JosephMorante_Resume.pdf` in the root; replace that file to update the resume.

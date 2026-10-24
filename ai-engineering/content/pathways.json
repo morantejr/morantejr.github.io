@@ -1,0 +1,68 @@
+[
+  {
+    "id": "foundations",
+    "name": "Machine Learning & Deep Learning Foundations",
+    "summary": "The mathematics and training mechanics underneath everything else: optimisation, backpropagation, regularisation, and the failure modes that look like bugs but are statistics.",
+    "competencies": [
+      "Gradient-based optimisation and loss design",
+      "Bias-variance reasoning and regularisation",
+      "Training diagnostics: divergence, overfitting, leakage",
+      "Classical baselines as a check on learned models"
+    ]
+  },
+  {
+    "id": "transformers",
+    "name": "Transformers & Language Models",
+    "summary": "How attention actually computes, what pretraining and fine-tuning change, and where context length, tokenisation, and decoding strategy decide behaviour.",
+    "competencies": [
+      "Attention and positional encoding from first principles",
+      "Tokenisation and context-window economics",
+      "Fine-tuning and parameter-efficient adaptation",
+      "Decoding strategies and their effect on reliability"
+    ]
+  },
+  {
+    "id": "applications",
+    "name": "AI Application Engineering",
+    "summary": "Turning a model call into a system: prompt and context design, retrieval, structured output, caching, cost control, and the boring parts that decide whether it survives contact with users.",
+    "competencies": [
+      "Prompt and context engineering under token budgets",
+      "Retrieval-augmented generation and chunking tradeoffs",
+      "Structured output and schema validation",
+      "Latency, cost, and caching strategy"
+    ]
+  },
+  {
+    "id": "agents",
+    "name": "Agents, Tools & MCP",
+    "summary": "Multi-step systems that call tools and act. Where I already have professional work: governed data access through Model Context Protocol servers with validation and enforced limits.",
+    "competencies": [
+      "Tool definition and call-loop design",
+      "Model Context Protocol server implementation",
+      "Query validation, injection prevention, row limits",
+      "Human approval gates in agentic workflows"
+    ]
+  },
+  {
+    "id": "mlops",
+    "name": "MLOps, Serving & Infrastructure",
+    "summary": "Getting a model into a place where other people can depend on it, and keeping it there: packaging, serving, GPU economics, pipelines, and observability.",
+    "competencies": [
+      "Model packaging and inference serving",
+      "GPU and batch-job orchestration",
+      "Data pipelines feeding model workloads",
+      "Tracing, logging, and cost observability"
+    ]
+  },
+  {
+    "id": "evaluation",
+    "name": "Evaluation, Reliability & Security",
+    "summary": "The part I came in through. Measuring whether a system is right rather than whether it looks right, with pre-registered methods, held-out data, and baselines that are allowed to win.",
+    "competencies": [
+      "Offline evaluation design and held-out splits",
+      "Pre-registration and multiplicity control",
+      "LLM-as-judge methods and their failure modes",
+      "Prompt-injection and data-access threat modelling"
+    ]
+  }
+]
