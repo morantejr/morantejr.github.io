@@ -313,6 +313,11 @@ def validate(d: Data):
                 err(f"scenesearch.json: missing {f!r}")
         if ss.get("status") not in STATUSES:
             err(f"scenesearch.json: status {ss.get('status')!r} not one of {STATUSES}")
+        dm = ss.get("demo")
+        if dm:
+            for f in ("src", "alt", "caption"):
+                if not dm.get(f):
+                    err(f"scenesearch/signal demo: missing {f!r}")
         vc = ss.get("video_collection")
         if vc:
             for f in vc.get("films", []):
@@ -469,6 +474,11 @@ EXTRA_CSS = """
 .ae-artifact:last-child{border-bottom:0}
 .ae-artifact-h{font-size:26px;margin-top:12px}
 .ae-artifact .ae-facts{max-width:770px}
+.sig-demo{margin:28px 0 0;padding:0;border:1px solid var(--line2);border-radius:8px;overflow:hidden;background:var(--panel)}
+.sig-demo img{display:block;width:100%;height:auto}
+.sig-demo figcaption{padding:12px 16px;border-top:1px solid var(--line);font-size:11px;letter-spacing:0.06em;color:var(--faint)}
+.sig-steps{margin-top:24px;padding-left:20px;max-width:720px}
+.sig-steps li{margin-top:8px}
 .ae-note{margin:26px 0 0;max-width:740px;font-size:13.5px;line-height:1.6;color:var(--faint);border-left:2px solid var(--line2);padding-left:14px}
 .ae-back{margin-top:70px;padding-top:24px;border-top:1px solid var(--line)}
 @media (max-width:640px){
@@ -955,6 +965,22 @@ def build_signal_page(d: Data):
     sig = d.signal
     biz = sig.get("business", {})
 
+    dm = sig.get("demo")
+    if dm:
+        up = "../" * depth
+        steps = "".join(f"<li>{e(x)}</li>" for x in dm.get("steps", []))
+        demo_html = f"""<section class="wrap ae-sec">
+  <div class="sec-head"><h2>See it work</h2><div class="mono kicker">Live app</div></div>
+  <p class="ae-intro">{e(dm['caption'])}</p>
+  <figure class="sig-demo">
+    <img src="{up}ai-engineering/{e(dm['src'])}" alt="{e(dm['alt'])}" loading="lazy" decoding="async">
+    <figcaption class="mono">{e(dm.get('caveat') or '')}</figcaption>
+  </figure>
+  <ol class="ae-comps sig-steps">{steps}</ol>
+</section>"""
+    else:
+        demo_html = ""
+
     stages = []
     for st in sig.get("roadmap", []):
         nxt = f'<p class="ae-stage-s"><strong style="font-weight:500">Next:</strong> {e(st["next"])}</p>' if st.get("next") else ""
@@ -1021,6 +1047,8 @@ def build_signal_page(d: Data):
     {ext('{root}ai-engineering/engineering-evidence/#artifact-signal', 'Engineering detail')}</p>
   <p class="ae-disclosure">{e(sig['status_summary'])}</p>
 </header>
+
+{demo_html}
 
 <section class="wrap ae-sec">
   <div class="sec-head"><h2>Roadmap</h2><div class="mono kicker">Ship &#8594; Improve</div></div>
