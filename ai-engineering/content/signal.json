@@ -5,7 +5,7 @@
   "positioning": "My one flagship independent project. It serves as the product I am building, the engineering portfolio I am judged on, the place coursework gets applied, and the subject of a public build log. One product, one codebase, one journey.",
   "repo_url": "https://github.com/morantejr/signal-app",
   "live_url": "https://morantejr.github.io/signal-app/",
-  "status_summary": "The research engine, the evaluation suite, the daily export pipeline and the prediction resolver are all built and running. The front end reads published runs for a watchlist of eight tickers. 154 predictions are logged on a three-month horizon; the earliest matures on 23 December 2026, so there is no accuracy claim yet because none of them has come due.",
+  "status_summary": "The research engine, the evaluation suite, the daily export pipeline and the prediction resolver are all built and running. The front end reads published runs for a watchlist of seven tickers. 137 predictions are logged on a three-month horizon; the earliest matures on 23 December 2026, so there is no accuracy claim yet because none of them has come due.",
   "business": {
     "target_customer": "A retail investor who holds a handful of individual positions, reads some financial news, and wants a second opinion before changing a position. Not a day trader and not a professional analyst.",
     "problem": "Deciding whether to hold means reconciling valuation, momentum, risk, balance sheet, macro and the filings at once. Most consumer tools answer with one confident score and hide the uncertainty, so a user cannot tell when the tool is guessing.",
@@ -27,7 +27,7 @@
       "name": "Stage 1 — Ship",
       "goal": "Finish the smallest useful version.",
       "status": "in-progress",
-      "detail": "The engine, the evals, the export pipeline and the calibration code are done. What is missing before this is genuinely useful is a resolved track record, and that is now a date rather than a task: the resolver fetches the price at each horizon end, computes the realised return and reports hit rates by quant band, narrative lean and agreement. Running it today returns 0 matured and 154 pending, which is the correct answer two months early.",
+      "detail": "The engine, the evals, the export pipeline and the calibration code are done. What is missing before this is genuinely useful is a resolved track record, and that is now a date rather than a task: the resolver fetches the price at each horizon end, computes the realised return and reports hit rates by quant band, narrative lean and agreement. Running it today returns 0 matured and 137 pending, which is the correct answer two months early.",
       "next": "Run the calibration from 23 December 2026, when the first predictions come due, and publish the result."
     },
     {
@@ -88,7 +88,7 @@
       "id": "track-record",
       "name": "Resolved track record",
       "status": "in-progress",
-      "evidence": "Resolver built and verified against the live log: 0 matured, 154 pending, no price lookups attempted. The first predictions mature on 23 December 2026 and the last on 18 January 2027.",
+      "evidence": "Resolver built and verified against the live log: 0 matured, 137 pending, no price lookups attempted. The first predictions mature on 23 December 2026 and the last on 18 January 2027.",
       "evidence_url": "https://github.com/morantejr/signal-app/blob/main/research/signal_research/calibration.py"
     },
     {
