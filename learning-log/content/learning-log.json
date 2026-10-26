@@ -9,10 +9,14 @@
     {
       "id": "2026-10",
       "month": "October 2026",
-      "draft": true,
+      "draft": false,
       "title": "Learning to Think With AI, Not Just Build With It",
       "summary": "No coursework finished this month. What I did instead was decide how I want to work with these tools before I accumulate any more of it — and write the rules down somewhere I can be held to them.",
-      "tags": ["Working practice", "AI engineering", "Research practice"],
+      "tags": [
+        "Working practice",
+        "AI engineering",
+        "Research practice"
+      ],
       "body": [
         {
           "type": "text",
@@ -61,11 +65,26 @@
         {
           "type": "principles",
           "items": [
-            {"when": "Before coding", "rule": "Write my own problem statement, proposed architecture and success criteria first. If I cannot state what done looks like, I am not ready to ask anything for help."},
-            {"when": "During coding", "rule": "Use the model to surface tradeoffs and attack my assumptions, not to make the decisions. The design should stay mine."},
-            {"when": "After coding", "rule": "Read the critical path, reproduce the failures myself, review the tests, and explain the implementation with no assistance open."},
-            {"when": "During coursework", "rule": "Attempt the problem cold. Ask for a hint before an answer, and an answer only after the hint fails."},
-            {"when": "During research", "rule": "State the hypothesis and what would falsify it before asking anything to explore approaches. Otherwise I will find support for whatever I already believed."}
+            {
+              "when": "Before coding",
+              "rule": "Write my own problem statement, proposed architecture and success criteria first. If I cannot state what done looks like, I am not ready to ask anything for help."
+            },
+            {
+              "when": "During coding",
+              "rule": "Use the model to surface tradeoffs and attack my assumptions, not to make the decisions. The design should stay mine."
+            },
+            {
+              "when": "After coding",
+              "rule": "Read the critical path, reproduce the failures myself, review the tests, and explain the implementation with no assistance open."
+            },
+            {
+              "when": "During coursework",
+              "rule": "Attempt the problem cold. Ask for a hint before an answer, and an answer only after the hint fails."
+            },
+            {
+              "when": "During research",
+              "rule": "State the hypothesis and what would falsify it before asking anything to explore approaches. Otherwise I will find support for whatever I already believed."
+            }
           ]
         },
         {
@@ -113,7 +132,10 @@
       "changed_thinking": [],
       "differently": [],
       "next_focus": "Start the first course properly and put the five rules under load: attempt the problem sets cold, and record honestly where I reached for help and whether it was warranted. One worked example of a misdiagnosis, written up, would be worth more than this whole entry.",
-      "pathways": ["from-scratch", "signal"],
+      "pathways": [
+        "from-scratch",
+        "signal"
+      ],
       "links": []
     }
   ]
