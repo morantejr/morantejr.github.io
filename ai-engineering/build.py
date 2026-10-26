@@ -488,7 +488,7 @@ def nav(depth, current):
         return ' aria-current="page"' if current == key else ""
     return f"""<header class="nav">
   <div class="wrap nav-in">
-    <a class="brand" href="{up}"><span class="brand-name">Joseph Morante</span><span class="mono brand-tag">Measurement</span></a>
+    <a class="brand" href="{up}"><span class="brand-name">Joseph Morante</span><span class="mono brand-tag">Measurement &amp; AI</span></a>
     <nav class="nav-links" aria-label="Primary">
       <a href="{up}#work">Work</a>
       <a href="{up}#research">Research</a>
