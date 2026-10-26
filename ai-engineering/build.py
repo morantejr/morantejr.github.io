@@ -537,7 +537,7 @@ def page(path: Path, depth: int, title: str, description: str, canonical: str,
 <meta property="og:description" content="{e(description)}">
 <meta property="og:type" content="website">
 <meta property="og:url" content="{e(canonical)}">
-<meta name="color-scheme" content="dark light">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://covers.openlibrary.org https://archive.org https://*.archive.org; font-src 'self'; frame-src https://www.youtube-nocookie.com; connect-src 'none'; form-action 'none'; base-uri 'none'">\n<meta name="referrer" content="strict-origin-when-cross-origin">\n<meta name="color-scheme" content="dark light">
 <meta name="theme-color" content="#08080a">
 {SHARED['icon'].replace('href="data:', 'href="data:')}
 {SHARED['js']}
