@@ -11,7 +11,7 @@
   "overview": {
     "problem": "Editors, creators and researchers need to find a specific moment in a video library without watching everything. Transcript search alone misses what is shown rather than said, and browsing by eye does not scale past a few hours of footage.",
     "solution": "Index a small video collection along two independent tracks, the spoken transcript and sampled frames, then retrieve across both and return a playable, timestamped moment with the evidence that supports it.",
-    "scope": "Owned or appropriately licensed video, one language, a collection starting at roughly two to five hours. Audio extraction and timestamped transcription, timestamped frame sampling, keyword and semantic transcript retrieval, image-text embedding retrieval over frames, combined retrieval, and playable results with supporting transcript excerpts or frames.",
+    "scope": "Blender open movies under Creative Commons Attribution, one language, a collection starting at roughly two to five hours. Audio extraction and timestamped transcription, timestamped frame sampling, keyword and semantic transcript retrieval, image-text embedding retrieval over frames, combined retrieval, and playable results with supporting transcript excerpts or frames.",
     "status_note": "Planned. Nothing is built. Every measurement on this page reads \"not yet measured\" because no experiment has run."
   },
   "example_queries": [
@@ -448,5 +448,59 @@
         "caveat": "URL confirmed live on 2026-10-26, but the title, provider, syllabus and access terms could not be read: Coursera serves a scripted shell to automated fetches and the verification run did not complete. Nothing about its contents is asserted here."
       }
     ]
+  },
+  "video_collection": {
+    "name": "Blender open movies",
+    "why": "One licence per film, commercial use and redistribution explicitly permitted, and enough visual variety to exercise the visual track rather than only the transcript. Provenance is a single line per film instead of a per-clip audit.",
+    "licence_note": "Each film's own project site states its licence. Those three confirmed below say Creative Commons Attribution 3.0 in those words. Attribution is required.",
+    "verified_on": "2026-10-26",
+    "films": [
+      {
+        "title": "Big Buck Bunny",
+        "project": "Peach",
+        "licence": "Creative Commons Attribution 3.0",
+        "source": "https://peach.blender.org/about/",
+        "quote": "The results of the Peach open movie project has been licensed under the Creative Commons Attribution 3.0 license.",
+        "status": "confirmed"
+      },
+      {
+        "title": "Sintel",
+        "project": "Durian",
+        "licence": "Creative Commons Attribution 3.0",
+        "source": "https://durian.blender.org/about/",
+        "quote": "\u201cSintel\u201d is licensed as Creative Commons Attribution 3.0.",
+        "status": "confirmed"
+      },
+      {
+        "title": "Tears of Steel",
+        "project": "Mango",
+        "licence": "Creative Commons Attribution 3.0",
+        "source": "https://mango.blender.org/about/",
+        "quote": "Tears of Steel is licensed as Creative Commons Attribution 3.0.",
+        "status": "confirmed"
+      },
+      {
+        "title": "Cosmos Laundromat",
+        "project": "Gooseberry",
+        "licence": "Creative Commons, version not stated on the page read",
+        "source": "https://gooseberry.blender.org/about/",
+        "quote": "The contents of this website, including artwork, is licensed as Creative Commons.",
+        "status": "version unconfirmed"
+      },
+      {
+        "title": "Elephants Dream",
+        "project": "Orange",
+        "licence": "Not read",
+        "source": "https://orange.blender.org/",
+        "quote": null,
+        "status": "licence page not found at the usual path; check before use"
+      }
+    ],
+    "caveats": [
+      "The three confirmed films are short. Their combined runtime is well under the two-to-five hour starting collection the project scopes, so more Blender Studio films will be needed, each with its licence checked individually before indexing.",
+      "Runtimes are deliberately not quoted here because none were verified. Confirm them when assembling the collection.",
+      "These are animated films. They stress visual retrieval well but their dialogue is sparse, which will under-exercise the transcript track. Expect to add spoken-content material, and record its licence the same way."
+    ],
+    "recording": "Licence, source URL and retrieval date are stored per video from the first ingest, alongside the timecodes. Retrofitting provenance after indexing is rework the schedule cannot absorb."
   }
 }

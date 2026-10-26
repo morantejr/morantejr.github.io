@@ -313,6 +313,16 @@ def validate(d: Data):
                 err(f"scenesearch.json: missing {f!r}")
         if ss.get("status") not in STATUSES:
             err(f"scenesearch.json: status {ss.get('status')!r} not one of {STATUSES}")
+        vc = ss.get("video_collection")
+        if vc:
+            for f in vc.get("films", []):
+                if not f.get("source"):
+                    err(f"scenesearch.json film {f.get('title')!r}: no source URL")
+                if f.get("status") == "confirmed" and not f.get("quote"):
+                    err(f"scenesearch.json film {f.get('title')!r}: marked confirmed without a "
+                        f"quoted licence statement from its own page")
+                if f.get("status") == "confirmed" and "Creative Commons" not in str(f.get("licence")):
+                    err(f"scenesearch.json film {f.get('title')!r}: confirmed but no named licence")
         for m in ss.get("roadmap", []):
             if m.get("status") not in STATUSES:
                 err(f"scenesearch.json roadmap[{m.get('month')}]: bad status")
@@ -1068,6 +1078,20 @@ def build_scenesearch_page(d: Data):
     rq = p["research_question"]
     arch = p["architecture"]
 
+    vc = p["video_collection"]
+    film_rows = []
+    for f in vc["films"]:
+        ok = f["status"] == "confirmed"
+        cls = "pathway" if ok else "dev"
+        quote = f'<span class="ae-xl">&ldquo;{e(f["quote"])}&rdquo;</span>' if f.get("quote") else ""
+        note = "" if ok else f'<span class="ae-note-inline">{e(f["status"])}</span>'
+        film_rows.append(
+            f'<div class="ae-row"><span class="ae-code">{e(f["project"])}</span>'
+            f'<span class="ae-ct">{ext(f["source"], f["title"], "ul")}'
+            f'<span class="ae-xl">{e(f["licence"])}</span>{quote}{note}</span>'
+            f'<span class="mono ae-spec-t {cls}">{"Confirmed" if ok else "Check first"}</span></div>')
+    films = "".join(film_rows)
+
     flow = []
     for i, st in enumerate(arch["stages"]):
         flow.append(f'<div class="layer"><div class="mono pl">Stage {i + 1}</div>'
@@ -1165,6 +1189,18 @@ def build_scenesearch_page(d: Data):
   {facts([("The problem", e(ov['problem'])), ("The approach", e(ov['solution'])),
           ("Initial scope", e(ov['scope'])),
           ("Example queries", "<br>".join(e(q) for q in p["example_queries"]))])}
+</section>
+
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>The video collection</h2><div class="mono kicker">Licence first</div></div>
+  <p class="ae-intro">{e(vc['why'])}</p>
+  <section class="ae-spec" style="margin-top:26px">
+    <div class="ae-spec-h"><span class="ae-spec-n">{e(vc['name'])}</span>
+      <span class="mono ae-spec-t">Checked {e(vc['verified_on'])}</span></div>
+    <div class="ae-rows">{films}</div>
+  </section>
+  <ul class="ae-comps" style="margin-top:22px">{"".join(f"<li>{e(x)}</li>" for x in vc["caveats"])}</ul>
+  <p class="ae-note">{e(vc['recording'])}</p>
 </section>
 
 <section class="wrap ae-sec">
