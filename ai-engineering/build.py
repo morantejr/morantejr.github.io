@@ -70,6 +70,7 @@ class Data:
         self.notes = load("notes.json") or []
         self.roadmap = load("roadmap.json") or {}
         self.signal = load("signal.json") or {}
+        self.scenesearch = load("scenesearch.json") or {}
         self.spec_by_id = {s["id"]: s for s in self.specs}
         self.cur_by_id = {c["id"]: c for c in self.curricula}
         self.art_by_id = {a["id"]: a for a in self.artifacts}
@@ -291,6 +292,37 @@ def validate(d: Data):
             for f in ("id", "title", "youtube_id", "published"):
                 if not v.get(f):
                     err(f"signal.json videos[{v.get('id')}]: missing {f!r}")
+
+    ss = d.scenesearch
+    if ss:
+        for f in ("name", "subtitle", "short_description", "status", "build_window"):
+            if not ss.get(f):
+                err(f"scenesearch.json: missing {f!r}")
+        if ss.get("status") not in STATUSES:
+            err(f"scenesearch.json: status {ss.get('status')!r} not one of {STATUSES}")
+        for m in ss.get("roadmap", []):
+            if m.get("status") not in STATUSES:
+                err(f"scenesearch.json roadmap[{m.get('month')}]: bad status")
+            if m.get("status") == "completed":
+                err(f"scenesearch.json roadmap[{m.get('month')}]: completed requires stored evidence; "
+                    f"a passed date is not evidence")
+        for r in ss.get("skill_audit", {}).get("rows", []):
+            if r.get("verdict") not in ("covered", "partial", "gap", "unverified"):
+                err(f"scenesearch.json skill_audit[{r.get('skill')}]: verdict "
+                    f"{r.get('verdict')!r} must be covered, partial, gap or unverified")
+        for m in ss.get("evaluation", {}).get("measures", []):
+            v = str(m.get("value", ""))
+            if v != "Not yet measured" and not ss.get("results_exist"):
+                err(f"scenesearch.json: measure {m.get('name')!r} carries a value but no "
+                    f"experiment data is recorded; set results_exist once it does")
+        for row in ss.get("learning_plan", {}).get("rows", []):
+            for f in ("month", "resource", "scope", "deliverable", "status"):
+                if not row.get(f):
+                    err(f"scenesearch.json learning_plan[{row.get('resource')}]: missing {f!r}")
+            if row.get("status") not in ("Planned", "Not started", "In progress",
+                                         "Candidate — syllabus verification needed"):
+                err(f"scenesearch.json learning_plan[{row.get('resource')}]: unexpected status "
+                    f"{row.get('status')!r}")
 
     for n in d.notes:
         w = f"notes.json[{n.get('id')}]"
@@ -994,6 +1026,217 @@ def build_signal_page(d: Data):
                 f"{base}building-signal/", body)
 
 
+VERDICT = {"covered": ("Covered", "pathway"), "partial": ("Partially covered", "dev"),
+           "gap": ("Gap", "dev"), "unverified": ("Unverified", "")}
+
+
+def build_scenesearch_page(d: Data):
+    depth = 2
+    DEPTH["d"] = depth
+    base = d.page["canonical"]
+    p = d.scenesearch
+
+    ov = p["overview"]
+    rq = p["research_question"]
+    arch = p["architecture"]
+
+    flow = []
+    for i, st in enumerate(arch["stages"]):
+        flow.append(f'<div class="layer"><div class="mono pl">Stage {i + 1}</div>'
+                    f'<div class="layer-t">{e(st["name"])}</div>'
+                    f'<div class="row-d">{e(st["detail"])}</div></div>')
+        if i < len(arch["stages"]) - 1:
+            flow.append('<div class="mono arrow">&#8595;</div>')
+    cross = "".join(f'<div class="layer accent"><div class="mono pl">Cross-cutting</div>'
+                    f'<div class="layer-t">{e(c["name"])}</div>'
+                    f'<div class="row-d">{e(c["detail"])}</div></div>'
+                    for c in arch["cross_cutting"])
+
+    bl = "".join(f'<div class="ae-row"><span class="ae-code">{b["id"]}</span>'
+                 f'<span class="ae-ct">{e(b["name"])}<span class="ae-xl">{e(b["note"])}</span></span>'
+                 f'<span></span></div>' for b in p["baselines"])
+
+    meas = "".join(f'<div class="row"><div><div class="row-t">{e(m["name"])}</div></div>'
+                   f'<div class="mono row-v">{e(m["value"])}</div></div>'
+                   for m in p["evaluation"]["measures"])
+
+    months = []
+    for m in p["roadmap"]:
+        learn = ("".join(f"<li>{e(x)}</li>" for x in m["learning"]))
+        build = ("".join(f"<li>{e(x)}</li>" for x in m["build"]))
+        learn_block = (f'<div><p class="mono pl">Learning</p><ul class="ae-comps">{learn}</ul></div>'
+                       if learn else "")
+        months.append(f"""      <section class="ae-stage">
+        <div class="ae-top">{status_pill(m['status'])}<span class="mono ae-spec-t">{e(m['month'])}</span></div>
+        <h3 class="ae-h3 ae-stage-h">{e(m['theme'])}</h3>
+        <div class="split2" style="margin-top:16px">
+          {learn_block}
+          <div><p class="mono pl">Build</p><ul class="ae-comps">{build}</ul></div>
+        </div>
+        <p class="ae-stage-s"><span class="mono pl">Exit</span> {e(m['exit'])}</p>
+      </section>""")
+
+    audit = []
+    for r in p["skill_audit"]["rows"]:
+        label, cls = VERDICT[r["verdict"]]
+        ex = "".join(f"<li>{e(x)}</li>" for x in r["existing"])
+        audit.append(f"""      <article class="card">
+        <div class="ae-top"><span class="mono ae-spec-t {cls}">{e(label)}</span></div>
+        <h3 class="card-t ae-h3">{e(r['skill'])}</h3>
+        <p class="mono pl" style="margin-top:14px">Already in the plan</p>
+        <ul class="ae-comps">{ex}</ul>
+        <p class="card-d">{e(r['reasoning'])}</p>
+      </article>""")
+
+    props = []
+    for it in p["proposed_changes"]["items"]:
+        bits = [("Gap", e(it.get("gap"))), ("Milestone", e(it.get("milestone"))),
+                ("The case for", e(it.get("case"))), ("The case against", e(it.get("against"))),
+                ("Recommendation", e(it.get("recommendation")))]
+        props.append(f"""      <article class="ae-artifact">
+        <div class="ae-top"><span class="mono ae-kind">{e(it['kind'])}</span></div>
+        <h3 class="ae-h3" style="font-size:20px">{e(it['title'])}</h3>
+        {facts(bits)}
+      </article>""")
+
+    rows = p["learning_plan"]["rows"]
+    if rows:
+        parts = []
+        for r in rows:
+            name = ext(r["url"], r["resource"], "ul") if r.get("url") else e(r["resource"])
+            caveat = (f'<span class="ae-note-inline">{e(r["caveat"])}</span>'
+                      if r.get("caveat") else "")
+            parts.append(
+                '<div class="ae-row" style="grid-template-columns:120px minmax(0,1fr) auto">'
+                f'<span class="ae-code">{e(r["month"])}</span>'
+                f'<span class="ae-ct">{name}'
+                f'<span class="ae-xl">Study scope: {e(r["scope"])}</span>'
+                f'<span class="ae-xl">Project deliverable: {e(r["deliverable"])}</span>'
+                f'{caveat}</span>'
+                f'<span class="mono ae-spec-t">{e(r["status"])}</span></div>')
+        lp = ('<section class="ae-spec" style="margin-top:26px">'
+              f'<div class="ae-rows">{"".join(parts)}</div></section>')
+    else:
+        lp = ('<p class="ae-intro">No resources scheduled yet. Candidates are under the proposals '
+              'above and move here only once you approve them.</p>')
+
+    lists = lambda key: "".join(f"<li>{e(x)}</li>" for x in p[key])
+    body = f"""<header class="wrap ae-head">
+  {crumb(depth, p['name'])}
+  <div class="ae-top">{status_pill(p['status'])}<span class="mono ae-spec-t">{e(p['build_window'])}</span></div>
+  <h1>{e(p['name'])}</h1>
+  <p class="ae-lede">{e(p['subtitle'])}</p>
+  <p class="ae-stand">{e(p['short_description'])}</p>
+  <p class="ae-disclosure">{e(ov['status_note'])} {e(p['links_note'])}</p>
+  <p class="ae-links"><span class="mono ae-spec-t">Repository coming soon</span>
+    <span class="mono ae-spec-t">Demo planned</span></p>
+</header>
+
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>Overview</h2><div class="mono kicker">Problem and scope</div></div>
+  {facts([("The problem", e(ov['problem'])), ("The approach", e(ov['solution'])),
+          ("Initial scope", e(ov['scope'])),
+          ("Example queries", "<br>".join(e(q) for q in p["example_queries"]))])}
+</section>
+
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>Research question</h2><div class="mono kicker">Open, not answered</div></div>
+  <p class="ae-lede" style="margin-top:24px">{e(rq['question'])}</p>
+  <div class="split2" style="margin-top:28px">
+    <div><p class="mono pl">To investigate</p><ul class="ae-comps">{"".join(f"<li>{e(x)}</li>" for x in rq["to_investigate"])}</ul></div>
+    <div><p class="mono pl">Already established</p><ul class="ae-comps">{"".join(f"<li>{e(x)}</li>" for x in rq["already_established"])}</ul></div>
+  </div>
+  <p class="ae-note">{e(rq['caveat'])}</p>
+</section>
+
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>Proposed architecture</h2><div class="mono kicker">Design, not built</div></div>
+  <p class="ae-intro">{e(arch['note'])}</p>
+  <div class="panel dashed-panel" style="margin-top:28px">
+    <div class="panel-bar"><i></i><i></i><span class="mono">scenesearch / proposed flow</span></div>
+    <div class="panel-body"><div class="layers">{"".join(flow)}</div>
+      <div style="margin-top:22px">{cross}</div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>Baselines and experiments</h2><div class="mono kicker">Planned</div></div>
+  <section class="ae-spec" style="margin-top:26px"><div class="ae-rows">{bl}</div></section>
+  <p class="mono pl" style="margin-top:30px">Planned experiments</p>
+  <ul class="ae-comps">{lists('experiments')}</ul>
+</section>
+
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>Evaluation</h2><div class="mono kicker">Nothing measured yet</div></div>
+  <div class="panel" style="margin-top:26px">
+    <div class="panel-bar"><i></i><i></i><span class="mono">scenesearch / planned measures</span></div>
+    <div class="panel-body"><div class="rows">{meas}</div>
+      <div class="mono panel-foot"><span>No experiment has run</span><span>planned</span></div>
+    </div>
+  </div>
+  <p class="mono pl" style="margin-top:30px">Evaluation design</p>
+  <ul class="ae-comps">{"".join(f"<li>{e(x)}</li>" for x in p["evaluation"]["design"])}</ul>
+</section>
+
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>Month by month</h2><div class="mono kicker">November to March</div></div>
+  <p class="ae-intro">{e(p['workload_note'])}</p>
+{chr(10).join(months)}
+</section>
+
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>What the curriculum already covers</h2><div class="mono kicker">Audit first</div></div>
+  <p class="ae-intro">{e(p['skill_audit']['note'])}</p>
+  <div class="ae-grid">
+{chr(10).join(audit)}
+  </div>
+</section>
+
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>Sequencing</h2><div class="mono kicker">Undetermined</div></div>
+  <p class="ae-lede" style="margin-top:24px">{e(p['sequencing']['finding'])}</p>
+  <ul class="ae-comps" style="margin-top:20px">{"".join(f"<li>{e(x)}</li>" for x in p["sequencing"]["consequences"])}</ul>
+</section>
+
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>Proposed changes &mdash; approval needed</h2><div class="mono kicker">Not applied</div></div>
+  <p class="ae-intro">{e(p['proposed_changes']['note'])}</p>
+{chr(10).join(props)}
+</section>
+
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>SceneSearch learning plan</h2><div class="mono kicker">Build-aligned</div></div>
+  <p class="ae-intro">{e(p['learning_plan']['note'])}</p>
+  {lp}
+</section>
+
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>Deliverables, limits and cost</h2><div class="mono kicker">Scope discipline</div></div>
+  <div class="split2" style="margin-top:26px">
+    <div><p class="mono pl">Engineering deliverables</p><ul class="ae-comps">{lists('deliverables')}</ul></div>
+    <div><p class="mono pl">Out of scope for the first release</p><ul class="ae-comps">{lists('out_of_scope')}</ul></div>
+  </div>
+  <p class="mono pl" style="margin-top:30px">Responsible development</p>
+  <ul class="ae-comps">{lists('responsible')}</ul>
+  {facts([("Planning envelope", e(p['budget']['estimate'])),
+          ("Excludes", e(p['budget']['excludes'])),
+          ("Caveat", e(p['budget']['caveat']))])}
+</section>
+
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>Why this project</h2><div class="mono kicker">Portfolio objective</div></div>
+  <p class="mono pl" style="margin-top:26px">Designed to demonstrate</p>
+  <ul class="ae-comps">{"".join(f"<li>{e(x)}</li>" for x in p["hiring_relevance"]["skills"])}</ul>
+  <p class="ae-note">{e(p['hiring_relevance']['disclaimer'])}</p>
+</section>
+{back(depth)}"""
+    return page(HERE / "scenesearch" / "index.html", depth,
+                f"SceneSearch - {p['subtitle']} - Joseph Morante",
+                e(p["short_description"]),
+                f"{base}scenesearch/", body)
+
+
 def build_hub(d: Data):
     depth = 1
     DEPTH["d"] = depth
@@ -1038,6 +1281,10 @@ def build_hub(d: Data):
         <p class="mono ae-tally">{e(tally)}</p>
       </a>""")
     for href, name, desc, tally in [
+        ("scenesearch/", "SceneSearch",
+         "Multimodal video retrieval with reproducible evaluation. Planned, with a curriculum audit behind it.",
+         f'{STATUS_LABEL[d.scenesearch.get("status", "planned")]} \u00b7 '
+         f'{len(d.scenesearch.get("roadmap", []))} month plan'),
         ("building-signal/", "Building SIGNAL",
          "The flagship product: roadmap, milestones backed by evidence, and the build log.",
          f'{len([t for t in d.signal.get("timeline", []) if t["status"] == "completed"])} of '
@@ -1092,7 +1339,7 @@ def build_hub(d: Data):
 </section>
 
 <section class="wrap ae-sec">
-  <div class="sec-head"><h2>Evidence</h2><div class="mono kicker">Four views</div></div>
+  <div class="sec-head"><h2>Evidence</h2><div class="mono kicker">Five views</div></div>
   <p class="ae-intro">What the study has actually produced, and what it has not yet.</p>
   <div class="ae-grid">
 {chr(10).join(entries[len(d.curricula):])}
@@ -1131,7 +1378,7 @@ def build():
 
     # remove stale generated dirs so deletions in content propagate
     for sub in ("curriculum", "engineering-evidence", "competencies", "technical-notes",
-                "building-signal"):
+                "building-signal", "scenesearch"):
         p = HERE / sub
         if p.exists():
             shutil.rmtree(p)
@@ -1149,6 +1396,7 @@ def build():
         else:
             total += build_curriculum_page(d, cur)
     total += build_signal_page(d)
+    total += build_scenesearch_page(d)
     total += build_evidence_page(d)
     total += build_competencies_page(d)
     total += build_notes_page(d)
@@ -1171,7 +1419,7 @@ def build():
                   f"{linked} records carry a url")
 
     c = d.counts()
-    print(f"built {7 + len(d.curricula)} pages, {total:,} bytes total")
+    print(f"built {8 + len(d.curricula)} pages, {total:,} bytes total")
     print(f"  courses {c['unique_courses']} unique "
           f"(ms-cs {len(d.courses_for('ms-cs'))}, ms-ai {len(d.courses_for('ms-ai'))}, "
           f"shared {len([x for x in d.courses if len(x['curricula'])==2])})")

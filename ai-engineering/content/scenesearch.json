@@ -1,0 +1,452 @@
+{
+  "name": "SceneSearch",
+  "subtitle": "Multimodal video retrieval with reproducible evaluation.",
+  "short_description": "An AI-engineering project that searches a video library using natural language and returns timestamped moments supported by transcript and visual evidence.",
+  "status": "planned",
+  "build_window": "November 2026 \u2013 March 2027",
+  "workload_note": "A working envelope of roughly 10 to 12 hours a week, adjustable. This is a plan, not a commitment, and it is not necessarily time on top of existing study. See the curriculum mapping below.",
+  "repo_url": null,
+  "demo_url": null,
+  "links_note": "No repository or demo exists yet. Links appear here when there is something real to point at.",
+  "overview": {
+    "problem": "Editors, creators and researchers need to find a specific moment in a video library without watching everything. Transcript search alone misses what is shown rather than said, and browsing by eye does not scale past a few hours of footage.",
+    "solution": "Index a small video collection along two independent tracks, the spoken transcript and sampled frames, then retrieve across both and return a playable, timestamped moment with the evidence that supports it.",
+    "scope": "Owned or appropriately licensed video, one language, a collection starting at roughly two to five hours. Audio extraction and timestamped transcription, timestamped frame sampling, keyword and semantic transcript retrieval, image-text embedding retrieval over frames, combined retrieval, and playable results with supporting transcript excerpts or frames.",
+    "status_note": "Planned. Nothing is built. Every measurement on this page reads \"not yet measured\" because no experiment has run."
+  },
+  "example_queries": [
+    "Find the moment where the presenter demonstrates the dashboard, rather than just mentioning it.",
+    "Find a nighttime crowd scene with no visible presenter."
+  ],
+  "research_question": {
+    "question": "When does combining visual evidence with transcript retrieval improve video search, and what are the quality, latency and cost trade-offs?",
+    "to_investigate": [
+      "Whether adding visual retrieval improves recall over transcript retrieval alone, and on which query types.",
+      "What frame-sampling density is enough before extra frames stop paying for themselves.",
+      "What combining the two tracks costs in query latency and indexing time.",
+      "How the system should behave when nothing in the library actually answers the query."
+    ],
+    "already_established": [
+      "Nothing yet. No result on this page has been measured."
+    ],
+    "caveat": "A text-only reranker reads the transcript, not the picture. It cannot confirm that something appears on screen, and this project will not claim that it can."
+  },
+  "architecture": {
+    "note": "Proposed design, not a built system. No screenshot on this page is a real interface.",
+    "stages": [
+      {
+        "name": "Video ingestion",
+        "detail": "Owned or licensed source files, with provenance and permissions recorded per video."
+      },
+      {
+        "name": "Transcription and frame sampling",
+        "detail": "Audio extracted and transcribed with timestamps; frames sampled at a chosen density, each keeping its timecode."
+      },
+      {
+        "name": "Text and visual embeddings",
+        "detail": "Transcript segments embedded for semantic search; frames embedded in a shared image-text space."
+      },
+      {
+        "name": "Persistent indexes and metadata",
+        "detail": "Vector indexes plus a metadata store holding timecodes, source video and provenance."
+      },
+      {
+        "name": "Candidate retrieval and optional reranking",
+        "detail": "Retrieve candidates from each track, combine them, and rerank only where a baseline shows it is justified."
+      },
+      {
+        "name": "Timestamped playback with evidence",
+        "detail": "A result plays at its timecode and shows the transcript excerpt or frame that produced it."
+      }
+    ],
+    "cross_cutting": [
+      {
+        "name": "Evaluation",
+        "detail": "A fixed query set and scoring harness that any configuration can be run against."
+      },
+      {
+        "name": "Profiling",
+        "detail": "Latency, indexing time, memory and storage measured per configuration rather than estimated."
+      }
+    ]
+  },
+  "baselines": [
+    {
+      "id": 1,
+      "name": "Keyword transcript retrieval",
+      "note": "The floor. If a later system cannot beat this, it is not earning its complexity."
+    },
+    {
+      "id": 2,
+      "name": "Semantic transcript retrieval",
+      "note": "Catches paraphrase the keyword baseline misses."
+    },
+    {
+      "id": 3,
+      "name": "Visual retrieval",
+      "note": "Frames only, no transcript. The test for queries about what is shown."
+    },
+    {
+      "id": 4,
+      "name": "Combined transcript and visual retrieval",
+      "note": "The configuration the research question is actually about."
+    },
+    {
+      "id": 5,
+      "name": "Optional reranking",
+      "note": "Added only if a baseline comparison shows a gap worth closing."
+    }
+  ],
+  "experiments": [
+    "Frame-sampling density against retrieval quality and indexing cost.",
+    "Embedding batch sizes against throughput.",
+    "Candidate count against reranking latency.",
+    "Smaller against larger embedding models, if feasible.",
+    "CPU and GPU placement, chosen in response to a measured bottleneck rather than in advance."
+  ],
+  "evaluation": {
+    "measures": [
+      {
+        "name": "Recall@5 and Recall@10",
+        "value": "Not yet measured"
+      },
+      {
+        "name": "Ranking quality (nDCG where labels support it)",
+        "value": "Not yet measured"
+      },
+      {
+        "name": "Temporal overlap with labelled relevant intervals",
+        "value": "Not yet measured"
+      },
+      {
+        "name": "No-answer and false-match behaviour",
+        "value": "Not yet measured"
+      },
+      {
+        "name": "Query latency",
+        "value": "Not yet measured"
+      },
+      {
+        "name": "Indexing time and cost per hour of video",
+        "value": "Not yet measured"
+      },
+      {
+        "name": "Memory and storage use",
+        "value": "Not yet measured"
+      }
+    ],
+    "design": [
+      "Begin with 50 to 75 manually reviewed queries, expanding toward roughly 100 to 150 if that proves feasible.",
+      "Cover spoken-content, visual-only, mixed-evidence, near-match and no-answer queries.",
+      "Separate development and held-out videos where feasible, and do not tune against held-out results.",
+      "Report uncertainty and failure modes rather than a single headline number.",
+      "Do not rely on model-generated ground truth alone; every query in the set is reviewed by hand."
+    ]
+  },
+  "deliverables": [
+    "Reproducible ingestion and indexing",
+    "Search interface and backend",
+    "Persistent metadata with source provenance",
+    "Versioned experiment configurations",
+    "Automated tests",
+    "Evaluation scripts, and results once they exist",
+    "Clean-environment setup instructions",
+    "A performance profile",
+    "A technical report",
+    "A short demo",
+    "Documented limitations"
+  ],
+  "responsible": [
+    "Owned or appropriately licensed content only.",
+    "Provenance and permissions recorded per source video.",
+    "No employer data, code or proprietary workflow.",
+    "Model and dataset licences checked before use.",
+    "Minimal collection of personal data.",
+    "Unsupported claims and retrieval failures written down rather than omitted."
+  ],
+  "out_of_scope": [
+    "Foundation-model training",
+    "Autonomous agents",
+    "Conversational memory",
+    "Large-scale scraping",
+    "Searching copyrighted media without permission",
+    "Kubernetes or comparable infrastructure the project does not need",
+    "Fine-tuning before a baseline shows the need",
+    "Enterprise-scale performance claims"
+  ],
+  "budget": {
+    "estimate": "Approximately $150 to $400",
+    "excludes": "Existing hardware, personal time and course subscriptions.",
+    "caveat": "A planning envelope, not a vendor quote. Actual cost depends on compute, storage and how far the experiments run. No provider pricing is quoted on this page."
+  },
+  "hiring_relevance": {
+    "skills": [
+      "Multimodal data processing",
+      "Retrieval and ranking",
+      "Experimental design",
+      "Model evaluation",
+      "Reproducible engineering",
+      "Deployment and profiling",
+      "Technical communication"
+    ],
+    "disclaimer": "This is a portfolio objective, not a hiring outcome. Building it guarantees nothing, no organisation is involved in or endorses it, and nothing here describes any employer's current openings."
+  },
+  "roadmap": [
+    {
+      "month": "November 2026",
+      "theme": "Foundations and transcript search",
+      "learning": [
+        "PyTorch inference fundamentals",
+        "Tensors, batching, pretrained models",
+        "Embeddings and similarity"
+      ],
+      "build": [
+        "Choose a licensed or owned video collection",
+        "Extract transcripts and timestamped frames",
+        "Implement keyword and semantic transcript search",
+        "Return playable timestamped results"
+      ],
+      "exit": "A user can search a small video collection and play a relevant returned segment.",
+      "status": "planned"
+    },
+    {
+      "month": "December 2026",
+      "theme": "Visual retrieval and evaluation foundation",
+      "learning": [
+        "Image-text embeddings",
+        "Nearest-neighbour search",
+        "Cross-modal retrieval"
+      ],
+      "build": [
+        "Frame-based visual search",
+        "Map results back to source-video intervals",
+        "Create 50 to 75 manually reviewed queries",
+        "Establish development and held-out sets"
+      ],
+      "exit": "Transcript-only and visual-only baselines can be compared, with documented failure examples.",
+      "status": "planned"
+    },
+    {
+      "month": "January 2027",
+      "theme": "Combined retrieval and controlled experiments",
+      "learning": [
+        "Retrieval fusion",
+        "Ranking and reranking",
+        "Retrieval evaluation"
+      ],
+      "build": [
+        "Combined retrieval",
+        "Reproducible baseline comparisons",
+        "Expand reviewed queries toward 100 to 150 if feasible",
+        "Measure quality, latency and indexing cost"
+      ],
+      "exit": "A reproducible experiment table showing where combining modalities helps and where it does not.",
+      "status": "planned"
+    },
+    {
+      "month": "February 2027",
+      "theme": "Reliability, profiling and external use",
+      "learning": [
+        "Deployment",
+        "Profiling",
+        "Optimisation chosen in response to a measured bottleneck"
+      ],
+      "build": [
+        "Separate ingestion and query workflows",
+        "Caching, logs and failure handling",
+        "One or two measured optimisation experiments",
+        "A limited public demo",
+        "Proposed usability testing with three to five external participants"
+      ],
+      "exit": "An external user can use the system, and at least one engineering trade-off is measured and written down. Major features freeze at the end of the month.",
+      "status": "planned"
+    },
+    {
+      "month": "March 2027",
+      "theme": "Final evaluation and portfolio release",
+      "learning": [],
+      "build": [
+        "Run the final held-out evaluation",
+        "Verify clean-environment reproducibility",
+        "Publish documentation and limitations",
+        "Publish the technical report, architecture diagram and short demo",
+        "Prepare a concise and a detailed explanation",
+        "Begin or continue targeted applications and technical outreach"
+      ],
+      "exit": "A complete, inspectable portfolio artifact whose major claims can be defended.",
+      "status": "planned"
+    }
+  ],
+  "skill_audit": {
+    "note": "Each SceneSearch skill checked against the courses and phases already recorded on this site, before considering anything new.",
+    "rows": [
+      {
+        "skill": "PyTorch inference fundamentals",
+        "verdict": "partial",
+        "existing": [
+          "CSCA 5642 Introduction to Deep Learning",
+          "Phase 03: Deep Learning Core"
+        ],
+        "reasoning": "Deep-learning fundamentals are covered twice over. What is not established from the recorded titles is PyTorch specifically: tensor handling, batching for inference, and moving models between CPU and GPU. The from-scratch phase is deliberately framework-free, which is useful for understanding and does not by itself teach the framework."
+      },
+      {
+        "skill": "Image-text embeddings and multimodal retrieval",
+        "verdict": "covered",
+        "existing": [
+          "CSCA 5422 Modern AI Models for Vision and Multimodal Understanding",
+          "Phase 12: Multimodal AI",
+          "Phase 04: Computer Vision"
+        ],
+        "reasoning": "Already in the plan in both curricula. One CU course names multimodal understanding directly, and a from-scratch phase is dedicated to it. No addition is warranted on coverage grounds."
+      },
+      {
+        "skill": "Nearest-neighbour search and retrieval fusion",
+        "verdict": "gap",
+        "existing": [
+          "CSCA 5454 Advanced Data Structures, RSA and Quantum Algorithms",
+          "Graph Search, Shortest Paths, and Data Structures"
+        ],
+        "reasoning": "Classical data structures and graph search are covered. Approximate nearest-neighbour search over vectors, and combining two ranked lists into one, are not. This is the clearest genuine gap, and it is narrow enough to close with a documentation reference and the project itself rather than a course."
+      },
+      {
+        "skill": "Ranking and retrieval evaluation",
+        "verdict": "partial",
+        "existing": [
+          "mta-audit",
+          "Agent reliability study",
+          "Causal Inference",
+          "Regression Modeling for Marketers",
+          "APPA 5003 Statistical Estimation"
+        ],
+        "reasoning": "Evaluation design is the strongest thing on this site: two shipped artifacts turn on held-out evaluation, pre-registration and baselines allowed to win. What is missing is the information-retrieval vocabulary specifically, Recall@k and nDCG, which is a small amount of reading on top of practice that already exists."
+      },
+      {
+        "skill": "Timestamped video processing",
+        "verdict": "gap",
+        "existing": [
+          "Phase 06: Speech & Audio"
+        ],
+        "reasoning": "One from-scratch phase touches the audio side, which is where transcription lives. Video decoding, frame sampling and keeping timecodes aligned across tracks appear nowhere. This is engineering work rather than course material, and the project is the natural place to learn it."
+      },
+      {
+        "skill": "Deployment and profiling",
+        "verdict": "covered",
+        "existing": [
+          "DevOps, DataOps, MLOps (Duke)",
+          "MLOps Tools: MLflow and Hugging Face (Duke)",
+          "Phase 17: Infrastructure & Production",
+          "CSCA 5028 Applications of Software Architecture for Big Data"
+        ],
+        "reasoning": "Already selected in the AdTech pathway, including a course that names MLflow directly. Adding another deployment course would duplicate a commitment already made."
+      }
+    ]
+  },
+  "sequencing": {
+    "finding": "No course anywhere on this site carries a start date, a completion date or an hours estimate, and every one of the 53 records reads Planned. Only the from-scratch pathway is marked in progress, and all twenty of its phases are themselves Planned.",
+    "consequences": [
+      "I cannot say whether any foundation is scheduled before or after SceneSearch needs it, because nothing is scheduled at all. Every sequencing question is undetermined rather than satisfied.",
+      "I cannot say whether 10 to 12 hours a week is additional time or shared time, because existing weekly study time is not recorded anywhere. No claim is made here that the combined plan is feasible.",
+      "The foundations SceneSearch leans on hardest, deep learning, computer vision and multimodal understanding, are all Planned with no date. That is the dependency to resolve before November, by scheduling them, by narrowing the project, or by accepting that the project teaches them."
+    ]
+  },
+  "proposed_changes": {
+    "note": "Nothing below has been added to the curriculum. These are proposals that need your decision, kept separate from the established plan.",
+    "items": [
+      {
+        "title": "Add a PyTorch fundamentals course for November",
+        "kind": "Possible addition",
+        "gap": "PyTorch inference fundamentals (partial)",
+        "milestone": "November 2026",
+        "case": "The one candidate with a real argument. November's build needs a reproducible embedding pipeline in the first month, and the recorded deep-learning coverage does not establish framework-specific skill.",
+        "against": "It is an addition to a curriculum that already holds 53 planned courses, none of them started. Applying an existing deep-learning course would be preferable if its syllabus covers PyTorch, which the recorded titles do not settle.",
+        "recommendation": "Hold until either the candidate syllabus or the existing deep-learning syllabus is checked. Adding a course should be the last resort, not the first."
+      },
+      {
+        "title": "Close the retrieval gap with documentation, not a course",
+        "kind": "No curriculum change",
+        "gap": "Nearest-neighbour search and retrieval fusion (gap)",
+        "milestone": "January 2027",
+        "case": "The Sentence Transformers retrieve-and-rerank guide covers candidate retrieval and reranking directly, at the scale the gap actually is. It is a reference to read, not a credential to collect.",
+        "against": "None. This is the cheapest option that closes the gap.",
+        "recommendation": "Adopt. Reference material, scheduled for January, no change to the course plan."
+      },
+      {
+        "title": "Learn video processing by doing it",
+        "kind": "No curriculum change",
+        "gap": "Timestamped video processing (gap)",
+        "milestone": "November 2026",
+        "case": "Decoding video, sampling frames and keeping timecodes aligned is engineering practice. It is learned faster by building the ingestion stage than by taking a course about it.",
+        "against": "None identified.",
+        "recommendation": "Adopt. The project absorbs this gap."
+      },
+      {
+        "title": "Treat the multimodal and advanced-deployment candidates as unnecessary for now",
+        "kind": "Recommend against",
+        "gap": "Already covered",
+        "milestone": null,
+        "case": "Multimodal retrieval is covered by a CU course and a from-scratch phase already selected. Deployment and profiling are covered by two Duke courses already selected, one of which names MLflow. Adding more would duplicate existing commitments.",
+        "against": "If a syllabus check later shows the existing courses miss something specific, this can be revisited.",
+        "recommendation": "Do not add."
+      },
+      {
+        "title": "Schedule the foundations, or narrow the project",
+        "kind": "Decision needed",
+        "gap": "Sequencing",
+        "milestone": "Before November 2026",
+        "case": "The curriculum has no dates. SceneSearch has five dated months. Those two cannot both be true without a decision: either the deep-learning and multimodal material gets dates before it is needed, or SceneSearch narrows so it depends on less of it.",
+        "against": null,
+        "recommendation": "Your call. If the two conflict, the brief says reduce SceneSearch scope first and protect the foundations, evaluation and reproducibility."
+      }
+    ]
+  },
+  "learning_plan": {
+    "note": "A build-aligned reading plan, not a requirement to finish several certificates before starting. Course progress and project progress are tracked separately, and studying selected modules is never recorded as completing a course.",
+    "rows": [
+      {
+        "month": "January 2027",
+        "resource": "Sentence Transformers \u2014 Retrieve & Re-Rank",
+        "url": "https://sbert.net/examples/sentence_transformer/applications/retrieve_rerank/README.html",
+        "scope": "Documentation and practical reference, not a course and not a certificate. Read the retrieve-then-rerank pattern and implement a baseline from it.",
+        "deliverable": "A candidate-retrieval and reranking baseline, evaluated on the reviewed query set.",
+        "status": "Planned",
+        "caveat": "Title and page confirmed live on 2026-10-26. A text-only reranker reads the transcript, not the picture, so it cannot confirm that something appears on screen."
+      },
+      {
+        "month": "November 2026 (candidate)",
+        "resource": "PyTorch: Fundamentals",
+        "url": "https://www.coursera.org/learn/pytorch-fundamentals",
+        "scope": "Would cover tensors, batching, inference against training, pretrained models and CPU/GPU placement. Not scheduled: see the proposal above.",
+        "deliverable": "A reproducible embedding-inference pipeline that batches inputs and saves embeddings, with tensor shapes and device placement explained.",
+        "status": "Candidate \u2014 syllabus verification needed",
+        "caveat": "URL confirmed live on 2026-10-26, but the title, provider, syllabus and access terms could not be read: Coursera serves a scripted shell to automated fetches and the verification run did not complete. Nothing about its contents is asserted here."
+      },
+      {
+        "month": "December\u2013January (candidate)",
+        "resource": "End-to-End Multimodal AI: Fine-Tuning, Fusion, and MLOps",
+        "url": "https://www.coursera.org/learn/end-to-end-multimodal-ai-fine-tuning-fusion-and-mlops",
+        "scope": "Selected modules only if adopted. The audit found multimodal retrieval already covered by a CU course and a from-scratch phase, so this is not recommended. Fine-tuning is not a dependency for the first release regardless of the course title.",
+        "deliverable": "Would support the transcript-only, visual-only and combined comparison, which the project will produce either way.",
+        "status": "Candidate \u2014 syllabus verification needed",
+        "caveat": "URL confirmed live on 2026-10-26, but the title, provider, syllabus and access terms could not be read: Coursera serves a scripted shell to automated fetches and the verification run did not complete. Nothing about its contents is asserted here."
+      },
+      {
+        "month": "Alternative (not scheduled)",
+        "resource": "Vision & Audio AI Systems Specialization",
+        "url": "https://www.coursera.org/specializations/vision-and-audio-ai-systems",
+        "scope": "Supplementary only, and only if the multimodal candidate proves unavailable or unsuitable. A full specialization and a primary multimodal course would not both be taken. Audio understanding beyond transcription stays a stretch goal.",
+        "deliverable": "None assigned.",
+        "status": "Candidate \u2014 syllabus verification needed",
+        "caveat": "URL confirmed live on 2026-10-26, but the title, provider, syllabus and access terms could not be read: Coursera serves a scripted shell to automated fetches and the verification run did not complete. Nothing about its contents is asserted here."
+      },
+      {
+        "month": "February 2027 (candidate)",
+        "resource": "PyTorch: Advanced Architectures and Deployment",
+        "url": "https://www.coursera.org/learn/pytorch-advanced-architectures-and-deployment",
+        "scope": "Selected deployment modules only if adopted. The audit found deployment and profiling already covered by two Duke courses in the AdTech pathway, one naming MLflow, so this is not recommended.",
+        "deliverable": "Would support profiling the retrieval pipeline and testing one justified optimisation.",
+        "status": "Candidate \u2014 syllabus verification needed",
+        "caveat": "URL confirmed live on 2026-10-26, but the title, provider, syllabus and access terms could not be read: Coursera serves a scripted shell to automated fetches and the verification run did not complete. Nothing about its contents is asserted here."
+      }
+    ]
+  }
+}

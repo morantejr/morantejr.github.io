@@ -266,7 +266,7 @@ h3{margin:18px 0 6px;font-size:40px;letter-spacing:-0.03em;font-weight:500}
 </div>
 
 <section id="work" class="wrap sec">
-  <div class="sec-head"><h2>Selected Work</h2><div class="mono kicker">04 projects</div></div>
+  <div class="sec-head"><h2>Selected Work</h2><div class="mono kicker">05 projects</div></div>
 
   <article class="proj">
     <div>
@@ -365,6 +365,46 @@ h3{margin:18px 0 6px;font-size:40px;letter-spacing:-0.03em;font-weight:500}
           <div class="mono arrow">↓ produces</div>
           <div class="layer"><div class="mono pl">Decision layer</div><div class="layer-t">Granular reads that add up</div><div class="row-d">No user-level identifiers required</div></div>
         </div>
+      </div>
+    </div>
+  </article>
+
+  <article class="proj">
+    <div>
+      <div class="proj-meta"><span class="mono num">05</span><span class="mono status warm">Planned &middot; Nov 2026 – Mar 2027</span></div>
+      <h3>SceneSearch</h3>
+      <div class="proj-sub">Multimodal video retrieval with reproducible evaluation</div>
+      <p class="proj-lede">Search a video library in plain language and get back a playable, timestamped moment with the evidence that supports it. Two independent tracks, the spoken transcript and sampled frames, indexed separately and retrieved together. The question is when adding the visual track actually helps, and what it costs in latency and indexing time.</p>
+      <div class="facts">
+        <div class="mono fl">Status</div>
+        <div>Planned. Nothing is built, no experiment has run, and every measurement on the project page reads not yet measured.</div>
+        <div class="mono fl">Research question</div>
+        <div>When does combining visual evidence with transcript retrieval improve video search, and what are the quality, latency and cost trade-offs?</div>
+        <div class="mono fl">Honest limit</div>
+        <div>A text-only reranker reads the transcript, not the picture. It cannot confirm that something appears on screen, and this project will not claim it can.</div>
+      </div>
+      <div class="tags">
+        <span class="tag dashed">Python</span><span class="tag dashed">Embeddings</span><span class="tag dashed">Retrieval</span><span class="tag dashed">Evaluation</span><span class="tag dashed">Profiling</span>
+      </div>
+      <div class="proj-links">
+        <a class="mono lnk" href="ai-engineering/scenesearch/">Project plan</a>
+        <span class="mono ae-spec-t">Repository coming soon</span>
+      </div>
+    </div>
+    <div class="panel dashed-panel">
+      <div class="panel-bar"><i></i><i></i><span class="mono">scenesearch / proposed flow</span></div>
+      <div class="panel-body">
+        <div class="layers">
+          <div class="layer"><div class="mono pl">Ingest</div><div class="layer-t">Owned or licensed video</div><div class="row-d">Provenance and permissions recorded per source</div></div>
+          <div class="mono arrow">&#8595;</div>
+          <div class="split2">
+            <div class="layer"><div class="mono pl">Track A</div><div class="layer-t">Timestamped transcript</div><div class="row-d">Keyword and semantic retrieval</div></div>
+            <div class="layer"><div class="mono pl">Track B</div><div class="layer-t">Sampled frames</div><div class="row-d">Image-text embedding retrieval</div></div>
+          </div>
+          <div class="mono arrow">&#8595;</div>
+          <div class="layer accent"><div class="mono pl">Result</div><div class="layer-t">A playable moment, with its evidence</div><div class="row-d">Combined retrieval, reranked only where a baseline justifies it</div></div>
+        </div>
+        <div class="mono panel-foot"><span>Proposed design, not a built system</span><span>planned</span></div>
       </div>
     </div>
   </article>

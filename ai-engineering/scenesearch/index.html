@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SceneSearch - Multimodal video retrieval with reproducible evaluation. - Joseph Morante</title>
+<meta name="description" content="An AI-engineering project that searches a video library using natural language and returns timestamped moments supported by transcript and visual evidence.">
+<link rel="canonical" href="https://morantejr.github.io/ai-engineering/scenesearch/">
+<meta property="og:title" content="SceneSearch - Multimodal video retrieval with reproducible evaluation. - Joseph Morante">
+<meta property="og:description" content="An AI-engineering project that searches a video library using natural language and returns timestamped moments supported by transcript and visual evidence.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://morantejr.github.io/ai-engineering/scenesearch/">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#08080a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%2308080a'/%3E%3Ctext x='32' y='40' text-anchor='middle' font-family='Helvetica,Arial,sans-serif' font-size='26' font-weight='500' fill='%23e9e9ec'%3EJM%3C/text%3E%3Crect x='20' y='46' width='24' height='2.5' fill='%238fd4d8'/%3E%3C/svg%3E">
+<script>
+(function(){
+  var root=document.documentElement;
+  function themeForHour(h){return (h>=7&&h<19)?'light':'dark';}
+  var forced=(location.search.match(/[?&]theme=(light|dark)\b/)||[])[1];
+  function apply(){
+    var t=forced||themeForHour(new Date().getHours());
+    if(root.getAttribute('data-theme')===t)return;
+    root.setAttribute('data-theme',t);
+    var m=document.querySelector('meta[name="theme-color"]');
+    if(m)m.setAttribute('content',t==='light'?'#f6f6f3':'#08080a');
+    try{window.dispatchEvent(new CustomEvent('themechange',{detail:t}));}catch(e){}
+  }
+  apply();
+  setInterval(apply,60000);
+  window.addEventListener('focus',apply);
+})();
+</script>
+<style>
+/* latin-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../../fonts/ibm-plex-mono-400-latin-ext.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../../fonts/ibm-plex-mono-400-latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../../fonts/ibm-plex-mono-500-latin-ext.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../../fonts/ibm-plex-mono-500-latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+:root{--bg:#08080a;--panel:#0c0c0f;--fg:#e9e9ec;--fg2:#c3c3cb;--mid:#a2a2ac;--dim:#8b8b95;--faint:#6f6f79;--faint2:#5f5f68;--tag:#9a9aa4;--dot:#2f2f36;--line:rgba(255,255,255,0.08);--line2:rgba(255,255,255,0.12);--line3:rgba(255,255,255,0.3);--acc:#8fd4d8;--acc-line:rgba(143,212,216,0.45);--warm:#d4a88f;--sel:#1d3a3d;--nav-bg:rgba(8,8,10,0.72);--btn-hover:#fff;--card-hover:#0c0c10;--fade:rgba(8,8,10,0.62);--globe:1}
+:root[data-theme="light"]{--bg:#f6f6f3;--panel:#ffffff;--fg:#141416;--fg2:#2a2a30;--mid:#4d4d56;--dim:#5e5e68;--faint:#7c7c86;--faint2:#8a8a94;--tag:#5e5e68;--dot:#d6d6d2;--line:rgba(0,0,0,0.09);--line2:rgba(0,0,0,0.13);--line3:rgba(0,0,0,0.3);--acc:#0f7a80;--acc-line:rgba(15,122,128,0.45);--warm:#a5612f;--sel:#cfe9eb;--nav-bg:rgba(246,246,243,0.78);--btn-hover:#000;--card-hover:#fbfbf9;--fade:rgba(246,246,243,0.62);--globe:0.85}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);transition:background-color .35s ease,color .35s ease;font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--fg);text-decoration:none}
+a:hover{color:var(--acc)}
+::selection{background:var(--sel)}
+@keyframes riseIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rise{animation:none!important}}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+.wrap{max-width:1160px;margin:0 auto;padding-left:32px;padding-right:32px}
+.skip{position:absolute;left:-9999px}.skip:focus{left:16px;top:12px;z-index:99;background:var(--fg);color:var(--bg);padding:8px 12px;border-radius:4px}
+section[id]{scroll-margin-top:70px}
+.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:var(--nav-bg);border-bottom:1px solid var(--line)}
+.nav-in{height:62px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:baseline;gap:10px}
+.brand-name{font-size:15px;letter-spacing:-0.01em;font-weight:500}
+.brand-tag{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--faint)}
+.nav-links{display:flex;align-items:center;gap:28px;font-size:13.5px}
+.nav-links a{color:var(--mid)}.nav-links a:hover{color:var(--fg)}
+.btn-outline-sm{display:inline-flex;align-items:center;height:30px;padding:0 13px;border:1px solid var(--line2);border-radius:5px;font-size:13px;color:var(--fg)!important}
+.btn-outline-sm:hover{border-color:var(--acc-line);color:var(--acc)!important}
+.hero-shell{position:relative;overflow:hidden}
+#vanta-bg{position:absolute;top:0;bottom:0;left:0;right:-22vw;z-index:0;pointer-events:none;opacity:0;transition:opacity 1.2s ease}
+#vanta-bg.on{opacity:var(--globe)}
+#vanta-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 0%,var(--fade) 40%,transparent 68%),linear-gradient(180deg,transparent 70%,var(--bg) 100%)}
+.hero{position:relative;z-index:1;padding-top:150px}
+.rise{animation:riseIn .7s ease both}
+.eyebrow{font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin-bottom:34px}
+h1{margin:0;font-size:clamp(48px,7.2vw,96px);line-height:0.98;letter-spacing:-0.035em;font-weight:500}
+.hero-sub{margin-top:22px;font-size:clamp(17px,2vw,22px);color:var(--acc);letter-spacing:-0.01em;line-height:1.4}
+.hero-lede{margin:30px 0 0;max-width:660px;font-size:19px;line-height:1.6;color:var(--mid);text-wrap:pretty}
+.hero-actions{margin-top:46px;display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.btn-solid{display:inline-flex;align-items:center;height:44px;padding:0 22px;border-radius:6px;background:var(--fg);color:var(--bg);font-size:14.5px;font-weight:500}
+.btn-solid:hover{background:var(--btn-hover);color:var(--bg)}
+.btn-outline{display:inline-flex;align-items:center;height:44px;padding:0 22px;border-radius:6px;border:1px solid var(--line2);font-size:14.5px}
+.btn-outline:hover{border-color:var(--line3);color:var(--fg)}
+.hero-links{display:flex;gap:20px;margin-left:14px;font-size:12px;letter-spacing:0.06em}
+.hero-links a,.lnk{color:var(--dim);font-size:12px;letter-spacing:0.06em}
+.hero-links a:hover,.lnk:hover{color:var(--acc)}
+.stats{margin-top:110px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.stat{background:var(--bg);padding:28px 26px}
+.stat-v{font-size:26px;letter-spacing:-0.02em}
+.stat-l{margin-top:8px;font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint)}
+.sec{padding-top:130px}.sec-sm{padding-top:70px}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line);padding-bottom:22px}
+h2{margin:0;font-size:clamp(32px,4.4vw,54px);letter-spacing:-0.03em;font-weight:500}
+#research h2,#experience h2{font-size:clamp(30px,4vw,48px)}
+.h2-sm{font-size:clamp(28px,3.4vw,40px)}
+.h2-xl{font-size:clamp(38px,6vw,76px);letter-spacing:-0.035em;line-height:1.02}
+.kicker{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--faint)}
+.proj{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:56px;align-items:start;padding:64px 0;border-bottom:1px solid var(--line)}
+.proj.last{border-bottom:0}
+.proj-meta{display:flex;align-items:center;gap:12px}
+.num{font-size:11px;letter-spacing:0.2em;color:var(--acc)}
+.status{font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint)}
+.status.warm{color:var(--warm)}
+h3{margin:18px 0 6px;font-size:40px;letter-spacing:-0.03em;font-weight:500}
+.proj-sub{font-size:19px;color:var(--acc);letter-spacing:-0.01em;line-height:1.35}
+.proj-lede{margin:20px 0 0;font-size:16.5px;line-height:1.62;color:var(--mid);text-wrap:pretty}
+.facts{margin-top:26px;display:grid;grid-template-columns:auto 1fr;gap:14px 22px;font-size:14.5px;line-height:1.6;color:var(--mid)}
+.fl{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);padding-top:3px;white-space:nowrap}
+.tags{margin-top:26px;display:flex;flex-wrap:wrap;gap:7px}
+.tag{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:11.5px;color:var(--tag);border:1px solid var(--line2);border-radius:4px;padding:5px 9px}
+.why{margin:26px 0 0;max-width:560px;font-size:15px;line-height:1.55;color:var(--fg2);text-wrap:pretty}
+.why b{font-weight:500;color:var(--acc)}
+.proj-links{margin-top:18px;display:flex;flex-wrap:wrap;align-items:center;gap:16px}
+.btn-solid-sm{display:inline-flex;align-items:center;height:40px;padding:0 18px;border-radius:6px;background:var(--fg);color:var(--bg);font-size:13.5px;font-weight:500;font-family:'IBM Plex Mono',ui-monospace,monospace}
+.btn-solid-sm:hover{background:var(--btn-hover);color:var(--bg)}
+.panel{border:1px solid var(--line2);border-radius:10px;background:var(--panel);overflow:hidden}
+.panel-bar{height:34px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px;padding:0 14px;overflow:hidden}
+.panel-bar i{width:7px;height:7px;border-radius:50%;background:var(--dot);flex:none}
+.panel-bar span{font-size:10.5px;color:var(--faint2);margin-left:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.panel-body{padding:22px}
+.pl{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint)}
+.rows{margin-top:14px;display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.row{background:var(--panel);padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.row-t{font-size:13.5px;color:var(--fg2);line-height:1.4}
+.row-d{margin-top:3px;font-size:12.5px;color:var(--dim);line-height:1.45}
+.row-v{font-size:13px;color:var(--acc);white-space:nowrap}
+.panel-foot{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;font-size:10.5px;color:var(--faint2)}
+.panel-foot span:last-child{white-space:nowrap;flex:none}
+.checks{margin-top:14px;display:flex;flex-direction:column;gap:12px}
+.chk{display:flex;align-items:center;gap:12px;font-size:13.5px;color:var(--dim)}
+.chk span{width:14px;height:14px;border-radius:50%;border:1px dashed var(--line3);flex:none}
+.chk.done{color:var(--fg2)}.chk.done span{border:0;background:var(--acc);box-shadow:inset 0 0 0 4px var(--panel)}
+.layers{display:flex;flex-direction:column;align-items:stretch}
+.layer{border:1px solid var(--line2);border-radius:6px;padding:14px 16px}
+.layer.accent{border-color:var(--acc-line)}
+.layer-t{margin-top:6px;font-size:15px;color:var(--fg)}
+.arrow{text-align:center;font-size:10.5px;color:var(--faint2);padding:8px 0;letter-spacing:0.08em}
+.cards{margin-top:30px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.cards.one{grid-template-columns:1fr}
+.card{display:block;background:var(--bg);padding:28px 26px;transition:background .2s}
+.card.link:hover{background:var(--card-hover)}
+.card-t{margin-top:12px;font-size:21px;letter-spacing:-0.015em;line-height:1.3;color:var(--fg)}
+.card-d{margin-top:10px;font-size:14.5px;line-height:1.6;color:var(--mid)}
+.tl{margin-top:10px;display:grid;grid-template-columns:170px 24px minmax(0,1fr);column-gap:22px}
+.tl-d{font-size:11.5px;letter-spacing:0.08em;color:var(--faint);padding-top:40px;white-space:nowrap}
+.tl-dot{position:relative;border-left:1px solid var(--line);margin-left:11px}
+.tl-dot span{position:absolute;left:-5px;top:43px;width:9px;height:9px;border-radius:50%;background:var(--bg);border:1px solid var(--line3)}
+.tl-dot span.on{background:var(--acc);border-color:var(--acc)}
+.tl-b{padding:36px 0 36px;border-bottom:1px solid var(--line)}
+.tl-b:last-child{border-bottom:0}
+.tl-co{font-size:22px;letter-spacing:-0.02em}
+.tl-role{margin-top:4px;font-size:15px;color:var(--acc)}
+.tl-b p{margin:14px 0 0;max-width:680px;font-size:15px;line-height:1.65;color:var(--mid)}
+.tl-b .tags{margin-top:18px}
+.split{display:grid;grid-template-columns:minmax(0,0.8fr) minmax(0,2fr);gap:56px;border-top:1px solid var(--line);padding-top:30px}
+.body-lg{margin:0;font-size:19px;line-height:1.6;color:var(--fg2);text-wrap:pretty}
+.body-md{margin:22px 0 0;font-size:16px;line-height:1.65;color:var(--mid);text-wrap:pretty}
+.ul{border-bottom:1px solid var(--acc-line)}
+.skills{margin-top:36px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 32px;font-size:14px;line-height:1.6;color:var(--mid)}
+.skill .pl{margin-bottom:8px}
+.contact{padding-top:150px;padding-bottom:120px}
+.foot{margin-top:90px;padding-top:26px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:11px;letter-spacing:0.08em;color:var(--faint2)}
+@media (max-width:900px){
+ .proj{grid-template-columns:1fr;gap:36px}
+ .split{grid-template-columns:1fr;gap:24px}
+ .nav-links a:not(.btn-outline-sm):not(.nav-keep){display:none}
+ .brand-tag{display:none}
+ .nav-keep{white-space:nowrap;font-size:12.5px}
+ .nav-links{gap:13px}
+ .brand-name{white-space:nowrap;font-size:14px}
+}
+@media (max-width:640px){
+ #vanta-bg{right:-45vw}
+ #vanta-bg::after{background:linear-gradient(90deg,var(--bg) 0%,var(--fade) 55%,transparent 100%),linear-gradient(180deg,transparent 60%,var(--bg) 100%)}
+ .wrap{padding-left:20px;padding-right:20px}
+ .hero{padding-top:90px}
+ .stats{margin-top:70px}
+ .sec{padding-top:90px}
+ h3{font-size:34px}
+ .hero-links{margin-left:0;width:100%;margin-top:8px}
+ .facts{grid-template-columns:1fr;gap:4px}
+ .facts .fl{padding-top:12px}
+ .cards,.skills{grid-template-columns:1fr}
+ .tl{grid-template-columns:18px minmax(0,1fr);column-gap:14px}
+ .tl-d{grid-column:2;padding-top:30px}
+ .tl-dot{grid-row:span 2;margin-left:6px}
+ .tl-dot span{top:33px}
+ .tl-b{grid-column:2;padding-top:8px}
+ .row{flex-direction:column;align-items:flex-start;gap:6px}
+ .contact{padding-top:100px;padding-bottom:80px}
+}
+.tag.dashed{border-style:dashed;color:var(--faint)}
+.dashed-panel{border-style:dashed;border-color:var(--line3)}
+.split2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:640px){.split2{grid-template-columns:1fr}}
+
+/* --- AI Engineering hub ------------------------------------------------- */
+.ae-main{padding-bottom:40px}
+.ae-head{padding-top:140px}
+.ae-head h1{font-size:clamp(32px,4.6vw,58px);line-height:1.05;max-width:15ch}
+.ae-lede{margin:26px 0 0;max-width:700px;font-size:18px;line-height:1.6;color:var(--acc);text-wrap:pretty}
+.ae-stand{margin:22px 0 0;max-width:700px;font-size:16px;line-height:1.65;color:var(--mid);text-wrap:pretty}
+.ae-disclosure{margin:30px 0 0;max-width:720px;font-size:14px;line-height:1.6;color:var(--faint);border-left:2px solid var(--line2);padding-left:14px;text-wrap:pretty}
+.ae-stats{margin-top:52px}
+.ae-sec{padding-top:88px}
+.ae-intro{margin:26px 0 0;max-width:740px;font-size:16px;line-height:1.65;color:var(--mid);text-wrap:pretty}
+.ae-grid{margin-top:30px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.ae-grid.one{grid-template-columns:1fr}
+.ae-grid > .card{background:var(--bg)}
+.ae-h3{margin:10px 0 0;font-size:19px;letter-spacing:-0.015em;line-height:1.3;font-weight:500;color:var(--fg)}
+.ae-crumb{margin:0 0 18px;font-size:12px;letter-spacing:0.08em;color:var(--faint)}
+.ae-crumb a{color:var(--faint)}.ae-crumb a:hover{color:var(--acc)}
+.ae-entry{display:block;background:var(--bg);padding:26px 24px;transition:background .2s}
+.ae-entry:hover{background:var(--card-hover)}
+.ae-entry .ae-h3{color:var(--fg)}
+.ae-entry-d{margin:10px 0 0;font-size:14.5px;line-height:1.6;color:var(--mid)}
+.ae-tally{margin:16px 0 0;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint)}
+.ae-pill{display:inline-flex;align-items:center;gap:7px;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint)}
+.ae-dot{width:7px;height:7px;border-radius:50%;flex:none;border:1px solid var(--line3)}
+.ae-completed .ae-dot{background:var(--acc);border-color:var(--acc)}
+.ae-in-progress .ae-dot{background:var(--warm);border-color:var(--warm)}
+.ae-completed{color:var(--fg2)}.ae-in-progress{color:var(--warm)}
+.ae-ph-tag{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint2);border:1px dashed var(--line2);border-radius:4px;padding:3px 7px}
+.ae-ph{opacity:0.72}
+.ae-meta{margin:8px 0 0;font-size:12px;letter-spacing:0.06em;color:var(--faint)}
+.ae-kind{font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--acc)}
+.ae-facts{margin-top:18px;font-size:14px}
+.ae-facts dd{margin:0}
+.ae-links{margin:18px 0 0;display:flex;flex-wrap:wrap;gap:16px}
+.tags.ae-plain{list-style:none;padding:0}
+.ae-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+/* specialization blocks */
+.ae-spec{border:1px solid var(--line);margin-top:22px}
+.ae-spec-h{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:18px 22px;border-bottom:1px solid var(--line)}
+.ae-spec-n{font-size:17px;letter-spacing:-0.015em;color:var(--fg)}
+.ae-spec-t{font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);white-space:nowrap}
+.ae-spec-t.pathway{color:var(--acc)}
+.ae-spec-t.dev{color:var(--warm)}
+.ae-rows{display:flex;flex-direction:column}
+.ae-row{display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:18px;align-items:baseline;padding:13px 22px;border-top:1px solid var(--line)}
+.ae-row:first-child{border-top:0}
+.ae-code{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12px;color:var(--faint)}
+.ae-ct{font-size:14.5px;line-height:1.45;color:var(--fg2)}
+.ae-xl{display:block;margin-top:3px;font-size:11.5px;color:var(--faint)}
+.ae-note-inline{display:block;margin-top:5px;font-size:12px;line-height:1.5;color:var(--warm)}
+/* competency + roadmap */
+.ae-skills{margin:18px 0 0;padding:0;list-style:none}
+.ae-skill{margin-top:14px;padding-left:12px;border-left:2px solid var(--line2)}
+.ae-s-demonstrated{border-left-color:var(--acc)}
+.ae-s-practicing{border-left-color:var(--warm)}
+.ae-state{display:block;font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint)}
+.ae-skill-n{display:block;margin-top:4px;font-size:14px;line-height:1.5;color:var(--fg2)}
+.ae-stage{padding:28px 0;border-bottom:1px solid var(--line)}
+.ae-stage:last-child{border-bottom:0}
+.ae-stage-h{font-size:19px;margin:0}
+.ae-stage-s{margin:8px 0 0;font-size:14.5px;line-height:1.6;color:var(--mid);max-width:680px}
+.ae-artifact{padding:34px 0;border-bottom:1px solid var(--line)}
+.ae-artifact:last-child{border-bottom:0}
+.ae-artifact-h{font-size:26px;margin-top:12px}
+.ae-artifact .ae-facts{max-width:770px}
+.ae-note{margin:26px 0 0;max-width:740px;font-size:13.5px;line-height:1.6;color:var(--faint);border-left:2px solid var(--line2);padding-left:14px}
+.ae-back{margin-top:70px;padding-top:24px;border-top:1px solid var(--line)}
+@media (max-width:640px){
+ .ae-head{padding-top:86px}
+ .ae-sec{padding-top:66px}
+ .ae-grid{grid-template-columns:1fr}
+ .ae-row{grid-template-columns:1fr;gap:4px;padding:14px 18px}
+ .ae-spec-h{padding:16px 18px}
+ .ae-artifact-h{font-size:22px}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="../../"><span class="brand-name">Joseph Morante</span><span class="mono brand-tag">Measurement</span></a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="../../#work">Work</a>
+      <a href="../../#research">Research</a>
+      <a class="nav-keep" href="../../ai-engineering/" aria-current="page">AI Engineering</a>
+      <a href="../../#experience">Experience</a>
+      <a href="../../#about">About</a>
+      <a class="nav-keep" href="../../bookshelf/">Bookshelf</a>
+      <a class="btn-outline-sm" href="../../JosephMorante_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+    </nav>
+  </div>
+</header>
+<main class="ae-main" id="main">
+<header class="wrap ae-head">
+  <p class="mono ae-crumb"><a href="../../">Portfolio</a> / <a href="../../ai-engineering/">AI Engineering</a> / SceneSearch</p>
+  <div class="ae-top"><span class="ae-pill ae-planned"><span class="ae-dot" aria-hidden="true"></span>Planned</span><span class="mono ae-spec-t">November 2026 – March 2027</span></div>
+  <h1>SceneSearch</h1>
+  <p class="ae-lede">Multimodal video retrieval with reproducible evaluation.</p>
+  <p class="ae-stand">An AI-engineering project that searches a video library using natural language and returns timestamped moments supported by transcript and visual evidence.</p>
+  <p class="ae-disclosure">Planned. Nothing is built. Every measurement on this page reads &quot;not yet measured&quot; because no experiment has run. No repository or demo exists yet. Links appear here when there is something real to point at.</p>
+  <p class="ae-links"><span class="mono ae-spec-t">Repository coming soon</span>
+    <span class="mono ae-spec-t">Demo planned</span></p>
+</header>
+
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>Overview</h2><div class="mono kicker">Problem and scope</div></div>
+  <dl class="facts ae-facts"><dt class="mono fl">The problem</dt><dd>Editors, creators and researchers need to find a specific moment in a video library without watching everything. Transcript search alone misses what is shown rather than said, and browsing by eye does not scale past a few hours of footage.</dd><dt class="mono fl">The approach</dt><dd>Index a small video collection along two independent tracks, the spoken transcript and sampled frames, then retrieve across both and return a playable, timestamped moment with the evidence that supports it.</dd><dt class="mono fl">Initial scope</dt><dd>Owned or appropriately licensed video, one language, a collection starting at roughly two to five hours. Audio extraction and timestamped transcription, timestamped frame sampling, keyword and semantic transcript retrieval, image-text embedding retrieval over frames, combined retrieval, and playable results with supporting transcript excerpts or frames.</dd><dt class="mono fl">Example queries</dt><dd>Find the moment where the presenter demonstrates the dashboard, rather than just mentioning it.<br>Find a nighttime crowd scene with no visible presenter.</dd></dl>
+</section>
+
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>Research question</h2><div class="mono kicker">Open, not answered</div></div>
+  <p class="ae-lede" style="margin-top:24px">When does combining visual evidence with transcript retrieval improve video search, and what are the quality, latency and cost trade-offs?</p>
+  <div class="split2" style="margin-top:28px">
+    <div><p class="mono pl">To investigate</p><ul class="ae-comps"><li>Whether adding visual retrieval improves recall over transcript retrieval alone, and on which query types.</li><li>What frame-sampling density is enough before extra frames stop paying for themselves.</li><li>What combining the two tracks costs in query latency and indexing time.</li><li>How the system should behave when nothing in the library actually answers the query.</li></ul></div>
+    <div><p class="mono pl">Already established</p><ul class="ae-comps"><li>Nothing yet. No result on this page has been measured.</li></ul></div>
+  </div>
+  <p class="ae-note">A text-only reranker reads the transcript, not the picture. It cannot confirm that something appears on screen, and this project will not claim that it can.</p>
+</section>
+
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>Proposed architecture</h2><div class="mono kicker">Design, not built</div></div>
+  <p class="ae-intro">Proposed design, not a built system. No screenshot on this page is a real interface.</p>
+  <div class="panel dashed-panel" style="margin-top:28px">
+    <div class="panel-bar"><i></i><i></i><span class="mono">scenesearch / proposed flow</span></div>
+    <div class="panel-body"><div class="layers"><div class="layer"><div class="mono pl">Stage 1</div><div class="layer-t">Video ingestion</div><div class="row-d">Owned or licensed source files, with provenance and permissions recorded per video.</div></div><div class="mono arrow">&#8595;</div><div class="layer"><div class="mono pl">Stage 2</div><div class="layer-t">Transcription and frame sampling</div><div class="row-d">Audio extracted and transcribed with timestamps; frames sampled at a chosen density, each keeping its timecode.</div></div><div class="mono arrow">&#8595;</div><div class="layer"><div class="mono pl">Stage 3</div><div class="layer-t">Text and visual embeddings</div><div class="row-d">Transcript segments embedded for semantic search; frames embedded in a shared image-text space.</div></div><div class="mono arrow">&#8595;</div><div class="layer"><div class="mono pl">Stage 4</div><div class="layer-t">Persistent indexes and metadata</div><div class="row-d">Vector indexes plus a metadata store holding timecodes, source video and provenance.</div></div><div class="mono arrow">&#8595;</div><div class="layer"><div class="mono pl">Stage 5</div><div class="layer-t">Candidate retrieval and optional reranking</div><div class="row-d">Retrieve candidates from each track, combine them, and rerank only where a baseline shows it is justified.</div></div><div class="mono arrow">&#8595;</div><div class="layer"><div class="mono pl">Stage 6</div><div class="layer-t">Timestamped playback with evidence</div><div class="row-d">A result plays at its timecode and shows the transcript excerpt or frame that produced it.</div></div></div>
+      <div style="margin-top:22px"><div class="layer accent"><div class="mono pl">Cross-cutting</div><div class="layer-t">Evaluation</div><div class="row-d">A fixed query set and scoring harness that any configuration can be run against.</div></div><div class="layer accent"><div class="mono pl">Cross-cutting</div><div class="layer-t">Profiling</div><div class="row-d">Latency, indexing time, memory and storage measured per configuration rather than estimated.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>Baselines and experiments</h2><div class="mono kicker">Planned</div></div>
+  <section class="ae-spec" style="margin-top:26px"><div class="ae-rows"><div class="ae-row"><span class="ae-code">1</span><span class="ae-ct">Keyword transcript retrieval<span class="ae-xl">The floor. If a later system cannot beat this, it is not earning its complexity.</span></span><span></span></div><div class="ae-row"><span class="ae-code">2</span><span class="ae-ct">Semantic transcript retrieval<span class="ae-xl">Catches paraphrase the keyword baseline misses.</span></span><span></span></div><div class="ae-row"><span class="ae-code">3</span><span class="ae-ct">Visual retrieval<span class="ae-xl">Frames only, no transcript. The test for queries about what is shown.</span></span><span></span></div><div class="ae-row"><span class="ae-code">4</span><span class="ae-ct">Combined transcript and visual retrieval<span class="ae-xl">The configuration the research question is actually about.</span></span><span></span></div><div class="ae-row"><span class="ae-code">5</span><span class="ae-ct">Optional reranking<span class="ae-xl">Added only if a baseline comparison shows a gap worth closing.</span></span><span></span></div></div></section>
+  <p class="mono pl" style="margin-top:30px">Planned experiments</p>
+  <ul class="ae-comps"><li>Frame-sampling density against retrieval quality and indexing cost.</li><li>Embedding batch sizes against throughput.</li><li>Candidate count against reranking latency.</li><li>Smaller against larger embedding models, if feasible.</li><li>CPU and GPU placement, chosen in response to a measured bottleneck rather than in advance.</li></ul>
+</section>
+
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>Evaluation</h2><div class="mono kicker">Nothing measured yet</div></div>
+  <div class="panel" style="margin-top:26px">
+    <div class="panel-bar"><i></i><i></i><span class="mono">scenesearch / planned measures</span></div>
+    <div class="panel-body"><div class="rows"><div class="row"><div><div class="row-t">Recall@5 and Recall@10</div></div><div class="mono row-v">Not yet measured</div></div><div class="row"><div><div class="row-t">Ranking quality (nDCG where labels support it)</div></div><div class="mono row-v">Not yet measured</div></div><div class="row"><div><div class="row-t">Temporal overlap with labelled relevant intervals</div></div><div class="mono row-v">Not yet measured</div></div><div class="row"><div><div class="row-t">No-answer and false-match behaviour</div></div><div class="mono row-v">Not yet measured</div></div><div class="row"><div><div class="row-t">Query latency</div></div><div class="mono row-v">Not yet measured</div></div><div class="row"><div><div class="row-t">Indexing time and cost per hour of video</div></div><div class="mono row-v">Not yet measured</div></div><div class="row"><div><div class="row-t">Memory and storage use</div></div><div class="mono row-v">Not yet measured</div></div></div>
+      <div class="mono panel-foot"><span>No experiment has run</span><span>planned</span></div>
+    </div>
+  </div>
+  <p class="mono pl" style="margin-top:30px">Evaluation design</p>
+  <ul class="ae-comps"><li>Begin with 50 to 75 manually reviewed queries, expanding toward roughly 100 to 150 if that proves feasible.</li><li>Cover spoken-content, visual-only, mixed-evidence, near-match and no-answer queries.</li><li>Separate development and held-out videos where feasible, and do not tune against held-out results.</li><li>Report uncertainty and failure modes rather than a single headline number.</li><li>Do not rely on model-generated ground truth alone; every query in the set is reviewed by hand.</li></ul>
+</section>
+
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>Month by month</h2><div class="mono kicker">November to March</div></div>
+  <p class="ae-intro">A working envelope of roughly 10 to 12 hours a week, adjustable. This is a plan, not a commitment, and it is not necessarily time on top of existing study. See the curriculum mapping below.</p>
+      <section class="ae-stage">
+        <div class="ae-top"><span class="ae-pill ae-planned"><span class="ae-dot" aria-hidden="true"></span>Planned</span><span class="mono ae-spec-t">November 2026</span></div>
+        <h3 class="ae-h3 ae-stage-h">Foundations and transcript search</h3>
+        <div class="split2" style="margin-top:16px">
+          <div><p class="mono pl">Learning</p><ul class="ae-comps"><li>PyTorch inference fundamentals</li><li>Tensors, batching, pretrained models</li><li>Embeddings and similarity</li></ul></div>
+          <div><p class="mono pl">Build</p><ul class="ae-comps"><li>Choose a licensed or owned video collection</li><li>Extract transcripts and timestamped frames</li><li>Implement keyword and semantic transcript search</li><li>Return playable timestamped results</li></ul></div>
+        </div>
+        <p class="ae-stage-s"><span class="mono pl">Exit</span> A user can search a small video collection and play a relevant returned segment.</p>
+      </section>
+      <section class="ae-stage">
+        <div class="ae-top"><span class="ae-pill ae-planned"><span class="ae-dot" aria-hidden="true"></span>Planned</span><span class="mono ae-spec-t">December 2026</span></div>
+        <h3 class="ae-h3 ae-stage-h">Visual retrieval and evaluation foundation</h3>
+        <div class="split2" style="margin-top:16px">
+          <div><p class="mono pl">Learning</p><ul class="ae-comps"><li>Image-text embeddings</li><li>Nearest-neighbour search</li><li>Cross-modal retrieval</li></ul></div>
+          <div><p class="mono pl">Build</p><ul class="ae-comps"><li>Frame-based visual search</li><li>Map results back to source-video intervals</li><li>Create 50 to 75 manually reviewed queries</li><li>Establish development and held-out sets</li></ul></div>
+        </div>
+        <p class="ae-stage-s"><span class="mono pl">Exit</span> Transcript-only and visual-only baselines can be compared, with documented failure examples.</p>
+      </section>
+      <section class="ae-stage">
+        <div class="ae-top"><span class="ae-pill ae-planned"><span class="ae-dot" aria-hidden="true"></span>Planned</span><span class="mono ae-spec-t">January 2027</span></div>
+        <h3 class="ae-h3 ae-stage-h">Combined retrieval and controlled experiments</h3>
+        <div class="split2" style="margin-top:16px">
+          <div><p class="mono pl">Learning</p><ul class="ae-comps"><li>Retrieval fusion</li><li>Ranking and reranking</li><li>Retrieval evaluation</li></ul></div>
+          <div><p class="mono pl">Build</p><ul class="ae-comps"><li>Combined retrieval</li><li>Reproducible baseline comparisons</li><li>Expand reviewed queries toward 100 to 150 if feasible</li><li>Measure quality, latency and indexing cost</li></ul></div>
+        </div>
+        <p class="ae-stage-s"><span class="mono pl">Exit</span> A reproducible experiment table showing where combining modalities helps and where it does not.</p>
+      </section>
+      <section class="ae-stage">
+        <div class="ae-top"><span class="ae-pill ae-planned"><span class="ae-dot" aria-hidden="true"></span>Planned</span><span class="mono ae-spec-t">February 2027</span></div>
+        <h3 class="ae-h3 ae-stage-h">Reliability, profiling and external use</h3>
+        <div class="split2" style="margin-top:16px">
+          <div><p class="mono pl">Learning</p><ul class="ae-comps"><li>Deployment</li><li>Profiling</li><li>Optimisation chosen in response to a measured bottleneck</li></ul></div>
+          <div><p class="mono pl">Build</p><ul class="ae-comps"><li>Separate ingestion and query workflows</li><li>Caching, logs and failure handling</li><li>One or two measured optimisation experiments</li><li>A limited public demo</li><li>Proposed usability testing with three to five external participants</li></ul></div>
+        </div>
+        <p class="ae-stage-s"><span class="mono pl">Exit</span> An external user can use the system, and at least one engineering trade-off is measured and written down. Major features freeze at the end of the month.</p>
+      </section>
+      <section class="ae-stage">
+        <div class="ae-top"><span class="ae-pill ae-planned"><span class="ae-dot" aria-hidden="true"></span>Planned</span><span class="mono ae-spec-t">March 2027</span></div>
+        <h3 class="ae-h3 ae-stage-h">Final evaluation and portfolio release</h3>
+        <div class="split2" style="margin-top:16px">
+          
+          <div><p class="mono pl">Build</p><ul class="ae-comps"><li>Run the final held-out evaluation</li><li>Verify clean-environment reproducibility</li><li>Publish documentation and limitations</li><li>Publish the technical report, architecture diagram and short demo</li><li>Prepare a concise and a detailed explanation</li><li>Begin or continue targeted applications and technical outreach</li></ul></div>
+        </div>
+        <p class="ae-stage-s"><span class="mono pl">Exit</span> A complete, inspectable portfolio artifact whose major claims can be defended.</p>
+      </section>
+</section>
+
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>What the curriculum already covers</h2><div class="mono kicker">Audit first</div></div>
+  <p class="ae-intro">Each SceneSearch skill checked against the courses and phases already recorded on this site, before considering anything new.</p>
+  <div class="ae-grid">
+      <article class="card">
+        <div class="ae-top"><span class="mono ae-spec-t dev">Partially covered</span></div>
+        <h3 class="card-t ae-h3">PyTorch inference fundamentals</h3>
+        <p class="mono pl" style="margin-top:14px">Already in the plan</p>
+        <ul class="ae-comps"><li>CSCA 5642 Introduction to Deep Learning</li><li>Phase 03: Deep Learning Core</li></ul>
+        <p class="card-d">Deep-learning fundamentals are covered twice over. What is not established from the recorded titles is PyTorch specifically: tensor handling, batching for inference, and moving models between CPU and GPU. The from-scratch phase is deliberately framework-free, which is useful for understanding and does not by itself teach the framework.</p>
+      </article>
+      <article class="card">
+        <div class="ae-top"><span class="mono ae-spec-t pathway">Covered</span></div>
+        <h3 class="card-t ae-h3">Image-text embeddings and multimodal retrieval</h3>
+        <p class="mono pl" style="margin-top:14px">Already in the plan</p>
+        <ul class="ae-comps"><li>CSCA 5422 Modern AI Models for Vision and Multimodal Understanding</li><li>Phase 12: Multimodal AI</li><li>Phase 04: Computer Vision</li></ul>
+        <p class="card-d">Already in the plan in both curricula. One CU course names multimodal understanding directly, and a from-scratch phase is dedicated to it. No addition is warranted on coverage grounds.</p>
+      </article>
+      <article class="card">
+        <div class="ae-top"><span class="mono ae-spec-t dev">Gap</span></div>
+        <h3 class="card-t ae-h3">Nearest-neighbour search and retrieval fusion</h3>
+        <p class="mono pl" style="margin-top:14px">Already in the plan</p>
+        <ul class="ae-comps"><li>CSCA 5454 Advanced Data Structures, RSA and Quantum Algorithms</li><li>Graph Search, Shortest Paths, and Data Structures</li></ul>
+        <p class="card-d">Classical data structures and graph search are covered. Approximate nearest-neighbour search over vectors, and combining two ranked lists into one, are not. This is the clearest genuine gap, and it is narrow enough to close with a documentation reference and the project itself rather than a course.</p>
+      </article>
+      <article class="card">
+        <div class="ae-top"><span class="mono ae-spec-t dev">Partially covered</span></div>
+        <h3 class="card-t ae-h3">Ranking and retrieval evaluation</h3>
+        <p class="mono pl" style="margin-top:14px">Already in the plan</p>
+        <ul class="ae-comps"><li>mta-audit</li><li>Agent reliability study</li><li>Causal Inference</li><li>Regression Modeling for Marketers</li><li>APPA 5003 Statistical Estimation</li></ul>
+        <p class="card-d">Evaluation design is the strongest thing on this site: two shipped artifacts turn on held-out evaluation, pre-registration and baselines allowed to win. What is missing is the information-retrieval vocabulary specifically, Recall@k and nDCG, which is a small amount of reading on top of practice that already exists.</p>
+      </article>
+      <article class="card">
+        <div class="ae-top"><span class="mono ae-spec-t dev">Gap</span></div>
+        <h3 class="card-t ae-h3">Timestamped video processing</h3>
+        <p class="mono pl" style="margin-top:14px">Already in the plan</p>
+        <ul class="ae-comps"><li>Phase 06: Speech &amp; Audio</li></ul>
+        <p class="card-d">One from-scratch phase touches the audio side, which is where transcription lives. Video decoding, frame sampling and keeping timecodes aligned across tracks appear nowhere. This is engineering work rather than course material, and the project is the natural place to learn it.</p>
+      </article>
+      <article class="card">
+        <div class="ae-top"><span class="mono ae-spec-t pathway">Covered</span></div>
+        <h3 class="card-t ae-h3">Deployment and profiling</h3>
+        <p class="mono pl" style="margin-top:14px">Already in the plan</p>
+        <ul class="ae-comps"><li>DevOps, DataOps, MLOps (Duke)</li><li>MLOps Tools: MLflow and Hugging Face (Duke)</li><li>Phase 17: Infrastructure &amp; Production</li><li>CSCA 5028 Applications of Software Architecture for Big Data</li></ul>
+        <p class="card-d">Already selected in the AdTech pathway, including a course that names MLflow directly. Adding another deployment course would duplicate a commitment already made.</p>
+      </article>
+  </div>
+</section>
+
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>Sequencing</h2><div class="mono kicker">Undetermined</div></div>
+  <p class="ae-lede" style="margin-top:24px">No course anywhere on this site carries a start date, a completion date or an hours estimate, and every one of the 53 records reads Planned. Only the from-scratch pathway is marked in progress, and all twenty of its phases are themselves Planned.</p>
+  <ul class="ae-comps" style="margin-top:20px"><li>I cannot say whether any foundation is scheduled before or after SceneSearch needs it, because nothing is scheduled at all. Every sequencing question is undetermined rather than satisfied.</li><li>I cannot say whether 10 to 12 hours a week is additional time or shared time, because existing weekly study time is not recorded anywhere. No claim is made here that the combined plan is feasible.</li><li>The foundations SceneSearch leans on hardest, deep learning, computer vision and multimodal understanding, are all Planned with no date. That is the dependency to resolve before November, by scheduling them, by narrowing the project, or by accepting that the project teaches them.</li></ul>
+</section>
+
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>Proposed changes &mdash; approval needed</h2><div class="mono kicker">Not applied</div></div>
+  <p class="ae-intro">Nothing below has been added to the curriculum. These are proposals that need your decision, kept separate from the established plan.</p>
+      <article class="ae-artifact">
+        <div class="ae-top"><span class="mono ae-kind">Possible addition</span></div>
+        <h3 class="ae-h3" style="font-size:20px">Add a PyTorch fundamentals course for November</h3>
+        <dl class="facts ae-facts"><dt class="mono fl">Gap</dt><dd>PyTorch inference fundamentals (partial)</dd><dt class="mono fl">Milestone</dt><dd>November 2026</dd><dt class="mono fl">The case for</dt><dd>The one candidate with a real argument. November&#x27;s build needs a reproducible embedding pipeline in the first month, and the recorded deep-learning coverage does not establish framework-specific skill.</dd><dt class="mono fl">The case against</dt><dd>It is an addition to a curriculum that already holds 53 planned courses, none of them started. Applying an existing deep-learning course would be preferable if its syllabus covers PyTorch, which the recorded titles do not settle.</dd><dt class="mono fl">Recommendation</dt><dd>Hold until either the candidate syllabus or the existing deep-learning syllabus is checked. Adding a course should be the last resort, not the first.</dd></dl>
+      </article>
+      <article class="ae-artifact">
+        <div class="ae-top"><span class="mono ae-kind">No curriculum change</span></div>
+        <h3 class="ae-h3" style="font-size:20px">Close the retrieval gap with documentation, not a course</h3>
+        <dl class="facts ae-facts"><dt class="mono fl">Gap</dt><dd>Nearest-neighbour search and retrieval fusion (gap)</dd><dt class="mono fl">Milestone</dt><dd>January 2027</dd><dt class="mono fl">The case for</dt><dd>The Sentence Transformers retrieve-and-rerank guide covers candidate retrieval and reranking directly, at the scale the gap actually is. It is a reference to read, not a credential to collect.</dd><dt class="mono fl">The case against</dt><dd>None. This is the cheapest option that closes the gap.</dd><dt class="mono fl">Recommendation</dt><dd>Adopt. Reference material, scheduled for January, no change to the course plan.</dd></dl>
+      </article>
+      <article class="ae-artifact">
+        <div class="ae-top"><span class="mono ae-kind">No curriculum change</span></div>
+        <h3 class="ae-h3" style="font-size:20px">Learn video processing by doing it</h3>
+        <dl class="facts ae-facts"><dt class="mono fl">Gap</dt><dd>Timestamped video processing (gap)</dd><dt class="mono fl">Milestone</dt><dd>November 2026</dd><dt class="mono fl">The case for</dt><dd>Decoding video, sampling frames and keeping timecodes aligned is engineering practice. It is learned faster by building the ingestion stage than by taking a course about it.</dd><dt class="mono fl">The case against</dt><dd>None identified.</dd><dt class="mono fl">Recommendation</dt><dd>Adopt. The project absorbs this gap.</dd></dl>
+      </article>
+      <article class="ae-artifact">
+        <div class="ae-top"><span class="mono ae-kind">Recommend against</span></div>
+        <h3 class="ae-h3" style="font-size:20px">Treat the multimodal and advanced-deployment candidates as unnecessary for now</h3>
+        <dl class="facts ae-facts"><dt class="mono fl">Gap</dt><dd>Already covered</dd><dt class="mono fl">The case for</dt><dd>Multimodal retrieval is covered by a CU course and a from-scratch phase already selected. Deployment and profiling are covered by two Duke courses already selected, one of which names MLflow. Adding more would duplicate existing commitments.</dd><dt class="mono fl">The case against</dt><dd>If a syllabus check later shows the existing courses miss something specific, this can be revisited.</dd><dt class="mono fl">Recommendation</dt><dd>Do not add.</dd></dl>
+      </article>
+      <article class="ae-artifact">
+        <div class="ae-top"><span class="mono ae-kind">Decision needed</span></div>
+        <h3 class="ae-h3" style="font-size:20px">Schedule the foundations, or narrow the project</h3>
+        <dl class="facts ae-facts"><dt class="mono fl">Gap</dt><dd>Sequencing</dd><dt class="mono fl">Milestone</dt><dd>Before November 2026</dd><dt class="mono fl">The case for</dt><dd>The curriculum has no dates. SceneSearch has five dated months. Those two cannot both be true without a decision: either the deep-learning and multimodal material gets dates before it is needed, or SceneSearch narrows so it depends on less of it.</dd><dt class="mono fl">Recommendation</dt><dd>Your call. If the two conflict, the brief says reduce SceneSearch scope first and protect the foundations, evaluation and reproducibility.</dd></dl>
+      </article>
+</section>
+
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>SceneSearch learning plan</h2><div class="mono kicker">Build-aligned</div></div>
+  <p class="ae-intro">A build-aligned reading plan, not a requirement to finish several certificates before starting. Course progress and project progress are tracked separately, and studying selected modules is never recorded as completing a course.</p>
+  <section class="ae-spec" style="margin-top:26px"><div class="ae-rows"><div class="ae-row" style="grid-template-columns:120px minmax(0,1fr) auto"><span class="ae-code">January 2027</span><span class="ae-ct"><a class="ul" href="https://sbert.net/examples/sentence_transformer/applications/retrieve_rerank/README.html" target="_blank" rel="noopener">Sentence Transformers — Retrieve &amp; Re-Rank &#8599;</a><span class="ae-xl">Study scope: Documentation and practical reference, not a course and not a certificate. Read the retrieve-then-rerank pattern and implement a baseline from it.</span><span class="ae-xl">Project deliverable: A candidate-retrieval and reranking baseline, evaluated on the reviewed query set.</span><span class="ae-note-inline">Title and page confirmed live on 2026-10-26. A text-only reranker reads the transcript, not the picture, so it cannot confirm that something appears on screen.</span></span><span class="mono ae-spec-t">Planned</span></div><div class="ae-row" style="grid-template-columns:120px minmax(0,1fr) auto"><span class="ae-code">November 2026 (candidate)</span><span class="ae-ct"><a class="ul" href="https://www.coursera.org/learn/pytorch-fundamentals" target="_blank" rel="noopener">PyTorch: Fundamentals &#8599;</a><span class="ae-xl">Study scope: Would cover tensors, batching, inference against training, pretrained models and CPU/GPU placement. Not scheduled: see the proposal above.</span><span class="ae-xl">Project deliverable: A reproducible embedding-inference pipeline that batches inputs and saves embeddings, with tensor shapes and device placement explained.</span><span class="ae-note-inline">URL confirmed live on 2026-10-26, but the title, provider, syllabus and access terms could not be read: Coursera serves a scripted shell to automated fetches and the verification run did not complete. Nothing about its contents is asserted here.</span></span><span class="mono ae-spec-t">Candidate — syllabus verification needed</span></div><div class="ae-row" style="grid-template-columns:120px minmax(0,1fr) auto"><span class="ae-code">December–January (candidate)</span><span class="ae-ct"><a class="ul" href="https://www.coursera.org/learn/end-to-end-multimodal-ai-fine-tuning-fusion-and-mlops" target="_blank" rel="noopener">End-to-End Multimodal AI: Fine-Tuning, Fusion, and MLOps &#8599;</a><span class="ae-xl">Study scope: Selected modules only if adopted. The audit found multimodal retrieval already covered by a CU course and a from-scratch phase, so this is not recommended. Fine-tuning is not a dependency for the first release regardless of the course title.</span><span class="ae-xl">Project deliverable: Would support the transcript-only, visual-only and combined comparison, which the project will produce either way.</span><span class="ae-note-inline">URL confirmed live on 2026-10-26, but the title, provider, syllabus and access terms could not be read: Coursera serves a scripted shell to automated fetches and the verification run did not complete. Nothing about its contents is asserted here.</span></span><span class="mono ae-spec-t">Candidate — syllabus verification needed</span></div><div class="ae-row" style="grid-template-columns:120px minmax(0,1fr) auto"><span class="ae-code">Alternative (not scheduled)</span><span class="ae-ct"><a class="ul" href="https://www.coursera.org/specializations/vision-and-audio-ai-systems" target="_blank" rel="noopener">Vision &amp; Audio AI Systems Specialization &#8599;</a><span class="ae-xl">Study scope: Supplementary only, and only if the multimodal candidate proves unavailable or unsuitable. A full specialization and a primary multimodal course would not both be taken. Audio understanding beyond transcription stays a stretch goal.</span><span class="ae-xl">Project deliverable: None assigned.</span><span class="ae-note-inline">URL confirmed live on 2026-10-26, but the title, provider, syllabus and access terms could not be read: Coursera serves a scripted shell to automated fetches and the verification run did not complete. Nothing about its contents is asserted here.</span></span><span class="mono ae-spec-t">Candidate — syllabus verification needed</span></div><div class="ae-row" style="grid-template-columns:120px minmax(0,1fr) auto"><span class="ae-code">February 2027 (candidate)</span><span class="ae-ct"><a class="ul" href="https://www.coursera.org/learn/pytorch-advanced-architectures-and-deployment" target="_blank" rel="noopener">PyTorch: Advanced Architectures and Deployment &#8599;</a><span class="ae-xl">Study scope: Selected deployment modules only if adopted. The audit found deployment and profiling already covered by two Duke courses in the AdTech pathway, one naming MLflow, so this is not recommended.</span><span class="ae-xl">Project deliverable: Would support profiling the retrieval pipeline and testing one justified optimisation.</span><span class="ae-note-inline">URL confirmed live on 2026-10-26, but the title, provider, syllabus and access terms could not be read: Coursera serves a scripted shell to automated fetches and the verification run did not complete. Nothing about its contents is asserted here.</span></span><span class="mono ae-spec-t">Candidate — syllabus verification needed</span></div></div></section>
+</section>
+
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>Deliverables, limits and cost</h2><div class="mono kicker">Scope discipline</div></div>
+  <div class="split2" style="margin-top:26px">
+    <div><p class="mono pl">Engineering deliverables</p><ul class="ae-comps"><li>Reproducible ingestion and indexing</li><li>Search interface and backend</li><li>Persistent metadata with source provenance</li><li>Versioned experiment configurations</li><li>Automated tests</li><li>Evaluation scripts, and results once they exist</li><li>Clean-environment setup instructions</li><li>A performance profile</li><li>A technical report</li><li>A short demo</li><li>Documented limitations</li></ul></div>
+    <div><p class="mono pl">Out of scope for the first release</p><ul class="ae-comps"><li>Foundation-model training</li><li>Autonomous agents</li><li>Conversational memory</li><li>Large-scale scraping</li><li>Searching copyrighted media without permission</li><li>Kubernetes or comparable infrastructure the project does not need</li><li>Fine-tuning before a baseline shows the need</li><li>Enterprise-scale performance claims</li></ul></div>
+  </div>
+  <p class="mono pl" style="margin-top:30px">Responsible development</p>
+  <ul class="ae-comps"><li>Owned or appropriately licensed content only.</li><li>Provenance and permissions recorded per source video.</li><li>No employer data, code or proprietary workflow.</li><li>Model and dataset licences checked before use.</li><li>Minimal collection of personal data.</li><li>Unsupported claims and retrieval failures written down rather than omitted.</li></ul>
+  <dl class="facts ae-facts"><dt class="mono fl">Planning envelope</dt><dd>Approximately $150 to $400</dd><dt class="mono fl">Excludes</dt><dd>Existing hardware, personal time and course subscriptions.</dd><dt class="mono fl">Caveat</dt><dd>A planning envelope, not a vendor quote. Actual cost depends on compute, storage and how far the experiments run. No provider pricing is quoted on this page.</dd></dl>
+</section>
+
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>Why this project</h2><div class="mono kicker">Portfolio objective</div></div>
+  <p class="mono pl" style="margin-top:26px">Designed to demonstrate</p>
+  <ul class="ae-comps"><li>Multimodal data processing</li><li>Retrieval and ranking</li><li>Experimental design</li><li>Model evaluation</li><li>Reproducible engineering</li><li>Deployment and profiling</li><li>Technical communication</li></ul>
+  <p class="ae-note">This is a portfolio objective, not a hiring outcome. Building it guarantees nothing, no organisation is involved in or endorses it, and nothing here describes any employer&#x27;s current openings.</p>
+</section>
+<section class="wrap ae-back"><p class="mono"><a href="../../ai-engineering/">&#8592; Back to AI Engineering</a></p></section>
+</main>
+</body>
+</html>
