@@ -7,7 +7,8 @@
   "designations": [
     "Impactful Read",
     "Favorite Read",
-    "Worth Revisiting"
+    "Worth Revisiting",
+    "Fiction Favorite"
   ],
   "years": [
     {
@@ -68,7 +69,8 @@
       "favorite_passage": null,
       "related_books": [],
       "external_url": "https://openlibrary.org/works/OL21092351W",
-      "external_label": "Open Library"
+      "external_label": "Open Library",
+      "group": "nonfiction"
     },
     {
       "id": "born-standing-up",
@@ -126,7 +128,8 @@
       ],
       "favorite_passage": null,
       "related_books": [],
-      "external_note": null
+      "external_note": null,
+      "group": "nonfiction"
     },
     {
       "id": "inner-game-of-tennis",
@@ -190,7 +193,206 @@
       ],
       "favorite_passage": null,
       "related_books": [],
+      "external_note": null,
+      "group": "nonfiction"
+    },
+    {
+      "id": "life-for-sale",
+      "title": "Life for Sale",
+      "authors": [
+        "Yukio Mishima"
+      ],
+      "published_year": 1968,
+      "published_source": "https://openlibrary.org/works/OL20758026W",
+      "read_year": 2026,
+      "finished_date": null,
+      "categories": [
+        "Absurdist Fiction",
+        "Dark Comedy",
+        "Japanese Literature"
+      ],
+      "designations": [
+        "Fiction Favorite"
+      ],
+      "group": "fiction",
+      "cover_url": "https://covers.openlibrary.org/b/id/15166692-L.jpg",
+      "cover_source": "Open Library",
+      "external_url": "https://openlibrary.org/works/OL20758026W",
+      "external_label": "Open Library",
+      "preview": "A man puts his life up for sale after a failed suicide attempt, and every absurd thing that follows quietly exposes how much living he still has left in him.",
+      "key_ideas": [
+        {
+          "title": "An unreliable narrator of his own desires",
+          "body": "For someone who claims to be ready to give up on life, he keeps landing in situations suggesting something still attaches him to it. He believes what is missing is love. I came away thinking what is missing is excitement, joy and a sense of self-worth, the things that get lost when identity becomes tied to work."
+        },
+        {
+          "title": "The reminder underneath the chaos",
+          "body": "There is something tragically funny about a character whose attempt to abandon life sends him into experiences that keep showing what life still offers. Don't become so consumed by work that you forget there's a life outside it worth experiencing."
+        }
+      ],
+      "reflection": [
+        "I've realized that when it comes to fiction, I'm a sucker for the absurd and dark academia. Dark humor, morally complicated characters, and stories that become increasingly ridiculous while somehow revealing something deeply human are right up my alley.",
+        "*Life for Sale* might be one of my favorite examples of that.",
+        "The premise alone is outrageous: a man decides to put his life up for sale after a failed suicide attempt. What follows is a rollercoaster of increasingly bizarre situations.",
+        "But what fascinated me most wasn't necessarily the absurdity of everything happening around him. It was the contradiction between what the protagonist claims to want and what his actions seem to reveal.",
+        "In my interpretation, he almost becomes an unreliable narrator of his own desires.",
+        "For someone who claims to be ready to give up on life, he continues finding himself in situations that suggest, whether he wants to admit it or not, that there's still something keeping him attached to living.",
+        "He seems to believe that what's missing is love. But I came away thinking that perhaps what he's really missing is excitement, joy, and a sense of self-worth that can get lost when so much of your identity becomes tied to work.",
+        "That's what made the book resonate with me beyond the entertainment.",
+        "There's something almost tragically funny about a character whose attempt to abandon life sends him into experiences that continually expose how much life still has to offer.",
+        "And underneath all the chaos, I took away a surprisingly simple reminder:",
+        "**Don't become so consumed by work that you forget there's a life outside of it worth experiencing.**",
+        "Maybe that's not the only interpretation of the novel, but it's the one that stayed with me.",
+        "I would recommend *Life for Sale* to anyone who appreciates absurdist fiction, dark humor, and a story that manages to be entertaining while making you reflect on your own relationship with life and work."
+      ],
+      "favorite_passage": null,
+      "related_books": [],
       "external_note": null
+    },
+    {
+      "id": "lucien",
+      "title": "Lucien",
+      "authors": [
+        "J. R. Thornton"
+      ],
+      "published_year": 2026,
+      "published_source": "https://openlibrary.org/works/OL45361694W",
+      "read_year": 2026,
+      "finished_date": null,
+      "categories": [
+        "Dark Academia",
+        "Psychological Thriller",
+        "Literary Fiction"
+      ],
+      "designations": [
+        "Fiction Favorite"
+      ],
+      "group": "fiction",
+      "cover_url": "https://covers.openlibrary.org/b/id/15227841-L.jpg",
+      "cover_source": "Open Library",
+      "external_url": "https://openlibrary.org/works/OL45361694W",
+      "external_label": "Open Library",
+      "preview": "Dark academia where the real tension isn't who Lucien turns out to be. It's watching the narrator work to keep believing otherwise.",
+      "key_ideas": [
+        {
+          "title": "The explanations we reach for",
+          "body": "Rather than accepting what you are beginning to see about someone, you start finding reasons. Maybe someone else is lying, maybe it's a misunderstanding, maybe the evidence isn't what it looks like. Sometimes we become so invested in our understanding of a person that we spend more energy defending that image than questioning whether it is accurate."
+        },
+        {
+          "title": "The deception you help maintain",
+          "body": "Most of us have admired or trusted someone, then found parts of their character that did not fit the person we had constructed. Whether we acknowledge that at once or spend time rationalising it is another matter, and the cost of rationalising can land on us."
+        }
+      ],
+      "reflection": [
+        "*Lucien* was my most recent fiction read at the time of writing this reflection, and I have to say: I loved every second of it.",
+        "On the surface, the premise might sound familiar.",
+        "A young man enters an affluent world he doesn't fully understand, becomes fascinated by someone who seems to belong there effortlessly, and gradually finds himself caught in a web of manipulation and deception.",
+        "It's the kind of setup you'd expect from a dark academia novel.",
+        "But what made *Lucien* stand out to me wasn't simply the privileged setting, the deception, or the mystery surrounding its characters.",
+        "It was the protagonist's inner thoughts, especially when it came to his friendship with Lucien.",
+        "There's something painfully relatable about discovering that someone you consider a friend might not be the person you believed them to be.",
+        "And rather than accepting what you're beginning to see, you start finding explanations.",
+        "Maybe someone else is lying.",
+        "Maybe there's a misunderstanding.",
+        "Maybe the evidence isn't what it looks like.",
+        "Maybe the person you know couldn't possibly be capable of what others are suggesting.",
+        "What fascinated me was watching that internal process unfold.",
+        "**Sometimes we become so invested in our understanding of someone that we spend more energy defending that image than questioning whether it's accurate.**",
+        "And eventually, we can become the lightning rod for the consequences of another person's actions.",
+        "That's what made the story so compelling to me. The psychological tension wasn't just about discovering who Lucien really was. It was about watching the protagonist struggle with what that discovery might mean for his friendship, judgment, and identity.",
+        "I think there's something universally human about that experience.",
+        "Most of us have encountered someone we admired or trusted, only to discover aspects of their character that didn't fit the person we'd constructed in our minds.",
+        "Whether we acknowledge it immediately or spend time rationalizing it is another matter.",
+        "For me, *Lucien* captured that experience exceptionally well.",
+        "I loved the atmosphere, the character dynamics, and the psychological complexity. It's exactly the kind of dark academia fiction that keeps me reading.",
+        "**My biggest takeaway:** Sometimes the hardest deception to recognize is the one we're helping maintain because we don't want our understanding of someone to change.",
+        "Highly recommended."
+      ],
+      "favorite_passage": null,
+      "related_books": [],
+      "external_note": null
+    },
+    {
+      "id": "the-new-me",
+      "title": "The New Me",
+      "authors": [
+        "Halle Butler"
+      ],
+      "published_year": 2019,
+      "published_source": "https://openlibrary.org/works/OL19085042W",
+      "read_year": null,
+      "finished_date": null,
+      "categories": [
+        "Literary Fiction",
+        "Dark Comedy"
+      ],
+      "designations": [
+        "Fiction Favorite"
+      ],
+      "group": "fiction",
+      "cover_url": "https://covers.openlibrary.org/b/id/8401182-L.jpg",
+      "cover_source": "Open Library",
+      "external_url": "https://openlibrary.org/works/OL19085042W",
+      "external_label": "Open Library",
+      "preview": "Absurdity and dark humour in the strange relationship people have with work, expectations and their own dissatisfaction.",
+      "key_ideas": [],
+      "reflection": [
+        "Both *The New Me* and *Jillian* belong on my bookshelf alongside *Life for Sale*.",
+        "I have a soft spot for fiction that finds absurdity and dark humor in everyday life, particularly the strange relationship people have with work, expectations, and their own dissatisfaction.",
+        "These are two books I thoroughly enjoyed for that reason.",
+        "I'll expand on my individual reflections in the future, but for now, both deserve a place among my fiction favorites."
+      ],
+      "favorite_passage": null,
+      "related_books": [],
+      "external_note": "Reading year not yet confirmed, so this sits outside the 2026 archive and is not counted in its total."
+    },
+    {
+      "id": "jillian",
+      "title": "Jillian",
+      "authors": [
+        "Halle Butler"
+      ],
+      "published_year": 2015,
+      "published_source": "https://openlibrary.org/works/OL20983887W",
+      "read_year": null,
+      "finished_date": null,
+      "categories": [
+        "Literary Fiction",
+        "Dark Humor"
+      ],
+      "designations": [
+        "Fiction Favorite"
+      ],
+      "group": "fiction",
+      "cover_url": "https://covers.openlibrary.org/b/id/10320702-L.jpg",
+      "cover_source": "Open Library",
+      "external_url": "https://openlibrary.org/works/OL20983887W",
+      "external_label": "Open Library",
+      "preview": "The other Halle Butler on the shelf, for the same reason: everyday dissatisfaction rendered funny and uncomfortable at once.",
+      "key_ideas": [],
+      "reflection": [
+        "Both *The New Me* and *Jillian* belong on my bookshelf alongside *Life for Sale*.",
+        "I have a soft spot for fiction that finds absurdity and dark humor in everyday life, particularly the strange relationship people have with work, expectations, and their own dissatisfaction.",
+        "These are two books I thoroughly enjoyed for that reason.",
+        "I'll expand on my individual reflections in the future, but for now, both deserve a place among my fiction favorites."
+      ],
+      "favorite_passage": null,
+      "related_books": [],
+      "external_note": "Reading year not yet confirmed, so this sits outside the 2026 archive and is not counted in its total."
     }
-  ]
+  ],
+  "groups": [
+    {
+      "id": "nonfiction",
+      "name": "Ideas That Stayed With Me",
+      "subtitle": "Books that changed how I think about work, practice and myself."
+    },
+    {
+      "id": "fiction",
+      "name": "For the Love of Fiction",
+      "subtitle": "A soft spot for the absurd, dark academia, questionable characters, and stories that leave me thinking long after I've finished them."
+    }
+  ],
+  "unconfirmed_heading": "Also on the shelf",
+  "unconfirmed_note": "Books I loved but have not dated yet. They sit outside the yearly archive until I confirm when I read them, so they are not counted in any year's total."
 }

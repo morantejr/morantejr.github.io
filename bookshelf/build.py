@@ -50,7 +50,7 @@ def validate(d):
     years_with_books = {b.get("read_year") for b in d.get("books", [])}
     for i, b in enumerate(d.get("books", [])):
         w = f"bookshelf.json books[{b.get('id', i)}]"
-        for f in ("id", "title", "authors", "read_year", "reflection"):
+        for f in ("id", "title", "authors", "reflection"):
             if not b.get(f):
                 errors.append(f"{w}: missing required field {f!r}")
         if b.get("id"):
@@ -73,8 +73,13 @@ def validate(d):
         for r in b.get("related_books", []):
             if r not in {x.get("id") for x in d.get("books", [])}:
                 errors.append(f"{w}: related_books entry {r!r} does not exist")
-        if b.get("read_year") and not isinstance(b["read_year"], int):
-            errors.append(f"{w}: read_year must be a number")
+        if b.get("read_year") is not None and not isinstance(b["read_year"], int):
+            errors.append(f"{w}: read_year must be a number or null")
+        if b.get("read_year") is None and not b.get("external_note"):
+            errors.append(f"{w}: undated books must carry an external_note saying they are "
+                          f"outside the yearly archive")
+        if b.get("group") and b["group"] not in {g["id"] for g in d.get("groups", [])}:
+            errors.append(f"{w}: group {b['group']!r} is not defined")
     # a year block may only exist when that year has at least one finished book
     for y in d.get("years", []):
         if y.get("year") not in years_with_books:
@@ -124,6 +129,10 @@ EXTRA = """
 .bk-idea{border-left:2px solid var(--acc);padding-left:16px;margin-top:22px;max-width:660px}
 .bk-idea h3{margin:0;font-size:16px;font-weight:500;color:var(--fg)}
 .bk-idea p{margin:8px 0 0;font-size:15px;line-height:1.65;color:var(--mid)}
+.bk-group{margin-top:44px}
+.bk-gh{margin:0;font-size:21px;letter-spacing:-0.02em;font-weight:500;color:var(--fg)}
+.bk-gs{margin:8px 0 0;max-width:620px;font-size:15px;line-height:1.6;color:var(--mid);text-wrap:pretty}
+.bk-group .bk-grid{margin-top:20px}
 .bk-empty{margin:30px 0 0;max-width:620px;font-size:16px;line-height:1.65;color:var(--mid);border-left:2px solid var(--line2);padding-left:16px}
 @media (max-width:640px){
  .bk-head{padding-top:86px}
@@ -156,20 +165,19 @@ def build():
             shutil.rmtree(sub)
 
     books = d["books"]
+    dated = [b for b in books if b.get("read_year") is not None]
+    undated = [b for b in books if b.get("read_year") is None]
     by_year = {}
-    for b in books:
+    for b in dated:
         by_year.setdefault(b["read_year"], []).append(b)
     reflections = {y["year"]: y.get("reflection") for y in d.get("years", [])}
+    groups = d.get("groups", [])
 
-    total = 0
-    # ---- index -----------------------------------------------------------
-    sections = []
-    for year in sorted(by_year, reverse=True):
-        rows = by_year[year]
-        cards = []
+    def cards_for(rows):
+        out = []
         for b in rows:
             cats = " &middot; ".join(e(c) for c in b.get("categories", []))
-            cards.append(f"""      <a class="bk-card" href="{e(b['id'])}/">
+            out.append(f"""      <a class="bk-card" href="{e(b['id'])}/">
         {cover(b)}
         {badges(b)}
         <h3 class="bk-t">{e(b['title'])}</h3>
@@ -177,15 +185,44 @@ def build():
         <p class="bk-p">{e(b.get('preview') or '')}</p>
         <p class="mono bk-cat">{cats}</p>
       </a>""")
+        return chr(10).join(out)
+
+    total = 0
+    sections = []
+    for year in sorted(by_year, reverse=True):
+        rows = by_year[year]
         note = f'<p class="ae-intro">{e(reflections.get(year))}</p>' if reflections.get(year) else ""
+        blocks = []
+        for g in groups:
+            g_rows = [b for b in rows if b.get("group", "nonfiction") == g["id"]]
+            if not g_rows:
+                continue
+            blocks.append(f"""  <div class="bk-group">
+    <h3 class="bk-gh">{e(g['name'])}</h3>
+    <p class="bk-gs">{e(g['subtitle'])}</p>
+    <div class="bk-grid">
+{cards_for(g_rows)}
+    </div>
+  </div>""")
+        if not blocks:
+            blocks = [f'<div class="bk-grid">{cards_for(rows)}</div>']
         sections.append(f"""<section class="wrap bk-year">
   <div class="sec-head"><h2>{year}</h2>
     <div class="mono kicker">{len(rows)} book{'s' if len(rows) != 1 else ''}</div></div>
   {note}
+{chr(10).join(blocks)}
+</section>""")
+
+    if undated:
+        sections.append(f"""<section class="wrap bk-year">
+  <div class="sec-head"><h2>{e(d.get('unconfirmed_heading', 'Also on the shelf'))}</h2>
+    <div class="mono kicker">Undated</div></div>
+  <p class="ae-intro">{e(d.get('unconfirmed_note', ''))}</p>
   <div class="bk-grid">
-{chr(10).join(cards)}
+{cards_for(undated)}
   </div>
 </section>""")
+
     if not sections:
         sections = ['<section class="wrap bk-year"><p class="bk-empty">'
                     'The first entries are being written up. A book appears here once I have '
@@ -215,7 +252,7 @@ def build():
         if b.get("external_url"):
             links.append(ae.ext(b["external_url"], b.get("external_label") or "More about this book"))
         meta = [("Authors", e(", ".join(b["authors"]))),
-                ("Read", e(b["read_year"])),
+                ("Read", e(b["read_year"]) if b.get("read_year") else "Year not yet confirmed"),
                 ("Published", e(b.get("published_year"))),
                 ("Categories", " &middot; ".join(e(c) for c in b.get("categories", [])))]
         if b.get("finished_date"):
@@ -232,14 +269,15 @@ def build():
       {ae.facts(meta)}
       <p class="ae-stand">{e(b.get('preview') or '')}</p>
       {f'<p class="ae-links">{" ".join(links)}</p>' if links else ''}
+      {f'<p class="ae-note">{e(b["external_note"])}</p>' if b.get("external_note") else ''}
     </div>
   </div>
 </header>
 
-<section class="wrap ae-sec">
+{f'''<section class="wrap ae-sec">
   <div class="sec-head"><h2 class="h2-sm">What I took away</h2></div>
   {ideas}
-</section>
+</section>''' if ideas else ""}
 
 <section class="wrap ae-sec">
   <div class="sec-head"><h2 class="h2-sm">The full reflection</h2></div>
