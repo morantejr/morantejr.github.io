@@ -127,6 +127,70 @@
       "favorite_passage": null,
       "related_books": [],
       "external_note": null
+    },
+    {
+      "id": "inner-game-of-tennis",
+      "title": "The Inner Game of Tennis: The Classic Guide to the Mental Side of Peak Performance",
+      "authors": [
+        "W. Timothy Gallwey"
+      ],
+      "published_year": 1974,
+      "published_source": null,
+      "read_year": 2026,
+      "finished_date": null,
+      "categories": [
+        "Psychology",
+        "Performance",
+        "Learning",
+        "Personal Growth"
+      ],
+      "designations": [
+        "Impactful Read"
+      ],
+      "cover_url": "https://covers.openlibrary.org/b/id/14635720-L.jpg",
+      "cover_source": "Open Library",
+      "external_url": "https://openlibrary.org/works/OL32384323W",
+      "external_label": "Open Library",
+      "preview": "Stop reading a result as good or bad and read it as information first. Not to suppress the feeling, but to stop the first reaction becoming the final interpretation.",
+      "key_ideas": [
+        {
+          "title": "Feedback is information before it is a verdict",
+          "body": "Once every result is labelled good or bad, emotions and judgements attach to the outcome, and those judgements shape how willing you are to experiment or change approach. Something that works today may not work tomorrow, and a disappointing outcome can reveal what a successful one never would. The skill is recognising what you are doing well while staying open to adjustment, whichever way the result felt."
+        },
+        {
+          "title": "A parallel with model training, and its limit",
+          "body": "A model does not feel disappointed by a wrong prediction or proud of a right one; during training the feedback is simply information used to adjust parameters. Humans are not algorithms and emotions serve purposes far beyond optimising an objective. The borrowable part is narrow: treating results as information before turning them into judgements about yourself."
+        }
+      ],
+      "reflection": [
+        "One of the most valuable lessons I took from *The Inner Game of Tennis* sounds almost too simple: stop looking at feedback as inherently good or bad. Instead, learn to see it as feedback.",
+        "Does that eliminate stress? No.",
+        "Does it mean acting like a robot? No.",
+        "Does it mean I shouldn't feel disappointed, frustrated, or excited about an outcome? Absolutely not.",
+        "At least from my interpretation, that's not what the book is trying to teach.",
+        "What resonated with me is the idea that once we label every result as either good or bad, we naturally begin attaching emotions and judgments to those outcomes. And those judgments can influence how willing we are to experiment, change our approach, or recognize what the situation is actually telling us.",
+        "If something works, we might become overly attached to the method that produced it. If something doesn't work, we might dismiss the approach entirely, even when there's something valuable to learn from the attempt.",
+        "But reality is rarely that straightforward.",
+        "Something that works today might not work tomorrow. A disappointing outcome might reveal something important that a successful one never would have.",
+        "The challenge is learning to recognize what you're doing well while remaining open to making adjustments, regardless of whether the initial outcome feels positive or negative.",
+        "I find an interesting parallel in data science and AI.",
+        "A model doesn't need to feel disappointed about an incorrect prediction or proud of a correct one. During training, the feedback provides information that can be used to adjust its parameters or evaluate its performance.",
+        "Of course, humans aren't algorithms, and our emotions serve purposes that go far beyond optimizing an objective function.",
+        "But I think there's something useful to borrow from that process: **the ability to treat results as information before turning them into judgments about ourselves.**",
+        "This is something I'm still actively working on.",
+        "As someone developing a career in technology, it's easy to look at an unsuccessful experiment, a project that didn't turn out as expected, or someone else's professional accomplishments and immediately assign meaning to it.",
+        "Am I behind? Am I approaching this incorrectly? Should I be further along?",
+        "Those questions aren't always helpful, especially when they're driven more by comparison than by what the evidence actually shows.",
+        "I'm learning to ask different questions.",
+        "What happened? Why might it have happened? What can I learn from it? What should I keep doing, and what should I change?",
+        "That doesn't mean suppressing emotions or pretending not to care about outcomes. It means trying not to let my immediate emotional reaction become the final interpretation of an experience.",
+        "**My biggest takeaway:** Progress requires being honest about results without allowing those results to define your ability or your worth.",
+        "I don't think I've mastered that mindset, and I doubt it's something you simply learn once and never revisit.",
+        "But *The Inner Game of Tennis* has helped me approach my career, learning, and personal development with a little more objectivity, curiosity, and willingness to adapt."
+      ],
+      "favorite_passage": null,
+      "related_books": [],
+      "external_note": null
     }
   ]
 }
