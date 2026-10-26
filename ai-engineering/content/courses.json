@@ -297,7 +297,9 @@
     "limitations": null,
     "demo_url": null,
     "related_artifacts": [],
-    "signal_component": null
+    "signal_component": null,
+    "scheduled_start": "2026-11",
+    "schedule_note": null
   },
   {
     "id": "csca-5632",
@@ -342,7 +344,9 @@
     "limitations": null,
     "demo_url": null,
     "related_artifacts": [],
-    "signal_component": null
+    "signal_component": null,
+    "scheduled_start": "2026-12",
+    "schedule_note": null
   },
   {
     "id": "csca-5642",
@@ -387,7 +391,9 @@
     "limitations": null,
     "demo_url": null,
     "related_artifacts": [],
-    "signal_component": null
+    "signal_component": null,
+    "scheduled_start": "2027-01",
+    "schedule_note": "Lands after SceneSearch needs deep-learning fundamentals in November. The from-scratch Deep Learning Core phase covers that dependency earlier; this course is the deeper formal treatment."
   },
   {
     "id": "csca-5214",
@@ -1696,7 +1702,9 @@
     "limitations": null,
     "demo_url": null,
     "related_artifacts": [],
-    "signal_component": null
+    "signal_component": null,
+    "scheduled_start": "2027-01",
+    "schedule_note": null
   },
   {
     "id": "csca-5322",
@@ -1736,7 +1744,9 @@
     "limitations": null,
     "demo_url": null,
     "related_artifacts": [],
-    "signal_component": null
+    "signal_component": null,
+    "scheduled_start": "2027-02",
+    "schedule_note": null
   },
   {
     "id": "csca-5422",
@@ -1776,7 +1786,9 @@
     "limitations": null,
     "demo_url": null,
     "related_artifacts": [],
-    "signal_component": null
+    "signal_component": null,
+    "scheduled_start": "2027-03",
+    "schedule_note": "The formal multimodal course. SceneSearch needs image-text embeddings in December, so the from-scratch Multimodal AI phase carries that dependency; this arrives as depth, not as the prerequisite."
   },
   {
     "id": "causal-inference",

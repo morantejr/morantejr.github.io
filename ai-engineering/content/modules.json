@@ -82,7 +82,9 @@
       "benchmarks": null,
       "notes": null,
       "limitations": null,
-      "verified_on": "2026-10-23"
+      "verified_on": "2026-10-23",
+      "scheduled_start": "2026-11",
+      "schedule_note": "Carries the November deep-learning dependency for SceneSearch: tensors, training mechanics and inference, ahead of the formal CU course."
     },
     {
       "id": "phase-04",
@@ -102,7 +104,9 @@
       "benchmarks": null,
       "notes": null,
       "limitations": null,
-      "verified_on": "2026-10-23"
+      "verified_on": "2026-10-23",
+      "scheduled_start": "2026-12",
+      "schedule_note": null
     },
     {
       "id": "phase-05",
@@ -262,7 +266,9 @@
       "benchmarks": null,
       "notes": null,
       "limitations": null,
-      "verified_on": "2026-10-23"
+      "verified_on": "2026-10-23",
+      "scheduled_start": "2026-12",
+      "schedule_note": "Carries the December image-text embedding dependency for SceneSearch."
     },
     {
       "id": "phase-13",

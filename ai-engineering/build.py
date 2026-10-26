@@ -178,6 +178,13 @@ def validate(d: Data):
         for k in c.get("competencies", []):
             if k not in comp_ids:
                 err(f"{w}: competency {k!r} does not exist")
+        sch = c.get("scheduled_start")
+        if sch is not None:
+            if not re.match(r"^\d{4}-(0[1-9]|1[0-2])$", str(sch)):
+                err(f"{w}: scheduled_start {sch!r} must be YYYY-MM")
+            if c.get("started_date") or c.get("status") != "planned":
+                err(f"{w}: carries a schedule and also a start or non-planned status; "
+                    f"a schedule is an intention, not progress")
         ins = c.get("instructors")
         if ins is not None and not isinstance(ins, list):
             err(f"{w}: instructors must be a list or null")
@@ -215,6 +222,12 @@ def validate(d: Data):
                 err(f"{w}: missing required field {f!r}")
         if m.get("status") not in STATUSES:
             err(f"{w}: status {m.get('status')!r} not one of {STATUSES}")
+        sch = m.get("scheduled_start")
+        if sch is not None:
+            if not re.match(r"^\d{4}-(0[1-9]|1[0-2])$", str(sch)):
+                err(f"{w}: scheduled_start {sch!r} must be YYYY-MM")
+            if m.get("started_date") or m.get("status") != "planned":
+                err(f"{w}: carries a schedule and also a start or non-planned status")
         if m.get("url") and not m.get("slug_verified"):
             err(f"{w}: has a url but slug_verified is false")
         if m.get("status") == "completed" and not m.get("repo_url"):
@@ -334,6 +347,21 @@ def validate(d: Data):
 # --------------------------------------------------------------------------
 # shared rendering
 # --------------------------------------------------------------------------
+
+MONTHS = ("January", "February", "March", "April", "May", "June", "July",
+          "August", "September", "October", "November", "December")
+
+
+def when(rec):
+    """Render a scheduled month. A schedule is an intention, never progress."""
+    v = rec.get("scheduled_start")
+    if not v:
+        return ""
+    y, _, mth = str(v).partition("-")
+    label = f"{MONTHS[int(mth) - 1]} {y}" if mth.isdigit() and 1 <= int(mth) <= 12 else str(v)
+    note = f' &mdash; {e(rec["schedule_note"])}' if rec.get("schedule_note") else ""
+    return f'<span class="ae-xl">Scheduled {e(label)}{note}</span>'
+
 
 def status_pill(s):
     return (f'<span class="ae-pill ae-{e(s)}"><span class="ae-dot" aria-hidden="true"></span>'
@@ -574,7 +602,7 @@ def render_curriculum(d: Data, cur, depth):
                          else e(c["title"]) + '<span class="ae-xl">No syllabus page published</span>')
                 rows.append(
                     f'<div class="ae-row"><span class="ae-code">{label}</span>'
-                    f'<span class="ae-ct">{title}{xl}{skills}{fc}{extra}{note}</span>'
+                    f'<span class="ae-ct">{title}{xl}{when(c)}{skills}{fc}{extra}{note}</span>'
                     f'<span>{status_pill(c["status"])}</span></div>'
                 )
             note = f'<p class="ae-intro" style="margin:0 22px 18px">{e(sp["note"])}</p>' if sp.get("note") else ""
@@ -757,7 +785,7 @@ def build_from_scratch_page(d: Data):
         link = ext(m["url"], "Open phase") if m.get("url") else '<span class="mono ae-code">slug not published</span>'
         lessons = f'<span class="ae-xl">{m["lesson_count"]} lessons</span>' if m.get("lesson_count") else ""
         rows.append(f'<div class="ae-row"><span class="ae-code">{e(m["number"])}</span>'
-                    f'<span class="ae-ct">{title}{lessons}<span class="ae-xl">{link}</span></span>'
+                    f'<span class="ae-ct">{title}{lessons}{when(m)}<span class="ae-xl">{link}</span></span>'
                     f'<span>{status_pill(m["status"])}</span></div>')
     meta = d.modmeta
     fs = d.cur_by_id["from-scratch"]
