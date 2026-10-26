@@ -1329,6 +1329,23 @@ def build_scenesearch_page(d: Data):
                 f"{base}scenesearch/", body)
 
 
+def learning_log_tally():
+    """Published Learning Log entries. Drafts are not counted, by design."""
+    f = ROOT / "learning-log" / "content" / "learning-log.json"
+    if not f.exists():
+        return "not started"
+    try:
+        entries = json.loads(f.read_text(encoding="utf-8")).get("entries", [])
+    except (ValueError, OSError):
+        warn("learning-log content could not be read for the hub tally")
+        return "see section"
+    n = len([x for x in entries if not x.get("draft", False)])
+    drafts = len(entries) - n
+    if n == 0:
+        return f"{drafts} in draft" if drafts else "not started"
+    return f"{n} entr{'y' if n == 1 else 'ies'} published"
+
+
 def build_hub(d: Data):
     depth = 1
     DEPTH["d"] = depth
@@ -1389,7 +1406,10 @@ def build_hub(d: Data):
          f'{c["competencies_with_evidence"]} of {len(d.competencies)} backed by evidence'),
         ("technical-notes/", "Technical notes",
          "Write-ups on a mechanism, its implementation and its failures.",
-         f'{c["notes"]} published')]:
+         f'{c["notes"]} published'),
+        ("../learning-log/", "The Learning Log",
+         "A monthly journal on building the expertise to judge my own work, including the months that did not go well.",
+         learning_log_tally())]:
         entries.append(f"""      <a class="ae-entry" href="{href}">
         <h3 class="ae-h3">{name}</h3>
         <p class="ae-entry-d">{e(desc)}</p>

@@ -1,0 +1,120 @@
+{
+  "title": "The Learning Log",
+  "subtitle": "Learning in public, one month at a time.",
+  "canonical": "https://morantejr.github.io/learning-log/",
+  "meta_description": "A monthly journal on building expertise in computer science, AI engineering, research and measurement science — including the months that did not go well.",
+  "lede": "A monthly record of what I studied, what I built, and where I was wrong. It is kept in public because a claim nobody can check is not evidence of anything.",
+  "standard": "This is a journal, not a transcript. Reading a paper is not finishing a course, and finishing a course is not competence. Where an entry claims I learned something, it should point at something I made, broke, or can explain without help.",
+  "entries": [
+    {
+      "id": "2026-10",
+      "month": "October 2026",
+      "draft": true,
+      "title": "Learning to Think With AI, Not Just Build With It",
+      "summary": "No coursework finished this month. What I did instead was decide how I want to work with these tools before I accumulate any more of it — and write the rules down somewhere I can be held to them.",
+      "tags": ["Working practice", "AI engineering", "Research practice"],
+      "body": [
+        {
+          "type": "text",
+          "text": "I am starting this log because I have a problem I cannot measure. My output has gone up. I am not at all sure my understanding has. Those two things can move independently, and for most of this year I have been tracking only the first one."
+        },
+        {
+          "type": "text",
+          "text": "The thing that made it concrete was Sean Goedecke's essay **LLMs Reward Expertise**. His argument, as I read it, is that these models pay out in proportion to what you already know: an expert gets leverage from them, and a novice gets plausible output they cannot evaluate. I am not going to pretend I have tested that claim. It simply described something I recognised."
+        },
+        {
+          "type": "quote",
+          "text": "The gap between my work and my understanding is not visible from the outside. It is barely visible from the inside.",
+          "attribution": null
+        },
+        {
+          "type": "text",
+          "text": "Miles Cranmer's talk on avoiding AI brain rot pushed on the same nerve from the research side — the worry that fluent assistance erodes the slow, uncomfortable work where understanding actually forms. Again: his framing, not my finding. I am recording where the ideas came from so that later I can tell which conclusions I earned and which I borrowed."
+        },
+        {
+          "type": "heading",
+          "text": "Six things I am currently turning over"
+        },
+        {
+          "type": "list",
+          "items": [
+            "AI can raise the quality and speed of my work without raising my understanding at all. These are separate variables and I have only been watching one.",
+            "Evaluating an AI output is a domain skill. Without it I cannot tell a sound answer from a confident one, which means I cannot safely use the tool at the exact moments it matters most.",
+            "I want to attempt hard problems myself before reaching for a solution — not out of purity, but because the struggle is where the mental model gets built.",
+            "A tool that agrees with me is less useful than one that argues. I should be asking these models to attack my reasoning, not to ratify it.",
+            "The real test is whether I can explain, test, debug and defend what I build when nothing is helping me.",
+            "Progress should be measured in evidence, not in the number of courses, tools or repositories I have started. I have started a lot of things."
+          ]
+        },
+        {
+          "type": "text",
+          "text": "I want to be careful about the status of these. They are not conclusions. They are hypotheses about my own working habits, and I have not yet run the experiment."
+        },
+        {
+          "type": "heading",
+          "text": "Five rules I am going to try"
+        },
+        {
+          "type": "text",
+          "text": "Principles that cannot be violated are not principles, they are decoration. Each of these can be broken, and I will know when I break it."
+        },
+        {
+          "type": "principles",
+          "items": [
+            {"when": "Before coding", "rule": "Write my own problem statement, proposed architecture and success criteria first. If I cannot state what done looks like, I am not ready to ask anything for help."},
+            {"when": "During coding", "rule": "Use the model to surface tradeoffs and attack my assumptions, not to make the decisions. The design should stay mine."},
+            {"when": "After coding", "rule": "Read the critical path, reproduce the failures myself, review the tests, and explain the implementation with no assistance open."},
+            {"when": "During coursework", "rule": "Attempt the problem cold. Ask for a hint before an answer, and an answer only after the hint fails."},
+            {"when": "During research", "rule": "State the hypothesis and what would falsify it before asking anything to explore approaches. Otherwise I will find support for whatever I already believed."}
+          ]
+        },
+        {
+          "type": "heading",
+          "text": "What I am unsure about"
+        },
+        {
+          "type": "text",
+          "text": "The obvious failure mode is that this becomes a performance — a tidy list of virtuous habits that makes me feel rigorous without changing what I do on a Tuesday afternoon under deadline. The second failure mode is the opposite: refusing help on principle and being slower for no gain. I do not yet know where the line sits, and I suspect it moves depending on whether I am working inside my competence or outside it."
+        },
+        {
+          "type": "text",
+          "text": "There is also a measurement problem I have not solved. *Can I explain this without help* is the test I keep reaching for, and it is a bad test, because I am the one grading it. I would like something harder to fake."
+        },
+        {
+          "type": "heading",
+          "text": "How I will know if this is working"
+        },
+        {
+          "type": "text",
+          "text": "Not by this entry. By whether the next several contain specifics — a bug I misdiagnosed and why, a result that contradicted what I expected, an explanation I could not give. If the months ahead read as smoothly as this one, that is the signal that I am writing a brochure rather than a log."
+        }
+      ],
+      "resources": [
+        {
+          "kind": "Essay",
+          "author": "Sean Goedecke",
+          "title": "LLMs Reward Expertise",
+          "url": "https://www.seangoedecke.com/llms-reward-expertise/",
+          "note": "The argument that these models pay out in proportion to existing expertise. The prompt for starting this log."
+        },
+        {
+          "kind": "Talk",
+          "author": "Miles Cranmer",
+          "title": "Avoiding AI brain rot",
+          "url": "https://www.youtube.com/watch?v=uXC7OuCas2Q",
+          "note": "On protecting the slow work where research understanding is formed."
+        }
+      ],
+      "subjects": [],
+      "built": [],
+      "misunderstood": [],
+      "failures": [],
+      "tested": [],
+      "changed_thinking": [],
+      "differently": [],
+      "next_focus": "Start the first course properly and put the five rules under load: attempt the problem sets cold, and record honestly where I reached for help and whether it was warranted. One worked example of a misdiagnosis, written up, would be worth more than this whole entry.",
+      "pathways": ["from-scratch", "signal"],
+      "links": []
+    }
+  ]
+}
