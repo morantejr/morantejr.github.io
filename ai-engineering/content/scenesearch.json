@@ -1,7 +1,7 @@
 {
   "name": "SceneSearch",
-  "subtitle": "Multimodal video retrieval with reproducible evaluation.",
-  "short_description": "An AI-engineering project that searches a video library using natural language and returns timestamped moments supported by transcript and visual evidence.",
+  "subtitle": "Multimodal video intelligence and creator-controlled monetization.",
+  "short_description": "An AI-engineering project exploring how multimodal video understanding can support semantic retrieval, scene-level intelligence, and creator-authorized advertising inventory. Two applications on one platform; nothing is built yet.",
   "status": "planned",
   "build_window": "November 2026 \u2013 March 2027",
   "workload_note": "A working envelope of roughly 10 to 12 hours a week, adjustable. This is a plan, not a commitment, and it is not necessarily time on top of existing study. See the curriculum mapping below.",
@@ -172,7 +172,10 @@
     "Searching copyrighted media without permission",
     "Kubernetes or comparable infrastructure the project does not need",
     "Fine-tuning before a baseline shows the need",
-    "Enterprise-scale performance claims"
+    "Enterprise-scale performance claims",
+    "Generating dialogue or altering performances to suit an advertiser",
+    "Real-time, viewer-specific ad insertion",
+    "Programmatic marketplace integration"
   ],
   "budget": {
     "estimate": "Approximately $150 to $400",
@@ -502,5 +505,301 @@
       "These are animated films. They stress visual retrieval well but their dialogue is sparse, which will under-exercise the transcript track. Expect to add spoken-content material, and record its licence the same way."
     ],
     "recording": "Licence, source URL and retrieval date are stored per video from the first ingest, alongside the timecodes. Retrofitting provenance after indexing is rework the schedule cannot absorb."
+  },
+  "monetization": {
+    "thesis": "Creators decide where advertising is permitted. The system decides how approved creative can be rendered naturally. The platform records what was actually delivered.",
+    "status_note": "Proposed. No surface detector, policy engine or renderer exists. Every capability below is a design intent, and the roadmap months are targets rather than progress.",
+    "applications": [
+      {
+        "id": "intelligence",
+        "name": "Scene Intelligence",
+        "role": "Foundation",
+        "summary": "The multimodal retrieval system the rest of the project rests on: make video searchable, interpretable and programmatically addressable.",
+        "capabilities": [
+          "Video ingestion and scene segmentation",
+          "Visual and semantic embeddings",
+          "Natural-language video search",
+          "Multimodal retrieval and ranking",
+          "Timestamped scene results",
+          "Retrieval relevance and ranking evaluation",
+          "Model-serving and inference infrastructure"
+        ]
+      },
+      {
+        "id": "monetization",
+        "name": "Scene Monetization",
+        "role": "Proposed application",
+        "summary": "A commercial application built on that foundation: find eligible advertising surfaces, let the creator authorize them, enforce standing policy in code, render approved creative into the scene and record what was delivered.",
+        "capabilities": [
+          "Detect candidate advertising surfaces \u2014 blank walls, signage, digital displays",
+          "Track candidate surfaces across frames",
+          "Creator interface for approving programmable surfaces",
+          "Standing creative and category policies",
+          "Automatic campaign evaluation against those policies",
+          "Rejection of prohibited placements and escalation of uncertain ones",
+          "Rendering that preserves the original performance",
+          "Perspective correction, lighting adaptation and foreground occlusion",
+          "Auditable placement and delivery metadata",
+          "Rendering-quality and exposure measurement"
+        ]
+      }
+    ],
+    "spatial_distinction": {
+      "claim": "Semantic retrieval does not solve spatial geometry.",
+      "detail": "Finding the right scene and placing a plane correctly inside it are different problems. The embeddings that answer \u201cwhere does someone walk into a kitchen\u201d say nothing about where a wall is, how it moves, or what passes in front of it. Generic multimodal embeddings do not provide production-ready spatial rendering, and this page does not imply otherwise.",
+      "methods": [
+        "Surface segmentation",
+        "Planar tracking across frames",
+        "Homography estimation",
+        "Foreground segmentation and occlusion masks",
+        "Temporal consistency across the shot"
+      ]
+    },
+    "surfaces": {
+      "principle": "Creator-controlled programmable surfaces: the creator sets standing rules, and the system obeys them without further negotiation.",
+      "hard_constraint": "This is a technical constraint, not a marketing promise. A missing authorization, an expired permission or a prohibited category must block rendering. If the policy engine cannot prove a placement is authorized, nothing renders.",
+      "rules": [
+        "Which surfaces are eligible",
+        "Which scenes or timestamps are excluded",
+        "Which advertising categories are permitted",
+        "Which brands or competitors are prohibited",
+        "Which creative formats are allowed",
+        "Whether uncertain placements require manual review",
+        "Whether authorization can be revoked, and what happens to deliveries already rendered"
+      ],
+      "flow": [
+        {
+          "n": 1,
+          "actor": "Creator",
+          "action": "Approves an eligible surface."
+        },
+        {
+          "n": 2,
+          "actor": "Creator",
+          "action": "Configures standing policies."
+        },
+        {
+          "n": 3,
+          "actor": "Advertiser",
+          "action": "Submits a campaign."
+        },
+        {
+          "n": 4,
+          "actor": "Policy engine",
+          "action": "Checks authorization and eligibility."
+        },
+        {
+          "n": 5,
+          "actor": "Pipeline",
+          "action": "Approved creative enters rendering."
+        },
+        {
+          "n": 6,
+          "actor": "Policy engine",
+          "action": "Prohibited placements are rejected."
+        },
+        {
+          "n": 7,
+          "actor": "Review",
+          "action": "Ambiguous cases are escalated, not guessed."
+        },
+        {
+          "n": 8,
+          "actor": "Platform",
+          "action": "Delivery and rendering metadata are recorded."
+        }
+      ]
+    },
+    "differentiation": {
+      "inspiration": "Prompted partly by the wider discussion of AI-generated in-scene advertising, including the Halftime hackathon demonstration. This is not an attempt to clone it.",
+      "not_new": "Virtual product placement is not a new idea and this project does not claim it is. Rembrand and Mirriad already operate in this category as commercial businesses.",
+      "prior_art": [
+        {
+          "name": "Rembrand",
+          "note": "Commercial virtual product placement."
+        },
+        {
+          "name": "Mirriad",
+          "note": "In-content advertising at broadcast scale."
+        }
+      ],
+      "intended_difference": "Creator governance, spatial intelligence and verifiable delivery, treated as one system rather than three features.",
+      "priorities": [
+        "Artistic integrity",
+        "Rights-cleared content",
+        "Explicit creator authorization",
+        "Deterministic and auditable policy decisions",
+        "Contextual suitability",
+        "Realistic environmental integration",
+        "Measurable rendering quality",
+        "Reproducible technical evaluation"
+      ],
+      "no_superiority": "No claim is made that this would be better than existing products. There is no benchmark yet, so there is nothing to compare."
+    },
+    "mvp": {
+      "note": "One realistic end-to-end workflow, scoped deliberately small.",
+      "steps": [
+        "Upload a short rights-cleared video.",
+        "Index and retrieve an appropriate scene using SceneSearch.",
+        "Identify a suitable flat advertising surface.",
+        "Have the creator approve that surface.",
+        "Configure standing advertising rules.",
+        "Submit a fictional advertisement.",
+        "Evaluate the campaign against the creator's policies.",
+        "Render an offline video variant.",
+        "Preserve foreground objects and the original character performances.",
+        "Export a verification report with placement metadata and quality metrics."
+      ],
+      "future": [
+        "Real-time, viewer-specific ad insertion",
+        "Programmatic marketplace integration",
+        "Multi-surface campaigns and bidding"
+      ],
+      "rendering_model": "Pre-rendered video variants. Nothing is composited live."
+    },
+    "boundaries": [
+      "Does not generate new dialogue",
+      "Does not manipulate actors into endorsements",
+      "Does not rewrite the narrative",
+      "Does not alter a performance to suit an advertiser"
+    ],
+    "track": [
+      {
+        "month": "November 2026",
+        "theme": "Multimodal foundation",
+        "status": "planned",
+        "work": [
+          "Video ingestion",
+          "Scene segmentation",
+          "Embedding generation",
+          "Basic semantic search"
+        ]
+      },
+      {
+        "month": "December 2026",
+        "theme": "Retrieval and evaluation",
+        "status": "planned",
+        "work": [
+          "Multimodal ranking",
+          "Timestamped search results",
+          "Retrieval evaluation harness",
+          "Search demo"
+        ]
+      },
+      {
+        "month": "January 2027",
+        "theme": "Spatial scene intelligence",
+        "status": "planned",
+        "work": [
+          "Candidate surface detection",
+          "Tracking across frames",
+          "Planar geometry and homography",
+          "Surface suitability experiments"
+        ]
+      },
+      {
+        "month": "February 2027",
+        "theme": "Creator governance and rendering",
+        "status": "planned",
+        "work": [
+          "Creator approval interface",
+          "Standing advertising policies",
+          "Policy validation",
+          "Offline creative insertion",
+          "Initial occlusion handling"
+        ]
+      },
+      {
+        "month": "March 2027",
+        "theme": "Verification and integrated demonstration",
+        "status": "planned",
+        "work": [
+          "Placement quality evaluation",
+          "Delivery metadata",
+          "Rendering audit report",
+          "End-to-end SceneSearch and Scene Monetization demonstration"
+        ]
+      }
+    ],
+    "deliverables": [
+      "A surface detector evaluated on a labelled set, with its failure modes written down",
+      "A planar tracker with drift measured across a shot, not asserted",
+      "A policy engine whose decisions are deterministic and replayable from the audit log",
+      "An offline compositing pipeline that preserves foreground occlusion",
+      "A verification report: what was placed, where, under which authorization, at what measured quality"
+    ],
+    "evaluation": [
+      "Surface detection precision and recall against hand-labelled frames",
+      "Tracking drift and temporal stability across a shot",
+      "Occlusion correctness where a foreground object crosses the surface",
+      "Perceptual quality of the composite against the untouched original",
+      "Policy-engine correctness: every prohibited case rejected, every ambiguous case escalated",
+      "Measurable on-screen exposure, reported with its method"
+    ],
+    "scope_impact": {
+      "finding": "Scene Monetization roughly doubles the engineering surface inside the same November-to-March window, and adds a discipline the retrieval plan did not need: spatial computer vision.",
+      "consequences": [
+        "The retrieval roadmap already fills the window on its own. Both tracks cannot be delivered to the same depth in five months at 10 to 12 hours a week, and this page does not claim they can.",
+        "The honest options are to extend the window, to narrow Scene Intelligence once retrieval is demonstrated, or to treat monetization as a sixth-month-onward extension. That decision is not made yet.",
+        "The spatial work in January and February depends on computer-vision foundations that are still Planned with no date, the same dependency the sequencing section already flags for retrieval."
+      ]
+    },
+    "learning": [
+      {
+        "topic": "Video processing with FFmpeg and OpenCV",
+        "month": "November 2026",
+        "why": "Decode, sample and re-encode without destroying what is measured later."
+      },
+      {
+        "topic": "Object detection and segmentation",
+        "month": "January 2027",
+        "why": "Find candidate surfaces and the objects that occlude them."
+      },
+      {
+        "topic": "Multi-object and surface tracking",
+        "month": "January 2027",
+        "why": "Keep a surface identified across a shot rather than per frame."
+      },
+      {
+        "topic": "Homography and perspective transforms",
+        "month": "January 2027",
+        "why": "Place a plane correctly under camera motion."
+      },
+      {
+        "topic": "Foreground segmentation and occlusion masks",
+        "month": "February 2027",
+        "why": "Let a person pass in front of the placement."
+      },
+      {
+        "topic": "Video compositing",
+        "month": "February 2027",
+        "why": "Blend creative into the plate with matched lighting and grain."
+      },
+      {
+        "topic": "Temporal consistency evaluation",
+        "month": "February 2027",
+        "why": "Measure flicker and drift instead of judging by eye."
+      },
+      {
+        "topic": "Policy engine design",
+        "month": "February 2027",
+        "why": "Make authorization deterministic and replayable."
+      },
+      {
+        "topic": "Structured metadata and audit logging",
+        "month": "March 2027",
+        "why": "Make every delivery reconstructable after the fact."
+      },
+      {
+        "topic": "Asynchronous processing pipelines",
+        "month": "March 2027",
+        "why": "Rendering is slow; the request path cannot block on it."
+      },
+      {
+        "topic": "Measurement and experimentation",
+        "month": "March 2027",
+        "why": "Report exposure with a stated method, not a vanity number."
+      }
+    ]
   }
 }

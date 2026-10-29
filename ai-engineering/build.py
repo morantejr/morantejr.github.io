@@ -1132,6 +1132,42 @@ def build_scenesearch_page(d: Data):
                     f'<div class="row-d">{e(c["detail"])}</div></div>'
                     for c in arch["cross_cutting"])
 
+    mz = p["monetization"]
+
+    apps = "".join(
+        f'<div class="layer{" accent" if a["id"] == "monetization" else ""}">'
+        f'<div class="mono pl">{e(a["role"])}</div>'
+        f'<div class="layer-t">{e(a["name"])}</div>'
+        f'<div class="row-d">{e(a["summary"])}</div>'
+        f'<ul class="ae-comps" style="margin-top:12px">'
+        + "".join(f"<li>{e(c)}</li>" for c in a["capabilities"]) + '</ul></div>'
+        for a in mz["applications"])
+
+    flow_rows = "".join(
+        f'<div class="ae-row"><span class="ae-code">{st["n"]:02d}</span>'
+        f'<span class="ae-ct">{e(st["action"])}</span>'
+        f'<span class="mono ae-spec-t">{e(st["actor"])}</span></div>'
+        for st in mz["surfaces"]["flow"])
+
+    mz_months = "".join(
+        f'<div class="ae-card"><div class="mono pl">{e(t["month"])}</div>'
+        f'<h3 class="ae-h3">{e(t["theme"])}</h3>'
+        f'<ul class="ae-comps">' + "".join(f"<li>{e(w)}</li>" for w in t["work"]) + '</ul>'
+        f'<p class="mono ae-tally">{e(t["status"])}</p></div>'
+        for t in mz["track"])
+
+    prior = "".join(f'<div class="ae-row"><span class="ae-code">{e(x["name"])}</span>'
+                    f'<span class="ae-ct">{e(x["note"])}</span><span></span></div>'
+                    for x in mz["differentiation"]["prior_art"])
+
+    mz_learn = "".join(
+        f'<div class="ae-row"><span class="ae-code">{e(r["month"])}</span>'
+        f'<span class="ae-ct">{e(r["topic"])}<span class="ae-xl">{e(r["why"])}</span></span>'
+        f'<span class="mono ae-spec-t dev">Planned</span></div>'
+        for r in mz["learning"])
+
+    mvp_steps = "".join(f"<li>{e(x)}</li>" for x in mz["mvp"]["steps"])
+
     bl = "".join(f'<div class="ae-row"><span class="ae-code">{b["id"]}</span>'
                  f'<span class="ae-ct">{e(b["name"])}<span class="ae-xl">{e(b["note"])}</span></span>'
                  f'<span></span></div>' for b in p["baselines"])
@@ -1250,6 +1286,69 @@ def build_scenesearch_page(d: Data):
       <div style="margin-top:22px">{cross}</div>
     </div>
   </div>
+</section>
+
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>Two applications, one platform</h2><div class="mono kicker">Shared foundation</div></div>
+  <p class="ae-lede" style="margin-top:24px">{e(mz['thesis'])}</p>
+  <p class="ae-intro">{e(mz['status_note'])}</p>
+  <div class="panel dashed-panel" style="margin-top:28px">
+    <div class="panel-bar"><i></i><i></i><span class="mono">scenesearch / ingestion &rarr; processing &rarr; two applications</span></div>
+    <div class="panel-body"><div class="split2">{apps}</div></div>
+  </div>
+  <p class="ae-note">{e(mz['spatial_distinction']['claim'])} {e(mz['spatial_distinction']['detail'])}</p>
+  <p class="mono pl" style="margin-top:26px">Additional methods this requires</p>
+  <ul class="ae-comps">{"".join(f"<li>{e(x)}</li>" for x in mz["spatial_distinction"]["methods"])}</ul>
+</section>
+
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>Creator-controlled programmable surfaces</h2><div class="mono kicker">Hard constraint</div></div>
+  <p class="ae-lede" style="margin-top:24px">{e(mz['surfaces']['principle'])}</p>
+  <p class="ae-note">{e(mz['surfaces']['hard_constraint'])}</p>
+  <p class="mono pl" style="margin-top:30px">Standing rules a creator sets</p>
+  <ul class="ae-comps">{"".join(f"<li>{e(x)}</li>" for x in mz["surfaces"]["rules"])}</ul>
+  <p class="mono pl" style="margin-top:30px">Approval flow</p>
+  <section class="ae-spec" style="margin-top:14px"><div class="ae-rows">{flow_rows}</div></section>
+</section>
+
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>Prior art and what would differ</h2><div class="mono kicker">Not a new idea</div></div>
+  <p class="ae-intro">{e(mz['differentiation']['not_new'])}</p>
+  <section class="ae-spec" style="margin-top:22px"><div class="ae-rows">{prior}</div></section>
+  <p class="ae-lede" style="margin-top:28px">{e(mz['differentiation']['intended_difference'])}</p>
+  <ul class="ae-comps" style="margin-top:18px">{"".join(f"<li>{e(x)}</li>" for x in mz["differentiation"]["priorities"])}</ul>
+  <p class="ae-note">{e(mz['differentiation']['inspiration'])} {e(mz['differentiation']['no_superiority'])}</p>
+</section>
+
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>MVP: one end-to-end workflow</h2><div class="mono kicker">Deliberately small</div></div>
+  <p class="ae-intro">{e(mz['mvp']['note'])} {e(mz['mvp']['rendering_model'])}</p>
+  <ol class="ae-comps" style="margin-top:22px">{mvp_steps}</ol>
+  <p class="mono pl" style="margin-top:30px">Future extensions, not initial requirements</p>
+  <ul class="ae-comps">{"".join(f"<li>{e(x)}</li>" for x in mz["mvp"]["future"])}</ul>
+  <p class="mono pl" style="margin-top:30px">What this does not do</p>
+  <ul class="ae-comps">{"".join(f"<li>{e(x)}</li>" for x in mz["boundaries"])}</ul>
+</section>
+
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>Scene Monetization track</h2><div class="mono kicker">Planned milestones</div></div>
+  <p class="ae-intro">{e(mz['scope_impact']['finding'])}</p>
+  <div class="ae-grid" style="margin-top:26px">{mz_months}</div>
+  <ul class="ae-comps" style="margin-top:26px">{"".join(f"<li>{e(x)}</li>" for x in mz["scope_impact"]["consequences"])}</ul>
+</section>
+
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>Monetization deliverables and evaluation</h2><div class="mono kicker">Nothing measured yet</div></div>
+  <div class="split2" style="margin-top:26px">
+    <div><p class="mono pl">Engineering deliverables</p><ul class="ae-comps">{"".join(f"<li>{e(x)}</li>" for x in mz["deliverables"])}</ul></div>
+    <div><p class="mono pl">Evaluation criteria</p><ul class="ae-comps">{"".join(f"<li>{e(x)}</li>" for x in mz["evaluation"])}</ul></div>
+  </div>
+</section>
+
+<section class="wrap ae-sec">
+  <div class="sec-head"><h2>Added skills this requires</h2><div class="mono kicker">Extends the plan</div></div>
+  <p class="ae-intro">Scene Monetization builds on the retrieval curriculum rather than replacing it. These are the additional subjects it introduces, aligned to the months above.</p>
+  <section class="ae-spec" style="margin-top:22px"><div class="ae-rows">{mz_learn}</div></section>
 </section>
 
 <section class="wrap ae-sec">
