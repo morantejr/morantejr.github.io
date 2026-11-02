@@ -425,6 +425,7 @@ EXTRA_CSS = """
 .ae-grid > .card{background:var(--bg)}
 .ae-h3{margin:10px 0 0;font-size:19px;letter-spacing:-0.015em;line-height:1.3;font-weight:500;color:var(--fg)}
 .ae-crumb{margin:0 0 18px;font-size:12px;letter-spacing:0.08em;color:var(--faint)}
+.ae-crumb a,.ae-back a,.foot a{display:inline-flex;align-items:center;min-height:24px}
 .ae-crumb a{color:var(--faint)}.ae-crumb a:hover{color:var(--acc)}
 .ae-entry{display:block;background:var(--bg);padding:26px 24px;transition:background .2s}
 .ae-entry:hover{background:var(--card-hover)}
@@ -486,6 +487,7 @@ EXTRA_CSS = """
  .ae-sec{padding-top:66px}
  .ae-grid{grid-template-columns:1fr}
  .ae-row{grid-template-columns:1fr;gap:4px;padding:14px 18px}
+ .ae-spec-t{white-space:normal}
  .ae-spec-h{padding:16px 18px}
  .ae-artifact-h{font-size:22px}
 }
