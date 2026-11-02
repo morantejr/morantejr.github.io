@@ -1333,7 +1333,7 @@ def build_scenesearch_page(d: Data):
 </section>
 
 <section class="wrap ae-sec">
-  <div class="sec-head"><h2>Scene Monetization track</h2><div class="mono kicker">April to June 2027</div></div>
+  <div class="sec-head"><h2>Scene Monetization track</h2><div class="mono kicker">April to August 2027</div></div>
   <p class="ae-intro">{e(mz['scope_impact']['finding'])}</p>
   <div class="ae-grid" style="margin-top:26px">{mz_months}</div>
   <ul class="ae-comps" style="margin-top:26px">{"".join(f"<li>{e(x)}</li>" for x in mz["scope_impact"]["consequences"])}</ul>

@@ -3,7 +3,7 @@
   "subtitle": "Multimodal video intelligence and creator-controlled monetization.",
   "short_description": "An AI-engineering project exploring how multimodal video understanding can support semantic retrieval, scene-level intelligence, and creator-authorized advertising inventory. Two applications on one platform; nothing is built yet.",
   "status": "planned",
-  "build_window": "November 2026 \u2013 June 2027",
+  "build_window": "November 2026 \u2013 August 2027",
   "workload_note": "A working envelope of roughly 10 to 12 hours a week, adjustable. This is a plan, not a commitment, and it is not necessarily time on top of existing study. See the curriculum mapping below.",
   "repo_url": null,
   "demo_url": null,
@@ -666,6 +666,28 @@
     "track": [
       {
         "month": "April 2027",
+        "theme": "Consolidation and hardening",
+        "status": "planned",
+        "work": [
+          "Fix what the March evaluation exposed, before starting anything new",
+          "Stabilise the ingestion and embedding pipeline for a second consumer",
+          "Put shared services behind interfaces: ingestion, storage, metadata",
+          "Write down the retrieval system's real failure modes"
+        ]
+      },
+      {
+        "month": "May 2027",
+        "theme": "Platform readiness for a second application",
+        "status": "planned",
+        "work": [
+          "Frame-accurate access to source video, which retrieval never needed",
+          "A scene-level metadata model that can carry placement records",
+          "Throughput and cost profiling for per-frame computer-vision work",
+          "Decision point: is this foundation actually good enough to build on"
+        ]
+      },
+      {
+        "month": "June 2027",
         "theme": "Spatial scene intelligence",
         "status": "planned",
         "work": [
@@ -676,7 +698,7 @@
         ]
       },
       {
-        "month": "May 2027",
+        "month": "July 2027",
         "theme": "Creator governance and rendering",
         "status": "planned",
         "work": [
@@ -688,7 +710,7 @@
         ]
       },
       {
-        "month": "June 2027",
+        "month": "August 2027",
         "theme": "Verification and integrated demonstration",
         "status": "planned",
         "work": [
@@ -715,68 +737,69 @@
       "Measurable on-screen exposure, reported with its method"
     ],
     "scope_impact": {
-      "finding": "Decided: the window extends and Scene Monetization follows retrieval rather than running beside it. Scene Intelligence keeps November 2026 to March 2027 unchanged; monetization runs April to June 2027, once there is a working retrieval system to build on.",
+      "finding": "Decided: the window extends to August 2027 and Scene Monetization follows retrieval rather than running beside it. Scene Intelligence keeps November 2026 to March 2027 unchanged; monetization runs April to August 2027.",
       "consequences": [
-        "The monetization track lost its first two months. 'Multimodal foundation' and 'retrieval and evaluation' were the Scene Intelligence roadmap under a different heading, and doing that work once rather than twice is the whole benefit of sequencing them.",
-        "This buys calendar, not capacity. The envelope is still roughly 10 to 12 hours a week; the work is spread across eight months instead of compressed into five.",
-        "It also relieves the dependency the sequencing section flags. The computer-vision foundations the spatial work needs are still Planned with no date, but they are now needed by April rather than January.",
-        "If retrieval slips, monetization slips with it. April is a dependency, not a fixed date, and nothing here should be read as a commitment to ship by June."
+        "The monetization track's first two months are consolidation, not a second pass at retrieval. April fixes what the March evaluation exposed and puts the shared services behind interfaces; May adds what a second application needs and retrieval never did, chiefly frame-accurate video access and a metadata model that can carry placement records.",
+        "May ends in a decision point rather than a deliverable. If the foundation is not good enough to build on, the honest move is to keep hardening it rather than start the spatial work on sand.",
+        "This buys calendar, not capacity. The envelope is still roughly 10 to 12 hours a week, spread across ten months instead of compressed into five.",
+        "It also relieves the dependency the sequencing section flags. The computer-vision foundations the spatial work needs are still Planned with no date, but they are now needed by June rather than January.",
+        "If retrieval slips, everything after it slips. April is a dependency, not a fixed date, and nothing here should be read as a commitment to ship by August."
       ]
     },
     "learning": [
       {
         "topic": "Video processing with FFmpeg and OpenCV",
-        "month": "April 2027",
-        "why": "Decode, sample and re-encode without destroying what is measured later."
+        "month": "May 2027",
+        "why": "Frame-accurate decode and re-encode, which the readiness month needs before any spatial work."
       },
       {
         "topic": "Object detection and segmentation",
-        "month": "April 2027",
+        "month": "June 2027",
         "why": "Find candidate surfaces and the objects that occlude them."
       },
       {
         "topic": "Multi-object and surface tracking",
-        "month": "April 2027",
+        "month": "June 2027",
         "why": "Keep a surface identified across a shot rather than per frame."
       },
       {
         "topic": "Homography and perspective transforms",
-        "month": "April 2027",
+        "month": "June 2027",
         "why": "Place a plane correctly under camera motion."
       },
       {
         "topic": "Foreground segmentation and occlusion masks",
-        "month": "May 2027",
+        "month": "July 2027",
         "why": "Let a person pass in front of the placement."
       },
       {
         "topic": "Video compositing",
-        "month": "May 2027",
+        "month": "July 2027",
         "why": "Blend creative into the plate with matched lighting and grain."
       },
       {
         "topic": "Temporal consistency evaluation",
-        "month": "May 2027",
+        "month": "July 2027",
         "why": "Measure flicker and drift instead of judging by eye."
       },
       {
         "topic": "Policy engine design",
-        "month": "May 2027",
+        "month": "July 2027",
         "why": "Make authorization deterministic and replayable."
       },
       {
         "topic": "Structured metadata and audit logging",
-        "month": "June 2027",
+        "month": "August 2027",
         "why": "Make every delivery reconstructable after the fact."
       },
       {
         "topic": "Asynchronous processing pipelines",
-        "month": "June 2027",
+        "month": "August 2027",
         "why": "Rendering is slow; the request path cannot block on it."
       },
       {
         "topic": "Measurement and experimentation",
-        "month": "June 2027",
+        "month": "August 2027",
         "why": "Report exposure with a stated method, not a vanity number."
       }
     ]
