@@ -345,7 +345,7 @@
     ]
   },
   "sequencing": {
-    "finding": "No course anywhere on this site carries a start date, a completion date or an hours estimate, and every one of the 53 records reads Planned. Only the from-scratch pathway is marked in progress, and all twenty of its phases are themselves Planned.",
+    "finding": "No course anywhere on this site carries a start date, a completion date or an hours estimate, and every one of the 53 records reads Planned. The from-scratch pathway is in progress: its first three phases are complete and the remaining seventeen are Planned.",
     "consequences": [
       "I cannot say whether any foundation is scheduled before or after SceneSearch needs it, because nothing is scheduled at all. Every sequencing question is undetermined rather than satisfied.",
       "I cannot say whether 10 to 12 hours a week is additional time or shared time, because existing weekly study time is not recorded anywhere. No claim is made here that the combined plan is feasible.",
