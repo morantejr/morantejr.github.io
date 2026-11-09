@@ -115,6 +115,8 @@ h1{margin:0;font-size:clamp(48px,7.2vw,96px);line-height:0.98;letter-spacing:-0.
 .hero-links a:hover,.lnk:hover{color:var(--acc)}
 .stats{margin-top:110px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
 .stat{background:var(--bg);padding:28px 26px}
+.stat.link{display:block;text-decoration:none;color:inherit;transition:background .2s}
+.stat.link:hover{background:var(--card-hover)}
 .stat-v{font-size:26px;letter-spacing:-0.02em}
 .stat-l{margin-top:8px;font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint)}
 .sec{padding-top:130px}.sec-sm{padding-top:70px}
@@ -275,9 +277,10 @@ h3{margin:18px 0 6px;font-size:40px;letter-spacing:-0.03em;font-weight:500}
     </div>
   </div>
   <div class="stats">
-    <div class="stat"><div class="stat-v">5+ years</div><div class="mono stat-l">Adtech &amp; media analytics</div></div>
-    <div class="stat"><div class="stat-v">mta-audit</div><div class="mono stat-l">Open source · on PyPI</div></div>
-    <div class="stat"><div class="stat-v">Adjunct</div><div class="mono stat-l">Susquehanna University</div></div>
+    <a class="stat link" href="https://pypi.org/project/mta-audit/" target="_blank" rel="noopener"><div class="stat-v">mta-audit</div><div class="mono stat-l">Shipped · on PyPI · benchmarked</div></a>
+    <a class="stat link" href="#work"><div class="stat-v">Peer reviewed</div><div class="mono stat-l">Accepted poster · AgentEvalSci 2026</div></a>
+    <a class="stat link" href="https://morantejr.github.io/signal-app/" target="_blank" rel="noopener"><div class="stat-v">SIGNAL</div><div class="mono stat-l">Live · research pipeline running</div></a>
+    <a class="stat link" href="#experience"><div class="stat-v">5+ years</div><div class="mono stat-l">Adtech &amp; media analytics</div></a>
   </div>
 </section>
 </div>
