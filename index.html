@@ -214,8 +214,12 @@ h3{margin:18px 0 6px;font-size:40px;letter-spacing:-0.03em;font-weight:500}
  #vanta-bg{right:-45vw}
  #vanta-bg::after{background:linear-gradient(90deg,var(--bg) 0%,var(--fade) 55%,transparent 100%),linear-gradient(180deg,transparent 60%,var(--bg) 100%)}
  .wrap{padding-left:20px;padding-right:20px}
- .hero{padding-top:90px}
- .stats{margin-top:70px}
+ /* Phones: tighten the hero stack so the evidence tiles land on the first screen.
+    Desktop spacing is unchanged. */
+ .hero{padding-top:64px}
+ .hero-lede{margin-top:22px}
+ .hero-actions{margin-top:30px}
+ .stats{margin-top:28px}
  .sec{padding-top:90px}
  h3{font-size:34px}
  .hero-links{margin-left:0;width:100%;margin-top:8px}
@@ -517,6 +521,7 @@ h3{margin:18px 0 6px;font-size:40px;letter-spacing:-0.03em;font-weight:500}
       <div class="panel-body">
         <div class="rows">
         <div class="row"><div><div class="row-t"><a class="ul" href="https://www.coursera.org/learn/crash-course-in-causality" target="_blank" rel="noopener">A Crash Course in Causality &#8599;</a></div><div class="row-d">University of Pennsylvania &middot; Coursera &middot; Intermediate &middot; about 2 weeks at 10 hrs/week &middot; 5 modules in R</div><div class="row-d">Potential outcomes, matching, weighting and instrumental variables for causal measurement and experimentation.</div></div><div class="mono row-v">Planned</div></div>
+        <div class="row"><div><div class="row-t"><a class="ul" href="https://facebookincubator.github.io/GeoLift/docs/GettingStarted/Walkthrough" target="_blank" rel="noopener">GeoLift walkthrough &mdash; power analysis and market selection &#8599;</a></div><div class="row-d">Meta &middot; documentation, not a course &middot; free</div><div class="row-d">Covers the gap the courses above leave: designing a geo test, selecting test markets, running power calculations and reading out lift. None of the Coursera courses listed here teaches experimental design or minimum detectable effect.</div></div><div class="mono row-v">Planned</div></div>
         <div class="row"><div><div class="row-t"><a class="ul" href="https://www.coursera.org/learn/analytics-engineering-workflows-with-dbt" target="_blank" rel="noopener">Analytics Engineering Workflows with dbt &#8599;</a></div><div class="row-d">Edureka &middot; Coursera &middot; Intermediate &middot; about 9 hours</div><div class="row-d">Jinja, incremental models, tests, docs and Git workflows. dbt Labs&rsquo; own Fundamentals course is free at learn.getdbt.com and would cover similar ground &mdash; an alternative, not a second enrolment.</div></div><div class="mono row-v">Planned</div></div>
         <div class="row"><div><div class="row-t"><a class="ul" href="https://www.coursera.org/learn/forecasting-models-marketing-decisions" target="_blank" rel="noopener">Forecasting Models for Marketing Decisions &#8599;</a></div><div class="row-d">Emory University &middot; Coursera &middot; Intermediate &middot; about 1 week at 10 hrs/week &middot; 4 modules</div><div class="row-d">Formal training in forecasting approaches relevant to marketing mix modelling and campaign forecasting.</div></div><div class="mono row-v">Planned</div></div>
         <div class="row"><div><div class="row-t"><a class="ul" href="https://www.coursera.org/learn/react-basics" target="_blank" rel="noopener">React Basics &#8599;</a></div><div class="row-d">Meta &middot; Coursera &middot; Beginner &middot; about 3 weeks at 10 hrs/week</div><div class="row-d">A single foundational course for building interactive analytics applications.</div></div><div class="mono row-v">Planned</div></div>
@@ -528,16 +533,16 @@ h3{margin:18px 0 6px;font-size:40px;letter-spacing:-0.03em;font-weight:500}
       <div class="panel-bar"><i></i><i></i><span class="mono">projects &middot; priority order</span></div>
       <div class="panel-body">
         <div class="rows">
+        <div class="row"><div><div class="row-t">Incrementality workbench</div><div class="row-d">Synthetic data &middot; or a Meta GeoLift walkthrough</div><div class="row-d">A geo-test and holdout designer with power analysis and a lift readout.</div></div><div class="mono row-v">Planned</div></div>
         <div class="row"><div><div class="row-t">dbt marketing funnel model</div><div class="row-d">dbt &middot; synthetic data only</div><div class="row-d">A synthetic B2B lead-to-pipeline-to-revenue dataset, dbt models with tests and docs, documented metric definitions, and one Looker or Tableau dashboard.</div></div><div class="mono row-v">Planned</div></div>
         <div class="row"><div><div class="row-t">Hill response-curve modelling</div><div class="row-d">Python &middot; public MMM sample data</div><div class="row-d">Fit and validate Hill saturation curves on public sample data from Robyn or Meridian, clearly labelled, stating identification limits honestly. Any simulated data is labelled as simulated.</div></div><div class="mono row-v">Planned</div></div>
-        <div class="row"><div><div class="row-t">Incrementality workbench</div><div class="row-d">Synthetic data &middot; or a Meta GeoLift walkthrough</div><div class="row-d">A geo-test and holdout designer with power analysis and a lift readout.</div></div><div class="mono row-v">Planned</div></div>
         <div class="row"><div><div class="row-t">Marketing mix model demo</div><div class="row-d">Google Meridian or Meta Robyn &middot; public or simulated data</div><div class="row-d">A worked model with honest validation notes.</div></div><div class="mono row-v">Planned</div></div>
         <div class="row"><div><div class="row-t">React measurement dashboard</div><div class="row-d">React &middot; public data &middot; GitHub Pages</div><div class="row-d">A small React app on public data, deployed.</div></div><div class="mono row-v">Planned</div></div>
         </div>
       </div>
     </div>
   </div>
-  <p class="row-d" style="margin-top:22px;max-width:760px">Course time estimates and levels come from the linked Coursera pages, checked 8 November 2026. Pricing and audit options vary.</p>
+  <p class="row-d" style="margin-top:22px;max-width:760px">The incrementality workbench is first because it is the only project here that produces experimental evidence rather than a model or a dashboard. Course time estimates and levels come from the linked Coursera pages, checked 8 November 2026. Pricing and audit options vary.</p>
 </section>
 
 <section id="research" class="wrap sec-sm">
