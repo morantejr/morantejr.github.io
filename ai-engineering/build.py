@@ -231,7 +231,11 @@ def validate(d: Data):
         if m.get("url") and not m.get("slug_verified"):
             err(f"{w}: has a url but slug_verified is false")
         if m.get("status") == "completed" and not m.get("repo_url"):
-            warn(f"{w}: completed with no implementation repository")
+            # A phase that produces no code may be exempt, but it has to say why in
+            # writing rather than simply going quiet.
+            if not m.get("no_implementation_reason"):
+                warn(f"{w}: completed with no implementation repository, and no "
+                     f"'no_implementation_reason' explaining why there is none")
         for c in m.get("competencies", []):
             if c not in comp_ids:
                 err(f"{w}: competency {c!r} does not exist")
@@ -806,8 +810,18 @@ def build_from_scratch_page(d: Data):
         title = e(m["title"])
         link = ext(m["url"], "Open phase") if m.get("url") else '<span class="mono ae-code">slug not published</span>'
         lessons = f'<span class="ae-xl">{m["lesson_count"]} lessons</span>' if m.get("lesson_count") else ""
+        # A completed phase shows its evidence: the implementation, or why there is none.
+        if m.get("status") == "completed":
+            if m.get("repo_url"):
+                evidence = f'<span class="ae-xl">{ext(m["repo_url"], "Implementation")}</span>'
+            elif m.get("no_implementation_reason"):
+                evidence = f'<span class="ae-xl ae-note-inline">{e(m["no_implementation_reason"])}</span>'
+            else:
+                evidence = ""
+        else:
+            evidence = ""
         rows.append(f'<div class="ae-row"><span class="ae-code">{e(m["number"])}</span>'
-                    f'<span class="ae-ct">{title}{lessons}{when(m)}<span class="ae-xl">{link}</span></span>'
+                    f'<span class="ae-ct">{title}{lessons}{when(m)}<span class="ae-xl">{link}</span>{evidence}</span>'
                     f'<span>{status_pill(m["status"])}</span></div>')
     meta = d.modmeta
     fs = d.cur_by_id["from-scratch"]

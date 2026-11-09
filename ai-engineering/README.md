@@ -87,6 +87,10 @@ specialization that is an admission pathway for MS-AI is not one for MS-CS.
   (15 and 15), so a miscount fails the build instead of shipping.
 - Exactly two pathway specializations per CU curriculum.
 - A module may not carry a URL unless `slug_verified` is true, which stops guessed links.
+- **A module marked `completed` must carry a `repo_url`**, or a `no_implementation_reason`
+  explaining why the phase produced no code. The exemption has to be written down: an
+  empty or missing reason still warns. Phase 00 uses it, because setting up a development
+  environment leaves nothing to publish.
 - A roadmap skill may be `demonstrated` only if it names an artifact.
 - `official_url` must be absolute https; artifact links must be absolute, an anchor, or use
   the `{root}` token.
